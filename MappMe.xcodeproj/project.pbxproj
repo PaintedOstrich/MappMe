@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		680435DD14FED94600899729 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DC14FED94600899729 /* UIKit.framework */; };
+		680435DF14FED94600899729 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DE14FED94600899729 /* Foundation.framework */; };
+		680435E114FED94600899729 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435E014FED94600899729 /* CoreGraphics.framework */; };
+		680435E714FED94600899729 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 680435E514FED94600899729 /* InfoPlist.strings */; };
+		680435E914FED94600899729 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 680435E814FED94600899729 /* main.m */; };
+		680435ED14FED94600899729 /* MappMeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 680435EC14FED94600899729 /* MappMeAppDelegate.m */; };
+		680435F014FED94600899729 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680435EE14FED94600899729 /* MainStoryboard_iPhone.storyboard */; };
+		680435F314FED94600899729 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680435F114FED94600899729 /* MainStoryboard_iPad.storyboard */; };
+		680435F614FED94600899729 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680435F514FED94600899729 /* LoginViewController.m */; };
+		6804360C14FEDAEF00899729 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 680435FF14FEDAEF00899729 /* FBDialog.bundle */; };
+		6804360D14FEDAEF00899729 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6804360514FEDAEF00899729 /* libfacebook_ios_sdk.a */; };
+		6804361114FEDE4100899729 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361014FEDE4100899729 /* DebugLog.m */; };
+		6804361414FEEA3800899729 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361314FEEA3800899729 /* Person.m */; };
+		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		680435D814FED94600899729 /* MappMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MappMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		680435DC14FED94600899729 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		680435DE14FED94600899729 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		680435E014FED94600899729 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		680435E414FED94600899729 /* MappMe-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MappMe-Info.plist"; sourceTree = "<group>"; };
+		680435E614FED94600899729 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		680435E814FED94600899729 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		680435EA14FED94600899729 /* MappMe-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MappMe-Prefix.pch"; sourceTree = "<group>"; };
+		680435EB14FED94600899729 /* MappMeAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappMeAppDelegate.h; sourceTree = "<group>"; };
+		680435EC14FED94600899729 /* MappMeAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappMeAppDelegate.m; sourceTree = "<group>"; };
+		680435EF14FED94600899729 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		680435F214FED94600899729 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		680435F414FED94600899729 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		680435F514FED94600899729 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		680435FD14FEDAEF00899729 /* Facebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
+		680435FE14FEDAEF00899729 /* FBConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBConnect.h; sourceTree = "<group>"; };
+		680435FF14FEDAEF00899729 /* FBDialog.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBDialog.bundle; sourceTree = "<group>"; };
+		6804360014FEDAEF00899729 /* FBDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBDialog.h; sourceTree = "<group>"; };
+		6804360114FEDAEF00899729 /* FBFrictionlessRequestSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBFrictionlessRequestSettings.h; sourceTree = "<group>"; };
+		6804360214FEDAEF00899729 /* FBLoginDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBLoginDialog.h; sourceTree = "<group>"; };
+		6804360314FEDAEF00899729 /* FBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBRequest.h; sourceTree = "<group>"; };
+		6804360414FEDAEF00899729 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		6804360514FEDAEF00899729 /* libfacebook_ios_sdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfacebook_ios_sdk.a; sourceTree = "<group>"; };
+		6804360614FEDAEF00899729 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		6804360714FEDAEF00899729 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		6804360814FEDAEF00899729 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		6804360914FEDAEF00899729 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		6804360A14FEDAEF00899729 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		6804360B14FEDAEF00899729 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		6804360F14FEDE4100899729 /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugLog.h; sourceTree = "<group>"; };
+		6804361014FEDE4100899729 /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLog.m; sourceTree = "<group>"; };
+		6804361214FEEA3800899729 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		6804361314FEEA3800899729 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		6804361514FEEF4200899729 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		6804361614FEEF4200899729 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		680435D514FED94600899729 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				680435DD14FED94600899729 /* UIKit.framework in Frameworks */,
+				680435DF14FED94600899729 /* Foundation.framework in Frameworks */,
+				680435E114FED94600899729 /* CoreGraphics.framework in Frameworks */,
+				6804360D14FEDAEF00899729 /* libfacebook_ios_sdk.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		680435CD14FED94600899729 = {
+			isa = PBXGroup;
+			children = (
+				680435FC14FEDAEF00899729 /* facebook-ios-sdk */,
+				680435E214FED94600899729 /* MappMe */,
+				680435DB14FED94600899729 /* Frameworks */,
+				680435D914FED94600899729 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		680435D914FED94600899729 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				680435D814FED94600899729 /* MappMe.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		680435DB14FED94600899729 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				680435DC14FED94600899729 /* UIKit.framework */,
+				680435DE14FED94600899729 /* Foundation.framework */,
+				680435E014FED94600899729 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		680435E214FED94600899729 /* MappMe */ = {
+			isa = PBXGroup;
+			children = (
+				6804360E14FEDE1300899729 /* Util */,
+				680435EB14FED94600899729 /* MappMeAppDelegate.h */,
+				680435EC14FED94600899729 /* MappMeAppDelegate.m */,
+				680435F414FED94600899729 /* LoginViewController.h */,
+				680435F514FED94600899729 /* LoginViewController.m */,
+				6804361514FEEF4200899729 /* MainViewController.h */,
+				6804361614FEEF4200899729 /* MainViewController.m */,
+				6804361214FEEA3800899729 /* Person.h */,
+				6804361314FEEA3800899729 /* Person.m */,
+				680435E314FED94600899729 /* Supporting Files */,
+				680435EE14FED94600899729 /* MainStoryboard_iPhone.storyboard */,
+				680435F114FED94600899729 /* MainStoryboard_iPad.storyboard */,
+			);
+			path = MappMe;
+			sourceTree = "<group>";
+		};
+		680435E314FED94600899729 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				680435E414FED94600899729 /* MappMe-Info.plist */,
+				680435E514FED94600899729 /* InfoPlist.strings */,
+				680435E814FED94600899729 /* main.m */,
+				680435EA14FED94600899729 /* MappMe-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		680435FC14FEDAEF00899729 /* facebook-ios-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				680435FD14FEDAEF00899729 /* Facebook.h */,
+				680435FE14FEDAEF00899729 /* FBConnect.h */,
+				680435FF14FEDAEF00899729 /* FBDialog.bundle */,
+				6804360014FEDAEF00899729 /* FBDialog.h */,
+				6804360114FEDAEF00899729 /* FBFrictionlessRequestSettings.h */,
+				6804360214FEDAEF00899729 /* FBLoginDialog.h */,
+				6804360314FEDAEF00899729 /* FBRequest.h */,
+				6804360414FEDAEF00899729 /* JSON.h */,
+				6804360514FEDAEF00899729 /* libfacebook_ios_sdk.a */,
+				6804360614FEDAEF00899729 /* NSObject+SBJSON.h */,
+				6804360714FEDAEF00899729 /* NSString+SBJSON.h */,
+				6804360814FEDAEF00899729 /* SBJSON.h */,
+				6804360914FEDAEF00899729 /* SBJsonBase.h */,
+				6804360A14FEDAEF00899729 /* SBJsonParser.h */,
+				6804360B14FEDAEF00899729 /* SBJsonWriter.h */,
+			);
+			path = "facebook-ios-sdk";
+			sourceTree = "<group>";
+		};
+		6804360E14FEDE1300899729 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				6804360F14FEDE4100899729 /* DebugLog.h */,
+				6804361014FEDE4100899729 /* DebugLog.m */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		680435D714FED94600899729 /* MappMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 680435F914FED94600899729 /* Build configuration list for PBXNativeTarget "MappMe" */;
+			buildPhases = (
+				680435D414FED94600899729 /* Sources */,
+				680435D514FED94600899729 /* Frameworks */,
+				680435D614FED94600899729 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MappMe;
+			productName = MappMe;
+			productReference = 680435D814FED94600899729 /* MappMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		680435CF14FED94600899729 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 680435D214FED94600899729 /* Build configuration list for PBXProject "MappMe" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 680435CD14FED94600899729;
+			productRefGroup = 680435D914FED94600899729 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				680435D714FED94600899729 /* MappMe */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		680435D614FED94600899729 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				680435E714FED94600899729 /* InfoPlist.strings in Resources */,
+				680435F014FED94600899729 /* MainStoryboard_iPhone.storyboard in Resources */,
+				680435F314FED94600899729 /* MainStoryboard_iPad.storyboard in Resources */,
+				6804360C14FEDAEF00899729 /* FBDialog.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		680435D414FED94600899729 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				680435E914FED94600899729 /* main.m in Sources */,
+				680435ED14FED94600899729 /* MappMeAppDelegate.m in Sources */,
+				680435F614FED94600899729 /* LoginViewController.m in Sources */,
+				6804361114FEDE4100899729 /* DebugLog.m in Sources */,
+				6804361414FEEA3800899729 /* Person.m in Sources */,
+				6804361714FEEF4200899729 /* MainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		680435E514FED94600899729 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				680435E614FED94600899729 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		680435EE14FED94600899729 /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				680435EF14FED94600899729 /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		680435F114FED94600899729 /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				680435F214FED94600899729 /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		680435F714FED94600899729 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		680435F814FED94600899729 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		680435FA14FED94600899729 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MappMe/MappMe-Prefix.pch";
+				INFOPLIST_FILE = "MappMe/MappMe-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/facebook-ios-sdk\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		680435FB14FED94600899729 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MappMe/MappMe-Prefix.pch";
+				INFOPLIST_FILE = "MappMe/MappMe-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/facebook-ios-sdk\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		680435D214FED94600899729 /* Build configuration list for PBXProject "MappMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				680435F714FED94600899729 /* Debug */,
+				680435F814FED94600899729 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		680435F914FED94600899729 /* Build configuration list for PBXNativeTarget "MappMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				680435FA14FED94600899729 /* Debug */,
+				680435FB14FED94600899729 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 680435CF14FED94600899729 /* Project object */;
+}
