@@ -10,4 +10,7 @@
 
 @interface MainViewController : UIViewController
 
+-(IBAction)logoutButtonPressed;
+    
+
 @end

@@ -7,8 +7,12 @@
 //
 
 #import "MainViewController.h"
+#import "DebugLog.h"
+#import "MappMeAppDelegate.h"
 
-@implementation MainViewController
+@implementation MainViewController{
+    MappMeAppDelegate *delegate;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +31,11 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(IBAction)logoutButtonPressed{
+    [[delegate facebook] logout];
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
 #pragma mark - View lifecycle
 
 /*
@@ -36,13 +45,14 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
 }
-*/
+
 
 - (void)viewDidUnload
 {

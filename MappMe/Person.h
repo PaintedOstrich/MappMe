@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Person : NSObject
+@interface Person : NSObject{
+    
+}
 
 @end

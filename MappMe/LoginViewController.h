@@ -9,14 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
 
-@interface LoginViewController : UIViewController
-<FBSessionDelegate>{
-    NSArray *permissions;
+@interface LoginViewController : UIViewController{
 
 }
 
-@property (nonatomic, retain) NSArray *permissions;
 
 -(IBAction)loginButtonPress;
-
+-(void)showLoggedIn;
 @end
