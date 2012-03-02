@@ -14,6 +14,8 @@
     MappMeAppDelegate *delegate;
 }
 
+@synthesize mapView;
+
 -(IBAction)logoutButtonPressed{
     [[delegate facebook] logout];
     [self.navigationController popViewControllerAnimated:YES];
@@ -34,6 +36,7 @@
 {
     [super viewDidLoad];
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[self navigationController] setNavigationBarHidden:TRUE animated:FALSE];
 }
 
 

@@ -21,6 +21,7 @@
 		6804361114FEDE4100899729 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361014FEDE4100899729 /* DebugLog.m */; };
 		6804361414FEEA3800899729 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361314FEEA3800899729 /* Person.m */; };
 		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
+		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		6804361314FEEA3800899729 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		6804361514FEEF4200899729 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6804361614FEEF4200899729 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		A94324941500727F005F7600 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A94324951500727F005F7600 /* MapKit.framework in Frameworks */,
 				680435DD14FED94600899729 /* UIKit.framework in Frameworks */,
 				680435DF14FED94600899729 /* Foundation.framework in Frameworks */,
 				680435E114FED94600899729 /* CoreGraphics.framework in Frameworks */,
@@ -97,6 +100,7 @@
 		680435DB14FED94600899729 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A94324941500727F005F7600 /* MapKit.framework */,
 				680435DC14FED94600899729 /* UIKit.framework */,
 				680435DE14FED94600899729 /* Foundation.framework */,
 				680435E014FED94600899729 /* CoreGraphics.framework */,

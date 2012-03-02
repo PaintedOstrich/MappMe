@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <MKMapViewDelegate> {
+    IBOutlet MKMapView* mapView;
+}
 
+@property(nonatomic,retain)	IBOutlet MKMapView* mapView;
 -(IBAction)logoutButtonPressed;
     
 
