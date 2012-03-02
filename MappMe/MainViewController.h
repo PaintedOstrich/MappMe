@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "MBProgressHUD.h"
 
-@interface MainViewController : UIViewController <MKMapViewDelegate> {
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate> {
     IBOutlet MKMapView* mapView;
 }
 

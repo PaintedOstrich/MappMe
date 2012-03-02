@@ -21,6 +21,7 @@
 		6804361114FEDE4100899729 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361014FEDE4100899729 /* DebugLog.m */; };
 		6804361414FEEA3800899729 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361314FEEA3800899729 /* Person.m */; };
 		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
+		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
 		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
@@ -62,6 +63,8 @@
 		6804361314FEEA3800899729 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		6804361514FEEF4200899729 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6804361614FEEF4200899729 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A91AF90415008AE200FCD3D7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		A91AF90515008AE200FCD3D7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		A94324941500727F005F7600 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -88,6 +91,7 @@
 		680435CD14FED94600899729 = {
 			isa = PBXGroup;
 			children = (
+				A913EE64150095DB009F6A84 /* PlugIns */,
 				6804360E14FEDE1300899729 /* Util */,
 				680435FC14FEDAEF00899729 /* facebook-ios-sdk */,
 				680435E214FED94600899729 /* MappMe */,
@@ -171,6 +175,15 @@
 			);
 			name = Util;
 			path = MappMe;
+			sourceTree = "<group>";
+		};
+		A913EE64150095DB009F6A84 /* PlugIns */ = {
+			isa = PBXGroup;
+			children = (
+				A913EE66150095FC009F6A84 /* MBProgressHUD.h */,
+				A913EE67150095FC009F6A84 /* MBProgressHUD.m */,
+			);
+			name = PlugIns;
 			sourceTree = "<group>";
 		};
 		A91AF90815008AF200FCD3D7 /* Controllers */ = {
@@ -260,6 +273,7 @@
 				6804361714FEEF4200899729 /* MainViewController.m in Sources */,
 				A943249815007983005F7600 /* ListViewController.m in Sources */,
 				A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */,
+				A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

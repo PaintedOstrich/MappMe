@@ -13,6 +13,7 @@
 
 @implementation MainViewController{
     MappMeAppDelegate *delegate;
+    MBProgressHUD *HUD;
 }
 
 @synthesize mapView;
@@ -34,11 +35,22 @@
 }
 
 #pragma mark - View lifecycle
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
+- (void)someTask {
+    // Do something usefull in here instead of sleeping ...
+    sleep(3);
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    // Regiser for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+    
+    // Show the HUD while the provided method executes in a new thread
+    [HUD showWhileExecuting:@selector(someTask) onTarget:self withObject:nil animated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
