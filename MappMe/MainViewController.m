@@ -39,9 +39,11 @@
 {
     [super viewDidLoad];
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[self navigationController] setNavigationBarHidden:TRUE animated:FALSE];
 }
 
+-(void) viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
+}
 
 - (void)viewDidUnload
 {
