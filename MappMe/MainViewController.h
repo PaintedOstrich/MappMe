@@ -14,7 +14,7 @@
 }
 
 @property(nonatomic,retain)	IBOutlet MKMapView* mapView;
--(IBAction)logoutButtonPressed;
-    
+
+-(IBAction)logoutBtnTapped;
 
 @end

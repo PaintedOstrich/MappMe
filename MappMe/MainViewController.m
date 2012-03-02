@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "DebugLog.h"
 #import "MappMeAppDelegate.h"
+#import "LoginViewController.h"
 
 @implementation MainViewController{
     MappMeAppDelegate *delegate;
@@ -16,10 +17,12 @@
 
 @synthesize mapView;
 
--(IBAction)logoutButtonPressed{
+-(IBAction)logoutBtnTapped{
+    LoginViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
+    [[delegate facebook] setSessionDelegate:controller];
     [[delegate facebook] logout];
-    [self.navigationController popViewControllerAnimated:YES];
-    
+    delegate.window.rootViewController = controller;
+    [delegate.window makeKeyAndVisible];
 }
 
 - (void)didReceiveMemoryWarning
