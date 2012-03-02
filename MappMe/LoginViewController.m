@@ -21,17 +21,9 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
--(void)showLoggedIn{
-    DebugLog(@"performing selector in loginviewcontroller");
-    [self performSegueWithIdentifier:@"LoggedInSegue" sender:self];
-}
-
 -(IBAction)loginButtonPress{
-    if (![[delegate facebook] isSessionValid]) {
-        [[delegate facebook] authorize:[delegate permissions]];
-    }else{
-        [self showLoggedIn];
-    }
+    NSArray* permissions = [[NSArray alloc] initWithObjects:@"friends_hometown",@"friends_location",@"friends_work_history",@"friends_education_history", nil];
+    [[delegate facebook] authorize:permissions];
 }
 
 #pragma mark - View lifecycle
@@ -47,25 +39,12 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-//    [[delegate facebook] logout];
     
-//
-//    [super viewWillAppear:animated];
-//    
-//    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    if (![[delegate facebook] isSessionValid]) {
-//        //Start animation for main screen
-//        DebugLog(@"logged out");
-//    } else {
-//        DebugLog(@"logged in");
-//        [self showLoggedIn];
-//    }
 }
 
 
@@ -92,6 +71,66 @@
     } else {
         return YES;
     }
+}
+
+#pragma mark - FB Private Helpers
+- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:accessToken forKey:@"FBAccessTokenKey"];
+    [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+}
+
+#pragma mark - FBSessionDelegate Methods
+/**
+ * Called when the user has logged in successfully.
+ */
+- (void)fbDidLogin {
+    NSLog(@"called fbDidLogin");
+    [self storeAuthData:[delegate.facebook accessToken] expiresAt:[delegate.facebook expirationDate]];
+    
+    UINavigationController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNavController"];
+    delegate.window.rootViewController = controller;
+    [delegate.window makeKeyAndVisible];
+}
+-(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
+    NSLog(@"token extended");
+    [self storeAuthData:accessToken expiresAt:expiresAt];
+}
+/**
+ * Called when the user canceled the authorization dialog.
+ */
+-(void)fbDidNotLogin:(BOOL)cancelled {
+    NSLog(@"User denied authorization");
+    //TODO should show some encouragement words to guide the user along.
+}
+/**
+ * Called when the request logout has succeeded.
+ */
+- (void)fbDidLogout {
+    // Remove saved authorization information if it exists and it is
+    // ok to clear it (logout, session invalid, app unauthorized)
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"FBAccessTokenKey"];
+    [defaults removeObjectForKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    //    [self showLoggedOut];
+    NSLog(@"FBDIDLOGOUT CALLED");
+}
+
+/**
+ * Called when the session has expired.
+ */
+- (void)fbSessionInvalidated {
+    UIAlertView *alertView = [[UIAlertView alloc]
+                              initWithTitle:@"Auth Exception"
+                              message:@"Your session has expired."
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil,
+                              nil];
+    [alertView show];
+    [self fbDidLogout];
 }
 
 @end

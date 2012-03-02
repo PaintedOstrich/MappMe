@@ -9,11 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
 
-@interface LoginViewController : UIViewController{
-
-}
-
+@interface LoginViewController : UIViewController <FBSessionDelegate>
 
 -(IBAction)loginButtonPress;
--(void)showLoggedIn;
 @end

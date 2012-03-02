@@ -9,14 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
 
-@interface MappMeAppDelegate : NSObject <UIApplicationDelegate, FBSessionDelegate>{
+@interface MappMeAppDelegate : NSObject <UIApplicationDelegate>{
     Facebook *facebook;
-     NSArray *permissions;
 }
 
 @property (strong, nonatomic) UIWindow *window;
-
 @property (nonatomic, retain) Facebook *facebook;
-@property (nonatomic, retain) NSArray *permissions;
 
 @end

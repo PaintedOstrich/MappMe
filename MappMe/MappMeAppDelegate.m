@@ -10,33 +10,30 @@
 #import "LoginViewController.h"
 
 static NSString * kAppId = @"291279594218895";
-@implementation MappMeAppDelegate{
-    UIViewController *loginViewController;
-}
+@implementation MappMeAppDelegate
 
 @synthesize window = _window;
 @synthesize facebook;
-@synthesize permissions;
 
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:self];
-//    [facebook logout:self];
-    permissions = [[NSArray alloc] initWithObjects:@"friends_hometown",@"friends_location",@"friends_work_history",@"friends_education_history", nil];
+    
+    LoginViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
+    facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:controller];
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
         && [defaults objectForKey:@"FBExpirationDateKey"]) {
         facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
         facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-    }   
-    //FIXME DI: cannot get the method 'showLoggedIn' from LoginViewController to be called
-    if([facebook isSessionValid]){ 
-        loginViewController = (UIViewController *)self.window.rootViewController;
-        [[loginViewController presentingViewController]performSelector:@selector(showLoggedIn)];
+    }
+
+    if(![facebook isSessionValid]){ 
+        self.window.rootViewController = controller;
+        [self.window makeKeyAndVisible];
     }
     return YES;
 }
@@ -44,73 +41,7 @@ static NSString * kAppId = @"291279594218895";
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [facebook handleOpenURL:url]; 
 }
-#pragma mark - FB Private Helpers
-- (void)storeAuthData:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:accessToken forKey:@"FBAccessTokenKey"];
-    [defaults setObject:expiresAt forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-}
-//- (void)loginToFacebook{
-//    if (![facebook isSessionValid]) {
-//        
-//    } else {
-//        NSLog(@"facebook session si valid");
-//        [loginViewController performSegueWithIdentifier:@"LoggedInSegue" sender:loginViewController];
-//    }
-//}
-#pragma mark - FBSessionDelegate Methods
-/**
- * Called when the user has logged in successfully.
- */
-- (void)fbDidLogin {
-    NSLog(@"called fbDidLogin in appdelegate");
-    [self storeAuthData:[facebook accessToken] expiresAt:[facebook expirationDate]];
-    [[loginViewController presentedViewController]performSelector:@selector(showLoggedIn)];
-
-}
--(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
-    NSLog(@"token extended");
-    [self storeAuthData:accessToken expiresAt:expiresAt];
-}
-/**
- * Called when the user canceled the authorization dialog.
- */
--(void)fbDidNotLogin:(BOOL)cancelled {
-    
-}
-/**
- * Called when the request logout has succeeded.
- */
-- (void)fbDidLogout {
-    // Remove saved authorization information if it exists and it is
-    // ok to clear it (logout, session invalid, app unauthorized)
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"FBAccessTokenKey"];
-    [defaults removeObjectForKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-//    [self showLoggedOut];
-    NSLog(@"FBDIDLOGOUT CALLED");
-}
-
-/**
- * Called when the session has expired.
- */
-- (void)fbSessionInvalidated {
-    UIAlertView *alertView = [[UIAlertView alloc]
-                              initWithTitle:@"Auth Exception"
-                              message:@"Your session has expired."
-                              delegate:nil
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil,
-                              nil];
-    [alertView show];
-    [self fbDidLogout];
-}
-
-
-
-							
+	
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
