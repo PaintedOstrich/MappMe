@@ -25,6 +25,15 @@
 		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
+		A9A0AC3C1502D2DB0020265D /* AnnotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC1A1502D2DB0020265D /* AnnotationManager.m */; };
+		A9A0AC3D1502D2DB0020265D /* CoordPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC1C1502D2DB0020265D /* CoordPairs.m */; };
+		A9A0AC421502D2DB0020265D /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC261502D2DB0020265D /* Friend.m */; };
+		A9A0AC431502D2DB0020265D /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC281502D2DB0020265D /* LocationTypeEnum.m */; };
+		A9A0AC491502D2DB0020265D /* PeopleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC331502D2DB0020265D /* PeopleContainer.m */; };
+		A9A0AC4A1502D2DB0020265D /* PersonNameAndIdMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC351502D2DB0020265D /* PersonNameAndIdMapping.m */; };
+		A9A0AC4B1502D2DB0020265D /* PlaceIdMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC371502D2DB0020265D /* PlaceIdMapping.m */; };
+		A9A0AC4C1502D2DB0020265D /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC391502D2DB0020265D /* Timer.m */; };
+		A9A0AC4D1502D2DB0020265D /* UserInfoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC3B1502D2DB0020265D /* UserInfoLog.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +79,24 @@
 		A94324941500727F005F7600 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A943249615007983005F7600 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		A943249715007983005F7600 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
+		A9A0AC191502D2DB0020265D /* AnnotationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnnotationManager.h; path = ../parker/AnnotationManager.h; sourceTree = "<group>"; };
+		A9A0AC1A1502D2DB0020265D /* AnnotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnnotationManager.m; path = ../parker/AnnotationManager.m; sourceTree = "<group>"; };
+		A9A0AC1B1502D2DB0020265D /* CoordPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoordPairs.h; path = ../parker/CoordPairs.h; sourceTree = "<group>"; };
+		A9A0AC1C1502D2DB0020265D /* CoordPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoordPairs.m; path = ../parker/CoordPairs.m; sourceTree = "<group>"; };
+		A9A0AC251502D2DB0020265D /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friend.h; path = ../parker/Friend.h; sourceTree = "<group>"; };
+		A9A0AC261502D2DB0020265D /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Friend.m; path = ../parker/Friend.m; sourceTree = "<group>"; };
+		A9A0AC271502D2DB0020265D /* LocationTypeEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocationTypeEnum.h; path = ../parker/LocationTypeEnum.h; sourceTree = "<group>"; };
+		A9A0AC281502D2DB0020265D /* LocationTypeEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocationTypeEnum.m; path = ../parker/LocationTypeEnum.m; sourceTree = "<group>"; };
+		A9A0AC321502D2DB0020265D /* PeopleContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PeopleContainer.h; path = ../parker/PeopleContainer.h; sourceTree = "<group>"; };
+		A9A0AC331502D2DB0020265D /* PeopleContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PeopleContainer.m; path = ../parker/PeopleContainer.m; sourceTree = "<group>"; };
+		A9A0AC341502D2DB0020265D /* PersonNameAndIdMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersonNameAndIdMapping.h; path = ../parker/PersonNameAndIdMapping.h; sourceTree = "<group>"; };
+		A9A0AC351502D2DB0020265D /* PersonNameAndIdMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersonNameAndIdMapping.m; path = ../parker/PersonNameAndIdMapping.m; sourceTree = "<group>"; };
+		A9A0AC361502D2DB0020265D /* PlaceIdMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceIdMapping.h; path = ../parker/PlaceIdMapping.h; sourceTree = "<group>"; };
+		A9A0AC371502D2DB0020265D /* PlaceIdMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceIdMapping.m; path = ../parker/PlaceIdMapping.m; sourceTree = "<group>"; };
+		A9A0AC381502D2DB0020265D /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Timer.h; path = ../parker/Timer.h; sourceTree = "<group>"; };
+		A9A0AC391502D2DB0020265D /* Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Timer.m; path = ../parker/Timer.m; sourceTree = "<group>"; };
+		A9A0AC3A1502D2DB0020265D /* UserInfoLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoLog.h; path = ../parker/UserInfoLog.h; sourceTree = "<group>"; };
+		A9A0AC3B1502D2DB0020265D /* UserInfoLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoLog.m; path = ../parker/UserInfoLog.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +149,7 @@
 		680435E214FED94600899729 /* MappMe */ = {
 			isa = PBXGroup;
 			children = (
+				A9A0AC501502D7D30020265D /* Data Classes */,
 				680435EB14FED94600899729 /* MappMeAppDelegate.h */,
 				680435EC14FED94600899729 /* MappMeAppDelegate.m */,
 				A91AF90815008AF200FCD3D7 /* Controllers */,
@@ -170,6 +198,10 @@
 		6804360E14FEDE1300899729 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				A9A0AC381502D2DB0020265D /* Timer.h */,
+				A9A0AC391502D2DB0020265D /* Timer.m */,
+				A9A0AC3A1502D2DB0020265D /* UserInfoLog.h */,
+				A9A0AC3B1502D2DB0020265D /* UserInfoLog.m */,
 				6804360F14FEDE4100899729 /* DebugLog.h */,
 				6804361014FEDE4100899729 /* DebugLog.m */,
 			);
@@ -199,6 +231,27 @@
 				A91AF90515008AE200FCD3D7 /* WebViewController.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A9A0AC501502D7D30020265D /* Data Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A9A0AC191502D2DB0020265D /* AnnotationManager.h */,
+				A9A0AC1A1502D2DB0020265D /* AnnotationManager.m */,
+				A9A0AC1B1502D2DB0020265D /* CoordPairs.h */,
+				A9A0AC1C1502D2DB0020265D /* CoordPairs.m */,
+				A9A0AC251502D2DB0020265D /* Friend.h */,
+				A9A0AC261502D2DB0020265D /* Friend.m */,
+				A9A0AC271502D2DB0020265D /* LocationTypeEnum.h */,
+				A9A0AC281502D2DB0020265D /* LocationTypeEnum.m */,
+				A9A0AC321502D2DB0020265D /* PeopleContainer.h */,
+				A9A0AC331502D2DB0020265D /* PeopleContainer.m */,
+				A9A0AC341502D2DB0020265D /* PersonNameAndIdMapping.h */,
+				A9A0AC351502D2DB0020265D /* PersonNameAndIdMapping.m */,
+				A9A0AC361502D2DB0020265D /* PlaceIdMapping.h */,
+				A9A0AC371502D2DB0020265D /* PlaceIdMapping.m */,
+			);
+			name = "Data Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +327,15 @@
 				A943249815007983005F7600 /* ListViewController.m in Sources */,
 				A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */,
 				A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */,
+				A9A0AC3C1502D2DB0020265D /* AnnotationManager.m in Sources */,
+				A9A0AC3D1502D2DB0020265D /* CoordPairs.m in Sources */,
+				A9A0AC421502D2DB0020265D /* Friend.m in Sources */,
+				A9A0AC431502D2DB0020265D /* LocationTypeEnum.m in Sources */,
+				A9A0AC491502D2DB0020265D /* PeopleContainer.m in Sources */,
+				A9A0AC4A1502D2DB0020265D /* PersonNameAndIdMapping.m in Sources */,
+				A9A0AC4B1502D2DB0020265D /* PlaceIdMapping.m in Sources */,
+				A9A0AC4C1502D2DB0020265D /* Timer.m in Sources */,
+				A9A0AC4D1502D2DB0020265D /* UserInfoLog.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

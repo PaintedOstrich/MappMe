@@ -15,10 +15,19 @@ static NSString * kAppId = @"291279594218895";
 @synthesize window = _window;
 @synthesize facebook;
 
+@synthesize placeIdMapping;
+@synthesize personNameAndIdMapping;
+@synthesize userInfoLog;
+@synthesize peopleContainer;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /*FIXME LAter:  accoutn for stored info*/
+    personNameAndIdMapping = [[PersonNameAndIdMapping alloc] init];
+    placeIdMapping = [[PlaceIdMapping alloc] init];
+    peopleContainer =[[PeopleContainer alloc] init];
+    userInfoLog = [[UserInfoLog alloc] init];
     
     
     LoginViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
