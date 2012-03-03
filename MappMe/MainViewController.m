@@ -12,11 +12,15 @@
 #import "LoginViewController.h"
 #import "SBJSON.h"
 #import "Timer.h"
+#import "MyAnnotation.h"
+#import "CoordPairs.h"
 
 
 @implementation MainViewController{
     MappMeAppDelegate *delegate;
     MBProgressHUD *HUD;
+    NSMutableArray * annotations;
+    NSMutableArray * annotations2;
 }
 
 @synthesize mapView;
@@ -36,6 +40,65 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+
+#pragma mark - Map pins methods
+-(void)makeAnnotationFromDict:(NSDictionary*)groupings{
+    NSArray *keys = [groupings allKeys];
+    int i, count;
+    count = [keys count];
+    
+    for (i = 0; i < count; i++)
+    {
+        NSString * placeId = [keys objectAtIndex: i];
+        CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
+        MyAnnotation* myAnnotation1=[[MyAnnotation alloc] init];
+        myAnnotation1.coordinate=loc.location;
+        myAnnotation1.title=[delegate.placeIdMapping getPlaceFromId:placeId];
+        NSSet * groupPerPlace = (NSSet*)[groupings objectForKey: placeId];
+//        NSMutableArray *groupPerPlace;
+        if([groupPerPlace count]==1){
+            NSString *fId= [groupPerPlace anyObject];
+            NSString *fName=[delegate.personNameAndIdMapping getNameFromId:fId];
+            myAnnotation1.subtitle=fName;
+        }
+        else {
+            myAnnotation1.subtitle=[[NSString alloc] initWithFormat:@"%d%@",[groupPerPlace count],@" friends"];	
+        }
+        
+        //Add in type of Annotation depends on num of friends
+        //the bigger the number, more people at that location
+        if([groupPerPlace count]>20){
+            myAnnotation1.type=3;
+            [annotations2 addObject:myAnnotation1];
+        }
+        else if([groupPerPlace count]>10){
+            myAnnotation1.type=2;
+            [annotations2 addObject:myAnnotation1];
+        }
+        else if([groupPerPlace count]>3){
+            myAnnotation1.type=1;
+            [annotations2 addObject:myAnnotation1];
+        }
+        else {
+            myAnnotation1.type=0;
+            [annotations addObject:myAnnotation1];
+        }
+
+    }
+
+}
+
+
+-(void)showPins
+{
+	for (MyAnnotation *anno  in annotations) {
+		[mapView addAnnotation:anno];
+	}
+	for (MyAnnotation *anno  in annotations2) {
+		[mapView addAnnotation:anno];
+	}	
+}
+
 #pragma mark - Custom Facebook Methods
 /* METHOD ADDED FEB 2012, by Parkour */
 - (NSString *)doGraphGetWithUrlString:(NSString *)url_string {
@@ -193,6 +256,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    annotations = [[NSMutableArray alloc]initWithCapacity:20];
+    annotations2 = [[NSMutableArray alloc]initWithCapacity:20];
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -204,6 +269,8 @@
     [self getCurrentLocation];
     [self getHometownLocation];
     
+    [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
+    [self showPins];
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(someTask) onTarget:self withObject:nil animated:YES];
 }
@@ -223,6 +290,64 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark MKMapViewDelegate
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(MyAnnotation *)annotation
+{
+	//NSLog(@"welcome into the map view annotation");
+    
+	// if it's the user location, just return nil.
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+        return nil;
+    
+	// try to dequeue an existing pin view first
+	static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
+    
+	UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+	NSString *cityNameAndFName=[[NSString alloc] initWithFormat:@"%@?%@",annotation.title,annotation.subtitle];
+	[rightButton setTitle:cityNameAndFName forState:UIControlStateNormal];
+	[rightButton addTarget:self
+					action:@selector(showDetails:)
+		  forControlEvents:UIControlEventTouchUpInside];
+    
+	if(annotation.type==0){
+        
+		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
+										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
+		pinView.animatesDrop=YES;
+		pinView.canShowCallout=YES;
+		pinView.pinColor=MKPinAnnotationColorGreen;
+		pinView.rightCalloutAccessoryView = rightButton;
+        
+		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+		pinView.leftCalloutAccessoryView = profileIconView;
+        
+		return pinView;
+	}
+    
+	else{
+	    MKAnnotationView* pinView = [[MKPinAnnotationView alloc]
+									  initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
+		pinView.canShowCallout=YES;
+		//check for different type of pin (sizes)
+		if(annotation.type==1){
+			pinView.image =[UIImage imageNamed:@"bluePin1.25.png"];
+		}else if (annotation.type==2){
+			pinView.image =[UIImage imageNamed:@"purple1.4.png"];	
+		}else{
+			pinView.image =[UIImage imageNamed:@"red1.6.png"];	
+		}
+		pinView.rightCalloutAccessoryView = rightButton;
+        
+	    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+	    pinView.leftCalloutAccessoryView = profileIconView;
+		//  pinView.tag = @"moreThanOnePerson";
+        
+		return pinView;
+        
+	}
 }
 
 @end
