@@ -81,7 +81,7 @@
                     [[friendGroupings objectForKey:loc]addObject:tmp.userId];
                 }else{
                     NSMutableSet *placeSet = [[NSMutableSet alloc] initWithObjects:tmp.userId, nil];
-                    [friendGroupings setValue:placeSet forKey:loc];
+                    [friendGroupings setObject:placeSet forKey:loc];
                 }
             }
         }

@@ -28,5 +28,6 @@ typedef enum locTypeEnum {
 +(BOOL)isArrayType:(locTypeEnum)locType; 
 
 +(NSString *)getNameFromEnum:(locTypeEnum)locType;
++(locTypeEnum)getEnumFromName:(NSString *)placeName;
 @end
 
