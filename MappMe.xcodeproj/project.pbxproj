@@ -30,6 +30,7 @@
 		A90CF2B1150412150091139C /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2B0150412150091139C /* profile.png */; };
 		A90CF2B31504121B0091139C /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2B21504121B0091139C /* settings.png */; };
 		A90CF2B5150413E60091139C /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2B4150413E60091139C /* pin.png */; };
+		A90CF2B81504297D0091139C /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A90CF2B71504297D0091139C /* SettingsViewController.m */; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
 		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
@@ -90,6 +91,8 @@
 		A90CF2B0150412150091139C /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		A90CF2B21504121B0091139C /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A90CF2B4150413E60091139C /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
+		A90CF2B61504297D0091139C /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		A90CF2B71504297D0091139C /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A91AF90415008AE200FCD3D7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -266,6 +269,8 @@
 				A943249715007983005F7600 /* ListViewController.m */,
 				A91AF90415008AE200FCD3D7 /* WebViewController.h */,
 				A91AF90515008AE200FCD3D7 /* WebViewController.m */,
+				A90CF2B61504297D0091139C /* SettingsViewController.h */,
+				A90CF2B71504297D0091139C /* SettingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -392,6 +397,7 @@
 				A9801D861502E1E400BA0B5B /* PlaceIdMapping.m in Sources */,
 				A9801D871502E1E400BA0B5B /* Timer.m in Sources */,
 				A9801D881502E1E400BA0B5B /* UserInfoLog.m in Sources */,
+				A90CF2B81504297D0091139C /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

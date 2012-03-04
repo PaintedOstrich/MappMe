@@ -7,7 +7,6 @@
 #import "MainViewController.h"
 #import "DebugLog.h"
 #import "MappMeAppDelegate.h"
-#import "LoginViewController.h"
 #import "SBJSON.h"
 #import "Timer.h"
 #import "MyAnnotation.h"
@@ -32,18 +31,6 @@
 
 
 #pragma mark - Transition Functions
-
-/*
- * Navigate back to login screen when logout button is clicked
- * (TODO) move this method into settings page
- */
--(IBAction)logoutBtnTapped{
-    LoginViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-    [[delegate facebook] setSessionDelegate:controller];
-    [[delegate facebook] logout];
-    delegate.window.rootViewController = controller;
-    [delegate.window makeKeyAndVisible];
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
