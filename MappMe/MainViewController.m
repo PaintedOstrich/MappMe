@@ -52,8 +52,34 @@
     }
 }
 
-- (void) showDetail {
+
+/*
+ * This method is invoked when the accesory button on annotation view is tapped.
+ * Takes the user into a list of friends or the friend's facebook page directly
+ */
+- (void) showDetail:(id)sender {
     [self performSegueWithIdentifier:@"showdetail" sender:nil];
+//    NSArray *listItems = [((UIButton*)sender).currentTitle componentsSeparatedByString:@"?"];
+//	NSString *cityName= [listItems objectAtIndex:0];
+//    //    DebugLog(@"cityname : %@", cityName);
+//    NSString * city_id = [delegate.placeAndId objectForKey:cityName];
+//	if([[delegate.friendsArrWithLocAsKey objectForKey:city_id] count]>1){
+//		self.userProfileVC.title=cityName;
+//		[delegate.currentSelectedCity insertObject:[NSString stringWithFormat:@"%@",cityName] atIndex:0] ;
+//		[self.navigationController pushViewController:self.userProfileVC animated:YES];
+//	}
+//	//only one person, go to the facebook page directly.!
+//	else{
+//		NSString *fName= [listItems objectAtIndex:1] ;
+//        //		DebugLog(@"%@%@",@"name is:",fName);
+//		NSString *fId =[delegate.nameAndId objectForKey:fName];
+//		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];
+//		NSURL *url =[[NSURL alloc] initWithString:urlStr];
+//		CSWebDetailsViewController* webViewController =[[CSWebDetailsViewController alloc] initWithNibName:@"CSWebDetailsViewController" bundle:nil];
+//		[webViewController setUrl:url];
+//        
+//		[self.navigationController pushViewController:webViewController animated:YES];
+//	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -352,7 +378,7 @@
 	NSString *cityNameAndFName=[[NSString alloc] initWithFormat:@"%@?%@",annotation.title,annotation.subtitle];
 	[rightButton setTitle:cityNameAndFName forState:UIControlStateNormal];
 	[rightButton addTarget:self
-					action:@selector(showDetail)
+					action:@selector(showDetail:)
 		  forControlEvents:UIControlEventTouchUpInside];
     
 	if (annotation.type==0){
