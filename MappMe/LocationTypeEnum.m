@@ -7,6 +7,7 @@
 //
 
 #import "LocationTypeEnum.h"
+#import "DebugLog.h"
 
 
 @implementation LocationTypeEnum
@@ -21,20 +22,21 @@
 +(NSString *)getNameFromEnum:(locTypeEnum)locType{
     switch(locType){
         case tHomeTown:
-            return  
+            return  @"Hometown";
         case tCurrentLocation:
-            return 
+            return  @"Current Location";
         case tHighSchool:
-            return 
+            return @"High School";
         case tCollege:
-            return 
+            return @"College";
         case tGradSchool:
-            return  
+            return @"Grad School";
         case tWork:
-            return 
+            return @"Work";
         default:
             DebugLog(@"Warning: hitting default case");
     }
+    return @"";
 
 }
 @end

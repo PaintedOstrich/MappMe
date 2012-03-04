@@ -120,11 +120,12 @@
 }
 
 -(Friend*)getFriendFromId:(NSString *)uid{
-    Friend * friend = [people objectForKey:uid];
+    NSDecimalNumber *userId = (NSDecimalNumber *)uid;
+    Friend * friend = [people objectForKey:userId];
     if (friend==nil){
-        DebugLog(@"friend is missing");
+        DebugLog(@"Warning: friend is missing");
     }
-    return (Friend*)[people objectForKey:uid];
+    return friend;
 }
 #pragma mark - Debug
 -(NSUInteger)getNumPeople{

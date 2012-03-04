@@ -156,23 +156,25 @@
     }
 }
 -(void)getLocationsForFriend:(Friend *)friend{  
+    customAnnotations = [[NSMutableArray alloc]initWithCapacity:10];
     for (int type =0; type<tLocationTypeCount; type++){
         MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
-        /*If only one value per entry */
-        if (![LocationTypeEnum isArrayType:type]){
-            if([friend hasEntryForType:type]){
-                NSString *  placeId = [friend getStringEntryForLocType:type];
+        locTypeEnum locType = type;
+                /*If only one value per field */
+        if (![LocationTypeEnum isArrayType:locType]){
+            DebugLog(@"%@",friend);
+            if([friend hasEntryForType:locType]){
+                NSString *placeId = [friend getStringEntryForLocType:locType];
                 CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
                 annotationItem.coordinate=loc.location;
-                annotationItem.type=type;
+                annotationItem.type=locType;
+                annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
                 annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
                 [annotations addObject:annotationItem];
             }
         }
-        
         /*Dealing with Array of possible Values */
     }
-    
 }
 -(void)showPins
 {
