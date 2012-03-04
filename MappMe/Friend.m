@@ -51,6 +51,10 @@
     self.userId = friendId;
     return self;
 }
+
+/*NOTE:  placeId is implicitly Cast to NSDecimalNumber, 
+ so comparisons were changed from isEqualToString to simply == 
+ */
 -(BOOL)hasPlaceId:(NSString *)placeId forType:(locTypeEnum)placeType{
 /*FIXME Objective C bug:  placeId and self.* cast to NSDecimal Number*/
    
@@ -64,40 +68,60 @@
             NSEnumerator *e = [self.highschool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
+<<<<<<< HEAD
                 if (entry ==placeId){
+=======
+                if (entry == placeId){
+>>>>>>> 59cdcfb... finished all location lookups
                     return true;
                 }
             }
+            return FALSE;
         }
         case tCollege:
         {
             NSEnumerator *e = [self.college objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
+<<<<<<< HEAD
                 if (entry ==placeId){
+=======
+                if (entry == placeId){
+>>>>>>> 59cdcfb... finished all location lookups
                     return true;
                 }
             }
+            return FALSE;
         }
         case tGradSchool:
         {
             NSEnumerator *e = [self.gradSchool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
+<<<<<<< HEAD
                 if (entry ==placeId){
+=======
+                if (entry == placeId){
+>>>>>>> 59cdcfb... finished all location lookups
                     return true;
                 }
             }
+            return FALSE;
         }
         case tWork:
         {
             NSEnumerator *e = [self.highschool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
+<<<<<<< HEAD
                 if (entry ==placeId){
+=======
+                if (entry == placeId){
+>>>>>>> 59cdcfb... finished all location lookups
                     return true;
                 }
             }
+            return FALSE;
         }
         default:{
             DebugLog(@"Warning: hitting default case");
@@ -202,10 +226,34 @@
         NSString *placeName = [delegate.placeIdMapping getPlaceFromId:self.currentLocation];
         [person appendFormat:@"\n\t Current Location: %@",placeName];
     }
-//    if (self.hometown.length>0){
     if (self.hometown!=nil) {
         NSString *placeName = [delegate.placeIdMapping getPlaceFromId:self.hometown];
         [person appendFormat:@"\n\t HomeTown: %@",placeName];
+    }
+    if (self.highschool!=nil) {
+        NSEnumerator *e = [self.highschool objectEnumerator];
+        NSString *entry;
+        while (entry = (NSString*)[e nextObject]){
+            NSString *placeName = [delegate.placeIdMapping getPlaceFromId:entry];
+            [person appendFormat:@"\n\t High School: %@",placeName];
+        }
+    }
+    if (self.college!=nil) {
+        NSEnumerator *e = [self.college objectEnumerator];
+        NSString *entry;
+        while (entry = (NSString*)[e nextObject]){
+            NSString *placeName = [delegate.placeIdMapping getPlaceFromId:entry];
+            [person appendFormat:@"\n\t College: %@",placeName];
+        }
+
+    }
+    if (self.gradSchool!=nil) {
+        NSEnumerator *e = [self.gradSchool objectEnumerator];
+        NSString *entry;
+        while (entry = (NSString*)[e nextObject]){
+            NSString *placeName = [delegate.placeIdMapping getPlaceFromId:entry];
+            [person appendFormat:@"\n\t Graduate School: %@",placeName];
+        }
     }
 
     return (NSString *)person;    

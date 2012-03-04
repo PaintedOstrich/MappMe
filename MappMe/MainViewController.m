@@ -279,18 +279,22 @@
     
 	NSEnumerator *enumerator = [infoArray objectEnumerator];
 	NSDictionary *bas_info;
-    locTypeEnum locType;
+    locTypeEnum locType = tLocationTypeCount;
     if ([locTypeString isEqualToString:@"current_location"]){
         locType = tCurrentLocation;
-        DebugLog(@"sets locType to current_location");
     } 
     if ([locTypeString isEqualToString:@"hometown_location"]){
         locType = tHomeTown;
-        DebugLog(@"sets locType to hometown");
     }
     if (locType != tHomeTown && locType != tCurrentLocation){
         DebugLog(@"Warning: locType set incorrectly");
     }
+    /* Stores mapping temporarily between school_id and school_type
+        Used to help location lookup on Google Maps
+            Populated in friendsEdu section
+            Used in schoolLocation
+     */
+    NSMutableDictionary *schoolTypeMapping = [[NSMutableDictionary alloc] init];
     
     while ((bas_info = (NSDictionary *)[enumerator nextObject])) {
         NSString * loc = [bas_info objectForKey:@"name"];
@@ -314,8 +318,32 @@
                 [delegate.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
             }
         }
-        //Adds coords retrieved from facebook for cities
-        if (![loc compare:@"location"]){
+        if ([loc isEqualToString:@"friendsEdu"]){
+            NSDictionary *friendsTemp;
+            NSDictionary *friendsEdu = [bas_info objectForKey:@"fql_result_set"];
+            NSEnumerator *friendsEnum = [friendsEdu objectEnumerator];
+            while ((friendsTemp = (NSDictionary *)[friendsEnum nextObject])) {
+                if([[friendsTemp objectForKey:@"education"]count]==0){
+                    continue;
+                }
+                NSEnumerator *schoolsEnum = [[friendsTemp objectForKey:@"education"] objectEnumerator];
+                NSDictionary *school;
+                NSString * uid = [friendsTemp objectForKey:@"uid"];
+                NSString * name = [friendsTemp objectForKey:@"name"];
+                while (school = (NSDictionary*)[schoolsEnum nextObject]) {
+                    NSString * school_id = (NSString*)[[school objectForKey:@"school"]objectForKey:@"id"];
+                    NSString * school_name = (NSString*)[[school objectForKey:@"school"]objectForKey:@"name"];
+                    NSString * school_type = (NSString*)[school objectForKey:@"type"];
+                    locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
+//                    DebugLog(@"%@ -  %@, %@", school_name, school_type, school_id);
+                    [schoolTypeMapping setObject:school_type forKey:school_id];
+                    [delegate.placeIdMapping addId:school_id andPlace:school_name];
+                    [delegate.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:school_id andTypeId:placeType];
+                }
+            }
+        }
+        /* Location Queries */
+        if ([loc isEqualToString:@"location"]){
             NSDictionary *citiesTemp;
             NSDictionary *coords = [bas_info objectForKey:@"fql_result_set"];
             NSEnumerator *citiesEnum = [coords objectEnumerator];
@@ -334,17 +362,34 @@
 
             }
         }
+        if ([loc isEqualToString:@"schoolLocation"]){
+            DebugLog(@" school location");
+            NSDictionary *schoolTemp;
+            NSEnumerator *schoolLocEnum = [[bas_info objectForKey:@"fql_result_set"] objectEnumerator];
+            while ((schoolTemp = [schoolLocEnum nextObject])) {
+                if ([(NSString *)[schoolTemp objectForKey:@"name"]length] >3){
+                    NSDictionary *loc= [schoolTemp objectForKey:@"location"];
+                    NSString * school_id = [schoolTemp objectForKey:@"page_id"];
+                    //If have lat and long
+                    if ([loc objectForKey:@"latitude"]){
+                        [[delegate placeIdMapping]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:school_id];
+                    }else{
+                        NSString *type = [schoolTypeMapping objectForKey:school_id];
+                        [delegate.placeIdMapping doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
+                    }
+                }
+                
+            }
+        }
     }
     DebugLog(@"Number of friends %i", [delegate.peopleContainer getNumPeople]);
     DebugLog(@"Number of cities %i",[delegate.placeIdMapping getNumPlaces]);
-    //    [delegate.peopleContainer printNFriends:400];
     
     [delegate.peopleContainer printGroupings:tHomeTown];
     [delegate.peopleContainer printGroupings:tCurrentLocation];
 }
 #pragma mark - Caller Methods For Data
 -(void)getCurrentLocation{
-    Timer *t = [[Timer alloc]init];
     
     NSString* fql1 = [NSString stringWithFormat:
                       @"SELECT name,uid, current_location.name, current_location.id FROM user WHERE  uid IN (SELECT uid2 FROM friend WHERE uid1= me()) AND current_location>0 ORDER BY current_location DESC"];
@@ -356,12 +401,9 @@
     NSDictionary *response = [self doMultiQuery:fqlC];  
     [self parseCityAndPeople:response andType:@"current_location"];
     
-    
-    int total = [t getCurrentTimeInterval];
-    DebugLog(@"Total Facebook Load Time in Seconds: %i", total);
 }
 -(void)getHometownLocation{
-    Timer *t = [[Timer alloc]init];
+
     NSString* fqlH1 = [NSString stringWithFormat:
                        @"SELECT name,uid, hometown_location.name, hometown_location.id FROM user WHERE  uid IN (SELECT uid2 FROM friend WHERE uid1= me()) AND hometown_location>0 ORDER BY hometown_location DESC "];
     
@@ -370,11 +412,8 @@
     NSString* fqlH = [NSString stringWithFormat:
                       @"{\"friends\":\"%@\",\"location\":\"%@\"}",fqlH1,fqlH2];
     NSDictionary *response = [self doMultiQuery:fqlH];  
-    [self parseCityAndPeople:response andType:@"hometown_location"];
+    [self parseCityAndPeople:response andType:@"hometown_location"];    
     
-    
-    int total = [t getCurrentTimeInterval];
-    DebugLog(@"Total Facebook Load Time in Seconds: %i", total);
 }
 -(void)getEducationInfo{
     NSString* fqlE1 = [NSString stringWithFormat:
@@ -382,8 +421,9 @@
     NSString* fqlE2 = [NSString stringWithFormat:
                        @"SELECT location,name,page_id FROM page WHERE page_id IN (SELECT education FROM #friendsEdu)"];
     NSString* fqlE = [NSString stringWithFormat:
-                      @"{\"friendsEdu\":\"%@\",\"location\":\"%@\"}",fqlE1,fqlE2];
-    [self doMultiQuery:fqlE];
+                      @"{\"friendsEdu\":\"%@\",\"schoolLocation\":\"%@\"}",fqlE1,fqlE2];
+    NSDictionary *response = [self doMultiQuery:fqlE];  
+    [self parseCityAndPeople:response andType:@"education"];  
 }
 
 #pragma mark MKMapViewDelegate
@@ -408,12 +448,9 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(MyAnnotation *)annotation
 {
-	//NSLog(@"welcome into the map view annotation");
-    
 	// if it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
-    
 	// try to dequeue an existing pin view first
 	static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
     

@@ -19,7 +19,7 @@
 -(NSString *)getIdFromPlace:(NSString *)placeName;
 -(void)addCoordsLat:(NSString *)lat andLong:(NSString *)lon forPlaceId:(NSString *)placeId;
 -(CoordPairs *)getCoordFromId:(NSString *)placeId;
-
+-(void)doCoordLookupAndSet:(NSString*)place_id withDict:(NSDictionary *)loc andTypeString:(NSString *)placeTypeName;
 
 /*  Debug */
 -(NSUInteger)getNumPlaces;

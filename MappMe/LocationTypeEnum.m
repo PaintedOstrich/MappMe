@@ -33,10 +33,28 @@
             return @"Grad School";
         case tWork:
             return @"Work";
-        default:
+        default: 
             DebugLog(@"Warning: hitting default case");
     }
     return @"";
 
 }
++(locTypeEnum)getEnumFromName:(NSString *)placeName{
+    if ([placeName isEqualToString:@"High School"]) {
+        return  tHighSchool;
+    }
+    if ([placeName isEqualToString:@"College"]) {
+        return  tCollege;
+    }
+    if ([placeName isEqualToString:@"Graduate School"]) {
+        return  tHighSchool;
+    }
+    if ([placeName isEqualToString:@"Work"]) {
+        return  tWork;
+    }
+    DebugLog(@"warning:  String not found");
+    
+    return tLocationTypeCount;
+}
+
 @end
