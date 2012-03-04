@@ -118,11 +118,10 @@
 		680435CD14FED94600899729 = {
 			isa = PBXGroup;
 			children = (
-				A913EE64150095DB009F6A84 /* PlugIns */,
-				6804360E14FEDE1300899729 /* Util */,
-				680435FC14FEDAEF00899729 /* facebook-ios-sdk */,
 				680435E214FED94600899729 /* MappMe */,
 				680435DB14FED94600899729 /* Frameworks */,
+				A913EE64150095DB009F6A84 /* PlugIns */,
+				680435FC14FEDAEF00899729 /* facebook-ios-sdk */,
 				680435D914FED94600899729 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -149,6 +148,7 @@
 		680435E214FED94600899729 /* MappMe */ = {
 			isa = PBXGroup;
 			children = (
+				6804360E14FEDE1300899729 /* Util */,
 				A9A0AC511502D8C70020265D /* Views */,
 				A9A0AC501502D7D30020265D /* Models */,
 				680435EB14FED94600899729 /* MappMeAppDelegate.h */,
@@ -205,7 +205,6 @@
 				6804361014FEDE4100899729 /* DebugLog.m */,
 			);
 			name = Util;
-			path = MappMe;
 			sourceTree = "<group>";
 		};
 		A913EE64150095DB009F6A84 /* PlugIns */ = {
