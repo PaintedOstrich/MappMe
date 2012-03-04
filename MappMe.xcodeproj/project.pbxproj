@@ -23,6 +23,12 @@
 		A90CF29D150411250091139C /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF29C150411250091139C /* icon.png */; };
 		A90CF2A1150411490091139C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2A0150411490091139C /* Default.png */; };
 		A90CF2A51504117D0091139C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2A41504117D0091139C /* Default@2x.png */; };
+		A90CF2A9150411FB0091139C /* bigPin.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2A8150411FB0091139C /* bigPin.png */; };
+		A90CF2AB150412010091139C /* bluePin1.25.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2AA150412010091139C /* bluePin1.25.png */; };
+		A90CF2AD150412090091139C /* purple1.4.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2AC150412090091139C /* purple1.4.png */; };
+		A90CF2AF1504120F0091139C /* red1.6.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2AE1504120F0091139C /* red1.6.png */; };
+		A90CF2B1150412150091139C /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2B0150412150091139C /* profile.png */; };
+		A90CF2B31504121B0091139C /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2B21504121B0091139C /* settings.png */; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
 		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
@@ -76,6 +82,12 @@
 		A90CF29C150411250091139C /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		A90CF2A0150411490091139C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		A90CF2A41504117D0091139C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A90CF2A8150411FB0091139C /* bigPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigPin.png; sourceTree = "<group>"; };
+		A90CF2AA150412010091139C /* bluePin1.25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluePin1.25.png; sourceTree = "<group>"; };
+		A90CF2AC150412090091139C /* purple1.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple1.4.png; sourceTree = "<group>"; };
+		A90CF2AE1504120F0091139C /* red1.6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red1.6.png; sourceTree = "<group>"; };
+		A90CF2B0150412150091139C /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		A90CF2B21504121B0091139C /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A91AF90415008AE200FCD3D7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -218,6 +230,12 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A90CF2B21504121B0091139C /* settings.png */,
+				A90CF2B0150412150091139C /* profile.png */,
+				A90CF2AE1504120F0091139C /* red1.6.png */,
+				A90CF2AC150412090091139C /* purple1.4.png */,
+				A90CF2AA150412010091139C /* bluePin1.25.png */,
+				A90CF2A8150411FB0091139C /* bigPin.png */,
 				A90CF2A41504117D0091139C /* Default@2x.png */,
 				A90CF2A0150411490091139C /* Default.png */,
 				A90CF29C150411250091139C /* icon.png */,
@@ -336,6 +354,12 @@
 				A90CF29D150411250091139C /* icon.png in Resources */,
 				A90CF2A1150411490091139C /* Default.png in Resources */,
 				A90CF2A51504117D0091139C /* Default@2x.png in Resources */,
+				A90CF2A9150411FB0091139C /* bigPin.png in Resources */,
+				A90CF2AB150412010091139C /* bluePin1.25.png in Resources */,
+				A90CF2AD150412090091139C /* purple1.4.png in Resources */,
+				A90CF2AF1504120F0091139C /* red1.6.png in Resources */,
+				A90CF2B1150412150091139C /* profile.png in Resources */,
+				A90CF2B31504121B0091139C /* settings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
