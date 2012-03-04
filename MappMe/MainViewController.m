@@ -31,6 +31,8 @@
 @synthesize mapView;
 
 
+#pragma mark - Transition Functions
+
 /*
  * Navigate back to login screen when logout button is clicked
  * (TODO) move this method into settings page
@@ -41,6 +43,17 @@
     [[delegate facebook] logout];
     delegate.window.rootViewController = controller;
     [delegate.window makeKeyAndVisible];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showdetail"]) {
+        
+    }
+}
+
+- (void) showDetail {
+    [self performSegueWithIdentifier:@"showdetail" sender:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -339,7 +352,7 @@
 	NSString *cityNameAndFName=[[NSString alloc] initWithFormat:@"%@?%@",annotation.title,annotation.subtitle];
 	[rightButton setTitle:cityNameAndFName forState:UIControlStateNormal];
 	[rightButton addTarget:self
-					action:@selector(showDetails:)
+					action:@selector(showDetail)
 		  forControlEvents:UIControlEventTouchUpInside];
     
 	if (annotation.type==0){
