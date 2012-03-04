@@ -115,20 +115,18 @@
         //the bigger the number, more people at that location
         if([groupPerPlace count]>20){
             myAnnotation1.type=3;
-            [annotations2 addObject:myAnnotation1];
         }
         else if([groupPerPlace count]>10){
             myAnnotation1.type=2;
-            [annotations2 addObject:myAnnotation1];
         }
         else if([groupPerPlace count]>3){
             myAnnotation1.type=1;
-            [annotations2 addObject:myAnnotation1];
         }
         else {
             myAnnotation1.type=0;
-            [annotations addObject:myAnnotation1];
         }
+        
+        [annotations addObject:myAnnotation1];
 
     }
 
@@ -137,8 +135,6 @@
 
 -(void)showPins
 {
-    int count = [annotations count];
-    NSLog(@"num of annotations are: %d", count);
 	[mapView addAnnotations:annotations];	
 }
 
@@ -346,7 +342,10 @@
 					action:@selector(showDetails:)
 		  forControlEvents:UIControlEventTouchUpInside];
     
-	if(annotation.type==0){
+	if (annotation.type==0){
+        
+        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
+        //have a sequential animation that looks better.
         
 		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
 										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
