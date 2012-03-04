@@ -87,30 +87,34 @@
     }
 }
 -(void)getLocationsForFriend:(Friend *)friend{  
+    customAnnotations = [[NSMutableArray alloc]initWithCapacity:10];
     for (int type =0; type<tLocationTypeCount; type++){
         MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
-        /*If only one value per entry */
-        if (![LocationTypeEnum isArrayType:type]){
-            if([friend hasEntryForType:type]){
-                NSString *  placeId = [friend getStringEntryForLocType:type];
+        locTypeEnum locType = type;
+                /*If only one value per field */
+        if (![LocationTypeEnum isArrayType:locType]){
+            DebugLog(@"%@",friend);
+            if([friend hasEntryForType:locType]){
+                NSString *placeId = [friend getStringEntryForLocType:locType];
                 CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
                 annotationItem.coordinate=loc.location;
-                annotationItem.type=type;
+                annotationItem.type=locType;
+                annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
                 annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
                 [customAnnotations addObject:annotationItem];
             }
         }
-        
         /*Dealing with Array of possible Values */
     }
-    
 }
 -(void)showPins
 {
+    DebugLog(@"annotations : %i",[customAnnotations count]);
 	for (MyAnnotation *anno  in defaultAnnotations) {
 		[mapView addAnnotation:anno];
 	}
 	for (MyAnnotation *anno  in customAnnotations) {
+        DebugLog(@"adding %@",anno);
 		[mapView addAnnotation:anno];
 	}	
 }
@@ -257,8 +261,8 @@
     DebugLog(@"Number of cities %i",[delegate.placeIdMapping getNumPlaces]);
     //    [delegate.peopleContainer printNFriends:400];
     
-    [delegate.peopleContainer printGroupings:tHomeTown];
-    [delegate.peopleContainer printGroupings:tCurrentLocation];
+//    [delegate.peopleContainer printGroupings:tHomeTown];
+//    [delegate.peopleContainer printGroupings:tCurrentLocation];
 }
 #pragma mark - Caller Methods For Data
 -(void)getCurrentLocation{
@@ -323,6 +327,11 @@
     /*Call Methods for info*/
     [self getCurrentLocation];
     [self getHometownLocation];
+    
+    NSString *uid = [delegate.personNameAndIdMapping getIdFromName:@"Jack Blears"];
+
+    [self showFriend:uid];
+    
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(someTask) onTarget:self withObject:nil animated:YES];
 }
