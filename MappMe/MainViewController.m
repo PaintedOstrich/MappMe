@@ -16,6 +16,12 @@
 #import "CoordPairs.h"
 
 
+@interface MainViewController()
+    -(void)getCurrentLocation;
+    -(void)getHometownLocation;
+@end
+
+
 @implementation MainViewController{
     MappMeAppDelegate *delegate;
     MBProgressHUD *HUD;
@@ -40,6 +46,40 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+
+#pragma mark - View lifecycle
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    annotations = [[NSMutableArray alloc]initWithCapacity:20];
+    annotations2 = [[NSMutableArray alloc]initWithCapacity:20];
+    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    // Regiser for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+    // Show the HUD while the provided method executes in a new thread
+    [HUD showWhileExecuting:@selector(getInfoAndShoPins) onTarget:self withObject:nil animated:YES];
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 
 #pragma mark - Map pins methods
 -(void)makeAnnotationFromDict:(NSDictionary*)groupings{
@@ -97,6 +137,16 @@
 	for (MyAnnotation *anno  in annotations2) {
 		[mapView addAnnotation:anno];
 	}	
+}
+
+- (void)getInfoAndShoPins {
+    // Do something usefull in here instead of sleeping ...
+    /*Call Methods for info*/
+    [self getCurrentLocation];
+    [self getHometownLocation];
+    
+    [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
+    [self showPins]; 
 }
 
 #pragma mark - Custom Facebook Methods
@@ -245,51 +295,6 @@
     NSString* fqlE = [NSString stringWithFormat:
                       @"{\"friendsEdu\":\"%@\",\"location\":\"%@\"}",fqlE1,fqlE2];
     [self doMultiQuery:fqlE];
-}
-
-
-#pragma mark - View lifecycle
-- (void)someTask {
-    // Do something usefull in here instead of sleeping ...
-    sleep(3);
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    annotations = [[NSMutableArray alloc]initWithCapacity:20];
-    annotations2 = [[NSMutableArray alloc]initWithCapacity:20];
-    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    
-    // Regiser for HUD callbacks so we can remove it from the window at the right time
-    HUD.delegate = self;
-    
-    /*Call Methods for info*/
-    [self getCurrentLocation];
-    [self getHometownLocation];
-    
-    [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
-    [self showPins];
-    // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:@selector(someTask) onTarget:self withObject:nil animated:YES];
-}
-
--(void) viewWillAppear:(BOOL)animated{
-    [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 #pragma mark MKMapViewDelegate
