@@ -1,10 +1,8 @@
-//
-//  MainViewController.m
-//  MappMe
-//
-//  Created by Parker Spielman on 2/29/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
+/*
+ * The main view controller of the app.
+ * It is responsible for fetching data from facebook. Creating annotations and
+ * addig these annotations to map view with animation.
+ */
 
 #import "MainViewController.h"
 #import "DebugLog.h"
@@ -17,8 +15,9 @@
 
 
 @interface MainViewController()
-    -(void)getCurrentLocation;
-    -(void)getHometownLocation;
+-(void)getCurrentLocation;
+-(void)getHometownLocation;
+-(void) showPins;
 @end
 
 
@@ -31,6 +30,11 @@
 
 @synthesize mapView;
 
+
+/*
+ * Navigate back to login screen when logout button is clicked
+ * (TODO) move this method into settings page
+ */
 -(IBAction)logoutBtnTapped{
     LoginViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
     [[delegate facebook] setSessionDelegate:controller];
@@ -51,6 +55,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:20];
     annotations2 = [[NSMutableArray alloc]initWithCapacity:20];
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -60,7 +65,7 @@
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
     // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:@selector(getInfoAndShowPins) onTarget:self withObject:nil animated:YES];
+    [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -72,6 +77,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    self.mapView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -131,22 +137,20 @@
 
 -(void)showPins
 {
-	for (MyAnnotation *anno  in annotations) {
-		[mapView addAnnotation:anno];
-	}
-	for (MyAnnotation *anno  in annotations2) {
-		[mapView addAnnotation:anno];
-	}	
+    int count = [annotations count];
+    NSLog(@"num of annotations are: %d", count);
+	[mapView addAnnotations:annotations];	
 }
 
-- (void)getInfoAndShowPins {
-    // Do something usefull in here instead of sleeping ...
+
+- (void)fetchAndProcess {
     /*Call Methods for info*/
     [self getCurrentLocation];
     [self getHometownLocation];
-    
     [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
-    [self showPins]; 
+    // Task completed, update view in main thread (note: view operations should
+    // be done only in the main thread)
+    [self performSelectorOnMainThread:@selector(showPins) withObject:nil waitUntilDone:NO];
 }
 
 #pragma mark - Custom Facebook Methods
@@ -298,6 +302,24 @@
 }
 
 #pragma mark MKMapViewDelegate
+/*
+ * This method will enable animation of dropping pins
+ */
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views { 
+    MKAnnotationView *aV; 
+    for (aV in views) {
+        CGRect endFrame = aV.frame;
+        
+        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 230.0, aV.frame.size.width, aV.frame.size.height);
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.45];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        [aV setFrame:endFrame];
+        [UIView commitAnimations];
+        
+    }
+}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(MyAnnotation *)annotation
 {
