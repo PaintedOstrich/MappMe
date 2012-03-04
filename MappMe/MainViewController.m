@@ -60,7 +60,7 @@
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
     // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:@selector(getInfoAndShoPins) onTarget:self withObject:nil animated:YES];
+    [HUD showWhileExecuting:@selector(getInfoAndShowPins) onTarget:self withObject:nil animated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -139,7 +139,7 @@
 	}	
 }
 
-- (void)getInfoAndShoPins {
+- (void)getInfoAndShowPins {
     // Do something usefull in here instead of sleeping ...
     /*Call Methods for info*/
     [self getCurrentLocation];
