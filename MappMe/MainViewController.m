@@ -245,8 +245,15 @@
             NSEnumerator *citiesEnum = [coords objectEnumerator];
             while ((citiesTemp = [citiesEnum nextObject])) {
                 NSDictionary *loc= [citiesTemp objectForKey:@"location"];
-                //                DebugLog(@"placeName: %@", citiesTemp);
-                [[delegate placeIdMapping]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
+                //                DebugLog(@"placeName: %@", citiesTemp)
+                
+                
+                //Fix the crash problem, but I am still not very sure why sometimes, loc does not have objectForKey method
+                //Parker, please double check the code
+                if ([loc respondsToSelector:@selector(objectForKey:)]) {
+                    [[delegate placeIdMapping]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
+                }
+
             }
         }
     }

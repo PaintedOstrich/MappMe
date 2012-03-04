@@ -33,7 +33,6 @@
  If friend doesn't, info is added, and logged
  */
 -(void)setPersonPlaceInContainer:(NSString *)name personId:(NSString *)personId placeId:(NSString *)placeId andTypeId:(locTypeEnum)locType{
-    DebugLog(@"here");
     NSString * uid = personId;
     Friend *personCmp = [people objectForKey:uid];
     if(personCmp !=nil){
