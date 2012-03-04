@@ -122,50 +122,98 @@
     NSArray *keys = [groupings allKeys];
     int i, count;
     count = [keys count];
-    
     for (i = 0; i < count; i++)
     {
         NSString * placeId = [keys objectAtIndex: i];
         CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
-        MyAnnotation* myAnnotation1=[[MyAnnotation alloc] init];
-        myAnnotation1.coordinate=loc.location;
-        myAnnotation1.title=[delegate.placeIdMapping getPlaceFromId:placeId];
+        MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
+        annotationItem.coordinate=loc.location;
+        annotationItem.title=[delegate.placeIdMapping getPlaceFromId:placeId];
         NSSet * groupPerPlace = (NSSet*)[groupings objectForKey: placeId];
-//        NSMutableArray *groupPerPlace;
         if([groupPerPlace count]==1){
             NSString *fId= [groupPerPlace anyObject];
             NSString *fName=[delegate.personNameAndIdMapping getNameFromId:fId];
-            myAnnotation1.subtitle=fName;
+            annotationItem.subtitle=fName;
         }
         else {
-            myAnnotation1.subtitle=[[NSString alloc] initWithFormat:@"%d%@",[groupPerPlace count],@" friends"];	
+            annotationItem.subtitle=[[NSString alloc] initWithFormat:@"%d%@",[groupPerPlace count],@" friends"];	
         }
-        
         //Add in type of Annotation depends on num of friends
         //the bigger the number, more people at that location
         if([groupPerPlace count]>20){
-            myAnnotation1.type=3;
+            annotationItem.type=3;
         }
         else if([groupPerPlace count]>10){
-            myAnnotation1.type=2;
+            annotationItem.type=2;
         }
         else if([groupPerPlace count]>3){
-            myAnnotation1.type=1;
+            annotationItem.type=1;
         }
         else {
-            myAnnotation1.type=0;
+            annotationItem.type=0;
+        }
+        [annotations addObject:annotationItem];
+    }
+}
+-(void)getLocationsForFriend:(Friend *)friend{  
+    for (int type =0; type<tLocationTypeCount; type++){
+        MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
+        /*If only one value per entry */
+        if (![LocationTypeEnum isArrayType:type]){
+            if([friend hasEntryForType:type]){
+                NSString *  placeId = [friend getStringEntryForLocType:type];
+                CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
+                annotationItem.coordinate=loc.location;
+                annotationItem.type=type;
+                annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
+                [annotations addObject:annotationItem];
+            }
         }
         
-        [annotations addObject:myAnnotation1];
-
+        /*Dealing with Array of possible Values */
     }
-
+    
 }
-
-
 -(void)showPins
 {
 	[mapView addAnnotations:annotations];	
+}
+-(void)clearMap{
+    for(MyAnnotation* anno in annotations){
+		[mapView removeAnnotation:anno];
+    }
+}
+-(void)showLocationType:(locTypeEnum)locType{
+    
+    [self clearMap];
+    switch(locType){
+        case tHomeTown:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
+            break;
+        case tCurrentLocation:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tCurrentLocation]];
+            break;
+        case tHighSchool:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHighSchool]];
+            break;
+        case tCollege:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tCollege]];
+            break;
+        case tGradSchool:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tGradSchool]];
+            break;
+        case tWork:
+           [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tWork]];
+            break;
+        default:
+            DebugLog(@"Warning: hitting default case");
+    }
+    [self showPins];
+}
+-(void)showFriend:(NSString *)friendId{
+    [self clearMap];
+    [self getLocationsForFriend:[delegate.peopleContainer getFriendFromId:friendId]];
+    [self showPins];
 }
 
 

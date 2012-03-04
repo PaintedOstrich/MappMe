@@ -8,6 +8,7 @@
 
 #import "LocationTypeEnum.h"
 
+
 @implementation LocationTypeEnum
 
 +(BOOL)isArrayType:(locTypeEnum)locType{
@@ -15,7 +16,25 @@
         return FALSE;
     }
     return TRUE;
-        
 }
 
++(NSString *)getNameFromEnum:(locTypeEnum)locType{
+    switch(locType){
+        case tHomeTown:
+            return  
+        case tCurrentLocation:
+            return 
+        case tHighSchool:
+            return 
+        case tCollege:
+            return 
+        case tGradSchool:
+            return  
+        case tWork:
+            return 
+        default:
+            DebugLog(@"Warning: hitting default case");
+    }
+
+}
 @end
