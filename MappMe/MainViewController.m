@@ -172,8 +172,23 @@
                 annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
                 [annotations addObject:annotationItem];
             }
+        } /*Dealing with Array of possible Values */
+        else{
+            if([friend hasEntryForType:locType]){
+                NSEnumerator *itemEnum = [[friend getArrayEntryForLocType:locType]objectEnumerator];
+                NSString *placeId;
+                while (placeId = [itemEnum nextObject]) {
+                    NSString *placeId = [friend getStringEntryForLocType:locType];
+                    CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
+                    annotationItem.coordinate=loc.location;
+                    annotationItem.type=locType;
+                    annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
+                    annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
+                    [customAnnotations addObject:annotationItem];
+                }
+            }    
         }
-        /*Dealing with Array of possible Values */
+       
     }
 }
 -(void)showPins
