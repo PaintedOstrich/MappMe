@@ -103,8 +103,23 @@
                 annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
                 [customAnnotations addObject:annotationItem];
             }
+        } /*Dealing with Array of possible Values */
+        else{
+            if([friend hasEntryForType:locType]){
+                NSEnumerator *itemEnum = [[friend getArrayEntryForLocType:locType]objectEnumerator];
+                NSString *placeId;
+                while (placeId = [itemEnum nextObject]) {
+                    NSString *placeId = [friend getStringEntryForLocType:locType];
+                    CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
+                    annotationItem.coordinate=loc.location;
+                    annotationItem.type=locType;
+                    annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
+                    annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
+                    [customAnnotations addObject:annotationItem];
+                }
+            }    
         }
-        /*Dealing with Array of possible Values */
+       
     }
 }
 -(void)showPins
@@ -373,13 +388,13 @@
     [self getHometownLocation];
     [self getEducationInfo];
     [delegate.peopleContainer printNFriends:400];
-    [self showLocationType:tHighSchool];
+//    [self showLocationType:tHighSchool];
     
     int total = [t getCurrentTimeInterval];
     DebugLog(@"Total Facebook Load Time in Seconds: %i", total);
-//    NSString *uid = [delegate.personNameAndIdMapping getIdFromName:@"Jack Blears"];
+    NSString *uid = [delegate.personNameAndIdMapping getIdFromName:@"Eric Hamblett"];
 
-//    [self showFriend:uid];
+    [self showFriend:uid];
     
    
 }
