@@ -54,6 +54,7 @@
     
     return [[CoordPairs alloc]initWithLat:@"500" andLong:@"600"];
 }
+/*returns coordinate pair from google, nil if none found*/
 +(CoordPairs *)manageCoordLookupForEdu:(NSString *)placeName withSupInfo:(NSDictionary*)supInfo andTypeString:(NSString *)schoolType{
     NSString * lookup = placeName;
     //Try just school name
@@ -97,9 +98,9 @@
     if(returnCoords!= nil){
         return returnCoords;
     }
-    //Return null pair to avoid erros
-    //FIXME test to make sure doesn't crash map delegate
-    return returnCoords = [[CoordPairs alloc] initWithLat:@"400" andLong:@"400"];
+    
+    /* If no coord found, return nil*/
+    return nil;
 }
 
 
