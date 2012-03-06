@@ -52,17 +52,19 @@
     return self;
 }
 -(BOOL)hasPlaceId:(NSString *)placeId forType:(locTypeEnum)placeType{
+/*FIXME Objective C bug:  placeId and self.* cast to NSDecimal Number*/
+   
     switch(placeType){
         case tHomeTown:
-            return [self.hometown isEqualToString: placeId];
+            return self.hometown == placeId;
         case tCurrentLocation:
-            return [self.currentLocation isEqualToString: placeId];
+            return self.currentLocation == placeId;
         case tHighSchool:
         {
             NSEnumerator *e = [self.highschool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
-                if ([entry isEqualToString:placeId]){
+                if (entry ==placeId){
                     return true;
                 }
             }
@@ -72,7 +74,7 @@
             NSEnumerator *e = [self.college objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
-                if ([entry isEqualToString:placeId]){
+                if (entry ==placeId){
                     return true;
                 }
             }
@@ -82,7 +84,7 @@
             NSEnumerator *e = [self.gradSchool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
-                if ([entry isEqualToString:placeId]){
+                if (entry ==placeId){
                     return true;
                 }
             }
@@ -92,7 +94,7 @@
             NSEnumerator *e = [self.highschool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
-                if ([entry isEqualToString:placeId]){
+                if (entry ==placeId){
                     return true;
                 }
             }
