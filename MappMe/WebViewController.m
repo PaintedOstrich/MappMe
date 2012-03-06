@@ -10,6 +10,8 @@
 
 @implementation WebViewController
 
+@synthesize url;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,9 +44,6 @@
 {
     [super viewDidLoad];
     [webview setDelegate:self];
-    //TODO this need to be fixed!!
-    NSString *urlStr=[[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",@"759868917"];
-    NSURL *url =[[NSURL alloc] initWithString:urlStr];
     [webview loadRequest:[NSURLRequest requestWithURL:url]];
 }
 

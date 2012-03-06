@@ -12,6 +12,7 @@
 
 @implementation PeopleContainer{
     NSMutableDictionary *people;
+    NSDictionary *currentGrouping;
 
 }
 
@@ -86,7 +87,11 @@
             }
         }
     }
+    currentGrouping = (NSDictionary *)friendGroupings;
     return (NSDictionary*)friendGroupings;
+}
+-(NSDictionary*)getCurrentGrouping{
+    return currentGrouping;
 }
 -(void)printGroupings:(locTypeEnum)locType{
     NSDictionary*groupings = [self getFriendGroupingForLocType:locType];

@@ -32,6 +32,7 @@
 		A90CF2B5150413E60091139C /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = A90CF2B4150413E60091139C /* pin.png */; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
 		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
+		A931AC341505860300696BF9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A931AC331505860300696BF9 /* SettingsViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
 		A9801D801502E1E400BA0B5B /* AnnotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D6F1502E1E400BA0B5B /* AnnotationManager.m */; };
@@ -94,6 +95,8 @@
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A91AF90415008AE200FCD3D7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		A91AF90515008AE200FCD3D7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		A931AC321505860300696BF9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		A931AC331505860300696BF9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A94324941500727F005F7600 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A943249615007983005F7600 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		A943249715007983005F7600 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 		A91AF90815008AF200FCD3D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A931AC321505860300696BF9 /* SettingsViewController.h */,
+				A931AC331505860300696BF9 /* SettingsViewController.m */,
 				680435F414FED94600899729 /* LoginViewController.h */,
 				680435F514FED94600899729 /* LoginViewController.m */,
 				6804361514FEEF4200899729 /* MainViewController.h */,
@@ -392,6 +397,7 @@
 				A9801D861502E1E400BA0B5B /* PlaceIdMapping.m in Sources */,
 				A9801D871502E1E400BA0B5B /* Timer.m in Sources */,
 				A9801D881502E1E400BA0B5B /* UserInfoLog.m in Sources */,
+				A931AC341505860300696BF9 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

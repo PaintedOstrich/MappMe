@@ -11,6 +11,8 @@
 @interface WebViewController : UIViewController <UIWebViewDelegate>{
     IBOutlet UIWebView *webview;
     IBOutlet UIActivityIndicatorView* activityIndicator;
+    NSURL * url;
 }
 
+@property (retain, nonatomic) NSURL *url;
 @end

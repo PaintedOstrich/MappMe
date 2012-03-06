@@ -11,7 +11,7 @@
 #import "Timer.h"
 #import "MyAnnotation.h"
 #import "CoordPairs.h"
-
+#import "WebViewController.h"
 
 @interface MainViewController()
 -(void)getCurrentLocation;
@@ -24,7 +24,8 @@
     MappMeAppDelegate *delegate;
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
-    NSMutableArray * annotations2;
+    NSString *selectedCity;
+    NSString *selectedPerson;
 }
 
 @synthesize mapView;
@@ -34,8 +35,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showdetail"]) {
+    
+    if ([segue.identifier isEqualToString:@"showdetaillist"]) {
         
+    } else if ([segue.identifier isEqualToString:@"showwebview"]){
+        NSString *fId =[delegate.personNameAndIdMapping getIdFromName:selectedPerson];
+		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];
+		NSURL *url =[[NSURL alloc] initWithString:urlStr];
+        WebViewController *controller = segue.destinationViewController;
+        controller.url = url;
     }
 }
 
@@ -45,28 +53,21 @@
  * Takes the user into a list of friends or the friend's facebook page directly
  */
 - (void) showDetail:(id)sender {
-    [self performSegueWithIdentifier:@"showdetail" sender:nil];
-//    NSArray *listItems = [((UIButton*)sender).currentTitle componentsSeparatedByString:@"?"];
-//	NSString *cityName= [listItems objectAtIndex:0];
-//    //    DebugLog(@"cityname : %@", cityName);
-//    NSString * city_id = [delegate.placeAndId objectForKey:cityName];
-//	if([[delegate.friendsArrWithLocAsKey objectForKey:city_id] count]>1){
-//		self.userProfileVC.title=cityName;
-//		[delegate.currentSelectedCity insertObject:[NSString stringWithFormat:@"%@",cityName] atIndex:0] ;
-//		[self.navigationController pushViewController:self.userProfileVC animated:YES];
-//	}
-//	//only one person, go to the facebook page directly.!
-//	else{
-//		NSString *fName= [listItems objectAtIndex:1] ;
-//        //		DebugLog(@"%@%@",@"name is:",fName);
-//		NSString *fId =[delegate.nameAndId objectForKey:fName];
-//		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];
-//		NSURL *url =[[NSURL alloc] initWithString:urlStr];
-//		CSWebDetailsViewController* webViewController =[[CSWebDetailsViewController alloc] initWithNibName:@"CSWebDetailsViewController" bundle:nil];
-//		[webViewController setUrl:url];
-//        
-//		[self.navigationController pushViewController:webViewController animated:YES];
-//	}
+//   
+    NSArray *annotationStrings = [((UIButton*)sender).currentTitle componentsSeparatedByString:@"?"];
+	selectedCity = [annotationStrings objectAtIndex:0];
+    NSString * city_id = [delegate.placeIdMapping getIdFromPlace:selectedCity];
+
+    NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
+    NSDictionary * peopleInPlace = [currentGrouping objectForKey:city_id];
+	if([peopleInPlace count]>1){
+        [self performSegueWithIdentifier:@"showdetaillist" sender:nil];
+	}
+	//only one person, go to the facebook page directly.!
+	else {
+		selectedPerson= [annotationStrings objectAtIndex:1] ;
+        [self performSegueWithIdentifier:@"showwebview" sender:nil];
+	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,7 +84,6 @@
     [super viewDidLoad];
     [mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:20];
-    annotations2 = [[NSMutableArray alloc]initWithCapacity:20];
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -96,6 +96,10 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:FALSE animated:TRUE];
 }
 
 - (void)viewDidUnload

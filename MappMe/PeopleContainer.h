@@ -18,6 +18,7 @@
 
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType;
 -(Friend*)getFriendFromId:(NSString *)uid;
+-(NSDictionary *)getCurrentGrouping;
 #pragma mark - Debug
 -(NSUInteger)getNumPeople;
 -(void)printGroupings:(locTypeEnum)locType;
