@@ -43,6 +43,7 @@
     //Get place name from instance Variable
     MappMeAppDelegate*  delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *placeName = [delegate.placeIdMapping getPlaceFromId:place_id];
+    /*Note: Can Be Nil*/
     CoordPairs * coords = [CoordinateLookupManager manageCoordLookupForEdu:placeName
                                                                withSupInfo:loc andTypeString:placeTypeName];
      [placeAndCoords setObject:coords forKey:place_id];
@@ -64,7 +65,6 @@
 -(CoordPairs *)getCoordFromId:(NSString *)placeId{
     return [placeAndCoords objectForKey:placeId];
 }
-
 
 #pragma mark - Debug
 -(NSUInteger)getNumPlaces{

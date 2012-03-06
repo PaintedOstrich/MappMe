@@ -54,6 +54,11 @@
     {
         NSString * placeId = [keys objectAtIndex: i];
         CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
+        if (!loc) {
+            //If this location is Null
+            DebugLog(@"%@ does not have location",[delegate.placeIdMapping getPlaceFromId:placeId]);
+            continue;
+        }
         MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
         annotationItem.coordinate=loc.location;
         annotationItem.title=[delegate.placeIdMapping getPlaceFromId:placeId];
