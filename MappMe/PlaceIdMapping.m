@@ -7,6 +7,8 @@
 //
 
 #import "PlaceIdMapping.h"
+#import "CoordinateLookupManager.h"
+#import "MappMeAppDelegate.h"
 
 
 @implementation PlaceIdMapping{
@@ -34,6 +36,20 @@
         [idForPlace setValue:placeId forKey:placeName];
     }
 }
+
+//Adds coords from Google Maps
+//This method currently used for education info
+-(void)doCoordLookupAndSet:(NSString*)place_id withDict:(NSDictionary *)loc andTypeString:(NSString *)placeTypeName{
+    //Get place name from instance Variable
+    MappMeAppDelegate*  delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString *placeName = [delegate.placeIdMapping getPlaceFromId:place_id];
+    /*Note: Can Be Nil*/
+    CoordPairs * coords = [CoordinateLookupManager manageCoordLookupForEdu:placeName
+                                                               withSupInfo:loc andTypeString:placeTypeName];
+     [placeAndCoords setObject:coords forKey:place_id];
+
+}
+//Adds coords from passed in parameters
 -(void)addCoordsLat:(NSString *)lat andLong:(NSString *)lon forPlaceId:(NSString *)placeId{
     if([placeAndCoords objectForKey:placeId]== nil) {
         CoordPairs *item = [[CoordPairs alloc] initWithLat:lat andLong:lon];

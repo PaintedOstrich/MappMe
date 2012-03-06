@@ -7,6 +7,7 @@
 //
 
 #import "LocationTypeEnum.h"
+#import "DebugLog.h"
 
 @implementation LocationTypeEnum
 
@@ -15,7 +16,44 @@
         return FALSE;
     }
     return TRUE;
-        
+}
+
++(NSString *)getNameFromEnum:(locTypeEnum)locType{
+    switch(locType){
+        case tHomeTown:
+            return  @"Hometown";
+        case tCurrentLocation:
+            return  @"Current Location";
+        case tHighSchool:
+            return @"High School";
+        case tCollege:
+            return @"College";
+        case tGradSchool:
+            return @"Grad School";
+        case tWork:
+            return @"Work";
+        default: 
+            DebugLog(@"Warning: hitting default case");
+    }
+    return @"";
+
+}
++(locTypeEnum)getEnumFromName:(NSString *)placeName{
+    if ([placeName isEqualToString:@"High School"]) {
+        return  tHighSchool;
+    }
+    if ([placeName isEqualToString:@"College"]) {
+        return  tCollege;
+    }
+    if ([placeName isEqualToString:@"Graduate School"]) {
+        return  tHighSchool;
+    }
+    if ([placeName isEqualToString:@"Work"]) {
+        return  tWork;
+    }
+    DebugLog(@"warning:  String not found");
+    
+    return tLocationTypeCount;
 }
 
 @end

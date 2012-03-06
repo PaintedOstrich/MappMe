@@ -19,8 +19,8 @@
 @implementation MainViewController{
     MappMeAppDelegate *delegate;
     MBProgressHUD *HUD;
-    NSMutableArray * annotations;
-    NSMutableArray * annotations2;
+    NSMutableArray * defaultAnnotations;
+    NSMutableArray * customAnnotations;
 }
 
 @synthesize mapView;
@@ -43,61 +43,142 @@
 
 #pragma mark - Map pins methods
 -(void)makeAnnotationFromDict:(NSDictionary*)groupings{
+    /*Reinitialize Arrays Every time to avoid stale/old Data */
+    defaultAnnotations = [[NSMutableArray alloc]initWithCapacity:20];
+    customAnnotations = [[NSMutableArray alloc]initWithCapacity:20];
+    
     NSArray *keys = [groupings allKeys];
     int i, count;
     count = [keys count];
-    
     for (i = 0; i < count; i++)
     {
         NSString * placeId = [keys objectAtIndex: i];
         CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
-        MyAnnotation* myAnnotation1=[[MyAnnotation alloc] init];
-        myAnnotation1.coordinate=loc.location;
-        myAnnotation1.title=[delegate.placeIdMapping getPlaceFromId:placeId];
+        if (!loc) {
+            //If this location is Null
+            DebugLog(@"%@ does not have location",[delegate.placeIdMapping getPlaceFromId:placeId]);
+            continue;
+        }
+        MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
+        annotationItem.coordinate=loc.location;
+        annotationItem.title=[delegate.placeIdMapping getPlaceFromId:placeId];
         NSSet * groupPerPlace = (NSSet*)[groupings objectForKey: placeId];
-//        NSMutableArray *groupPerPlace;
         if([groupPerPlace count]==1){
             NSString *fId= [groupPerPlace anyObject];
             NSString *fName=[delegate.personNameAndIdMapping getNameFromId:fId];
-            myAnnotation1.subtitle=fName;
+            annotationItem.subtitle=fName;
         }
         else {
-            myAnnotation1.subtitle=[[NSString alloc] initWithFormat:@"%d%@",[groupPerPlace count],@" friends"];	
+            annotationItem.subtitle=[[NSString alloc] initWithFormat:@"%d%@",[groupPerPlace count],@" friends"];	
         }
-        
         //Add in type of Annotation depends on num of friends
         //the bigger the number, more people at that location
         if([groupPerPlace count]>20){
-            myAnnotation1.type=3;
-            [annotations2 addObject:myAnnotation1];
+            annotationItem.type=3;
+            [customAnnotations addObject:annotationItem];
         }
         else if([groupPerPlace count]>10){
-            myAnnotation1.type=2;
-            [annotations2 addObject:myAnnotation1];
+            annotationItem.type=2;
+            [customAnnotations addObject:annotationItem];
         }
         else if([groupPerPlace count]>3){
-            myAnnotation1.type=1;
-            [annotations2 addObject:myAnnotation1];
+            annotationItem.type=1;
+            [customAnnotations addObject:annotationItem];
         }
         else {
-            myAnnotation1.type=0;
-            [annotations addObject:myAnnotation1];
+            annotationItem.type=0;
+            [defaultAnnotations addObject:annotationItem];
         }
-
     }
-
 }
-
-
+-(void)getLocationsForFriend:(Friend *)friend{  
+    customAnnotations = [[NSMutableArray alloc]initWithCapacity:10];
+    for (int type =0; type<tLocationTypeCount; type++){
+        MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
+        locTypeEnum locType = type;
+                /*If only one value per field */
+        if (![LocationTypeEnum isArrayType:locType]){
+            DebugLog(@"%@",friend);
+            if([friend hasEntryForType:locType]){
+                NSString *placeId = [friend getStringEntryForLocType:locType];
+                CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
+                annotationItem.coordinate=loc.location;
+                annotationItem.type=locType;
+                annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
+                annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
+                [customAnnotations addObject:annotationItem];
+            }
+        } /*Dealing with Array of possible Values */
+        else{
+            if([friend hasEntryForType:locType]){
+                NSEnumerator *itemEnum = [[friend getArrayEntryForLocType:locType]objectEnumerator];
+                NSString *placeId;
+                while (placeId = [itemEnum nextObject]) {
+                    NSString *placeId = [friend getStringEntryForLocType:locType];
+                    CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
+                    annotationItem.coordinate=loc.location;
+                    annotationItem.type=locType;
+                    annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
+                    annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
+                    [customAnnotations addObject:annotationItem];
+                }
+            }    
+        }
+       
+    }
+}
 -(void)showPins
 {
-	for (MyAnnotation *anno  in annotations) {
+    DebugLog(@"annotations : %i",[customAnnotations count]);
+	for (MyAnnotation *anno  in defaultAnnotations) {
 		[mapView addAnnotation:anno];
 	}
-	for (MyAnnotation *anno  in annotations2) {
+	for (MyAnnotation *anno  in customAnnotations) {
+        DebugLog(@"adding %@",anno);
 		[mapView addAnnotation:anno];
 	}	
 }
+-(void)clearMap{
+    for(MyAnnotation* anno in defaultAnnotations){
+		[mapView removeAnnotation:anno];
+	}
+	for(MyAnnotation* anno in customAnnotations){
+		[mapView removeAnnotation:anno];
+	}
+}
+-(void)showLocationType:(locTypeEnum)locType{
+    
+    [self clearMap];
+    switch(locType){
+        case tHomeTown:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
+            break;
+        case tCurrentLocation:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tCurrentLocation]];
+            break;
+        case tHighSchool:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHighSchool]];
+            break;
+        case tCollege:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tCollege]];
+            break;
+        case tGradSchool:
+            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tGradSchool]];
+            break;
+        case tWork:
+           [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tWork]];
+            break;
+        default:
+            DebugLog(@"Warning: hitting default case");
+    }
+    [self showPins];
+}
+-(void)showFriend:(NSString *)friendId{
+    [self clearMap];
+    [self getLocationsForFriend:[delegate.peopleContainer getFriendFromId:friendId]];
+    [self showPins];
+}
+
 
 #pragma mark - Custom Facebook Methods
 /* METHOD ADDED FEB 2012, by Parkour */
@@ -149,18 +230,22 @@
     
 	NSEnumerator *enumerator = [infoArray objectEnumerator];
 	NSDictionary *bas_info;
-    locTypeEnum locType;
+    locTypeEnum locType = tLocationTypeCount;
     if ([locTypeString isEqualToString:@"current_location"]){
         locType = tCurrentLocation;
-        DebugLog(@"sets locType to current_location");
     } 
     if ([locTypeString isEqualToString:@"hometown_location"]){
         locType = tHomeTown;
-        DebugLog(@"sets locType to hometown");
     }
     if (locType != tHomeTown && locType != tCurrentLocation){
         DebugLog(@"Warning: locType set incorrectly");
     }
+    /* Stores mapping temporarily between school_id and school_type
+        Used to help location lookup on Google Maps
+            Populated in friendsEdu section
+            Used in schoolLocation
+     */
+    NSMutableDictionary *schoolTypeMapping = [[NSMutableDictionary alloc] init];
     
     while ((bas_info = (NSDictionary *)[enumerator nextObject])) {
         NSString * loc = [bas_info objectForKey:@"name"];
@@ -184,8 +269,32 @@
                 [delegate.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
             }
         }
-        //Adds coords retrieved from facebook for cities
-        if (![loc compare:@"location"]){
+        if ([loc isEqualToString:@"friendsEdu"]){
+            NSDictionary *friendsTemp;
+            NSDictionary *friendsEdu = [bas_info objectForKey:@"fql_result_set"];
+            NSEnumerator *friendsEnum = [friendsEdu objectEnumerator];
+            while ((friendsTemp = (NSDictionary *)[friendsEnum nextObject])) {
+                if([[friendsTemp objectForKey:@"education"]count]==0){
+                    continue;
+                }
+                NSEnumerator *schoolsEnum = [[friendsTemp objectForKey:@"education"] objectEnumerator];
+                NSDictionary *school;
+                NSString * uid = [friendsTemp objectForKey:@"uid"];
+                NSString * name = [friendsTemp objectForKey:@"name"];
+                while (school = (NSDictionary*)[schoolsEnum nextObject]) {
+                    NSString * school_id = (NSString*)[[school objectForKey:@"school"]objectForKey:@"id"];
+                    NSString * school_name = (NSString*)[[school objectForKey:@"school"]objectForKey:@"name"];
+                    NSString * school_type = (NSString*)[school objectForKey:@"type"];
+                    locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
+//                    DebugLog(@"%@ -  %@, %@", school_name, school_type, school_id);
+                    [schoolTypeMapping setObject:school_type forKey:school_id];
+                    [delegate.placeIdMapping addId:school_id andPlace:school_name];
+                    [delegate.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:school_id andTypeId:placeType];
+                }
+            }
+        }
+        /* Location Queries */
+        if ([loc isEqualToString:@"location"]){
             NSDictionary *citiesTemp;
             NSDictionary *coords = [bas_info objectForKey:@"fql_result_set"];
             NSEnumerator *citiesEnum = [coords objectEnumerator];
@@ -195,17 +304,34 @@
                 [[delegate placeIdMapping]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
             }
         }
+        if ([loc isEqualToString:@"schoolLocation"]){
+            DebugLog(@" school location");
+            NSDictionary *schoolTemp;
+            NSEnumerator *schoolLocEnum = [[bas_info objectForKey:@"fql_result_set"] objectEnumerator];
+            while ((schoolTemp = [schoolLocEnum nextObject])) {
+                if ([(NSString *)[schoolTemp objectForKey:@"name"]length] >3){
+                    NSDictionary *loc= [schoolTemp objectForKey:@"location"];
+                    NSString * school_id = [schoolTemp objectForKey:@"page_id"];
+                    //If have lat and long
+                    if ([loc objectForKey:@"latitude"]){
+                        [[delegate placeIdMapping]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:school_id];
+                    }else{
+                        NSString *type = [schoolTypeMapping objectForKey:school_id];
+                        [delegate.placeIdMapping doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
+                    }
+                }
+                
+            }
+        }
     }
     DebugLog(@"Number of friends %i", [delegate.peopleContainer getNumPeople]);
     DebugLog(@"Number of cities %i",[delegate.placeIdMapping getNumPlaces]);
-    //    [delegate.peopleContainer printNFriends:400];
     
-    [delegate.peopleContainer printGroupings:tHomeTown];
-    [delegate.peopleContainer printGroupings:tCurrentLocation];
+//    [delegate.peopleContainer printGroupings:tHomeTown];
+//    [delegate.peopleContainer printGroupings:tCurrentLocation];
 }
 #pragma mark - Caller Methods For Data
 -(void)getCurrentLocation{
-    Timer *t = [[Timer alloc]init];
     
     NSString* fql1 = [NSString stringWithFormat:
                       @"SELECT name,uid, current_location.name, current_location.id FROM user WHERE  uid IN (SELECT uid2 FROM friend WHERE uid1= me()) AND current_location>0 ORDER BY current_location DESC"];
@@ -217,12 +343,9 @@
     NSDictionary *response = [self doMultiQuery:fqlC];  
     [self parseCityAndPeople:response andType:@"current_location"];
     
-    
-    int total = [t getCurrentTimeInterval];
-    DebugLog(@"Total Facebook Load Time in Seconds: %i", total);
 }
 -(void)getHometownLocation{
-    Timer *t = [[Timer alloc]init];
+
     NSString* fqlH1 = [NSString stringWithFormat:
                        @"SELECT name,uid, hometown_location.name, hometown_location.id FROM user WHERE  uid IN (SELECT uid2 FROM friend WHERE uid1= me()) AND hometown_location>0 ORDER BY hometown_location DESC "];
     
@@ -231,11 +354,8 @@
     NSString* fqlH = [NSString stringWithFormat:
                       @"{\"friends\":\"%@\",\"location\":\"%@\"}",fqlH1,fqlH2];
     NSDictionary *response = [self doMultiQuery:fqlH];  
-    [self parseCityAndPeople:response andType:@"hometown_location"];
+    [self parseCityAndPeople:response andType:@"hometown_location"];    
     
-    
-    int total = [t getCurrentTimeInterval];
-    DebugLog(@"Total Facebook Load Time in Seconds: %i", total);
 }
 -(void)getEducationInfo{
     NSString* fqlE1 = [NSString stringWithFormat:
@@ -243,8 +363,9 @@
     NSString* fqlE2 = [NSString stringWithFormat:
                        @"SELECT location,name,page_id FROM page WHERE page_id IN (SELECT education FROM #friendsEdu)"];
     NSString* fqlE = [NSString stringWithFormat:
-                      @"{\"friendsEdu\":\"%@\",\"location\":\"%@\"}",fqlE1,fqlE2];
-    [self doMultiQuery:fqlE];
+                      @"{\"friendsEdu\":\"%@\",\"schoolLocation\":\"%@\"}",fqlE1,fqlE2];
+    NSDictionary *response = [self doMultiQuery:fqlE];  
+    [self parseCityAndPeople:response andType:@"education"];  
 }
 
 
@@ -256,23 +377,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    annotations = [[NSMutableArray alloc]initWithCapacity:20];
-    annotations2 = [[NSMutableArray alloc]initWithCapacity:20];
+    Timer *t = [[Timer alloc]init];
+    
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
+    // Show the HUD while the provided method executes in a new thread
+    [HUD showWhileExecuting:@selector(someTask) onTarget:self withObject:nil animated:YES];
     
     /*Call Methods for info*/
     [self getCurrentLocation];
     [self getHometownLocation];
+    [self getEducationInfo];
+    [delegate.peopleContainer printNFriends:400];
+//    [self showLocationType:tHighSchool];
     
-    [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
-    [self showPins];
-    // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:@selector(someTask) onTarget:self withObject:nil animated:YES];
+    int total = [t getCurrentTimeInterval];
+    DebugLog(@"Total Facebook Load Time in Seconds: %i", total);
+    NSString *uid = [delegate.personNameAndIdMapping getIdFromName:@"Eric Hamblett"];
+
+    [self showFriend:uid];
+    
+   
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -296,12 +425,9 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(MyAnnotation *)annotation
 {
-	//NSLog(@"welcome into the map view annotation");
-    
 	// if it's the user location, just return nil.
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
-    
 	// try to dequeue an existing pin view first
 	static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
     
@@ -313,7 +439,6 @@
 		  forControlEvents:UIControlEventTouchUpInside];
     
 	if(annotation.type==0){
-        
 		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
 										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
 		pinView.animatesDrop=YES;

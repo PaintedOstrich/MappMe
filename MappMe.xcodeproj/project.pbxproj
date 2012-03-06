@@ -20,11 +20,11 @@
 		6804360D14FEDAEF00899729 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6804360514FEDAEF00899729 /* libfacebook_ios_sdk.a */; };
 		6804361114FEDE4100899729 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361014FEDE4100899729 /* DebugLog.m */; };
 		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
+		68280F1815033C0F00892392 /* CoordinateLookupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68280F1715033C0F00892392 /* CoordinateLookupManager.m */; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
 		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
-		A9801D801502E1E400BA0B5B /* AnnotationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D6F1502E1E400BA0B5B /* AnnotationManager.m */; };
 		A9801D811502E1E400BA0B5B /* CoordPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* CoordPairs.m */; };
 		A9801D821502E1E400BA0B5B /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D731502E1E400BA0B5B /* Friend.m */; };
 		A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
@@ -70,6 +70,8 @@
 		6804361014FEDE4100899729 /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugLog.m; sourceTree = "<group>"; };
 		6804361514FEEF4200899729 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6804361614FEEF4200899729 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		68280F1615033C0F00892392 /* CoordinateLookupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateLookupManager.h; sourceTree = "<group>"; };
+		68280F1715033C0F00892392 /* CoordinateLookupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinateLookupManager.m; sourceTree = "<group>"; };
 		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A91AF90415008AE200FCD3D7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -77,8 +79,6 @@
 		A94324941500727F005F7600 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A943249615007983005F7600 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		A943249715007983005F7600 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
-		A9801D6E1502E1E400BA0B5B /* AnnotationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationManager.h; sourceTree = "<group>"; };
-		A9801D6F1502E1E400BA0B5B /* AnnotationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationManager.m; sourceTree = "<group>"; };
 		A9801D701502E1E400BA0B5B /* CoordPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairs.h; sourceTree = "<group>"; };
 		A9801D711502E1E400BA0B5B /* CoordPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairs.m; sourceTree = "<group>"; };
 		A9801D721502E1E400BA0B5B /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -118,11 +118,10 @@
 		680435CD14FED94600899729 = {
 			isa = PBXGroup;
 			children = (
-				A913EE64150095DB009F6A84 /* PlugIns */,
-				6804360E14FEDE1300899729 /* Util */,
-				680435FC14FEDAEF00899729 /* facebook-ios-sdk */,
 				680435E214FED94600899729 /* MappMe */,
 				680435DB14FED94600899729 /* Frameworks */,
+				A913EE64150095DB009F6A84 /* PlugIns */,
+				680435FC14FEDAEF00899729 /* facebook-ios-sdk */,
 				680435D914FED94600899729 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -149,6 +148,7 @@
 		680435E214FED94600899729 /* MappMe */ = {
 			isa = PBXGroup;
 			children = (
+				6804360E14FEDE1300899729 /* Util */,
 				A9A0AC511502D8C70020265D /* Views */,
 				A9A0AC501502D7D30020265D /* Models */,
 				680435EB14FED94600899729 /* MappMeAppDelegate.h */,
@@ -205,7 +205,6 @@
 				6804361014FEDE4100899729 /* DebugLog.m */,
 			);
 			name = Util;
-			path = MappMe;
 			sourceTree = "<group>";
 		};
 		A913EE64150095DB009F6A84 /* PlugIns */ = {
@@ -235,10 +234,14 @@
 		A9A0AC501502D7D30020265D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A9801D6E1502E1E400BA0B5B /* AnnotationManager.h */,
-				A9801D6F1502E1E400BA0B5B /* AnnotationManager.m */,
+				A9A0AC521502D8F00020265D /* MyAnnotation.h */,
+				A9A0AC531502D8F00020265D /* MyAnnotation.m */,
 				A9801D701502E1E400BA0B5B /* CoordPairs.h */,
 				A9801D711502E1E400BA0B5B /* CoordPairs.m */,
+				68280F1615033C0F00892392 /* CoordinateLookupManager.h */,
+				68280F1715033C0F00892392 /* CoordinateLookupManager.m */,
+				A9801D7A1502E1E400BA0B5B /* PlaceIdMapping.h */,
+				A9801D7B1502E1E400BA0B5B /* PlaceIdMapping.m */,
 				A9801D721502E1E400BA0B5B /* Friend.h */,
 				A9801D731502E1E400BA0B5B /* Friend.m */,
 				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
@@ -247,10 +250,6 @@
 				A9801D771502E1E400BA0B5B /* PeopleContainer.m */,
 				A9801D781502E1E400BA0B5B /* PersonNameAndIdMapping.h */,
 				A9801D791502E1E400BA0B5B /* PersonNameAndIdMapping.m */,
-				A9801D7A1502E1E400BA0B5B /* PlaceIdMapping.h */,
-				A9801D7B1502E1E400BA0B5B /* PlaceIdMapping.m */,
-				A9A0AC521502D8F00020265D /* MyAnnotation.h */,
-				A9A0AC531502D8F00020265D /* MyAnnotation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -335,7 +334,6 @@
 				A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */,
 				A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */,
 				A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */,
-				A9801D801502E1E400BA0B5B /* AnnotationManager.m in Sources */,
 				A9801D811502E1E400BA0B5B /* CoordPairs.m in Sources */,
 				A9801D821502E1E400BA0B5B /* Friend.m in Sources */,
 				A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */,
@@ -344,6 +342,7 @@
 				A9801D861502E1E400BA0B5B /* PlaceIdMapping.m in Sources */,
 				A9801D871502E1E400BA0B5B /* Timer.m in Sources */,
 				A9801D881502E1E400BA0B5B /* UserInfoLog.m in Sources */,
+				68280F1815033C0F00892392 /* CoordinateLookupManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
