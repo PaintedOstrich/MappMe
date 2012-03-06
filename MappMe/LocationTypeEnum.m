@@ -22,7 +22,7 @@
 +(NSString *)getNameFromEnum:(locTypeEnum)locType{
     switch(locType){
         case tHomeTown:
-            return  @"Hometown";
+            return @"Hometown";
         case tCurrentLocation:
             return  @"Current Location";
         case tHighSchool:
@@ -33,8 +33,10 @@
             return @"Grad School";
         case tWork:
             return @"Work";
-        default: 
+        default:{
             DebugLog(@"Warning: hitting default case");
+            break;
+        }
     }
     return @"";
 

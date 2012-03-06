@@ -68,11 +68,8 @@
             NSEnumerator *e = [self.highschool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
-<<<<<<< HEAD
-                if (entry ==placeId){
-=======
+
                 if (entry == placeId){
->>>>>>> 59cdcfb... finished all location lookups
                     return true;
                 }
             }
@@ -83,11 +80,7 @@
             NSEnumerator *e = [self.college objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
-<<<<<<< HEAD
-                if (entry ==placeId){
-=======
                 if (entry == placeId){
->>>>>>> 59cdcfb... finished all location lookups
                     return true;
                 }
             }
@@ -98,11 +91,7 @@
             NSEnumerator *e = [self.gradSchool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
-<<<<<<< HEAD
-                if (entry ==placeId){
-=======
                 if (entry == placeId){
->>>>>>> 59cdcfb... finished all location lookups
                     return true;
                 }
             }
@@ -113,11 +102,7 @@
             NSEnumerator *e = [self.highschool objectEnumerator];
             NSString *entry;
             while (entry = (NSString*)[e nextObject]) {
-<<<<<<< HEAD
-                if (entry ==placeId){
-=======
                 if (entry == placeId){
->>>>>>> 59cdcfb... finished all location lookups
                     return true;
                 }
             }

@@ -161,7 +161,7 @@
     }
 }
 -(void)getLocationsForFriend:(Friend *)friend{  
-    customAnnotations = [[NSMutableArray alloc]initWithCapacity:10];
+    annotations = [[NSMutableArray alloc]initWithCapacity:10];
     for (int type =0; type<tLocationTypeCount; type++){
         MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
         locTypeEnum locType = type;
@@ -189,7 +189,7 @@
                     annotationItem.type=locType;
                     annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
                     annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
-                    [customAnnotations addObject:annotationItem];
+                    [annotations addObject:annotationItem];
                 }
             }    
         }
