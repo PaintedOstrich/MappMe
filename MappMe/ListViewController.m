@@ -11,7 +11,7 @@
 
 @implementation ListViewController
 
-@synthesize tableView;
+@synthesize tableView,selectedCity;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,11 +30,21 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - Helper Methods
+/*
+ * We may need to format city name somehow in the future.
+ */
+-(NSString*) formatCityStr:(NSString*) cityName {
+    return cityName;
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    selectedCity = [self formatCityStr:selectedCity];
+    self.navigationItem.title = selectedCity;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -45,6 +55,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    self.tableView = nil;
 
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;

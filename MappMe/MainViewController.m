@@ -12,6 +12,7 @@
 #import "MyAnnotation.h"
 #import "CoordPairs.h"
 #import "WebViewController.h"
+#import "ListViewController.h"
 
 @interface MainViewController()
 -(void)getCurrentLocation;
@@ -37,7 +38,8 @@
 {
     
     if ([segue.identifier isEqualToString:@"showdetaillist"]) {
-        
+        ListViewController *controller = segue.destinationViewController;
+        controller.selectedCity = selectedCity;
     } else if ([segue.identifier isEqualToString:@"showwebview"]){
         NSString *fId =[delegate.personNameAndIdMapping getIdFromName:selectedPerson];
 		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];

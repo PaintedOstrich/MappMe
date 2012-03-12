@@ -10,8 +10,8 @@
 
 @interface ListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *tableView;
+    NSString *selectedCity;
 }
 
-@property (nonatomic,retain) IBOutlet UITableView *tableView;
-
+@property(nonatomic,retain)	NSString *selectedCity;
 @end
