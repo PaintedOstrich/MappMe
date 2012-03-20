@@ -46,7 +46,9 @@
     /*Note: Can Be Nil*/
     CoordPairs * coords = [CoordinateLookupManager manageCoordLookupForEdu:placeName
                                                                withSupInfo:loc andTypeString:placeTypeName];
-     [placeAndCoords setObject:coords forKey:place_id];
+    if (coords){
+        [placeAndCoords setObject:coords forKey:place_id];
+    }
 
 }
 //Adds coords from passed in parameters
