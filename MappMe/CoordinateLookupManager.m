@@ -68,13 +68,7 @@
         //DebugLog(@"string does not contain type : %@", schoolType);
         lookup = [NSString stringWithFormat:@"%@ %@",placeName,schoolType];
         returnCoords = [self lookupString:lookup];
-        if(returnCoords!= nil){
-            return returnCoords;
-        }
-    } else {
-        //DebugLog(@"string contains type: %@!",schoolType);
-    }
-    
+    } 
     //Try adding city and state info
     if ([supInfo objectForKey:@"city"]){
         lookup=[NSString stringWithFormat:@"%@, %@",lookup,[supInfo objectForKey:@"city"]];
@@ -87,6 +81,7 @@
     if(returnCoords!= nil){
         return returnCoords;
     }
+ 
     
     //Try 4
     //remove place name and just use city

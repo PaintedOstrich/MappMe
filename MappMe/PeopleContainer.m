@@ -88,7 +88,7 @@
         }
     }
     currentGrouping = (NSDictionary *)friendGroupings;
-    return (NSDictionary*)friendGroupings;
+    return currentGrouping;
 }
 -(NSDictionary*)getCurrentGrouping{
     return currentGrouping;
