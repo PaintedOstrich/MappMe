@@ -37,7 +37,7 @@
         }else{
             numTries++;
             if(numTries>=15){
-                DebugLog(@"Failed finding Coords for String: \n\t %@",lookup);
+                //DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",lookup);
                 return location;
             }
             
@@ -60,23 +60,24 @@
     //Try just school name
     CoordPairs *returnCoords = [self lookupString:lookup];
     if(returnCoords!= nil){
-        return returnCoords;
+        //return returnCoords;
+        //*****Returning here found to give bad results, add location type name for first lookup
     }
     //Try name with attached tag, ex. "High School", since Horace Mann does not have "High School" in name, map api cannot find it
-    if ([lookup rangeOfString:schoolType].location == NSNotFound){
-        NSLog(@"string does not contain type : %@", schoolType);
-        lookup = [NSString stringWithFormat:@"%@,%@",lookup,schoolType];
+    if ([placeName rangeOfString:schoolType].location == NSNotFound){
+        //DebugLog(@"string does not contain type : %@", schoolType);
+        lookup = [NSString stringWithFormat:@"%@ %@",placeName,schoolType];
         returnCoords = [self lookupString:lookup];
         if(returnCoords!= nil){
             return returnCoords;
         }
     } else {
-        NSLog(@"string contains type: %@!",schoolType);
+        //DebugLog(@"string contains type: %@!",schoolType);
     }
     
     //Try adding city and state info
     if ([supInfo objectForKey:@"city"]){
-        lookup=[NSString stringWithFormat:@"%@,%@",lookup,[supInfo objectForKey:@"city"]];
+        lookup=[NSString stringWithFormat:@"%@, %@",lookup,[supInfo objectForKey:@"city"]];
     }
     if ([supInfo objectForKey:@"state"]){lookup=[NSString stringWithFormat:@"%@,%@",lookup,[supInfo objectForKey:@"state"]];
     }
@@ -89,8 +90,8 @@
     
     //Try 4
     //remove place name and just use city
-    lookup=@"";
-    if ([supInfo objectForKey:@"city"]){lookup=[NSString stringWithFormat:@"%@,%@",lookup,[supInfo objectForKey:@"city"]];}
+    lookup= @"";
+    if ([supInfo objectForKey:@"city"]){lookup=[NSString stringWithFormat:@"%@",[supInfo objectForKey:@"city"]];}
     if ([supInfo objectForKey:@"state"]){lookup=[NSString stringWithFormat:@"%@,%@",lookup,[supInfo objectForKey:@"state"]];}
     if ([supInfo objectForKey:@"state"]){lookup=[NSString stringWithFormat:@"%@,%@",lookup,[supInfo objectForKey:@"country"]];}
     
@@ -100,6 +101,7 @@
     }
     
     /* If no coord found, return nil*/
+    DebugLog(@"Did Not Find:  %@", placeName);
     return nil;
 }
 

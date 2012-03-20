@@ -172,7 +172,7 @@
         case tWork:
           return self.work != nil;
         default:
-            DebugLog(@"Warning: hitting default case");
+            DebugLog(@"Warning: hitting default case for loctype: %i", locType);
     }
     return FALSE;
 }

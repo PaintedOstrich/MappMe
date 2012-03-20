@@ -16,6 +16,7 @@
 @interface MainViewController()
 -(void)getCurrentLocation;
 -(void)getHometownLocation;
+-(void)getEducationInfo;
 -(void) showPins;
 @end
 
@@ -163,12 +164,12 @@
 -(void)getLocationsForFriend:(Friend *)friend{  
     annotations = [[NSMutableArray alloc]initWithCapacity:10];
     for (int type =0; type<tLocationTypeCount; type++){
-        MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
         locTypeEnum locType = type;
                 /*If only one value per field */
         if (![LocationTypeEnum isArrayType:locType]){
             DebugLog(@"%@",friend);
             if([friend hasEntryForType:locType]){
+                MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
                 NSString *placeId = [friend getStringEntryForLocType:locType];
                 CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
                 annotationItem.coordinate=loc.location;
@@ -183,13 +184,16 @@
                 NSEnumerator *itemEnum = [[friend getArrayEntryForLocType:locType]objectEnumerator];
                 NSString *placeId;
                 while (placeId = [itemEnum nextObject]) {
-                    NSString *placeId = [friend getStringEntryForLocType:locType];
                     CoordPairs *loc = [delegate.placeIdMapping getCoordFromId:placeId];
-                    annotationItem.coordinate=loc.location;
-                    annotationItem.type=locType;
-                    annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
-                    annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
-                    [annotations addObject:annotationItem];
+                    /*Checks for Valid Coordinate (not valid if not found from Google Lookup)*/
+                    if (loc){
+                        MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
+                        annotationItem.coordinate=loc.location;
+                        annotationItem.type=locType;
+                        annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
+                        annotationItem.title = [delegate.placeIdMapping getPlaceFromId:placeId];
+                        [annotations addObject:annotationItem];
+                    }
                 }
             }    
         }
@@ -240,13 +244,19 @@
 
 
 - (void)fetchAndProcess {
+    Timer * t = [[Timer alloc] init];
     /*Call Methods for info*/
     [self getCurrentLocation];
     [self getHometownLocation];
-    [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
+    [self getEducationInfo];
+    
+//    [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tCurrentLocation]];
     // Task completed, update view in main thread (note: view operations should
     // be done only in the main thread)
-    [self performSelectorOnMainThread:@selector(showPins) withObject:nil waitUntilDone:NO];
+    [self showFriend:[delegate.personNameAndIdMapping getIdFromName:@"Eric Hamblett"]];
+//    [self performSelectorOnMainThread:@selector(showPins) withObject:nil waitUntilDone:NO];
+    int time = [t endTimerAndGetTotalTime];
+    DebugLog(@"Total App Loadtime: %i",time);
 }
 
 #pragma mark - Custom Facebook Methods
