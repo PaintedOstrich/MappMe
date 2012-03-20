@@ -7,11 +7,18 @@
 //
 
 #import "ListViewController.h"
+#import "MappMeAppDelegate.h"
+#import "Friend.h"
+#import "WebViewController.h"
 
 
-@implementation ListViewController
+@implementation ListViewController{
+    MappMeAppDelegate *delegate;
+    NSArray * friendIds;
+    NSString *selectedFriend_id;
+}
 
-@synthesize tableView;
+@synthesize tableView,selectedCity;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,11 +37,31 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - Helper Methods to masage and gether data.
+/*
+ * We may need to format city name somehow in the future.
+ */
+-(NSString*) formatCityStr:(NSString*) cityName {
+    return cityName;
+}
+
+-(NSArray*) getFriendsInCity:(NSString*) cityName{
+    NSString * city_id = [delegate.placeIdMapping getIdFromPlace:selectedCity];
+    
+    NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
+    return [[currentGrouping objectForKey:city_id] allObjects];
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    selectedCity = [self formatCityStr:selectedCity];
+    self.navigationItem.title = selectedCity;
+    
+    friendIds = [self getFriendsInCity:selectedCity];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -45,6 +72,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    self.tableView = nil;
 
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -80,19 +108,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 1;
+    return [friendIds count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"FriendCell";
     
@@ -101,62 +127,31 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Configure the cell...
-    cell.textLabel.text = @"Some Friend";
+    NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:friend_id];
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    selectedFriend_id = [friendIds objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"showwebview" sender:nil];
+}
+
+#pragma mark - Transition Functions
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"showwebview"]){
+		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",selectedFriend_id];
+		NSURL *url =[[NSURL alloc] initWithString:urlStr];
+        WebViewController *controller = segue.destinationViewController;
+        controller.url = url;
+    }
 }
 
 @end

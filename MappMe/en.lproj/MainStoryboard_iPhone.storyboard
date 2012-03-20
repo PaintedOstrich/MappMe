@@ -133,9 +133,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <segue destination="lvy-TQ-8oc" kind="push" id="Mfx-AF-3Vb"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -144,6 +141,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="City Name" id="sIe-HC-SOf"/>
+                    <connections>
+                        <outlet property="tableView" destination="CzP-7D-IA6" id="8xG-JS-7RJ"/>
+                        <segue destination="lvy-TQ-8oc" kind="push" identifier="showwebview" id="g6m-oi-yyk"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="1688" y="1113"/>
@@ -175,7 +176,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2277" y="1501"/>
+            <point key="canvasLocation" x="2107" y="1389"/>
         </scene>
         <scene sceneID="OWo-eI-CRH">
             <objects>
@@ -237,6 +238,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fOb-4Y-zbr"/>
+        <segue reference="g6m-oi-yyk"/>
     </inferredMetricsTieBreakers>
 </document>
