@@ -13,7 +13,7 @@
 @implementation PeopleContainer{
     NSMutableDictionary *people;
     NSDictionary *currentGrouping;
-
+    
 }
 
 
@@ -93,6 +93,7 @@
 -(NSDictionary*)getCurrentGrouping{
     return currentGrouping;
 }
+
 -(void)printGroupings:(locTypeEnum)locType{
     NSDictionary*groupings = [self getFriendGroupingForLocType:locType];
     MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];

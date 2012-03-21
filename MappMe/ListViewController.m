@@ -59,6 +59,7 @@
     [super viewDidLoad];
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     selectedCity = [self formatCityStr:selectedCity];
+    NSLog(@"%@",selectedCity);
     self.navigationItem.title = selectedCity;
     
     friendIds = [self getFriendsInCity:selectedCity];
@@ -108,6 +109,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"chekcs this method");
     // Return the number of sections.
     return 1;
 }

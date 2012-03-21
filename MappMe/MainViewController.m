@@ -14,11 +14,21 @@
 #import "WebViewController.h"
 #import "ListViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 @interface MainViewController()
 -(void)getCurrentLocation;
 -(void)getHometownLocation;
 -(void)getEducationInfo;
--(void) showPins;
+-(void)showPins;
+/*View Change Methods*/
+-(void)showLocationType:(locTypeEnum)locType;
+-(void)showHometown;
+-(void)showCurrentLoc;
+-(void)showHighSchool;
+-(void)showCollege;
+-(void)showGrad;
+
 @end
 
 
@@ -28,10 +38,17 @@
     NSMutableArray * annotations;
     NSString *selectedCity;
     NSString *selectedPerson;
+    
+    IBOutlet UITableView *tableView;
+    UIView *displayTypeContainer;
+    UIView *personSearchContainer;
+    BOOL displayTypeContainerIsShown;
+    locTypeEnum currDisplayedType;
+    
 }
 
 @synthesize mapView;
-@synthesize personSearchContainer;
+
 
 
 #pragma mark - Transition Functions
@@ -81,40 +98,227 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
-#pragma mark Table view methods
+#pragma mark - Helper View Change Methods
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+-(void)showHometown{
+    [self showLocationType:tHomeTown];
+}
+-(void)showCurrentLoc{
+    [self showLocationType:tCurrentLocation];
+}
+-(void)showHighSchool{
+    [self showLocationType:tHighSchool];
+}
+-(void)showCollege{
+    [self showLocationType:tCollege];
+}
+-(void)showGrad{
+    [self showLocationType:tGradSchool];
+}
+#pragma mark - Custom Person Search and Button Views 
+-(NSArray*) getFriendsInCity:(NSString*) cityName{
+    NSString * city_id = [delegate.placeIdMapping getIdFromPlace:selectedCity];
+    
+    NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
+    return [[currentGrouping objectForKey:city_id] allObjects];
+}
+
+/* FIXME must subclass view to get this method to work, so we can call close on touch outside of subview
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
+{
+    DebugLog(@"testing hit vieW");
+    if(displayTypeContainerIsShown){
+        UIView * hitView = [displayTypeContainer hitTest:point withEvent:event];
+        if ([hitView isEqual:displayTypeContainer])
+            DebugLog(@"Hiding superview");
+            [displayTypeContainer removeFromSuperview];
+    }
+    else{
+        DebugLog(@"touching buttons");
+    }
+    return nil;
+}
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch=[touches anyObject];
+    if([touch view]==displayTypeContainer){
+        DebugLog(@"Touched container");
+    }
+    else{
+        DebugLog(@"touched something else");
+    }
+}
+*/
+-(IBAction)showList{
+    
+    displayTypeContainerIsShown = TRUE;
+    
+    displayTypeContainer = [[UIView alloc] initWithFrame:CGRectMake(40, 90, 240, 280)];
+    [displayTypeContainer setAlpha:0.0];
+    [displayTypeContainer.layer setBackgroundColor:[[UIColor clearColor] CGColor]];
+    
+    
+    UIView *displayTypeView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 240, 280)];
+    [displayTypeView setAlpha:0.65];
+    [displayTypeContainer addSubview:displayTypeView];
+    
+    /*Navigation Buttons*/
+    UIButton *curButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [curButton addTarget:self 
+                 action:@selector(showCurrentLoc)
+     forControlEvents:UIControlEventTouchDown];
+    [curButton setTitle:@"Current Location" forState:UIControlStateNormal];
+    curButton.frame = CGRectMake(30.0, 20, 180.0, 40.0);
+    curButton.highlighted = (tCurrentLocation == currDisplayedType);
+    curButton.enabled = (tCurrentLocation != currDisplayedType);
+    [displayTypeContainer addSubview:curButton];
+    
+    UIButton *homeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [homeButton addTarget:self 
+               action:@selector(showHometown)
+     forControlEvents:UIControlEventTouchDown];
+    [homeButton setTitle:@"Hometown" forState:UIControlStateNormal];
+    homeButton.frame = CGRectMake(30.0, 70, 180.0, 40.0);
+    homeButton.highlighted = (tHomeTown == currDisplayedType);
+    homeButton.enabled = (tHomeTown != currDisplayedType);
+    [displayTypeContainer addSubview:homeButton];
+    
+    UIButton *highButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [highButton addTarget:self 
+                   action:@selector(showHighSchool)
+         forControlEvents:UIControlEventTouchDown];
+    [highButton setTitle:@"High School" forState:UIControlStateNormal];
+    highButton.frame = CGRectMake(30.0, 120, 180.0, 40.0);
+    highButton.highlighted = (tHighSchool == currDisplayedType);
+    highButton.enabled = (tHighSchool != currDisplayedType);
+    [displayTypeContainer addSubview:highButton];
+
+    UIButton *collButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [collButton addTarget:self 
+                   action:@selector(showCollege)
+         forControlEvents:UIControlEventTouchDown];
+    [collButton setTitle:@"College" forState:UIControlStateNormal];
+    collButton.frame = CGRectMake(30.0, 170, 180.0, 40.0);
+    collButton.highlighted = (tCollege == currDisplayedType);
+    collButton.enabled = (tCollege != currDisplayedType);
+    [displayTypeContainer addSubview:collButton];
+
+    UIButton *gradButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [gradButton addTarget:self 
+                   action:@selector(showGrad)
+         forControlEvents:UIControlEventTouchDown];
+    [gradButton setTitle:@"Graduate School" forState:UIControlStateNormal];
+    gradButton.frame = CGRectMake(30.0, 220, 180.0, 40.0);
+    gradButton.highlighted = (tGradSchool == currDisplayedType);
+    gradButton.enabled = (tGradSchool != currDisplayedType);
+    [displayTypeContainer addSubview:gradButton];
+    /*End Navigation Buttons*/
+
+    //Rounded Container Corners
+    CALayer *dtc = displayTypeView.layer;
+    [dtc setMasksToBounds:YES];
+    [dtc setCornerRadius:8.0f];
+    [dtc setBorderWidth:2.0f];
+    [dtc setBorderColor: [[UIColor blackColor] CGColor]];
+    [dtc setBackgroundColor: [[UIColor blueColor] CGColor]];
+    
+    //Add View To Screen
+    [self.view addSubview:displayTypeContainer];
+    [UIView beginAnimations:nil context:nil];
+    [displayTypeContainer setAlpha:1.0];
+    [UIView commitAnimations];
+
+}
+-(IBAction)showSearchResults{
+    tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 280, 400)];
+    tableView.backgroundColor = [UIColor blueColor];
+    [tableView setAlpha:0.0];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self 
+               action:@selector(closeButton:)
+     forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"Close" forState:UIControlStateNormal];
+    button.frame = CGRectMake(80.0, 390, 120.0, 40.0);
+    
+    
+//    [self.view addSubview:tableView];
+    //Fixme add alpha to partially transparent  
+    personSearchContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 40, 280, 440)];
+    //    contentView.autoresizesSubviews = YES;
+    //    contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    personSearchContainer.backgroundColor = [UIColor redColor];
+    [personSearchContainer addSubview:tableView];
+    [personSearchContainer addSubview:button];
+    
+    //Rounded Corners
+    CALayer *psc = tableView.layer;
+    [psc setMasksToBounds:YES];
+    [psc setCornerRadius:8.0f];
+    [psc setBorderWidth:1.0f];
+    [psc setBorderColor: [[UIColor blackColor] CGColor]];
+    [personSearchContainer.layer setBackgroundColor: [[UIColor clearColor] CGColor]];
+    
+    [self.view addSubview:personSearchContainer];
+    [UIView beginAnimations:nil context:nil];
+    [tableView setAlpha:0.65];
+    [UIView commitAnimations];
+    
+    NSArray * friendsIds = [[delegate personNameAndIdMapping] getFriendsWithName:@"eric"];
+    DebugLog(@"matching friends \n %@", friendsIds);
+}
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    // Return the number of sections.
+    DebugLog(@"checks this methods");
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tView numberOfRowsInSection:(NSInteger)section
+{
+    
+    // Return the number of rows in the section.
+//    return [friendIds count];
     return 1;
 }
 
-// Customize the number of rows in the table view.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 5;
-}
-
-// Customize the appearance of table view cells.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+- (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
-    // Set up the cell...
-    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
-    cell.textLabel.text = [NSString	 stringWithFormat:@"Cell Row #%d", [indexPath row]];
-    
-    return cell;
+//    [delegate.placeIdMapping getIdFromPlace:selectedCity];
+//    NSDictionary *item = (NSDictionary *)[self.content objectAtIndex:indexPath.row];
+//    cell.textLabel.text = [item objectForKey:@"mainTitleKey"];
+//    cell.detailTextLabel.text = [item objectForKey:@"secondaryTitleKey"];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
+//    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
+//    cell.imageView.image = theImage;
+//    return cell;
+
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	// open a alert with an OK and cancel button
-	NSString *alertString = [NSString stringWithFormat:@"Clicked on row #%d", [indexPath row]];
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
-	[alert show];
+#pragma mark - Table view delegate
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    selectedFriend_id = [friendIds objectAtIndex:indexPath.row];
+//    [self performSegueWithIdentifier:@"showwebview" sender:nil];
+    DebugLog(@"clicked %i",indexPath);
+}
+
+
+
+- (void)closeButton:(id)sender
+{
+    [UIView beginAnimations:nil context:nil];
+    [personSearchContainer setAlpha:0.0];
+    [UIView commitAnimations];
+    //    [personSearchContainer removeFromSuperview];
+    //    [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
 }
 
 #pragma mark - View lifecycle
@@ -130,54 +334,15 @@
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
     
+    //Set Bools for view methods
+    displayTypeContainerIsShown = FALSE;
+    
     
     
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
--(IBAction)showList{
-    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
-    tableView.backgroundColor = [UIColor blueColor];
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self 
-               action:@selector(closeButton:)
-     forControlEvents:UIControlEventTouchDown];
-    [button setTitle:@"Close" forState:UIControlStateNormal];
-    button.frame = CGRectMake(100.0, 390, 120.0, 40.0);
-//    [tableView addSubview:button];
-    
-    
-    // CALCulate the bottom right corner
-//    buttonRect.origin.x = rect.size.width - buttonRect.size.width - 8;
-//    buttonRect.origin.y = rect.size.height - buttonRect.size.height - 8; 
-//    [helpButton setFrame:buttonRect];
-    [self.view addSubview:tableView];
-    
-    personSearchContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 440)];
-//    contentView.autoresizesSubviews = YES;
-//    contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    personSearchContainer.backgroundColor = [UIColor redColor];
-    [personSearchContainer addSubview:tableView];
-    [personSearchContainer addSubview:button];
-    
-    [personSearchContainer setAlpha:0.0];
-    [self.view addSubview:personSearchContainer];
-    [UIView beginAnimations:nil context:nil];
-    [personSearchContainer setAlpha:1.0];
-    [UIView commitAnimations];
 
-}
-
-
-- (void)closeButton:(id)sender
-{
-    [UIView beginAnimations:nil context:nil];
-    [personSearchContainer setAlpha:0.0];
-    [UIView commitAnimations];
-//    [personSearchContainer removeFromSuperview];
-//    [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
-}
 -(void) viewWillAppear:(BOOL)animated{
     [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
 }
@@ -203,6 +368,7 @@
 
 #pragma mark - Map pins methods
 -(void)makeAnnotationFromDict:(NSDictionary*)groupings{
+    annotations = [[NSMutableArray alloc] initWithCapacity:[groupings count]];
     NSArray *keys = [groupings allKeys];
     int i, count;
     count = [keys count];
@@ -288,13 +454,20 @@
 	[mapView addAnnotations:annotations];	
 }
 -(void)clearMap{
-    for(MyAnnotation* anno in annotations){
-		[mapView removeAnnotation:anno];
-    }
+    [mapView removeAnnotations:annotations];
 }
 -(void)showLocationType:(locTypeEnum)locType{
-    
-    [self clearMap];
+    if(displayTypeContainerIsShown){
+        [displayTypeContainer removeFromSuperview];
+        [self clearMap];
+        displayTypeContainerIsShown = FALSE;
+    }
+    currDisplayedType = locType;
+    NSString * buttonLabel= [LocationTypeEnum getNameFromEnum:currDisplayedType];
+    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateNormal];
+    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateHighlighted];
+    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateDisabled];
+    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateSelected];
     switch(locType){
         case tHomeTown:
             [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
