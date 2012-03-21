@@ -19,6 +19,7 @@ static NSString * kAppId = @"291279594218895";
 @synthesize personNameAndIdMapping;
 @synthesize userInfoLog;
 @synthesize peopleContainer;
+@synthesize fbImageHandler;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -28,6 +29,7 @@ static NSString * kAppId = @"291279594218895";
     placeIdMapping = [[PlaceIdMapping alloc] init];
     peopleContainer =[[PeopleContainer alloc] init];
     userInfoLog = [[UserInfoLog alloc] init];
+    fbImageHandler = [[FacebookImageHandler alloc] init];
     
     
     LoginViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];

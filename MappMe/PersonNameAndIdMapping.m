@@ -47,8 +47,12 @@
             [friendIds addObject:[idForPerson objectForKey:tmpName]];
         }
     }
-    DebugLog(@"Returning %i friends matching name : %@",[friendIds count], name);
+//    DebugLog(@"Returning %i friends matching name : %@",[friendIds count], name);
     return friendIds;
+}
+#pragma mark - testing methods
+-(NSArray *)getAllFriendIds{
+    return [personForId allKeys];
 }
 
 

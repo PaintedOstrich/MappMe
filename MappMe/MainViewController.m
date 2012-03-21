@@ -28,6 +28,8 @@
 -(void)showHighSchool;
 -(void)showCollege;
 -(void)showGrad;
+-(void)showFriend:(NSString *)friendId;
+-(void)removeSearchTable;
 
 @end
 
@@ -232,6 +234,8 @@
     tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 280, 400)];
     tableView.backgroundColor = [UIColor blueColor];
     [tableView setAlpha:0.0];
+    NSIndexPath *ip = [[NSIndexPath alloc] initWithIndex:1];
+    [[tableView delegate] tableView:tableView didDeselectRowAtIndexPath:ip];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self 
@@ -243,7 +247,7 @@
     
 //    [self.view addSubview:tableView];
     //Fixme add alpha to partially transparent  
-    personSearchContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 40, 280, 440)];
+    personSearchContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 44, 280, 440)];
     //    contentView.autoresizesSubviews = YES;
     //    contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     personSearchContainer.backgroundColor = [UIColor redColor];
@@ -264,15 +268,15 @@
     [UIView commitAnimations];
     
     NSArray * friendsIds = [[delegate personNameAndIdMapping] getFriendsWithName:@"eric"];
-    DebugLog(@"matching friends \n %@", friendsIds);
+   // DebugLog(@"matching friends \n %@", friendsIds);
 }
-#pragma mark - Table view data source
 
+#pragma mark - UITableViewDataSource Methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    DebugLog(@"checks this methods");
-    return 2;
+    DebugLog(@"checks this methods 2");
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tView numberOfRowsInSection:(NSInteger)section
@@ -280,45 +284,48 @@
     
     // Return the number of rows in the section.
 //    return [friendIds count];
+    DebugLog(@"checks this methods 3");
     return 1;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    DebugLog(@"checks this methods 5");
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-//    [delegate.placeIdMapping getIdFromPlace:selectedCity];
-//    NSDictionary *item = (NSDictionary *)[self.content objectAtIndex:indexPath.row];
-//    cell.textLabel.text = [item objectForKey:@"mainTitleKey"];
+    NSArray *friendIds = [[delegate personNameAndIdMapping] getAllFriendIds];
+    NSString *uid = [friendIds objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:uid];
 //    cell.detailTextLabel.text = [item objectForKey:@"secondaryTitleKey"];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
 //    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
-//    cell.imageView.image = theImage;
-//    return cell;
-
+    cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:uid];
+    return cell;
 }
+#pragma mark UITableViewDelegate Methods
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    selectedFriend_id = [friendIds objectAtIndex:indexPath.row];
-//    [self performSegueWithIdentifier:@"showwebview" sender:nil];
-    DebugLog(@"clicked %i",indexPath);
+- (void) tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *) indexPath{
+	
+	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *uid = [[delegate personNameAndIdMapping] getIdFromName:cell.textLabel.text];
+    [self showFriend:uid];
+    [self removeSearchTable];
 }
-
-
-
+/*Table Delegate Helpers*/
 - (void)closeButton:(id)sender
 {
     [UIView beginAnimations:nil context:nil];
     [personSearchContainer setAlpha:0.0];
     [UIView commitAnimations];
-    //    [personSearchContainer removeFromSuperview];
+    [self removeSearchTable];
     //    [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
+}
+-(void)removeSearchTable{
+    [personSearchContainer removeFromSuperview];
 }
 
 #pragma mark - View lifecycle
@@ -496,6 +503,11 @@
     [self clearMap];
     [self getLocationsForFriend:[delegate.peopleContainer getFriendFromId:friendId]];
     [self showPins];
+    NSString * buttonLabel= [[delegate personNameAndIdMapping] getNameFromId:friendId];
+    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateNormal];
+    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateHighlighted];
+    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateDisabled];
+    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateSelected];
 }
 
 

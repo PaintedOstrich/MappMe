@@ -16,4 +16,5 @@
 -(void)addId:(NSString *)personId andPerson:(NSString *)personName;
 
 -(NSArray *)getFriendsWithName:(NSString *)name;
+-(NSArray *)getAllFriendIds;
 @end
