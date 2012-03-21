@@ -10,14 +10,19 @@
 #import <MapKit/MapKit.h>
 #import "MBProgressHUD.h"
 
+
+/*Main Controller Interface*/
 @interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, UITableViewDelegate, UITableViewDataSource> {
     IBOutlet MKMapView* mapView;
-    UIView *personSearchContainer;
+    IBOutlet UIButton* displayTypeButtonLabel;
 }
 
 @property(nonatomic,retain)	IBOutlet MKMapView* mapView;
-@property (nonatomic, retain) UIView *personSearchContainer;
+
 
 
 -(IBAction)showList;
-@end
+-(IBAction)showSearchResults;
+
+
+

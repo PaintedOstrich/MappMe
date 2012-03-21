@@ -15,4 +15,5 @@
 -(NSString *)getNameFromId:(NSString *)placeId;
 -(void)addId:(NSString *)personId andPerson:(NSString *)personName;
 
+-(NSArray *)getFriendsWithName:(NSString *)name;
 @end
