@@ -109,7 +109,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"chekcs this method");
     // Return the number of sections.
     return 1;
 }

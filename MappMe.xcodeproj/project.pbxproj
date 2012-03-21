@@ -19,6 +19,7 @@
 		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
 		68082BFB151A790000C12A91 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 68082BEE151A790000C12A91 /* FBDialog.bundle */; };
 		68082BFC151A790000C12A91 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68082BF4151A790000C12A91 /* libfacebook_ios_sdk.a */; };
+		68082C03151A81D400C12A91 /* FacebookImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 68082C02151A81D400C12A91 /* FacebookImageHandler.m */; };
 		683D383A1507C0D200021ED3 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38351507C0D200021ED3 /* DebugLog.m */; };
 		683D383B1507C0D200021ED3 /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38371507C0D200021ED3 /* Timer.m */; };
 		683D383C1507C0D200021ED3 /* UserInfoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38391507C0D200021ED3 /* UserInfoLog.m */; };
@@ -69,6 +70,8 @@
 		68082BF8151A790000C12A91 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
 		68082BF9151A790000C12A91 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
 		68082BFA151A790000C12A91 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		68082C01151A81D400C12A91 /* FacebookImageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookImageHandler.h; sourceTree = "<group>"; };
+		68082C02151A81D400C12A91 /* FacebookImageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookImageHandler.m; sourceTree = "<group>"; };
 		683D38341507C0D200021ED3 /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugLog.h; path = MappMe/DebugLog.h; sourceTree = SOURCE_ROOT; };
 		683D38351507C0D200021ED3 /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugLog.m; path = MappMe/DebugLog.m; sourceTree = SOURCE_ROOT; };
 		683D38361507C0D200021ED3 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Timer.h; path = MappMe/Timer.h; sourceTree = SOURCE_ROOT; };
@@ -264,6 +267,8 @@
 				A9801D771502E1E400BA0B5B /* PeopleContainer.m */,
 				A9801D781502E1E400BA0B5B /* PersonNameAndIdMapping.h */,
 				A9801D791502E1E400BA0B5B /* PersonNameAndIdMapping.m */,
+				68082C01151A81D400C12A91 /* FacebookImageHandler.h */,
+				68082C02151A81D400C12A91 /* FacebookImageHandler.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				683D383A1507C0D200021ED3 /* DebugLog.m in Sources */,
 				683D383B1507C0D200021ED3 /* Timer.m in Sources */,
 				683D383C1507C0D200021ED3 /* UserInfoLog.m in Sources */,
+				68082C03151A81D400C12A91 /* FacebookImageHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

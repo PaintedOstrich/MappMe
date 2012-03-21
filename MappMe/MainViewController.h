@@ -22,7 +22,8 @@
 
 
 -(IBAction)showList;
--(IBAction)showSearchResults;
+
+@end
 
 
 
