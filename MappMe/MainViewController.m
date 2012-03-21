@@ -31,6 +31,7 @@
 }
 
 @synthesize mapView;
+@synthesize personSearchContainer;
 
 
 #pragma mark - Transition Functions
@@ -80,6 +81,41 @@
     
     // Release any cached data, images, etc that aren't in use.
 }
+#pragma mark Table view methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return 5;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // Set up the cell...
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:15];
+    cell.textLabel.text = [NSString	 stringWithFormat:@"Cell Row #%d", [indexPath row]];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	// open a alert with an OK and cancel button
+	NSString *alertString = [NSString stringWithFormat:@"Clicked on row #%d", [indexPath row]];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertString message:@"" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:nil];
+	[alert show];
+
+}
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
@@ -93,10 +129,55 @@
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
+    
+    
+    
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
+-(IBAction)showList{
+    UITableView * tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 400)];
+    tableView.backgroundColor = [UIColor blueColor];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self 
+               action:@selector(closeButton:)
+     forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"Close" forState:UIControlStateNormal];
+    button.frame = CGRectMake(100.0, 390, 120.0, 40.0);
+//    [tableView addSubview:button];
+    
+    
+    // CALCulate the bottom right corner
+//    buttonRect.origin.x = rect.size.width - buttonRect.size.width - 8;
+//    buttonRect.origin.y = rect.size.height - buttonRect.size.height - 8; 
+//    [helpButton setFrame:buttonRect];
+    [self.view addSubview:tableView];
+    
+    personSearchContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 40, 320, 440)];
+//    contentView.autoresizesSubviews = YES;
+//    contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    personSearchContainer.backgroundColor = [UIColor redColor];
+    [personSearchContainer addSubview:tableView];
+    [personSearchContainer addSubview:button];
+    
+    [personSearchContainer setAlpha:0.0];
+    [self.view addSubview:personSearchContainer];
+    [UIView beginAnimations:nil context:nil];
+    [personSearchContainer setAlpha:1.0];
+    [UIView commitAnimations];
 
+}
+
+
+- (void)closeButton:(id)sender
+{
+    [UIView beginAnimations:nil context:nil];
+    [personSearchContainer setAlpha:0.0];
+    [UIView commitAnimations];
+//    [personSearchContainer removeFromSuperview];
+//    [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
+}
 -(void) viewWillAppear:(BOOL)animated{
     [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
 }
@@ -250,9 +331,9 @@
     /*Call Methods for info*/
     [self getCurrentLocation];
     [self getHometownLocation];
-    [self getEducationInfo];
+    //[self getEducationInfo];
     
-    [self showLocationType:tHighSchool];
+    [self showLocationType:tCurrentLocation];
     // Task completed, update view in main thread (note: view operations should
     // be done only in the main thread)
 //    [self showFriend:[delegate.personNameAndIdMapping getIdFromName:@"Eric Hamblett"]];
