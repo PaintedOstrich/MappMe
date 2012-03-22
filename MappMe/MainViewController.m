@@ -268,7 +268,7 @@
     [UIView commitAnimations];
     
     NSArray * friendsIds = [[delegate personNameAndIdMapping] getFriendsWithName:@"eric"];
-   // DebugLog(@"matching friends \n %@", friendsIds);
+    DebugLog(@"matching friends \n %@", friendsIds);
 }
 
 #pragma mark - UITableViewDataSource Methods
