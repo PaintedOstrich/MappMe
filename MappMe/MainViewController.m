@@ -518,7 +518,7 @@
     [self getHometownLocation];
     [self getEducationInfo];
     
-//    [self showLocationType:tCurrentLocation];
+    [self showLocationType:tHighSchool];
     // Task completed, update view in main thread (note: view operations should
     // be done only in the main thread)
     [self showFriend:[delegate.personNameAndIdMapping getIdFromName:@"Eric Hamblett"]];
