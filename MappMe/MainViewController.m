@@ -516,13 +516,13 @@
     /*Call Methods for info*/
     [self getCurrentLocation];
     [self getHometownLocation];
-    //[self getEducationInfo];
+    [self getEducationInfo];
     
-//    [self showLocationType:tCurrentLocation];
+    [self showLocationType:tHighSchool];
     // Task completed, update view in main thread (note: view operations should
     // be done only in the main thread)
-//    [self showFriend:[delegate.personNameAndIdMapping getIdFromName:@"Eric Hamblett"]];
-    [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
+    [self showFriend:[delegate.personNameAndIdMapping getIdFromName:@"Eric Hamblett"]];
+    //[self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
     int time = [t endTimerAndGetTotalTime];
     DebugLog(@"Total App Loadtime: %i",time);
 }
