@@ -44,6 +44,7 @@
 		68DC0BCF151D7C7100514016 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC0BCE151D7C7100514016 /* CFNetwork.framework */; };
 		68DC0BD1151D7C8C00514016 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC0BD0151D7C8C00514016 /* MobileCoreServices.framework */; };
 		68DC0BD3151D7D7E00514016 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC0BD2151D7D7E00514016 /* libz.dylib */; };
+		68DC0BD6151E538500514016 /* FriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DC0BD5151E538500514016 /* FriendSearchViewController.m */; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
 		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
 		A931AC341505860300696BF9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A931AC331505860300696BF9 /* SettingsViewController.m */; };
@@ -134,6 +135,8 @@
 		68DC0BCE151D7C7100514016 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		68DC0BD0151D7C8C00514016 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		68DC0BD2151D7D7E00514016 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		68DC0BD4151E538500514016 /* FriendSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSearchViewController.h; sourceTree = "<group>"; };
+		68DC0BD5151E538500514016 /* FriendSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSearchViewController.m; sourceTree = "<group>"; };
 		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A91AF90415008AE200FCD3D7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -401,6 +404,8 @@
 				A943249715007983005F7600 /* ListViewController.m */,
 				A91AF90415008AE200FCD3D7 /* WebViewController.h */,
 				A91AF90515008AE200FCD3D7 /* WebViewController.m */,
+				68DC0BD4151E538500514016 /* FriendSearchViewController.h */,
+				68DC0BD5151E538500514016 /* FriendSearchViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -524,6 +529,7 @@
 				68DC0BC7151D7C1400514016 /* ASIInputStream.m in Sources */,
 				68DC0BC8151D7C1400514016 /* ASINetworkQueue.m in Sources */,
 				68DC0BCB151D7C2500514016 /* Reachability.m in Sources */,
+				68DC0BD6151E538500514016 /* FriendSearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

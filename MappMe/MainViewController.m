@@ -44,6 +44,7 @@
     BOOL displayTypeContainerIsShown;
     locTypeEnum currDisplayedType;
     BOOL isFriendAnnotationType;
+    UIButton* displayTypeButtonLabel;
     
 }
 
@@ -150,7 +151,7 @@
 */
 
 //Adds subview of menu selection for current location, hometown, high school, etc.
--(IBAction)showList{
+-(void)showList{
     //Don't add subview twice
     if(displayTypeContainerIsShown){
         return;
@@ -270,67 +271,38 @@
     [tableView setAlpha:0.65];
     [UIView commitAnimations];
     
-    NSArray * friendsIds = [[delegate personNameAndIdMapping] getFriendsWithName:@"eric"];
-    DebugLog(@"matching friends \n %@", friendsIds);
-}
-
-#pragma mark - UITableViewDataSource Methods
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    // Return the number of sections.
-    DebugLog(@"checks this methods 2");
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tView numberOfRowsInSection:(NSInteger)section
-{
-    
-    // Return the number of rows in the section.
-//    return [friendIds count];
-    DebugLog(@"checks this methods 3");
-    return 1;
-    
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    DebugLog(@"checks this methods 5");
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    NSArray *friendIds = [[delegate personNameAndIdMapping] getAllFriendIds];
-    NSString *uid = [friendIds objectAtIndex:indexPath.row];
-    cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:uid];
-//    cell.detailTextLabel.text = [item objectForKey:@"secondaryTitleKey"];
-//    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
-//    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
-    cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:uid];
-    return cell;
-}
-#pragma mark UITableViewDelegate Methods
-
-- (void) tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *) indexPath{
-	
-	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSString *uid = [[delegate personNameAndIdMapping] getIdFromName:cell.textLabel.text];
-    [self showFriend:uid];
-    [self removeSearchTable];
-}
-/*Table Delegate Helpers*/
-- (void)closeButton:(id)sender
-{
-    [UIView beginAnimations:nil context:nil];
-    [personSearchContainer setAlpha:0.0];
-    [UIView commitAnimations];
-    [self removeSearchTable];
-    //    [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
 }
 -(void)removeSearchTable{
     [personSearchContainer removeFromSuperview];
 }
+//Search Bar Methods
+-(void)addSearchBar{
+    
+    UIView *topViewContainer= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 42)];
+    [topViewContainer setAlpha:0.0];
+//    [topViewContainer.layer setBackgroundColor:[[UIColor redColor] CGColor]];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self 
+               action:@selector(showList)
+     forControlEvents:UIControlEventTouchDown];
+    [button setTitle:@"Current Location" forState:UIControlStateNormal];
+    button.frame = CGRectMake(239.0, 0, 81, 44.0);
+    button.titleLabel.font  = [UIFont systemFontOfSize: 10];
+    [topViewContainer addSubview:button];
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
+    [topViewContainer addSubview:searchBar];
 
+   
+    
+    //Fade In View
+    [self.view addSubview:topViewContainer];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.45];
+    [topViewContainer setAlpha:1.0];
+    [UIView commitAnimations];
+}
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
@@ -346,7 +318,7 @@
     
     //Set Bools for view methods
     displayTypeContainerIsShown = FALSE;
-    
+    [self addSearchBar];
     
     
     // Show the HUD while the provided method executes in a new thread
