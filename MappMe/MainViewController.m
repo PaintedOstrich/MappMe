@@ -105,7 +105,7 @@
 }
 -(void)showCurrentLoc{
     [self showLocationType:tCurrentLocation];
-}
+} 
 -(void)showHighSchool{
     [self showLocationType:tHighSchool];
 }
@@ -379,26 +379,30 @@
 #pragma mark - Map pins methods
 -(void)makeAnnotationFromDict:(NSDictionary*)groupings{
     //Using class as wrapper to process instances of itself
+    annotations = [[NSMutableArray alloc] initWithCapacity:[[delegate peopleContainer] getNumPeople]];
     NSArray* annotationItems = [MyAnnotation makeAnnotationFromDict:groupings]; 
     [annotations addObjectsFromArray:annotationItems];
 }
 -(void)getLocationsForFriend:(Friend *)friend{  
+     annotations = [[NSMutableArray alloc] initWithCapacity:10];
     [annotations addObjectsFromArray:[MyAnnotation getLocationsForFriend:friend]];
 }
 -(void)showPins
 {
-	[mapView addAnnotations:annotations];	
+    [mapView addAnnotations:annotations];	
 }
 -(void)clearMap{
     [mapView removeAnnotations:annotations];
 }
 -(void)showLocationType:(locTypeEnum)locType{
+    [[delegate peopleContainer] printGroupings:locType];
     if(displayTypeContainerIsShown){
         [displayTypeContainer removeFromSuperview];
         [self clearMap];
         displayTypeContainerIsShown = FALSE;
     }
     currDisplayedType = locType;
+    isFriendAnnotationType = FALSE;
     NSString * buttonLabel= [LocationTypeEnum getNameFromEnum:currDisplayedType];
     [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateNormal];
     [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateHighlighted];
@@ -430,6 +434,7 @@
 }
 -(void)showFriend:(NSString *)friendId{
     [self clearMap];
+    isFriendAnnotationType = TRUE;
     [self getLocationsForFriend:[delegate.peopleContainer getFriendFromId:friendId]];
     [self showPins];
     NSString * buttonLabel= [[delegate personNameAndIdMapping] getNameFromId:friendId];
@@ -447,7 +452,6 @@
     [dataHandler getCurrentLocation];
     [dataHandler getHometownLocation];
     [dataHandler getEducationInfo];
-    //[self getEducationInfo];
     
 //    [self showLocationType:tCurrentLocation];
     // Task completed, update view in main thread (note: view operations should
@@ -470,7 +474,7 @@
         aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 230.0, aV.frame.size.width, aV.frame.size.height);
         
         [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.1];
+        [UIView setAnimationDuration:0.3];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [aV setFrame:endFrame];
         [UIView commitAnimations];
@@ -493,45 +497,38 @@
 					action:@selector(showDetail:)
 		  forControlEvents:UIControlEventTouchUpInside];
     
-	if (annotation.type==0){
-        
-        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
-        //have a sequential animation that looks better.
-        
-		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
-										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
-		pinView.animatesDrop=YES;
-		pinView.canShowCallout=YES;
-		pinView.pinColor=MKPinAnnotationColorGreen;
-		pinView.rightCalloutAccessoryView = rightButton;
-        
-		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-		pinView.leftCalloutAccessoryView = profileIconView;
-        
-		return pinView;
-	}
-    
-	else{
-	    MKAnnotationView* pinView = [[MKPinAnnotationView alloc]
+//	if (annotation.type==0){
+//        
+//        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
+//        //have a sequential animation that looks better.
+//        
+//		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
+//										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
+//		pinView.animatesDrop=YES;
+//		pinView.canShowCallout=YES;
+//		pinView.pinColor=MKPinAnnotationColorGreen;
+//		pinView.rightCalloutAccessoryView = rightButton;
+//        
+//		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+//		pinView.leftCalloutAccessoryView = profileIconView;
+//        
+//		return pinView;
+//	}
+//    
+//	else{
+    MKAnnotationView* pinView = [[MKPinAnnotationView alloc]
 									  initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
-		pinView.canShowCallout=YES;
-		//check for different type of pin (sizes)
-		if(annotation.type==1){
-			pinView.image =[UIImage imageNamed:@"bluePin1.25.png"];
-		}else if (annotation.type==2){
-			pinView.image =[UIImage imageNamed:@"purple1.4.png"];	
-		}else{
-			pinView.image =[UIImage imageNamed:@"red1.6.png"];	
-		}
-		pinView.rightCalloutAccessoryView = rightButton;
-        
-	    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-	    pinView.leftCalloutAccessoryView = profileIconView;
-		//  pinView.tag = @"moreThanOnePerson";
-        
-		return pinView;
-        
-	}
+    pinView.canShowCallout=YES;
+    //check for different type of pin (sizes)
+    
+    pinView.rightCalloutAccessoryView = rightButton;
+    
+   // UIImage* pinImage = [MyAnnotation getPinImage:annotation.type isFriendLocationType:isFriendAnnotationType];
+    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:pinImage];
+    pinView.leftCalloutAccessoryView = profileIconView;
+    //  pinView.tag = @"moreThanOnePerson";
+    
+    return pinView;
 }
 
 @end

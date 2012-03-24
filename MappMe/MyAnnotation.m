@@ -124,4 +124,67 @@
     }
     return (NSArray*)annotations;
 }
+//Returns Appropriate Image for Pin,given type and displayType(location for all friends, or location element of friend)
++(UIImage*)getPinImage:(int)type isFriendLocationType:(BOOL)isFriendType{
+    //If we're showing all location types for a friend
+    UIImage *returnImage;
+    if(!isFriendType){
+        switch (type) {
+            case tForty:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;
+            case tTwentyFive:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            case tFifteen:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            case tTen:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break; 
+            case tFive:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            case tThree:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            case tTwo:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;
+            case tOne:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            default:
+                DebugLog(@"Warning: Default Case Reached");
+                break;
+        }
+    }
+    //If we're showing a location criteria such as current location for all friends
+    else{
+        switch (type) {
+            case tCurrentLocation:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;
+            case tHomeTown:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            case tHighSchool:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            case tCollege:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break; 
+            case tGradSchool:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            case tWork:
+                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                break;  
+            default:
+                DebugLog(@"Warning: Default Case Reached");
+                break;
+        }
+    }
+    return returnImage;
+}
 @end

@@ -23,5 +23,5 @@
 
 +(NSArray*)makeAnnotationFromDict:(NSDictionary*)groupings;
 +(NSArray*)getLocationsForFriend:(Friend *)friend;
-
++(UIImage*)getPinImage:(int)type isFriendLocationType:(BOOL)isFriendType;
 @end
