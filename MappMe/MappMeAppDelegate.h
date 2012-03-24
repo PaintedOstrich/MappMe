@@ -13,6 +13,7 @@
 #import "PeopleContainer.h"
 #import "UserInfoLog.h"
 #import "FacebookImageHandler.h"
+#import <dispatch/dispatch.h>
 
 @interface MappMeAppDelegate : NSObject <UIApplicationDelegate>{
     Facebook *facebook;
@@ -21,6 +22,7 @@
     PeopleContainer *peopleContainer;
     UserInfoLog *userInfoLog;
     FacebookImageHandler *fbImageHandler;
+    dispatch_queue_t backgroundQueue;
     
 }
 
@@ -32,5 +34,6 @@
 @property (nonatomic, retain) UserInfoLog  *userInfoLog; 
 @property (nonatomic, retain) PeopleContainer *peopleContainer;
 @property (nonatomic, retain) FacebookImageHandler *fbImageHandler;
+@property (nonatomic)  dispatch_queue_t backgroundQueue;
 
 @end

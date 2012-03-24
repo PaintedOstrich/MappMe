@@ -49,7 +49,13 @@
         NSDictionary *parsed_json = [parser objectWithString:responseString error:nil];	
         //Data encapsulates request
          NSDictionary* data = (NSDictionary *)[parsed_json objectForKey:@"data"]; 
-        [self parseFacebookInfoController:data];
+        
+        //Dispatch thread processing in a background queue
+        MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        dispatch_async(delegate.backgroundQueue, ^(void) {
+            [self parseFacebookInfoController:data];
+        });
+        
     }];
     [request setFailedBlock:^{
         DebugLog(@"returnd failure");
