@@ -37,14 +37,18 @@
     NSMutableArray * annotations;
     NSString *selectedCity;
     NSString *selectedPerson;
+    locTypeEnum currDisplayedType;
     
     IBOutlet UITableView *tableView;
+    
+    //Display private variables
     UIView *displayTypeContainer;
     UIView *personSearchContainer;
     BOOL displayTypeContainerIsShown;
-    locTypeEnum currDisplayedType;
     BOOL isFriendAnnotationType;
     UIButton* displayTypeButtonLabel;
+    UISearchBar *searchBar;
+    
     
 }
 
@@ -282,19 +286,18 @@
     [topViewContainer setAlpha:0.0];
 //    [topViewContainer.layer setBackgroundColor:[[UIColor redColor] CGColor]];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self 
+    displayTypeButtonLabel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [displayTypeButtonLabel addTarget:self 
                action:@selector(showList)
      forControlEvents:UIControlEventTouchDown];
-    [button setTitle:@"Current Location" forState:UIControlStateNormal];
-    button.frame = CGRectMake(239.0, 0, 81, 44.0);
-    button.titleLabel.font  = [UIFont systemFontOfSize: 10];
-    [topViewContainer addSubview:button];
+    [displayTypeButtonLabel setTitle:@"Current Location" forState:UIControlStateNormal];
+    displayTypeButtonLabel.frame = CGRectMake(239.0, 0, 81, 44.0);
+    displayTypeButtonLabel.titleLabel.font  = [UIFont systemFontOfSize: 10];
+    [topViewContainer addSubview:displayTypeButtonLabel];
     
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
+    searchBar.delegate = self;
     [topViewContainer addSubview:searchBar];
-
-   
     
     //Fade In View
     [self.view addSubview:topViewContainer];
@@ -302,6 +305,10 @@
     [UIView setAnimationDuration:0.45];
     [topViewContainer setAlpha:1.0];
     [UIView commitAnimations];
+}
+#pragma mark - UI search bar delegate
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    DebugLog(@"length of search: %i", searchText.length);
 }
 #pragma mark - View lifecycle
 - (void)viewDidLoad

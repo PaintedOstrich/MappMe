@@ -12,7 +12,7 @@
 
 
 /*Main Controller Interface*/
-@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate> {
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, UISearchBarDelegate> {
     IBOutlet MKMapView* mapView;
 //    IBOutlet UIButton* displayTypeButtonLabel;
 }
