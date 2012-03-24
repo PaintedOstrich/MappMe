@@ -36,7 +36,7 @@
             return location;
         }else{
             numTries++;
-            if(numTries>=15){
+            if(numTries>=24){
                 //DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",lookup);
                 return location;
             }

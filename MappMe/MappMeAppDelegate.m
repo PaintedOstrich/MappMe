@@ -8,6 +8,7 @@
 
 #import "MappMeAppDelegate.h"
 #import "LoginViewController.h"
+#import "ASIHTTPRequest.h"
 
 static NSString * kAppId = @"291279594218895";
 @implementation MappMeAppDelegate

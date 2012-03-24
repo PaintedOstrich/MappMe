@@ -118,7 +118,6 @@
             [returnString appendFormat:@"\n\t %@", [delegate.personNameAndIdMapping getNameFromId:uid]];
         }
     }
-    DebugLog(@"%@", (NSString*)returnString);
 }
 
 -(Friend*)getFriendFromId:(NSString *)uid{
