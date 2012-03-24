@@ -51,10 +51,7 @@
         }
         //Add in type of Annotation depends on num of friends
         //the bigger the number, more people at that location
-        if([groupPerPlace count]>40){
-            annotationItem.type=tForty;
-        }
-        else if([groupPerPlace count]>25){
+        if([groupPerPlace count]>25){
             annotationItem.type=tTwentyFive;
         }
         else if([groupPerPlace count]>15){
@@ -129,30 +126,28 @@
     //If we're showing all location types for a friend
     UIImage *returnImage;
     if(!isFriendType){
+        //Switch based upon enum values set in above makeAnnotationFromDict
         switch (type) {
-            case tForty:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-                break;
             case tTwentyFive:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                returnImage=[UIImage imageNamed:@"redPin.png"];
                 break;  
             case tFifteen:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                returnImage=[UIImage imageNamed:@"orangePin.png"];
                 break;  
             case tTen:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                returnImage=[UIImage imageNamed:@"yellowPin.png"];
                 break; 
             case tFive:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                returnImage=[UIImage imageNamed:@"yellow-greenPin.png"];
                 break;  
             case tThree:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                returnImage=[UIImage imageNamed:@"greenPin.png"];
                 break;  
             case tTwo:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                returnImage=[UIImage imageNamed:@"tealPin.png"];
                 break;
             case tOne:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
+                returnImage=[UIImage imageNamed:@"bluePin.png"];
                 break;  
             default:
                 DebugLog(@"Warning: Default Case Reached");

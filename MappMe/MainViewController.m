@@ -474,7 +474,7 @@
         aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 230.0, aV.frame.size.width, aV.frame.size.height);
         
         [UIView beginAnimations:nil context:NULL];
-        [UIView setAnimationDuration:0.3];
+        [UIView setAnimationDuration:0.45];
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [aV setFrame:endFrame];
         [UIView commitAnimations];
@@ -522,9 +522,9 @@
     //check for different type of pin (sizes)
     
     pinView.rightCalloutAccessoryView = rightButton;
-    
-   // UIImage* pinImage = [MyAnnotation getPinImage:annotation.type isFriendLocationType:isFriendAnnotationType];
-    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:pinImage];
+    pinView.image = [MyAnnotation getPinImage:annotation.type isFriendLocationType:isFriendAnnotationType];
+   
+    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
     pinView.leftCalloutAccessoryView = profileIconView;
     //  pinView.tag = @"moreThanOnePerson";
     

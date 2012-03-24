@@ -20,6 +20,13 @@
 		68082BFB151A790000C12A91 /* FBDialog.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 68082BEE151A790000C12A91 /* FBDialog.bundle */; };
 		68082BFC151A790000C12A91 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 68082BF4151A790000C12A91 /* libfacebook_ios_sdk.a */; };
 		68082C03151A81D400C12A91 /* FacebookImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 68082C02151A81D400C12A91 /* FacebookImageHandler.m */; };
+		681C4164151D724500747C4A /* bluePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415D151D724500747C4A /* bluePin.png */; };
+		681C4165151D724500747C4A /* greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415E151D724500747C4A /* greenPin.png */; };
+		681C4166151D724500747C4A /* orangePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415F151D724500747C4A /* orangePin.png */; };
+		681C4167151D724500747C4A /* redPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C4160151D724500747C4A /* redPin.png */; };
+		681C4168151D724500747C4A /* tealPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C4161151D724500747C4A /* tealPin.png */; };
+		681C4169151D724500747C4A /* yellow-greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C4162151D724500747C4A /* yellow-greenPin.png */; };
+		681C416A151D724500747C4A /* yellowPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C4163151D724500747C4A /* yellowPin.png */; };
 		683D383A1507C0D200021ED3 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38351507C0D200021ED3 /* DebugLog.m */; };
 		683D383B1507C0D200021ED3 /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38371507C0D200021ED3 /* Timer.m */; };
 		683D383C1507C0D200021ED3 /* UserInfoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38391507C0D200021ED3 /* UserInfoLog.m */; };
@@ -73,6 +80,13 @@
 		68082BFA151A790000C12A91 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		68082C01151A81D400C12A91 /* FacebookImageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookImageHandler.h; sourceTree = "<group>"; };
 		68082C02151A81D400C12A91 /* FacebookImageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookImageHandler.m; sourceTree = "<group>"; };
+		681C415D151D724500747C4A /* bluePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluePin.png; sourceTree = "<group>"; };
+		681C415E151D724500747C4A /* greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenPin.png; sourceTree = "<group>"; };
+		681C415F151D724500747C4A /* orangePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangePin.png; sourceTree = "<group>"; };
+		681C4160151D724500747C4A /* redPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redPin.png; sourceTree = "<group>"; };
+		681C4161151D724500747C4A /* tealPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tealPin.png; sourceTree = "<group>"; };
+		681C4162151D724500747C4A /* yellow-greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow-greenPin.png"; sourceTree = "<group>"; };
+		681C4163151D724500747C4A /* yellowPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowPin.png; sourceTree = "<group>"; };
 		683D38341507C0D200021ED3 /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugLog.h; path = MappMe/DebugLog.h; sourceTree = SOURCE_ROOT; };
 		683D38351507C0D200021ED3 /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugLog.m; path = MappMe/DebugLog.m; sourceTree = SOURCE_ROOT; };
 		683D38361507C0D200021ED3 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Timer.h; path = MappMe/Timer.h; sourceTree = SOURCE_ROOT; };
@@ -219,6 +233,20 @@
 			path = "facebook-ios-sdk";
 			sourceTree = "<group>";
 		};
+		681C415B151D71F600747C4A /* pin images */ = {
+			isa = PBXGroup;
+			children = (
+				681C415D151D724500747C4A /* bluePin.png */,
+				681C415E151D724500747C4A /* greenPin.png */,
+				681C415F151D724500747C4A /* orangePin.png */,
+				681C4160151D724500747C4A /* redPin.png */,
+				681C4161151D724500747C4A /* tealPin.png */,
+				681C4162151D724500747C4A /* yellow-greenPin.png */,
+				681C4163151D724500747C4A /* yellowPin.png */,
+			);
+			name = "pin images";
+			sourceTree = "<group>";
+		};
 		689175BF151D0C4A00078BE2 /* PersonModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +289,7 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				681C415B151D71F600747C4A /* pin images */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -363,6 +392,13 @@
 				680435F014FED94600899729 /* MainStoryboard_iPhone.storyboard in Resources */,
 				680435F314FED94600899729 /* MainStoryboard_iPad.storyboard in Resources */,
 				68082BFB151A790000C12A91 /* FBDialog.bundle in Resources */,
+				681C4164151D724500747C4A /* bluePin.png in Resources */,
+				681C4165151D724500747C4A /* greenPin.png in Resources */,
+				681C4166151D724500747C4A /* orangePin.png in Resources */,
+				681C4167151D724500747C4A /* redPin.png in Resources */,
+				681C4168151D724500747C4A /* tealPin.png in Resources */,
+				681C4169151D724500747C4A /* yellow-greenPin.png in Resources */,
+				681C416A151D724500747C4A /* yellowPin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
