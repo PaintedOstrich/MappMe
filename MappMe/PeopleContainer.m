@@ -58,6 +58,7 @@
         set of userId's for those cities
  */
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType{
+//    DebugLog(@"Loct Type : %@",[LocationTypeEnum getNameFromEnum:locType]);
     NSMutableDictionary *friendGroupings = [[NSMutableDictionary alloc] init];
     NSEnumerator *peopleIterator = [people objectEnumerator];
     Friend *tmp;
@@ -117,7 +118,6 @@
             [returnString appendFormat:@"\n\t %@", [delegate.personNameAndIdMapping getNameFromId:uid]];
         }
     }
-    DebugLog(@"%@", (NSString*)returnString);
 }
 
 -(Friend*)getFriendFromId:(NSString *)uid{

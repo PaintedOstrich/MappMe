@@ -6,6 +6,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "Friend.h"
 
 @interface MyAnnotation : NSObject<MKAnnotation> {
     
@@ -13,12 +14,14 @@
 	NSString*				title;
 	NSString*				subtitle;
 	int				type;
-	//NSURL*                  url;
 }
 
 @property (nonatomic, assign)	CLLocationCoordinate2D	coordinate;
 @property (nonatomic, copy)		NSString*				title;
 @property (nonatomic, copy)		NSString*				subtitle;
 @property (nonatomic)		     int				    type;
-//@property (nonatomic, retain)   NSURL*                  url;
+
++(NSArray*)makeAnnotationFromDict:(NSDictionary*)groupings;
++(NSArray*)getLocationsForFriend:(Friend *)friend;
++(UIImage*)getPinImage:(int)type isFriendLocationType:(BOOL)isFriendType;
 @end
