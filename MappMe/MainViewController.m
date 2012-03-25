@@ -48,15 +48,21 @@
     BOOL isFriendAnnotationType;
     UIButton* displayTypeButtonLabel;
     UISearchBar *searchBar;
-    
-    
 }
 
 @synthesize mapView;
 
+- (void)didReceiveMemoryWarning
+{
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Release any cached data, images, etc that aren't in use.
+}
 
 
 #pragma mark - Transition Functions
+//All functions involving transition to another screen should go below
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -71,7 +77,7 @@
         WebViewController *controller = segue.destinationViewController;
         controller.url = url;
     }
-}
+} 
 
 
 /*
@@ -96,14 +102,7 @@
 	}
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-#pragma mark - Helper View Change Methods
+#pragma mark - Methods to put pins when location type is changed
 
 -(void)showHometown{
     [self showLocationType:tHomeTown];
@@ -120,6 +119,7 @@
 -(void)showGrad{
     [self showLocationType:tGradSchool];
 }
+
 #pragma mark - Custom Person Search and Button Views 
 -(NSArray*) getFriendsInCity:(NSString*) cityName{
     NSString * city_id = [delegate.placeIdMapping getIdFromPlace:selectedCity];
@@ -128,34 +128,9 @@
     return [[currentGrouping objectForKey:city_id] allObjects];
 }
 
-/* FIXME must subclass view to get this method to work, so we can call close on touch outside of subview
-- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event;
-{
-    DebugLog(@"testing hit vieW");
-    if(displayTypeContainerIsShown){
-        UIView * hitView = [displayTypeContainer hitTest:point withEvent:event];
-        if ([hitView isEqual:displayTypeContainer])
-            DebugLog(@"Hiding superview");
-            [displayTypeContainer removeFromSuperview];
-    }
-    else{
-        DebugLog(@"touching buttons");
-    }
-    return nil;
-}
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    UITouch *touch=[touches anyObject];
-    if([touch view]==displayTypeContainer){
-        DebugLog(@"Touched container");
-    }
-    else{
-        DebugLog(@"touched something else");
-    }
-}
-*/
 
 //Adds subview of menu selection for current location, hometown, high school, etc.
--(void)showList{
+-(void)showLocationMenu{
     //Don't add subview twice
     if(displayTypeContainerIsShown){
         return;
@@ -288,7 +263,7 @@
     
     displayTypeButtonLabel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [displayTypeButtonLabel addTarget:self 
-               action:@selector(showList)
+               action:@selector(showLocationMenu)
      forControlEvents:UIControlEventTouchDown];
     [displayTypeButtonLabel setTitle:@"Current Location" forState:UIControlStateNormal];
     displayTypeButtonLabel.frame = CGRectMake(239.0, 0, 81, 44.0);
