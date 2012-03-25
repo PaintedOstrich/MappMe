@@ -54,6 +54,7 @@
 		A94FD121151ED9EC00BF2A8F /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FD120151ED9EC00BF2A8F /* close.png */; };
 		A963C344151EE8E200559DB3 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C343151EE8E200559DB3 /* settings.png */; };
 		A963C347151EE98F00559DB3 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C346151EE98F00559DB3 /* search.png */; };
+		A96AD5CF151FD52B00372528 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A96AD5CE151FD52B00372528 /* profile.png */; };
 		A9801D811502E1E400BA0B5B /* CoordPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* CoordPairs.m */; };
 		A9801D821502E1E400BA0B5B /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D731502E1E400BA0B5B /* Friend.m */; };
 		A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
@@ -154,6 +155,7 @@
 		A94FD120151ED9EC00BF2A8F /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		A963C343151EE8E200559DB3 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A963C346151EE98F00559DB3 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		A9801D701502E1E400BA0B5B /* CoordPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairs.h; sourceTree = "<group>"; };
 		A9801D711502E1E400BA0B5B /* CoordPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairs.m; sourceTree = "<group>"; };
 		A9801D721502E1E400BA0B5B /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A96AD5CE151FD52B00372528 /* profile.png */,
 				A963C346151EE98F00559DB3 /* search.png */,
 				A963C343151EE8E200559DB3 /* settings.png */,
 				A94FD120151ED9EC00BF2A8F /* close.png */,
@@ -501,6 +504,7 @@
 				A94FD121151ED9EC00BF2A8F /* close.png in Resources */,
 				A963C344151EE8E200559DB3 /* settings.png in Resources */,
 				A963C347151EE98F00559DB3 /* search.png in Resources */,
+				A96AD5CF151FD52B00372528 /* profile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
