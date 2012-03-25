@@ -26,7 +26,6 @@
 -(void)showCollege;
 -(void)showGrad;
 -(void)showFriend:(NSString *)friendId;
--(void)removeSearchTable;
 
 @end
 
@@ -213,47 +212,8 @@
     [UIView commitAnimations];
 
 }
--(IBAction)showSearchResults{
-    tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 280, 400)];
-    tableView.backgroundColor = [UIColor blueColor];
-    [tableView setAlpha:0.0];
-    NSIndexPath *ip = [[NSIndexPath alloc] initWithIndex:1];
-    [[tableView delegate] tableView:tableView didDeselectRowAtIndexPath:ip];
-    
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self 
-               action:@selector(closeButton:)
-     forControlEvents:UIControlEventTouchDown];
-    [button setTitle:@"Close" forState:UIControlStateNormal];
-    button.frame = CGRectMake(80.0, 390, 120.0, 40.0);
-    
-    
-//    [self.view addSubview:tableView];
-    //Fixme add alpha to partially transparent  
-    personSearchContainer = [[UIView alloc] initWithFrame:CGRectMake(20, 44, 280, 440)];
-    //    contentView.autoresizesSubviews = YES;
-    //    contentView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-    personSearchContainer.backgroundColor = [UIColor redColor];
-    [personSearchContainer addSubview:tableView];
-    [personSearchContainer addSubview:button];
-    
-    //Rounded Corners
-    CALayer *psc = tableView.layer;
-    [psc setMasksToBounds:YES];
-    [psc setCornerRadius:8.0f];
-    [psc setBorderWidth:1.0f];
-    [psc setBorderColor: [[UIColor blackColor] CGColor]];
-    [personSearchContainer.layer setBackgroundColor: [[UIColor clearColor] CGColor]];
-    
-    [self.view addSubview:personSearchContainer];
-    [UIView beginAnimations:nil context:nil];
-    [tableView setAlpha:0.65];
-    [UIView commitAnimations];
-    
-}
--(void)removeSearchTable{
-    [personSearchContainer removeFromSuperview];
-}
+
+
 //Search Bar Methods
 -(void)addSearchBar{
     
