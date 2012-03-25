@@ -51,6 +51,7 @@
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
 		A94C44C815059F64001FF446 /* CoordinateLookupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A94C44C715059F64001FF446 /* CoordinateLookupManager.m */; };
+		A94FD121151ED9EC00BF2A8F /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = A94FD120151ED9EC00BF2A8F /* close.png */; };
 		A9801D811502E1E400BA0B5B /* CoordPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* CoordPairs.m */; };
 		A9801D821502E1E400BA0B5B /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D731502E1E400BA0B5B /* Friend.m */; };
 		A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
@@ -148,6 +149,7 @@
 		A943249715007983005F7600 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		A94C44C615059F64001FF446 /* CoordinateLookupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateLookupManager.h; sourceTree = "<group>"; };
 		A94C44C715059F64001FF446 /* CoordinateLookupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinateLookupManager.m; sourceTree = "<group>"; };
+		A94FD120151ED9EC00BF2A8F /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 		A9801D701502E1E400BA0B5B /* CoordPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairs.h; sourceTree = "<group>"; };
 		A9801D711502E1E400BA0B5B /* CoordPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairs.m; sourceTree = "<group>"; };
 		A9801D721502E1E400BA0B5B /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A94FD120151ED9EC00BF2A8F /* close.png */,
 				681C415B151D71F600747C4A /* pin images */,
 			);
 			name = images;
@@ -489,6 +492,7 @@
 				681C4168151D724500747C4A /* tealPin.png in Resources */,
 				681C4169151D724500747C4A /* yellow-greenPin.png in Resources */,
 				681C416A151D724500747C4A /* yellowPin.png in Resources */,
+				A94FD121151ED9EC00BF2A8F /* close.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

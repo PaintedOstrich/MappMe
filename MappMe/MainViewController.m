@@ -139,6 +139,24 @@
     return btn;
 }
 
+//Create a round close button to be used in location type menu
+-(UIButton*) createCloseBtn {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.contentMode = UIViewContentModeScaleToFill;
+    [button setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(closeLocationMenu) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(205, -15.0, 50.0, 50.0);//width and height should be same value
+    button.layer.cornerRadius = 25;//half of the width
+    return button;
+}
+
+-(void) closeLocationMenu {
+    if(displayTypeContainerIsShown){
+      [displayTypeContainer removeFromSuperview];
+      displayTypeContainerIsShown = FALSE;
+    }
+}
+
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     //Don't add subview twice
@@ -155,6 +173,8 @@
     UIView *displayTypeView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 240, 280)];
     [displayTypeView setAlpha:0.65];
     [displayTypeContainer addSubview:displayTypeView];
+    
+    [displayTypeContainer addSubview:[self createCloseBtn]];
     
     /*Navigation Buttons*/
     UIButton *curButton = [self createButton:@"Current Location" yCordinate:20 locType:tCurrentLocation];
@@ -346,11 +366,8 @@
 }
 -(void)showLocationType:(locTypeEnum)locType{
     [[delegate peopleContainer] printGroupings:locType];
-    if(displayTypeContainerIsShown){
-        [displayTypeContainer removeFromSuperview];
-        [self clearMap];
-        displayTypeContainerIsShown = FALSE;
-    }
+    [self closeLocationMenu];
+    [self clearMap];
     currDisplayedType = locType;
     isFriendAnnotationType = FALSE;
     NSString * buttonLabel= [LocationTypeEnum getNameFromEnum:currDisplayedType];
