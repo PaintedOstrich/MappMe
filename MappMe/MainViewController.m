@@ -129,6 +129,16 @@
 }
 
 
+//Helper method to create buttons for the location type menu (Used in showLocationMenu)
+-(UIButton*) createButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btn setTitle:title forState:UIControlStateNormal];
+    btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
+    btn.highlighted = (locType == currDisplayedType);
+    btn.enabled = (locType != currDisplayedType);
+    return btn;
+}
+
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     //Don't add subview twice
@@ -147,54 +157,24 @@
     [displayTypeContainer addSubview:displayTypeView];
     
     /*Navigation Buttons*/
-    UIButton *curButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [curButton addTarget:self 
-                 action:@selector(showCurrentLoc)
-     forControlEvents:UIControlEventTouchDown];
-    [curButton setTitle:@"Current Location" forState:UIControlStateNormal];
-    curButton.frame = CGRectMake(30.0, 20, 180.0, 40.0);
-    curButton.highlighted = (tCurrentLocation == currDisplayedType);
-    curButton.enabled = (tCurrentLocation != currDisplayedType);
+    UIButton *curButton = [self createButton:@"Current Location" yCordinate:20 locType:tCurrentLocation];
+    [curButton addTarget:self action:@selector(showCurrentLoc) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:curButton];
     
-    UIButton *homeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [homeButton addTarget:self 
-               action:@selector(showHometown)
-     forControlEvents:UIControlEventTouchDown];
-    [homeButton setTitle:@"Hometown" forState:UIControlStateNormal];
-    homeButton.frame = CGRectMake(30.0, 70, 180.0, 40.0);
-    homeButton.highlighted = (tHomeTown == currDisplayedType);
-    homeButton.enabled = (tHomeTown != currDisplayedType);
+    UIButton *homeButton = [self createButton:@"Hometown" yCordinate:70 locType:tHomeTown];
+    [homeButton addTarget:self  action:@selector(showHometown) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:homeButton];
     
-    UIButton *highButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [highButton addTarget:self 
-                   action:@selector(showHighSchool)
-         forControlEvents:UIControlEventTouchDown];
-    [highButton setTitle:@"High School" forState:UIControlStateNormal];
-    highButton.frame = CGRectMake(30.0, 120, 180.0, 40.0);
-    highButton.highlighted = (tHighSchool == currDisplayedType);
-    highButton.enabled = (tHighSchool != currDisplayedType);
+    UIButton *highButton = [self createButton:@"High School" yCordinate:120 locType:tHighSchool];
+    [highButton addTarget:self  action:@selector(showHighSchool) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:highButton];
 
-    UIButton *collButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [collButton addTarget:self 
-                   action:@selector(showCollege)
-         forControlEvents:UIControlEventTouchDown];
-    [collButton setTitle:@"College" forState:UIControlStateNormal];
-    collButton.frame = CGRectMake(30.0, 170, 180.0, 40.0);
-    collButton.highlighted = (tCollege == currDisplayedType);
-    collButton.enabled = (tCollege != currDisplayedType);
+    UIButton *collButton = [self createButton:@"College" yCordinate:170 locType:tCollege];
+    [collButton addTarget:self  action:@selector(showCollege) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:collButton];
 
-    UIButton *gradButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [gradButton addTarget:self 
-                   action:@selector(showGrad)
-         forControlEvents:UIControlEventTouchDown];
-    [gradButton setTitle:@"Graduate School" forState:UIControlStateNormal];
-    gradButton.frame = CGRectMake(30.0, 220, 180.0, 40.0);
-    gradButton.highlighted = (tGradSchool == currDisplayedType);
-    gradButton.enabled = (tGradSchool != currDisplayedType);
+    UIButton *gradButton = [self createButton:@"Graduate School" yCordinate:220 locType:tGradSchool];
+    [gradButton addTarget:self  action:@selector(showGrad) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:gradButton];
     /*End Navigation Buttons*/
 
