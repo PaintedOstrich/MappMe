@@ -14,10 +14,9 @@
 /*Main Controller Interface*/
 @interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, UISearchBarDelegate, SearchResultDelegate> {
     IBOutlet MKMapView* mapView;
-//    IBOutlet UIButton* displayTypeButtonLabel;
+    IBOutlet UIButton* locationTypeBtn;
 }
 
-@property(nonatomic,retain)	IBOutlet MKMapView* mapView;
 
 @end
 

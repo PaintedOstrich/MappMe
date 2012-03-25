@@ -45,11 +45,51 @@
     UIView *personSearchContainer;
     BOOL displayTypeContainerIsShown;
     BOOL isFriendAnnotationType;
-    UIButton* displayTypeButtonLabel;
     UISearchBar *searchBar;
 }
 
-@synthesize mapView;
+#pragma mark - View lifecycle
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [mapView setDelegate:self];
+    annotations = [[NSMutableArray alloc]initWithCapacity:20];
+    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+    
+    // Regiser for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+    
+    //Set Bools for view methods
+    displayTypeContainerIsShown = FALSE;
+    
+    // Show the HUD while the provided method executes in a new thread
+    [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
+}
+
+-(void) viewWillDisappear:(BOOL)animated{
+    [[self navigationController] setNavigationBarHidden:FALSE animated:TRUE];
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+    mapView = nil;
+    locationTypeBtn = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -157,7 +197,7 @@
 }
 
 //Adds subview of menu selection for current location, hometown, high school, etc.
--(void)showLocationMenu{
+-(IBAction)showLocationMenu{
     //Don't add subview twice
     if(displayTypeContainerIsShown){
         return;
@@ -217,30 +257,30 @@
 //Search Bar Methods
 -(void)addSearchBar{
     
-    UIView *topViewContainer= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 42)];
-    [topViewContainer setAlpha:0.0];
-//    [topViewContainer.layer setBackgroundColor:[[UIColor redColor] CGColor]];
-    
-    displayTypeButtonLabel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [displayTypeButtonLabel addTarget:self 
-               action:@selector(showLocationMenu)
-     forControlEvents:UIControlEventTouchDown];
-    [displayTypeButtonLabel setTitle:@"Current Location" forState:UIControlStateNormal];
-    displayTypeButtonLabel.frame = CGRectMake(239.0, 0, 81, 44.0);
-    displayTypeButtonLabel.titleLabel.font  = [UIFont systemFontOfSize: 10];
-    [topViewContainer addSubview:displayTypeButtonLabel];
-    
-    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
-    searchBar.delegate = self;
-    searchBar.placeholder = @"Search for a Friend";
-    [topViewContainer addSubview:searchBar];
-    
-    //Fade In View
-    [self.view addSubview:topViewContainer];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.45];
-    [topViewContainer setAlpha:1.0];
-    [UIView commitAnimations];
+//    UIView *topViewContainer= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 42)];
+//    [topViewContainer setAlpha:0.0];
+////    [topViewContainer.layer setBackgroundColor:[[UIColor redColor] CGColor]];
+//    
+//    displayTypeButtonLabel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [displayTypeButtonLabel addTarget:self 
+//               action:@selector(showLocationMenu)
+//     forControlEvents:UIControlEventTouchDown];
+//    [displayTypeButtonLabel setTitle:@"Current Location" forState:UIControlStateNormal];
+//    displayTypeButtonLabel.frame = CGRectMake(239.0, 0, 81, 44.0);
+//    displayTypeButtonLabel.titleLabel.font  = [UIFont systemFontOfSize: 10];
+//    [topViewContainer addSubview:displayTypeButtonLabel];
+//    
+//    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
+//    searchBar.delegate = self;
+//    searchBar.placeholder = @"Search for a Friend";
+//    [topViewContainer addSubview:searchBar];
+//    
+//    //Fade In View
+//    [self.view addSubview:topViewContainer];
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.45];
+//    [topViewContainer setAlpha:1.0];
+//    [UIView commitAnimations];
 }
 #pragma mark - UI search bar delegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)bar{
@@ -260,49 +300,6 @@
 }
 - (void)didCancel{
      [self dismissModalViewControllerAnimated:YES];
-}
-#pragma mark - View lifecycle
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    [mapView setDelegate:self];
-    annotations = [[NSMutableArray alloc]initWithCapacity:20];
-    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-    
-    // Regiser for HUD callbacks so we can remove it from the window at the right time
-    HUD.delegate = self;
-    
-    //Set Bools for view methods
-    displayTypeContainerIsShown = FALSE;
-    [self addSearchBar];
-    
-    
-    // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
-}
-
--(void) viewWillAppear:(BOOL)animated{
-    [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
-}
-
--(void) viewWillDisappear:(BOOL)animated{
-    [[self navigationController] setNavigationBarHidden:FALSE animated:TRUE];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    self.mapView = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 
@@ -331,10 +328,10 @@
     currDisplayedType = locType;
     isFriendAnnotationType = FALSE;
     NSString * buttonLabel= [LocationTypeEnum getNameFromEnum:currDisplayedType];
-    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateNormal];
-    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateHighlighted];
-    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateDisabled];
-    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateSelected];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
     switch(locType){
         case tHomeTown:
             [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
@@ -365,10 +362,10 @@
     [self getLocationsForFriend:[delegate.peopleContainer getFriendFromId:friendId]];
     [self showPins];
     NSString * buttonLabel= [[delegate personNameAndIdMapping] getNameFromId:friendId];
-    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateNormal];
-    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateHighlighted];
-    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateDisabled];
-    [displayTypeButtonLabel setTitle:buttonLabel forState:UIControlStateSelected];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
 }
 
 
