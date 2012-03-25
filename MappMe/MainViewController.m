@@ -297,6 +297,7 @@
     
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
     searchBar.delegate = self;
+    searchBar.placeholder = @"Search for a Friend";
     [topViewContainer addSubview:searchBar];
     
     //Fade In View
@@ -307,8 +308,23 @@
     [UIView commitAnimations];
 }
 #pragma mark - UI search bar delegate
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    DebugLog(@"length of search: %i", searchText.length);
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)bar{
+    //Hide search bar in main view from being show
+    [bar resignFirstResponder];
+    //Show new controller's modal view
+    FriendSearchViewController *fsvController = [[FriendSearchViewController alloc] init];
+    fsvController.searchDelegate = self;
+    [self presentModalViewController:fsvController animated:YES];
+}
+#pragma mark - Custom SearchResultDelegate
+     //returns friend id or none from search
+- (void)didSelectFriend:(NSString*)uid{
+    DebugLog(@"received selected Friend Message");
+    [self showFriend:uid];
+    [self dismissModalViewControllerAnimated:YES];
+}
+- (void)didCancel{
+     [self dismissModalViewControllerAnimated:YES];
 }
 #pragma mark - View lifecycle
 - (void)viewDidLoad

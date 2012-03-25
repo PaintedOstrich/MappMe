@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+@class FriendSearchViewController;
 
-@interface FriendSearchViewController : UITableViewController
-
+@protocol SearchResultDelegate
+- (void)didSelectFriend:(NSString*)uid;
+- (void)didCancel;
 @end
+
+
+@interface FriendSearchViewController : UITableViewController{
+    id<SearchResultDelegate> searchDelegate;
+}
+
+@property (retain) id<SearchResultDelegate> searchDelegate;
+@end
+
+

@@ -7,7 +7,8 @@
 //
 
 #import "FriendSearchViewController.h"
-
+#import "MappMeAppDelegate.h"
+#import "DebugLog.h"
 //NSArray * friendsIds = [[delegate personNameAndIdMapping] getFriendsWithName:@"eric"];
 //DebugLog(@"matching friends \n %@", friendsIds);
 //}
@@ -33,46 +34,18 @@
 //- (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
 //    DebugLog(@"checks this methods 5");
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    }
-//    NSArray *friendIds = [[delegate personNameAndIdMapping] getAllFriendIds];
-//    NSString *uid = [friendIds objectAtIndex:indexPath.row];
-//    cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:uid];
-//    //    cell.detailTextLabel.text = [item objectForKey:@"secondaryTitleKey"];
-//    //    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
-//    //    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
-//    cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:uid];
-//    return cell;
-//}
-//#pragma mark UITableViewDelegate Methods
-//
-//- (void) tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *) indexPath{
-//	
-//	UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    NSString *uid = [[delegate personNameAndIdMapping] getIdFromName:cell.textLabel.text];
-//    [self showFriend:uid];
-//    [self removeSearchTable];
-//}
-///*Table Delegate Helpers*/
-//- (void)closeButton:(id)sender
-//{
-//    [UIView beginAnimations:nil context:nil];
-//    [personSearchContainer setAlpha:0.0];
-//    [UIView commitAnimations];
-//    [self removeSearchTable];
-//    //    [UIView setAnimationDidStopSelector:@selector(removeFromSuperview)];
-//}
 
-@implementation FriendSearchViewController
+
+@implementation FriendSearchViewController{
+    MappMeAppDelegate* delegate;
+}
+@synthesize searchDelegate;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
+        delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     }
     return self;
 }
@@ -135,30 +108,34 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [delegate.peopleContainer getNumPeople];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
     
+    static NSString *CellIdentifier = @"personCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
-    // Configure the cell...
-    
+    NSArray *friendIds = [[delegate personNameAndIdMapping] getAllFriendIds];
+    NSString *uid = [friendIds objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:uid];
+//    cell.detailTextLabel.text = [item objectForKey:@"secondaryTitleKey"];
+//    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
+//    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
+    cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:uid];
     return cell;
+
 }
 
 /*
@@ -201,16 +178,14 @@
 */
 
 #pragma mark - Table view delegate
-
+  
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    DebugLog(@"selected ");
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *uid = [[delegate personNameAndIdMapping] getIdFromName:cell.textLabel.text];
+    [searchDelegate didSelectFriend:uid];
+
 }
 
 @end

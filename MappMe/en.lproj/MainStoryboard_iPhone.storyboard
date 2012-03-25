@@ -76,6 +76,34 @@
             </objects>
             <point key="canvasLocation" x="969" y="1511"/>
         </scene>
+        <scene sceneID="cr0-jE-9Bs">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VbQ-Zy-3Mp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="6Yj-bg-qVr" customClass="FriendSearchViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OBV-KS-SeU">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="personCell" id="2g4-xI-QMo">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="6Yj-bg-qVr" id="cd7-ag-bja"/>
+                            <outlet property="delegate" destination="6Yj-bg-qVr" id="WG3-6m-fmj"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="968" y="2118"/>
+        </scene>
         <scene sceneID="xaH-AT-YRp">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zcg-As-Mnm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -202,6 +230,9 @@
         <image name="settings.png" width="26" height="26"/>
     </resources>
     <classes>
+        <class className="FriendSearchViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FriendSearchViewController.h"/>
+        </class>
         <class className="ListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ListViewController.h"/>
             <relationships>

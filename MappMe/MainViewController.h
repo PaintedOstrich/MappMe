@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "MBProgressHUD.h"
-
+#import "FriendSearchViewController.h"
 
 /*Main Controller Interface*/
-@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, UISearchBarDelegate> {
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, UISearchBarDelegate, SearchResultDelegate> {
     IBOutlet MKMapView* mapView;
 //    IBOutlet UIButton* displayTypeButtonLabel;
 }
