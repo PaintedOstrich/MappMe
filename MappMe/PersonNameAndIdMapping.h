@@ -17,4 +17,6 @@
 
 -(NSArray *)getFriendsWithName:(NSString *)name;
 -(NSArray *)getAllFriendIds;
+-(NSArray *)getAllFriends;
+
 @end

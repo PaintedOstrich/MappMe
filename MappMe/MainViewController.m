@@ -255,33 +255,25 @@
 
 
 //Search Bar Methods
--(void)addSearchBar{
+-(IBAction) addSearchBar{
     
-//    UIView *topViewContainer= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 42)];
-//    [topViewContainer setAlpha:0.0];
-////    [topViewContainer.layer setBackgroundColor:[[UIColor redColor] CGColor]];
-//    
-//    displayTypeButtonLabel = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [displayTypeButtonLabel addTarget:self 
-//               action:@selector(showLocationMenu)
-//     forControlEvents:UIControlEventTouchDown];
-//    [displayTypeButtonLabel setTitle:@"Current Location" forState:UIControlStateNormal];
-//    displayTypeButtonLabel.frame = CGRectMake(239.0, 0, 81, 44.0);
-//    displayTypeButtonLabel.titleLabel.font  = [UIFont systemFontOfSize: 10];
-//    [topViewContainer addSubview:displayTypeButtonLabel];
-//    
-//    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
-//    searchBar.delegate = self;
-//    searchBar.placeholder = @"Search for a Friend";
-//    [topViewContainer addSubview:searchBar];
-//    
-//    //Fade In View
-//    [self.view addSubview:topViewContainer];
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.45];
-//    [topViewContainer setAlpha:1.0];
-//    [UIView commitAnimations];
+    UIView *topViewContainer= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 42)];
+    [topViewContainer setAlpha:0.0];
+//    [topViewContainer.layer setBackgroundColor:[[UIColor redColor] CGColor]];
+    
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
+    searchBar.delegate = self;
+    searchBar.placeholder = @"Search for a Friend";
+    [topViewContainer addSubview:searchBar];
+    
+    //Fade In View
+    [self.view addSubview:topViewContainer];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.45];
+    [topViewContainer setAlpha:1.0];
+    [UIView commitAnimations];
 }
+
 #pragma mark - UI search bar delegate
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)bar{
     //Hide search bar in main view from being show

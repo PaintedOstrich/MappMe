@@ -11,11 +11,11 @@
 #import "DebugLog.h"
 
 @implementation PeopleContainer{
-    NSMutableDictionary *people;
     NSDictionary *currentGrouping;
     
 }
 
+@synthesize people;
 
 -(id)init{
     if(self = [super init]){
@@ -42,7 +42,7 @@
             [self addEntryToUserInfoLog:uid updateLocation:placeId andType:locType];
         }
     }else{
-        personCmp = [[Friend alloc] initWithFriend:uid withPlace:placeId andLocType:locType];
+        personCmp = [[Friend alloc] initWithFriend:uid withPlace:placeId LocType:locType andName: name];
         
         /* Add User Name and Id to Mapping */
          MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];

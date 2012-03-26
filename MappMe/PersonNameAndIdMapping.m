@@ -55,5 +55,9 @@
     return [personForId allKeys];
 }
 
+-(NSArray *)getAllFriends{
+    return [personForId allValues];
+}
+
 
 @end

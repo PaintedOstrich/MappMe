@@ -11,7 +11,10 @@
 #import "Friend.h"
 
 @interface PeopleContainer : NSObject{
+    NSMutableDictionary* people;
 }
+
+@property (nonatomic, retain) NSMutableDictionary *people;
 
 
 -(void)setPersonPlaceInContainer:(NSString *)name personId:(NSString *)personId placeId:(NSString *)placeId andTypeId:(locTypeEnum)locType;

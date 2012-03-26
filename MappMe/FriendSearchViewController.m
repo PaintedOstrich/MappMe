@@ -127,13 +127,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    NSArray *friendIds = [[delegate personNameAndIdMapping] getAllFriendIds];
-    NSString *uid = [friendIds objectAtIndex:indexPath.row];
+    NSArray *friends = [[[delegate peopleContainer] people]allValues];
+    NSString *uid = [[friends objectAtIndex:indexPath.row] userId];
     cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:uid];
 //    cell.detailTextLabel.text = [item objectForKey:@"secondaryTitleKey"];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
 //    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
-    cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:uid];
+    //cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:uid];
     return cell;
 
 }
