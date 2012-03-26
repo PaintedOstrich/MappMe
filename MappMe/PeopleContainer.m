@@ -57,6 +57,8 @@
    @return: Returns dictionary of cities, where k is id, and value is a 
         set of userId's for those cities
  */
+
+//FIXME PUT IN PLACE CONTAINER, method cached results
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType{
 //    DebugLog(@"Loct Type : %@",[LocationTypeEnum getNameFromEnum:locType]);
     NSMutableDictionary *friendGroupings = [[NSMutableDictionary alloc] init];

@@ -25,6 +25,7 @@
 }
 
 #pragma mark Threading
+//FIXME needs to be threaded still
 -(UIImage*) getProfPicFromId:(NSString *)uid{
     tmpUid = uid;
 	//go off to get the profile pic and replace the pic??

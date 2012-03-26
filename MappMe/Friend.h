@@ -21,7 +21,7 @@
 //    NSString* firstName;
 //    NSString* lastName;
     //For indexing in table view
-    NSString* sectionNumber;
+    NSUInteger sectionNumber;
 }
 
 @property (nonatomic, retain) NSString *hometown;
@@ -34,7 +34,7 @@
 //@property (nonatomic, retain) NSString * firstName;
 //@property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * sectionNumber;
+@property  NSUInteger sectionNumber;
 
 -(id)initWithFriend:(NSString *)friendId withPlace:(NSString *)placeId LocType:(locTypeEnum)placeType andName: (NSString*)friendName;
 -(BOOL)hasPlaceId:(NSString *)placeId forType:(locTypeEnum)placeType;

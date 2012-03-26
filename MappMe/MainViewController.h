@@ -12,7 +12,7 @@
 #import "FriendSearchViewController.h"
 
 /*Main Controller Interface*/
-@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, UISearchBarDelegate, SearchResultDelegate> {
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate> {
     IBOutlet MKMapView* mapView;
     IBOutlet UIButton* locationTypeBtn;
 }

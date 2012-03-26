@@ -15,8 +15,9 @@
 @end
 
 
-@interface FriendSearchViewController : UITableViewController{
+@interface FriendSearchViewController : UITableViewController <UISearchBarDelegate> {
     id<SearchResultDelegate> searchDelegate;
+    IBOutlet UISearchBar* searchBar;
 }
 
 @property (retain) id<SearchResultDelegate> searchDelegate;

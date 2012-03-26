@@ -45,7 +45,6 @@
     UIView *personSearchContainer;
     BOOL displayTypeContainerIsShown;
     BOOL isFriendAnnotationType;
-    UISearchBar *searchBar;
 }
 
 #pragma mark - View lifecycle
@@ -251,47 +250,6 @@
     [displayTypeContainer setAlpha:1.0];
     [UIView commitAnimations];
 
-}
-
-
-//Search Bar Methods
--(IBAction) addSearchBar{
-    
-    UIView *topViewContainer= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 42)];
-    [topViewContainer setAlpha:0.0];
-//    [topViewContainer.layer setBackgroundColor:[[UIColor redColor] CGColor]];
-    
-    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 241.0, 44.0)];
-    searchBar.delegate = self;
-    searchBar.placeholder = @"Search for a Friend";
-    [topViewContainer addSubview:searchBar];
-    
-    //Fade In View
-    [self.view addSubview:topViewContainer];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.45];
-    [topViewContainer setAlpha:1.0];
-    [UIView commitAnimations];
-}
-
-#pragma mark - UI search bar delegate
-- (void)searchBarTextDidBeginEditing:(UISearchBar *)bar{
-    //Hide search bar in main view from being show
-    [bar resignFirstResponder];
-    //Show new controller's modal view
-    FriendSearchViewController *fsvController = [[FriendSearchViewController alloc] init];
-    fsvController.searchDelegate = self;
-    [self presentModalViewController:fsvController animated:YES];
-}
-#pragma mark - Custom SearchResultDelegate
-     //returns friend id or none from search
-- (void)didSelectFriend:(NSString*)uid{
-    DebugLog(@"received selected Friend Message");
-    [self showFriend:uid];
-    [self dismissModalViewControllerAnimated:YES];
-}
-- (void)didCancel{
-     [self dismissModalViewControllerAnimated:YES];
 }
 
 
