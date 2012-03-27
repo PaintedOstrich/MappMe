@@ -135,7 +135,13 @@
             //If empty entry for location, continue
             continue;
         }
-        NSString * uid = (NSString*)[friendsTemp objectForKey:@"uid"];
+//        NSArray* keys = [friendsTemp allKeys];
+//        NSLog(@"%@ %@ %@", [keys objectAtIndex:0], [keys objectAtIndex:1], [keys objectAtIndex:2]);
+//        NSArray* vals = [friendsTemp allValues];
+//        NSLog(@"%@ %@ %@", [vals objectAtIndex:0], [vals objectAtIndex:1], [vals objectAtIndex:2]);
+
+        NSString * uid = [NSString stringWithFormat:@"%d", [friendsTemp objectForKey:@"uid"]];
+        //NSString * uid = (NSString*)[friendsTemp objectForKey:@"uid"];
         NSString * town_id = [[friendsTemp objectForKey:locTypeString]objectForKey:@"id"];
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];

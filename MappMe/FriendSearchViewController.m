@@ -174,9 +174,6 @@ titleForHeaderInSection:(NSInteger)section {
     }
     
     cell.textLabel.text = person.name;
-    //detail text label will not be visible anyway.
-    //we use this trick to store the uid.
-    cell.detailTextLabel.text = person.userId;
 
     return cell;
 
@@ -185,9 +182,14 @@ titleForHeaderInSection:(NSInteger)section {
 #pragma mark - Table view delegate
   
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSString *uid = cell.detailTextLabel.text;
-    [searchDelegate didSelectFriend:uid];
+    Friend *person;
+    if(searching)
+        person = [searchResults objectAtIndex:indexPath.row];
+    else {
+        person = [[friends objectAtIndex:indexPath.section]
+                  objectAtIndex:indexPath.row];
+    }
+    [searchDelegate didSelectFriend:person.userId];
 }
 
 #pragma mark - Search bar methods

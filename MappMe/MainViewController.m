@@ -25,7 +25,6 @@
 -(void)showHighSchool;
 -(void)showCollege;
 -(void)showGrad;
--(void)showFriend:(NSString *)friendId;
 
 @end
 
@@ -309,18 +308,6 @@
     }
     [self showPins];
 }
--(void)showFriend:(NSString *)friendId{
-    [self clearMap];
-    isFriendAnnotationType = TRUE;
-    [self getLocationsForFriend:[delegate.peopleContainer getFriendFromId:friendId]];
-    [self showPins];
-    NSString * buttonLabel= [[delegate personNameAndIdMapping] getNameFromId:friendId];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
-}
-
 
 - (void)fetchAndProcess {
     Timer * t = [[Timer alloc] init];
@@ -329,11 +316,7 @@
     [dataHandler getCurrentLocation];
     [dataHandler getHometownLocation];
     [dataHandler getEducationInfo];
-    
-//    [self showLocationType:tCurrentLocation];
-    // Task completed, update view in main thread (note: view operations should
-    // be done only in the main thread)
-//    [self showFriend:[delegate.personNameAndIdMapping getIdFromName:@"Eric Hamblett"]];
+
     [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
     int time = [t endTimerAndGetTotalTime];
     DebugLog(@"Total App Loadtime: %i",time);
@@ -411,6 +394,16 @@
 #pragma mark - FriendSearchViewControllerDelegate methods
 - (void)didSelectFriend:(NSString *)uid {
     [self.navigationController popViewControllerAnimated:TRUE];
+    [self clearMap];
+    isFriendAnnotationType = TRUE;
+    Friend* friend = [delegate.peopleContainer getFriendFromId:uid];
+    [self getLocationsForFriend: friend];
+    [self showPins];
+    NSString * buttonLabel= friend.name;
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
 }
 
 @end
