@@ -14,15 +14,19 @@
     MappMeAppDelegate* delegate;
     //All available friends in a flat array
     NSArray* friendList;
-    //An nested array of Friend objectis to faciliate indexing
+    //A nested array of Friend objectis to faciliate indexing in table
     NSMutableArray* friends;
     NSMutableArray* searchResults;
+    
+    //YES when we are doing searching
     BOOL searching;
+    
+    //the view of this controller will cover the table when searching
+    //tapping the view has the same effect as tapping the cancel button.
     OverlayViewController* overlayViewCtrl;
 }
 
 @synthesize searchDelegate;
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -40,6 +44,7 @@
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     searchBar.delegate = self;
     
+    //Boilplate code to index friendlist so table can show an indexed, sorted list.
     UILocalizedIndexedCollation *theCollation = [UILocalizedIndexedCollation currentCollation];
     
     friends = [NSMutableArray arrayWithCapacity:1];
@@ -68,19 +73,13 @@
                                             collationStringSelector:@selector(name)];
         [friends addObject:sortedSection];
     }
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    searchBar = nil;
+    overlayViewCtrl = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,9 +108,8 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
 #pragma mark - Table view data source
-
-
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
     NSArray* toR = [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
     return toR;
@@ -175,7 +173,6 @@ titleForHeaderInSection:(NSInteger)section {
         cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:person.userId];
     }
     
-    
 //    cell.detailTextLabel.text = [item objectForKey:@"secondaryTitleKey"];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
 //    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
@@ -183,11 +180,6 @@ titleForHeaderInSection:(NSInteger)section {
     return cell;
 
 }
-
-//- (NSIndexPath *)tableView :(UITableView *)theTableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//        return indexPath;
-//}
-
 
 #pragma mark - Table view delegate
   
@@ -221,6 +213,7 @@ titleForHeaderInSection:(NSInteger)section {
 }
 
 #pragma mark - Search bar methods
+
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
     [self addOverlay];
     searching = YES;
@@ -285,7 +278,7 @@ titleForHeaderInSection:(NSInteger)section {
     [self doneSearching_Clicked:nil];
 }
 
-#pragma mark - Overlay methods
+#pragma mark - Methods to manage show and hide of the overlay
 
 -(void) removeOverlay {
     if (overlayViewCtrl == nil)

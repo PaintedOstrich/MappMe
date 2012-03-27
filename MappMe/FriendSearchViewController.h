@@ -4,7 +4,6 @@
 //
 //  Created by Parker Spielman on 3/24/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 #import "OverlayViewController.h"
@@ -13,7 +12,6 @@
 
 @protocol SearchResultDelegate
 - (void)didSelectFriend:(NSString*)uid;
-- (void)didCancel;
 @end
 
 
