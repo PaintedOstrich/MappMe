@@ -20,10 +20,12 @@
 @synthesize gradSchool;
 @synthesize work;
 @synthesize userId;
+@synthesize name, sectionNumber; //firstName, lastName,
 
 
--(id)initWithFriend:(NSString *)friendId withPlace:(NSString *)placeId andLocType:(locTypeEnum)placeType{
+-(id)initWithFriend:(NSString *)friendId withPlace:(NSString *)placeId LocType:(locTypeEnum)placeType andName:(NSString*)friendName{
     if (self = [super init]) {
+        self.name = friendName;
         switch(placeType){
             case tHomeTown:
                 self.hometown = placeId;

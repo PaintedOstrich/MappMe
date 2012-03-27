@@ -131,6 +131,13 @@
     NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
     cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:friend_id];
     
+    //Parker, the following line is causing the slowness in rendering a table list with
+    //more than 20 items. Please thread your image fetching code, use a placeholder first,
+    //and swap in the right image along the way(just like what we did previously).
+    //It is not good to download profile pics when it is not needed as it takes up the user's 3G data.
+    //cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:friend_id];
+    cell.imageView.image = [UIImage imageNamed:@"profile.png"];
+    
     return cell;
 }
 

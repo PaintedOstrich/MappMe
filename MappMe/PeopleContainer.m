@@ -11,11 +11,11 @@
 #import "DebugLog.h"
 
 @implementation PeopleContainer{
-    NSMutableDictionary *people;
     NSDictionary *currentGrouping;
     
 }
 
+@synthesize people;
 
 -(id)init{
     if(self = [super init]){
@@ -42,7 +42,7 @@
             [self addEntryToUserInfoLog:uid updateLocation:placeId andType:locType];
         }
     }else{
-        personCmp = [[Friend alloc] initWithFriend:uid withPlace:placeId andLocType:locType];
+        personCmp = [[Friend alloc] initWithFriend:uid withPlace:placeId LocType:locType andName: name];
         
         /* Add User Name and Id to Mapping */
          MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -57,7 +57,10 @@
    @return: Returns dictionary of cities, where k is id, and value is a 
         set of userId's for those cities
  */
+
+//FIXME PUT IN PLACE CONTAINER, method cached results
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType{
+//    DebugLog(@"Loct Type : %@",[LocationTypeEnum getNameFromEnum:locType]);
     NSMutableDictionary *friendGroupings = [[NSMutableDictionary alloc] init];
     NSEnumerator *peopleIterator = [people objectEnumerator];
     Friend *tmp;
@@ -117,7 +120,6 @@
             [returnString appendFormat:@"\n\t %@", [delegate.personNameAndIdMapping getNameFromId:uid]];
         }
     }
-    DebugLog(@"%@", (NSString*)returnString);
 }
 
 -(Friend*)getFriendFromId:(NSString *)uid{

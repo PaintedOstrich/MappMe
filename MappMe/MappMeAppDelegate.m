@@ -8,6 +8,7 @@
 
 #import "MappMeAppDelegate.h"
 #import "LoginViewController.h"
+#import "ASIHTTPRequest.h"
 
 static NSString * kAppId = @"291279594218895";
 @implementation MappMeAppDelegate
@@ -20,10 +21,15 @@ static NSString * kAppId = @"291279594218895";
 @synthesize userInfoLog;
 @synthesize peopleContainer;
 @synthesize fbImageHandler;
+@synthesize backgroundQueue;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //Initiate Background Threading Queue
+    //Namespace reverse dns to ensure uniqueness
+    backgroundQueue = dispatch_queue_create("com.paintedostrich.mappme.bgqueue", NULL);
+    
     /*FIXME LAter:  accoutn for stored info*/
     personNameAndIdMapping = [[PersonNameAndIdMapping alloc] init];
     placeIdMapping = [[PlaceIdMapping alloc] init];
@@ -32,9 +38,12 @@ static NSString * kAppId = @"291279594218895";
     fbImageHandler = [[FacebookImageHandler alloc] init];
     
     
+    
+    //Initialize Login View Controller
     LoginViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
     facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:controller];
 
+    //Facebook SingleSignon persist state
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"] 
         && [defaults objectForKey:@"FBExpirationDateKey"]) {
@@ -42,6 +51,7 @@ static NSString * kAppId = @"291279594218895";
         facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
     }
 
+    //If facebook session is not valid, show loginview, otherwise defaults to main map view
     if(![facebook isSessionValid]){ 
         self.window.rootViewController = controller;
         [self.window makeKeyAndVisible];

@@ -25,6 +25,7 @@
 }
 
 #pragma mark Threading
+//FIXME needs to be threaded still
 -(UIImage*) getProfPicFromId:(NSString *)uid{
     tmpUid = uid;
 	//go off to get the profile pic and replace the pic??
@@ -32,7 +33,7 @@
 		NSString *URStr= [[NSString alloc] initWithFormat: @"http://graph.facebook.com/%@/picture?type=square",uid];
 		NSURL *url = [NSURL URLWithString:URStr]; // facebook.jpg is the url of profile pic
 		UIImage *image = [UIImage imageWithData: [NSData dataWithContentsOfURL:url]];
-        [self performSelectorInBackground:@selector(cachedImage:) withObject:image];
+        //[self performSelectorInBackground:@selector(cachedImage:) withObject:image];
         return image;
 //		[self performSelectorOnMainThread:@selector(cachedImage:) withObject:image waitUntilDone:NO];
 		
