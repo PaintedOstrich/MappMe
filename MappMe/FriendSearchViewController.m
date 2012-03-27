@@ -165,51 +165,29 @@ titleForHeaderInSection:(NSInteger)section {
                                       reuseIdentifier:CellIdentifier];
     }
 
+    Friend *person;
     if(searching)
-        cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] name];
+        person = [searchResults objectAtIndex:indexPath.row];
     else {
-        Friend *person = [[friends objectAtIndex:indexPath.section]
+        person = [[friends objectAtIndex:indexPath.section]
                           objectAtIndex:indexPath.row];
-        cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:person.userId];
     }
     
-//    cell.detailTextLabel.text = [item objectForKey:@"secondaryTitleKey"];
-//    NSString *path = [[NSBundle mainBundle] pathForResource:[item objectForKey:@"imageKey"] ofType:@"png"];
-//    UIImage *theImage = [UIImage imageWithContentsOfFile:path];
-    //cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:uid];
+    cell.textLabel.text = person.name;
+    //detail text label will not be visible anyway.
+    //we use this trick to store the uid.
+    cell.detailTextLabel.text = person.userId;
+
     return cell;
 
 }
 
 #pragma mark - Table view delegate
   
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    DebugLog(@"selected ");
-//    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//    NSString *uid = [[delegate personNameAndIdMapping] getIdFromName:cell.textLabel.text];
-//    [searchDelegate didSelectFriend:uid];
-//    
-//    //Get the selected country
-//    
-//    NSString *selectedCountry = nil;
-//    
-//    if(searching)
-//        selectedCountry = [copyListOfItems objectAtIndex:indexPath.row];
-//    else {
-//        
-//        NSDictionary *dictionary = [listOfItems objectAtIndex:indexPath.section];
-//        NSArray *array = [dictionary objectForKey:@"Countries"];
-//        selectedCountry = [array objectAtIndex:indexPath.row];
-//    }
-//    
-//    //Initialize the detail view controller and display it.
-//    DetailViewController *dvController = [[DetailViewController alloc] initWithNibName:@"DetailView" bundle:[NSBundle mainBundle]];
-//    dvController.selectedCountry = selectedCountry;
-//    [self.navigationController pushViewController:dvController animated:YES];
-//    [dvController release];
-//    dvController = nil;
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *uid = cell.detailTextLabel.text;
+    [searchDelegate didSelectFriend:uid];
 }
 
 #pragma mark - Search bar methods

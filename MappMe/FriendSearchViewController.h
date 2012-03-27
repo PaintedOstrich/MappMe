@@ -10,17 +10,17 @@
 
 @class FriendSearchViewController;
 
-@protocol SearchResultDelegate
+@protocol FriendSearchViewControllerDelegate
 - (void)didSelectFriend:(NSString*)uid;
 @end
 
 
 @interface FriendSearchViewController : UITableViewController <UISearchBarDelegate, OverlayViewControllerDelegate> {
-    id<SearchResultDelegate> searchDelegate;
+    id<FriendSearchViewControllerDelegate> searchDelegate;
     IBOutlet UISearchBar* searchBar;
 }
 
-@property (retain) id<SearchResultDelegate> searchDelegate;
+@property (retain) id<FriendSearchViewControllerDelegate> searchDelegate;
 @end
 
 

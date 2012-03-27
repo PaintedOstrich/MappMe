@@ -114,6 +114,9 @@
 		NSURL *url =[[NSURL alloc] initWithString:urlStr];
         WebViewController *controller = segue.destinationViewController;
         controller.url = url;
+    } else if ([segue.identifier isEqualToString:@"searchview"]){
+        FriendSearchViewController* controller = segue.destinationViewController;
+        controller.searchDelegate = self;
     }
 } 
 
@@ -403,6 +406,11 @@
     //  pinView.tag = @"moreThanOnePerson";
     
     return pinView;
+}
+
+#pragma mark - FriendSearchViewControllerDelegate methods
+- (void)didSelectFriend:(NSString *)uid {
+    [self.navigationController popViewControllerAnimated:TRUE];
 }
 
 @end
