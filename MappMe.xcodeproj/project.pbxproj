@@ -62,6 +62,8 @@
 		A9801D851502E1E400BA0B5B /* PersonNameAndIdMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D791502E1E400BA0B5B /* PersonNameAndIdMapping.m */; };
 		A9801D861502E1E400BA0B5B /* PlaceIdMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceIdMapping.m */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
+		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
+		A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -170,6 +172,9 @@
 		A9801D7B1502E1E400BA0B5B /* PlaceIdMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceIdMapping.m; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
+		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
+		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
+		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +423,9 @@
 				A91AF90515008AE200FCD3D7 /* WebViewController.m */,
 				68DC0BD4151E538500514016 /* FriendSearchViewController.h */,
 				68DC0BD5151E538500514016 /* FriendSearchViewController.m */,
+				A9FC7BCB15215765007D72F6 /* OverlayViewController.h */,
+				A9FC7BCC15215765007D72F6 /* OverlayViewController.m */,
+				A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -505,6 +513,7 @@
 				A963C344151EE8E200559DB3 /* settings.png in Resources */,
 				A963C347151EE98F00559DB3 /* search.png in Resources */,
 				A96AD5CF151FD52B00372528 /* profile.png in Resources */,
+				A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +555,7 @@
 				68DC0BC8151D7C1400514016 /* ASINetworkQueue.m in Sources */,
 				68DC0BCB151D7C2500514016 /* Reachability.m in Sources */,
 				68DC0BD6151E538500514016 /* FriendSearchViewController.m in Sources */,
+				A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

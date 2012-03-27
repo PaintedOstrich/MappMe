@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OverlayViewController.h"
+
 @class FriendSearchViewController;
 
 @protocol SearchResultDelegate
@@ -15,7 +17,7 @@
 @end
 
 
-@interface FriendSearchViewController : UITableViewController <UISearchBarDelegate> {
+@interface FriendSearchViewController : UITableViewController <UISearchBarDelegate, OverlayViewControllerDelegate> {
     id<SearchResultDelegate> searchDelegate;
     IBOutlet UISearchBar* searchBar;
 }

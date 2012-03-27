@@ -18,8 +18,9 @@
     NSMutableArray* friends;
     NSMutableArray* searchResults;
     BOOL searching;
-    BOOL letUserSelectRow;
+    OverlayViewController* overlayViewCtrl;
 }
+
 @synthesize searchDelegate;
 
 
@@ -183,12 +184,9 @@ titleForHeaderInSection:(NSInteger)section {
 
 }
 
-- (NSIndexPath *)tableView :(UITableView *)theTableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(letUserSelectRow)
-        return indexPath;
-    else
-        return nil;
-}
+//- (NSIndexPath *)tableView :(UITableView *)theTableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//        return indexPath;
+//}
 
 
 #pragma mark - Table view delegate
@@ -224,9 +222,8 @@ titleForHeaderInSection:(NSInteger)section {
 
 #pragma mark - Search bar methods
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
-    
+    [self addOverlay];
     searching = YES;
-    letUserSelectRow = NO;
 }
 
 - (void)searchBar:(UISearchBar *)theSearchBar textDidChange:(NSString *)searchText {
@@ -236,18 +233,15 @@ titleForHeaderInSection:(NSInteger)section {
     
     if([searchText length] > 0) {
         searching = YES;
+        [self removeOverlay];
         [self searchTableView];
     }
     else {
         searching = NO;
+        [self addOverlay];
     }
     
     [self.tableView reloadData];
-}
-
-- (void) searchBarSearchButtonClicked:(UISearchBar *)theSearchBar {
-    
-    [self searchTableView];
 }
 
 - (void) searchTableView {
@@ -269,14 +263,52 @@ titleForHeaderInSection:(NSInteger)section {
     searchArray = nil;
 }
 
+- (void)searchBarCancelButtonClicked:(UISearchBar *)sBar {
+    searchBar.text = @"";
+    [searchBar resignFirstResponder];
+    [self removeOverlay];
+}
+
 - (void) doneSearching_Clicked:(id)sender {
     
     searchBar.text = @"";
     [searchBar resignFirstResponder];
-    
-    letUserSelectRow = YES;
+
     searching = NO;
+    
+    [self removeOverlay];
     [self.tableView reloadData];
+}
+
+#pragma mark - OverlayViewController delegate methods
+-(void) overlayTouched:(OverlayViewController *)overlayController {
+    [self doneSearching_Clicked:nil];
+}
+
+#pragma mark - Overlay methods
+
+-(void) removeOverlay {
+    if (overlayViewCtrl == nil)
+        return;
+    [overlayViewCtrl.view removeFromSuperview];
+}
+
+-(void) addOverlay {
+    //Add the overlay view if not existent
+    if(overlayViewCtrl == nil) {
+        overlayViewCtrl = [[OverlayViewController alloc] initWithNibName:@"OverlayViewController" bundle:[NSBundle mainBundle]];
+        CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
+        CGFloat width = self.view.frame.size.width;
+        CGFloat height = self.view.frame.size.height;
+        //Parameters x = origion on x-axis, y = origon on y-axis.
+        CGRect frame = CGRectMake(0, yaxis, width, height);
+        overlayViewCtrl.view.frame = frame;
+        overlayViewCtrl.view.backgroundColor = [UIColor grayColor];
+        overlayViewCtrl.view.alpha = 0.5;
+        overlayViewCtrl.delegate = self;
+    }
+        
+    [self.tableView insertSubview:overlayViewCtrl.view aboveSubview:self.parentViewController.view];
 }
 
 @end
