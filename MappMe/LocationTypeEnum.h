@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+//#define TODD   1
 
 /*NOTE:  tLocationTypeCount used for iteration through enum with for Loop, 
          for (int i =0; i<tLocationTypeCount; i++)

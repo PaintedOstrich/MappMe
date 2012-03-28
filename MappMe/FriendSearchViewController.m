@@ -191,6 +191,31 @@ titleForHeaderInSection:(NSInteger)section {
     }
     [searchDelegate didSelectFriend:person.userId];
 }
+#pragma mark - Methods to manage show and hide of the overlay
+
+-(void) removeOverlay {
+    if (overlayViewCtrl == nil)
+        return;
+    [overlayViewCtrl.view removeFromSuperview];
+}
+
+-(void) addOverlay {
+    //Add the overlay view if not existent
+    if(overlayViewCtrl == nil) {
+        overlayViewCtrl = [[OverlayViewController alloc] initWithNibName:@"OverlayViewController" bundle:[NSBundle mainBundle]];
+        CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
+        CGFloat width = self.view.frame.size.width;
+        CGFloat height = self.view.frame.size.height;
+        //Parameters x = origion on x-axis, y = origon on y-axis.
+        CGRect frame = CGRectMake(0, yaxis, width, height);
+        overlayViewCtrl.view.frame = frame;
+        overlayViewCtrl.view.backgroundColor = [UIColor grayColor];
+        overlayViewCtrl.view.alpha = 0.5;
+        overlayViewCtrl.delegate = self;
+    }
+    
+    [self.tableView insertSubview:overlayViewCtrl.view aboveSubview:self.parentViewController.view];
+}
 
 #pragma mark - Search bar methods
 
@@ -199,6 +224,24 @@ titleForHeaderInSection:(NSInteger)section {
     searching = YES;
 }
 
+- (void) searchTableView {
+    
+    NSString *searchText = searchBar.text;
+    NSMutableArray *searchArray = [[NSMutableArray alloc] init];
+    
+    [searchArray addObjectsFromArray:friendList];
+    
+    for (Friend* person in searchArray)
+    {
+        NSString *sTemp = person.name;
+        NSRange titleResultsRange = [sTemp rangeOfString:searchText options:NSCaseInsensitiveSearch];
+        
+        if (titleResultsRange.length > 0)
+            [searchResults addObject:person];
+    }
+    
+    searchArray = nil;
+}
 - (void)searchBar:(UISearchBar *)theSearchBar textDidChange:(NSString *)searchText {
     
     //Remove all objects first.
@@ -217,24 +260,7 @@ titleForHeaderInSection:(NSInteger)section {
     [self.tableView reloadData];
 }
 
-- (void) searchTableView {
-    
-    NSString *searchText = searchBar.text;
-    NSMutableArray *searchArray = [[NSMutableArray alloc] init];
-    
-    [searchArray addObjectsFromArray:friendList];
-    
-    for (Friend* person in searchArray)
-    {
-        NSString *sTemp = person.name;
-        NSRange titleResultsRange = [sTemp rangeOfString:searchText options:NSCaseInsensitiveSearch];
-        
-        if (titleResultsRange.length > 0)
-            [searchResults addObject:person];
-    }
 
-    searchArray = nil;
-}
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)sBar {
     searchBar.text = @"";
@@ -258,30 +284,6 @@ titleForHeaderInSection:(NSInteger)section {
     [self doneSearching_Clicked:nil];
 }
 
-#pragma mark - Methods to manage show and hide of the overlay
 
--(void) removeOverlay {
-    if (overlayViewCtrl == nil)
-        return;
-    [overlayViewCtrl.view removeFromSuperview];
-}
-
--(void) addOverlay {
-    //Add the overlay view if not existent
-    if(overlayViewCtrl == nil) {
-        overlayViewCtrl = [[OverlayViewController alloc] initWithNibName:@"OverlayViewController" bundle:[NSBundle mainBundle]];
-        CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
-        CGFloat width = self.view.frame.size.width;
-        CGFloat height = self.view.frame.size.height;
-        //Parameters x = origion on x-axis, y = origon on y-axis.
-        CGRect frame = CGRectMake(0, yaxis, width, height);
-        overlayViewCtrl.view.frame = frame;
-        overlayViewCtrl.view.backgroundColor = [UIColor grayColor];
-        overlayViewCtrl.view.alpha = 0.5;
-        overlayViewCtrl.delegate = self;
-    }
-        
-    [self.tableView insertSubview:overlayViewCtrl.view aboveSubview:self.parentViewController.view];
-}
 
 @end
