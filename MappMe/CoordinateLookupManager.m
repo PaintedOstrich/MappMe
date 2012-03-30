@@ -64,7 +64,7 @@
             return location;
         }else{
             numTries++;
-            if(numTries>=24){
+            if(numTries>=12){
                 //DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",lookup);
                 return location;
             }
@@ -125,8 +125,8 @@
     //Try name with attached tag, ex. "High School", since Horace Mann does not have "High School" in name, map api cannot find it
     if ([placeName rangeOfString:schoolType].location == NSNotFound){
         //DebugLog(@"string does not contain type : %@", schoolType);
-        lookup = [NSString stringWithFormat:@"%@ %@",placeName,schoolType];
-       // returnCoords = [self lookupString:lookup];
+        //lookup = [NSString stringWithFormat:@"%@ %@",placeName,schoolType];
+        //returnCoords = [self lookupString:lookup];
     } 
     //Try adding city and state info
     if ([supInfo objectForKey:@"city"]){
