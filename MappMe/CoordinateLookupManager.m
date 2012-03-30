@@ -91,8 +91,8 @@
             return location;
         }else{
             numTries++;
-            if(numTries>=24){
-                //DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",lookup);
+            if(numTries>=12){
+                DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",urlString);
                 return location;
             } 
         }
@@ -112,6 +112,11 @@
 +(CoordPairsHelper *)manageCoordLookupForEdu:(NSString *)placeName withSupInfo:(NSDictionary*)supInfo andTypeString:(NSString *)schoolType{
     NSString * lookup = placeName;
     //Try just school name
+    if(placeName == NULL){
+        return nil;
+    }
+    
+    DebugLog(@"trying map lookup : %@ , type: %@, city: %@",placeName,schoolType,[supInfo objectForKey: @"city"]);
     CoordPairsHelper *returnCoords = [self lookupString:lookup];
     if(returnCoords!= nil){
         //return returnCoords;
