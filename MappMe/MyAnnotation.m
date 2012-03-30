@@ -43,7 +43,7 @@
         NSSet * groupPerPlace = (NSSet*)[groupings objectForKey: placeId];
         if([groupPerPlace count]==1){
             NSString *fId= [groupPerPlace anyObject];
-            NSString *fName=[delegate.personNameAndIdMapping getNameFromId:fId];
+            NSString *fName=[delegate.peopleContainer getNameFromId:fId];
             annotationItem.subtitle=fName;
         }
         else {

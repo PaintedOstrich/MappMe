@@ -108,7 +108,7 @@
         ListViewController *controller = segue.destinationViewController;
         controller.selectedCity = selectedCity;
     } else if ([segue.identifier isEqualToString:@"showwebview"]){
-        NSString *fId =[delegate.personNameAndIdMapping getIdFromName:selectedPerson];
+        NSString *fId =[delegate.peopleContainer getIdFromName:selectedPerson];
 		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];
 		NSURL *url =[[NSURL alloc] initWithString:urlStr];
         WebViewController *controller = segue.destinationViewController;

@@ -207,7 +207,7 @@
 - (NSString *)description{
     MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableString *person = [[NSMutableString alloc] initWithString:@"\n"];
-    [person appendString:[delegate.personNameAndIdMapping getNameFromId:self.userId]];
+    [person appendString:[delegate.peopleContainer getNameFromId:self.userId]];
     [person appendFormat:@"\n\t uid: %@",self.userId];
     if (self.currentLocation!= nil){
         NSString *placeName = [delegate.placeIdMapping getPlaceFromId:self.currentLocation];

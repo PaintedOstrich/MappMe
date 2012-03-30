@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "PlaceIdMapping.h"
+#import "PlaceContainer.h"
 #import "CoordinateLookupManager.h"
 #import "MappMeAppDelegate.h"
 
 
-@implementation PlaceIdMapping{
+@implementation PlaceContainer{
     NSMutableDictionary *idForPlace;
     NSMutableDictionary *placeForId;
     NSMutableDictionary *placeAndCoords;

@@ -129,7 +129,7 @@
     }
     
     NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
-    cell.textLabel.text = [[delegate personNameAndIdMapping] getNameFromId:friend_id];
+    cell.textLabel.text = [[delegate peopleContainer] getNameFromId:friend_id];
     
     //Parker, the following line is causing the slowness in rendering a table list with
     //more than 20 items. Please thread your image fetching code, use a placeholder first,

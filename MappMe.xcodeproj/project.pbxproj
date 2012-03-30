@@ -59,8 +59,7 @@
 		A9801D821502E1E400BA0B5B /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D731502E1E400BA0B5B /* Friend.m */; };
 		A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
 		A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D771502E1E400BA0B5B /* PeopleContainer.m */; };
-		A9801D851502E1E400BA0B5B /* PersonNameAndIdMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D791502E1E400BA0B5B /* PersonNameAndIdMapping.m */; };
-		A9801D861502E1E400BA0B5B /* PlaceIdMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceIdMapping.m */; };
+		A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
 		A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */; };
@@ -166,10 +165,8 @@
 		A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTypeEnum.m; sourceTree = "<group>"; };
 		A9801D761502E1E400BA0B5B /* PeopleContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleContainer.h; sourceTree = "<group>"; };
 		A9801D771502E1E400BA0B5B /* PeopleContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleContainer.m; sourceTree = "<group>"; };
-		A9801D781502E1E400BA0B5B /* PersonNameAndIdMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonNameAndIdMapping.h; sourceTree = "<group>"; };
-		A9801D791502E1E400BA0B5B /* PersonNameAndIdMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonNameAndIdMapping.m; sourceTree = "<group>"; };
-		A9801D7A1502E1E400BA0B5B /* PlaceIdMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceIdMapping.h; sourceTree = "<group>"; };
-		A9801D7B1502E1E400BA0B5B /* PlaceIdMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceIdMapping.m; sourceTree = "<group>"; };
+		A9801D7A1502E1E400BA0B5B /* PlaceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceContainer.h; sourceTree = "<group>"; };
+		A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainer.m; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
@@ -310,19 +307,17 @@
 			name = "pin images";
 			sourceTree = "<group>";
 		};
-		689175BF151D0C4A00078BE2 /* PersonModels */ = {
+		689175BF151D0C4A00078BE2 /* ObjectModels */ = {
 			isa = PBXGroup;
 			children = (
 				A9801D721502E1E400BA0B5B /* Friend.h */,
 				A9801D731502E1E400BA0B5B /* Friend.m */,
 				A9801D761502E1E400BA0B5B /* PeopleContainer.h */,
 				A9801D771502E1E400BA0B5B /* PeopleContainer.m */,
-				A9801D781502E1E400BA0B5B /* PersonNameAndIdMapping.h */,
-				A9801D791502E1E400BA0B5B /* PersonNameAndIdMapping.m */,
-				A9801D7A1502E1E400BA0B5B /* PlaceIdMapping.h */,
-				A9801D7B1502E1E400BA0B5B /* PlaceIdMapping.m */,
+				A9801D7A1502E1E400BA0B5B /* PlaceContainer.h */,
+				A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */,
 			);
-			name = PersonModels;
+			name = ObjectModels;
 			sourceTree = "<group>";
 		};
 		689175C0151D0C7000078BE2 /* MapModels */ = {
@@ -436,7 +431,7 @@
 				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
 				A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */,
 				689175C0151D0C7000078BE2 /* MapModels */,
-				689175BF151D0C4A00078BE2 /* PersonModels */,
+				689175BF151D0C4A00078BE2 /* ObjectModels */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -536,8 +531,7 @@
 				A9801D821502E1E400BA0B5B /* Friend.m in Sources */,
 				A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */,
 				A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */,
-				A9801D851502E1E400BA0B5B /* PersonNameAndIdMapping.m in Sources */,
-				A9801D861502E1E400BA0B5B /* PlaceIdMapping.m in Sources */,
+				A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */,
 				A931AC341505860300696BF9 /* SettingsViewController.m in Sources */,
 				A94C44C815059F64001FF446 /* CoordinateLookupManager.m in Sources */,
 				683D383A1507C0D200021ED3 /* DebugLog.m in Sources */,

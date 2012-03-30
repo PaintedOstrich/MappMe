@@ -17,7 +17,6 @@ static NSString * kAppId = @"291279594218895";
 @synthesize facebook;
 
 @synthesize placeIdMapping;
-@synthesize personNameAndIdMapping;
 @synthesize userInfoLog;
 @synthesize peopleContainer;
 @synthesize fbImageHandler;
@@ -31,8 +30,7 @@ static NSString * kAppId = @"291279594218895";
     backgroundQueue = dispatch_queue_create("com.paintedostrich.mappme.bgqueue", NULL);
     
     /*FIXME LAter:  accoutn for stored info*/
-    personNameAndIdMapping = [[PersonNameAndIdMapping alloc] init];
-    placeIdMapping = [[PlaceIdMapping alloc] init];
+    placeIdMapping = [[PlaceContainer alloc] init];
     peopleContainer =[[PeopleContainer alloc] init];
     userInfoLog = [[UserInfoLog alloc] init];
     fbImageHandler = [[FacebookImageHandler alloc] init];
