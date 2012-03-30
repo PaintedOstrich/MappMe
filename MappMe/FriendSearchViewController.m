@@ -210,16 +210,17 @@ titleForHeaderInSection:(NSInteger)section {
     //Add the overlay view if not existent
     if(overlayViewCtrl == nil) {
         overlayViewCtrl = [[OverlayViewController alloc] initWithNibName:@"OverlayViewController" bundle:[NSBundle mainBundle]];
-        CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
-        CGFloat width = self.view.frame.size.width;
-        CGFloat height = self.view.frame.size.height;
-        //Parameters x = origion on x-axis, y = origon on y-axis.
-        CGRect frame = CGRectMake(0, yaxis, width, height);
-        overlayViewCtrl.view.frame = frame;
-        overlayViewCtrl.view.backgroundColor = [UIColor grayColor];
-        overlayViewCtrl.view.alpha = 0.5;
         overlayViewCtrl.delegate = self;
     }
+    
+    CGFloat yaxis = self.navigationController.navigationBar.frame.size.height;
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = self.view.frame.size.height;
+    //Parameters x = origion on x-axis, y = origon on y-axis.
+    CGRect frame = CGRectMake(0, yaxis, width, height);
+    overlayViewCtrl.view.frame = frame;
+    overlayViewCtrl.view.backgroundColor = [UIColor grayColor];
+    overlayViewCtrl.view.alpha = 0.5;
     
     [self.tableView insertSubview:overlayViewCtrl.view aboveSubview:self.parentViewController.view];
 }
@@ -228,6 +229,7 @@ titleForHeaderInSection:(NSInteger)section {
 
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)theSearchBar {
     [self addOverlay];
+    [self.navigationController setNavigationBarHidden: YES animated:YES];
     searching = YES;
 }
 
@@ -267,17 +269,12 @@ titleForHeaderInSection:(NSInteger)section {
     [self.tableView reloadData];
 }
 
-
-
 - (void)searchBarCancelButtonClicked:(UISearchBar *)sBar {
-    searchBar.text = @"";
-    searching = NO;
-    [searchBar resignFirstResponder];
-    [self removeOverlay];
-    [self.tableView reloadData];
+    [self doneSearching_Clicked:nil];
 }
 
 - (void) doneSearching_Clicked:(id)sender {
+    [self.navigationController setNavigationBarHidden: NO animated:YES];
     
     searchBar.text = @"";
     [searchBar resignFirstResponder];
