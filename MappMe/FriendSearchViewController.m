@@ -110,7 +110,11 @@
 
 
 #pragma mark - Table view data source
+
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    if (searching) {
+        return nil;
+    }
     NSArray* toR = [[UILocalizedIndexedCollation currentCollation] sectionIndexTitles];
     return toR;
 }
@@ -133,6 +137,9 @@ titleForHeaderInSection:(NSInteger)section {
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString
                                                                              *)title atIndex:(NSInteger)index
 {
+    if(searching)
+        return -1;
+    
     return [[UILocalizedIndexedCollation currentCollation]
             sectionForSectionIndexTitleAtIndex:index];
 }
@@ -264,8 +271,10 @@ titleForHeaderInSection:(NSInteger)section {
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)sBar {
     searchBar.text = @"";
+    searching = NO;
     [searchBar resignFirstResponder];
     [self removeOverlay];
+    [self.tableView reloadData];
 }
 
 - (void) doneSearching_Clicked:(id)sender {
