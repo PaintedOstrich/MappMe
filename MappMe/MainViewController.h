@@ -9,19 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "MBProgressHUD.h"
-
+#import "FriendSearchViewController.h"
 
 /*Main Controller Interface*/
-@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, FriendSearchViewControllerDelegate> {
     IBOutlet MKMapView* mapView;
-    IBOutlet UIButton* displayTypeButtonLabel;
+    IBOutlet UIButton* locationTypeBtn;
 }
 
-@property(nonatomic,retain)	IBOutlet MKMapView* mapView;
-
-
-
--(IBAction)showList;
 
 @end
 

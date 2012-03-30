@@ -17,6 +17,11 @@
     NSArray * college;
     NSArray * gradSchool;
     NSArray * work;
+    NSString* name;
+//    NSString* firstName;
+//    NSString* lastName;
+    //For indexing in table view
+    NSUInteger sectionNumber;
 }
 
 @property (nonatomic, retain) NSString *hometown;
@@ -26,8 +31,12 @@
 @property (nonatomic, retain) NSArray * gradSchool;
 @property (nonatomic, retain) NSArray * work;
 @property (nonatomic, retain) NSString * userId;
+//@property (nonatomic, retain) NSString * firstName;
+//@property (nonatomic, retain) NSString * lastName;
+@property (nonatomic, retain) NSString * name;
+@property  NSUInteger sectionNumber;
 
--(id)initWithFriend:(NSString *)friendId withPlace:(NSString *)placeId andLocType:(locTypeEnum)placeType;
+-(id)initWithFriend:(NSString *)friendId withPlace:(NSString *)placeId LocType:(locTypeEnum)placeType andName: (NSString*)friendName;
 -(BOOL)hasPlaceId:(NSString *)placeId forType:(locTypeEnum)placeType;
 -(void)setPlaceId:(NSString *)placeId forType:(locTypeEnum)placeType;
 -(BOOL)hasEntryForType:(locTypeEnum)locType;

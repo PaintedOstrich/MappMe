@@ -11,20 +11,48 @@
 
 #import "CoordinateLookupManager.h"
 #import "DebugLog.h"
-
-
-
-//FIXME: MUST BE THREADED
+#import "ASIHTTPRequest.h"
 
 @implementation CoordinateLookupManager
 
+//FIXME: TODO SHOULD FINISH ASYNC THREADING.  For now ok because mehtods called from another classes' generated background thread
+//Difficulty is trying google maps several times, and changing string, because managecoordlookup mehtods will finish if called asynchronously
 #pragma mark - Private Methods
-+(CoordPairs *)lookupString:(NSString*)lookup{
-    /*Test CoordPairs for NULL to know lookup failed*/
-    CoordPairs * location;
++(CoordPairs *)asynchLookupString:(NSString *)lookup{
+    /*Must Later Test CoordPairs for NULL to know lookup failed*/
+    __block CoordPairs * location;
     int numTries = 0;
     NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
                            [lookup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    NSURL *sourceURL = [NSURL URLWithString:urlString];
+    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:sourceURL];
+    [request setCompletionBlock:^{
+        DebugLog(@"returnd succes");
+        NSString *responseString = [request responseString];
+        NSArray *listItems = [responseString componentsSeparatedByString:@","];
+        
+        if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
+            NSString *latitude = [listItems objectAtIndex:2];
+            NSString *longitude = [listItems objectAtIndex:3];
+            location = [[CoordPairs alloc] initWithLat:latitude andLong:longitude];
+            DebugLog(@"got location");
+//            return location;
+        }else{
+            DebugLog(@"failed getting location");
+//            numTries++;
+//            if(numTries>=24){
+//                //DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",lookup);
+//                return location;
+            }
+
+    }];
+    [request setFailedBlock:^{
+        DebugLog(@"returnd failure");
+        NSError *error = [request error];
+        NSLog(@"Error from Google Maps Request: %@", error.localizedDescription);
+    }];
+    [request startAsynchronous]; 
+    
     while(TRUE){
         NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSASCIIStringEncoding error:nil];
         NSArray *listItems = [locationString componentsSeparatedByString:@","];
@@ -36,11 +64,37 @@
             return location;
         }else{
             numTries++;
-            if(numTries>=15){
+            if(numTries>=24){
                 //DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",lookup);
                 return location;
             }
             
+        }
+    }
+
+}
++(CoordPairs *)lookupString:(NSString*)lookup{
+    /*Test CoordPairs for NULL to know lookup failed*/
+    CoordPairs * location;
+    int numTries = 0;
+    NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
+                           [lookup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    
+    while(TRUE){
+        NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSASCIIStringEncoding error:nil];
+        NSArray *listItems = [locationString componentsSeparatedByString:@","];
+        
+        if([listItems count] >= 4 && [[listItems objectAtIndex:0] isEqualToString:@"200"]) {
+            NSString *latitude = [listItems objectAtIndex:2];
+            NSString *longitude = [listItems objectAtIndex:3];
+            location = [[CoordPairs alloc] initWithLat:latitude andLong:longitude];
+            return location;
+        }else{
+            numTries++;
+            if(numTries>=24){
+                //DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",lookup);
+                return location;
+            } 
         }
     }
 }

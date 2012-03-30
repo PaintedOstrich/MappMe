@@ -10,7 +10,7 @@
 #import "CoordPairs.h"
 
 
-@interface PlaceIdMapping : NSObject{
+@interface PlaceContainer : NSObject{
 
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+//#define TODD   1
 
 /*NOTE:  tLocationTypeCount used for iteration through enum with for Loop, 
          for (int i =0; i<tLocationTypeCount; i++)
@@ -20,6 +21,17 @@ typedef enum locTypeEnum {
   tWork,
   tLocationTypeCount 
 } locTypeEnum;
+
+typedef enum locPinNumberEnum {
+    tOne,
+    tTwo,
+    tThree,
+    tFive,
+    tTen,
+    tFifteen,
+    tTwentyFive,
+    tForty
+} locPinNumberEnum;
 
 @interface LocationTypeEnum : NSObject {
     
