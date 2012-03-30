@@ -15,11 +15,7 @@ static NSString * kAppId = @"291279594218895";
 
 @synthesize window = _window;
 @synthesize facebook;
-
-@synthesize placeContainer;
-@synthesize userInfoLog;
-@synthesize peopleContainer;
-@synthesize fbImageHandler;
+@synthesize mainDataManager;
 @synthesize backgroundQueue;
 
 
@@ -29,11 +25,8 @@ static NSString * kAppId = @"291279594218895";
     //Namespace reverse dns to ensure uniqueness
     backgroundQueue = dispatch_queue_create("com.paintedostrich.mappme.bgqueue", NULL);
     
-    /*FIXME LAter:  accoutn for stored info*/
-    placeContainer = [[PlaceContainer alloc] init];
-    peopleContainer =[[PeopleContainer alloc] init];
-    userInfoLog = [[UserInfoLog alloc] init];
-    fbImageHandler = [[FacebookImageHandler alloc] init];
+    //FIXME THIS SHOULD BE PERSISTED
+    mainDataManager = [[DataManagerSingleton alloc] init];
     
     
     

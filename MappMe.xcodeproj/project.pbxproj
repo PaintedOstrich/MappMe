@@ -118,7 +118,7 @@
 		689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookDataHandler.m; sourceTree = "<group>"; };
 		68CFF09C15253F3000335C10 /* DataManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagerSingleton.h; sourceTree = "<group>"; };
 		68CFF09D15253F3000335C10 /* DataManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagerSingleton.m; sourceTree = "<group>"; };
-		68CFF0A21525705D00335C10 /* CoordPairsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CoordPairsHelper.h; sourceTree = "<group>"; };
+		68CFF0A21525705D00335C10 /* CoordPairsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairsHelper.h; sourceTree = "<group>"; };
 		68CFF0A31525705D00335C10 /* CoordPairsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairsHelper.m; sourceTree = "<group>"; };
 		68DC0BAD151D7C1400514016 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		68DC0BAE151D7C1400514016 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
@@ -242,8 +242,6 @@
 				A9A0AC511502D8C70020265D /* Views */,
 				A9A0AC501502D7D30020265D /* Models */,
 				689175C1151D0CAC00078BE2 /* FacebookModels */,
-				680435EB14FED94600899729 /* MappMeAppDelegate.h */,
-				680435EC14FED94600899729 /* MappMeAppDelegate.m */,
 				A91AF90815008AF200FCD3D7 /* Controllers */,
 				680435E314FED94600899729 /* Supporting Files */,
 				680435EE14FED94600899729 /* MainStoryboard_iPhone.storyboard */,
@@ -438,6 +436,8 @@
 			children = (
 				68CFF09C15253F3000335C10 /* DataManagerSingleton.h */,
 				68CFF09D15253F3000335C10 /* DataManagerSingleton.m */,
+				680435EB14FED94600899729 /* MappMeAppDelegate.h */,
+				680435EC14FED94600899729 /* MappMeAppDelegate.m */,
 				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
 				A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */,
 				689175C0151D0C7000078BE2 /* MapModels */,

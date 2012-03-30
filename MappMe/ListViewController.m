@@ -46,9 +46,9 @@
 }
 
 -(NSArray*) getFriendsInCity:(NSString*) cityName{
-    NSString * city_id = [delegate.placeContainer getIdFromPlace:selectedCity];
+    NSString * city_id = [delegate.mainDataManager.placeContainer getIdFromPlace:selectedCity];
     
-    NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
+    NSDictionary * currentGrouping = [delegate.mainDataManager.peopleContainer getCurrentGrouping];
     return [[currentGrouping objectForKey:city_id] allObjects];
 }
 
@@ -129,7 +129,7 @@
     }
     
     NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
-    cell.textLabel.text = [[delegate peopleContainer] getNameFromId:friend_id];
+    cell.textLabel.text = [[delegate.mainDataManager peopleContainer] getNameFromId:friend_id];
     
     //Parker, the following line is causing the slowness in rendering a table list with
     //more than 20 items. Please thread your image fetching code, use a placeholder first,

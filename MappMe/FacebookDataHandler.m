@@ -146,8 +146,8 @@
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
         
-        [delegate.placeContainer addId:town_id andPlaceName:town_name];
-        [delegate.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
+        [delegate.mainDataManager.placeContainer addId:town_id andPlaceName:town_name];
+        [delegate.mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
     }
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
@@ -161,11 +161,11 @@
         
         /*Make sure location array is not empty*/
         if ([loc respondsToSelector:@selector(objectForKey:)]) {
-            [[delegate placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
+            [[delegate.mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
         }
         else{
             NSString * page_id = [citiesTemp objectForKey:@"page_id"];
-            DebugLog(@"%@ not found; id: %@",[delegate.placeContainer getPlaceNameFromId:page_id],page_id);
+            DebugLog(@"%@ not found; id: %@",[delegate.mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
         }
     }
 }
@@ -179,10 +179,10 @@
             NSString * school_id = [schoolTemp objectForKey:@"page_id"];
             //If have lat and long
             if ([loc objectForKey:@"latitude"]){
-                [[delegate placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:school_id];
+                [[delegate.mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:school_id];
             }else{
                 NSString *type = [schoolTypeMapping objectForKey:school_id];
-                [delegate.placeContainer doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
+                [delegate.mainDataManager.placeContainer doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
             }
         }
         
@@ -208,8 +208,8 @@
             locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
             //                    DebugLog(@"%@ -  %@, %@", school_name, school_type, school_id);
             [schoolTypeMapping setObject:school_type forKey:school_id];
-            [delegate.placeContainer addId:school_id andPlaceName:school_name];
-            [delegate.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:school_id andTypeId:placeType];
+            [delegate.mainDataManager.placeContainer addId:school_id andPlaceName:school_name];
+            [delegate.mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:school_id andTypeId:placeType];
         }
     }
 }
@@ -247,8 +247,8 @@
         }
     }
     
-    DebugLog(@"Number of friends %i", [delegate.peopleContainer getNumPeople]);
-    DebugLog(@"Number of cities %i",[delegate.placeContainer getNumPlaces]);
+    DebugLog(@"Number of friends %i", [delegate.mainDataManager.peopleContainer getNumPeople]);
+    DebugLog(@"Number of cities %i",[delegate.mainDataManager.placeContainer getNumPlaces]);
     
 //    [delegate.peopleContainer printGroupings:tHomeTown];
 //    [delegate.peopleContainer printGroupings:tCurrentLocation];

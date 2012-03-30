@@ -13,6 +13,11 @@
 
 @implementation DataManagerSingleton
 
+@synthesize placeContainer;
+@synthesize userInfoLog;
+@synthesize peopleContainer;
+@synthesize fbImageHandler;
+
 static DataManagerSingleton *mainDataManager = nil;
 
 +(DataManagerSingleton *) sharedInstance {
@@ -27,6 +32,17 @@ static DataManagerSingleton *mainDataManager = nil;
     
     return mainDataManager;
     
+}
+
+-(id)init{
+    if (self = [super init]) {
+        /*FIXME LAter:  accoutn for stored info*/
+        placeContainer = [[PlaceContainer alloc] init];
+        peopleContainer =[[PeopleContainer alloc] init];
+        userInfoLog = [[UserInfoLog alloc] init];
+        fbImageHandler = [[FacebookImageHandler alloc] init];
+    }
+    return self;
 }
 
 @end

@@ -108,7 +108,7 @@
         ListViewController *controller = segue.destinationViewController;
         controller.selectedCity = selectedCity;
     } else if ([segue.identifier isEqualToString:@"showwebview"]){
-        NSString *fId =[delegate.peopleContainer getIdFromName:selectedPerson];
+        NSString *fId =[delegate.mainDataManager.peopleContainer getIdFromName:selectedPerson];
 		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];
 		NSURL *url =[[NSURL alloc] initWithString:urlStr];
         WebViewController *controller = segue.destinationViewController;
@@ -128,9 +128,9 @@
 //   
     NSArray *annotationStrings = [((UIButton*)sender).currentTitle componentsSeparatedByString:@"?"];
 	selectedCity = [annotationStrings objectAtIndex:0];
-    NSString * city_id = [delegate.placeContainer getIdFromPlace:selectedCity];
+    NSString * city_id = [delegate.mainDataManager.placeContainer getIdFromPlace:selectedCity];
 
-    NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
+    NSDictionary * currentGrouping = [delegate.mainDataManager.peopleContainer getCurrentGrouping];
     NSDictionary * peopleInPlace = [currentGrouping objectForKey:city_id];
 	if([peopleInPlace count]>1){
         [self performSegueWithIdentifier:@"showdetaillist" sender:nil];
@@ -162,9 +162,9 @@
 
 #pragma mark - Custom Person Search and Button Views 
 -(NSArray*) getFriendsInCity:(NSString*) cityName{
-    NSString * city_id = [delegate.placeContainer getIdFromPlace:selectedCity];
+    NSString * city_id = [delegate.mainDataManager.placeContainer getIdFromPlace:selectedCity];
     
-    NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
+    NSDictionary * currentGrouping = [delegate.mainDataManager.peopleContainer getCurrentGrouping];
     return [[currentGrouping objectForKey:city_id] allObjects];
 }
 
@@ -258,7 +258,7 @@
 #pragma mark - Map pins methods
 -(void)makeAnnotationFromDict:(NSDictionary*)groupings{
     //Using class as wrapper to process instances of itself
-    annotations = [[NSMutableArray alloc] initWithCapacity:[[delegate peopleContainer] getNumPeople]];
+    annotations = [[NSMutableArray alloc] initWithCapacity:[[delegate.mainDataManager peopleContainer] getNumPeople]];
     NSArray* annotationItems = [MyAnnotation makeAnnotationFromDict:groupings]; 
     [annotations addObjectsFromArray:annotationItems];
 }
@@ -274,7 +274,7 @@
     [mapView removeAnnotations:annotations];
 }
 -(void)showLocationType:(locTypeEnum)locType{
-    [[delegate peopleContainer] printGroupings:locType];
+    [[delegate.mainDataManager peopleContainer] printGroupings:locType];
     [self closeLocationMenu];
     [self clearMap];
     currDisplayedType = locType;
@@ -286,22 +286,22 @@
     [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
     switch(locType){
         case tHomeTown:
-            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHomeTown]];
+            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]];
             break;
         case tCurrentLocation:
-            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tCurrentLocation]];
+            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tCurrentLocation]];
             break;
         case tHighSchool:
-            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tHighSchool]];
+            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tHighSchool]];
             break;
         case tCollege:
-            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tCollege]];
+            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tCollege]];
             break;
         case tGradSchool:
-            [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tGradSchool]];
+            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tGradSchool]];
             break;
         case tWork:
-           [self makeAnnotationFromDict:[delegate.peopleContainer getFriendGroupingForLocType:tWork]];
+           [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tWork]];
             break;
         default:
             DebugLog(@"Warning: hitting default case");
@@ -397,7 +397,7 @@
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
-    Friend* friend = [delegate.peopleContainer getFriendFromId:uid];
+    Friend* friend = [delegate.mainDataManager.peopleContainer getFriendFromId:uid];
     [self getLocationsForFriend: friend];
     [self showPins];
     NSString * buttonLabel= friend.name;
