@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
 #import "DataManagerSingleton.h"
+#import "PlaceContainer.h"
+#import "PeopleContainer.h"
+#import "UserInfoLog.h"
+#import "FacebookImageHandler.h"
 #import <dispatch/dispatch.h>
 
 @interface MappMeAppDelegate : NSObject <UIApplicationDelegate>{
