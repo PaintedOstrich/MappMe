@@ -7,19 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CoordPairs.h"
+#import "Place.h"
 
 
 @interface PlaceContainer : NSObject{
 
 }
+//put annotation methods into this class
 
--(void)addId:(NSString *)placeId andPlace:(NSString *)placeName;
--(NSString *)getPlaceFromId:(NSString *)placeId;
--(NSString *)getIdFromPlace:(NSString *)placeName;
+/*Adding (place,id) pair to mapping */
+-(void)addId:(NSString *)placeId andPlaceName:(NSString *)placeName;
 -(void)addCoordsLat:(NSString *)lat andLong:(NSString *)lon forPlaceId:(NSString *)placeId;
--(CoordPairs *)getCoordFromId:(NSString *)placeId;
 -(void)doCoordLookupAndSet:(NSString*)place_id withDict:(NSDictionary *)loc andTypeString:(NSString *)placeTypeName;
+
+/*lookup methods*/
+-(NSString *)getPlaceNameFromId:(NSString *)placeId;
+-(NSString *)getIdFromPlace:(NSString *)placeName;
+-(Place *)getPlaceFromId:(NSString *)placeId;
+
 
 /*  Debug */
 -(NSUInteger)getNumPlaces;

@@ -8,29 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
-#import "PlaceContainer.h"
-#import "PersonNameAndIdMapping.h"
-#import "PeopleContainer.h"
-#import "UserInfoLog.h"
-#import "FacebookImageHandler.h"
+#import "DataManagerSingleton.h"
 #import <dispatch/dispatch.h>
 
 @interface MappMeAppDelegate : NSObject <UIApplicationDelegate>{
     Facebook *facebook;
-    PlaceContainer *placeIdMapping;
-    PeopleContainer *peopleContainer;
-    UserInfoLog *userInfoLog;
-    FacebookImageHandler *fbImageHandler;
+    DataManagerSingleton *mainDataManager;
     dispatch_queue_t backgroundQueue;
     
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) Facebook *facebook;
-@property (nonatomic, retain) PlaceContainer *placeIdMapping; 
-@property (nonatomic, retain) UserInfoLog  *userInfoLog; 
-@property (nonatomic, retain) PeopleContainer *peopleContainer;
-@property (nonatomic, retain) FacebookImageHandler *fbImageHandler;
+@property (nonatomic, retain) DataManagerSingleton *mainDataManager;
+
 @property (nonatomic)  dispatch_queue_t backgroundQueue;
 
 @end

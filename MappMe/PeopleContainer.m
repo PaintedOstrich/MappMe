@@ -32,7 +32,7 @@
 #pragma mark - Logging of updates to user models
 -(void)addEntryToUserInfoLog:(NSString *)userId updateLocation:(NSString *)placeId andType:(locTypeEnum)placeType{
     MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[delegate userInfoLog]addUserInfoUpdate:userId andUpdate:placeId forType:placeType];
+    [[delegate.mainDataManager userInfoLog]addUserInfoUpdate:userId andUpdate:placeId forType:placeType];
 }
 
 #pragma mark - Parsing methods to update or add entry
@@ -56,7 +56,7 @@
         
         /* Add User Name and Id to Mapping */
          MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [delegate.peopleContainer addId:uid andPerson:name];
+        [delegate.mainDataManager.peopleContainer addId:uid andPerson:name];
     }
     [people setObject:personCmp forKey:uid];
 //    DebugLog(@"After %@", [people objectForKey: uid]);
@@ -73,7 +73,6 @@
    @return: Returns dictionary of cities, where k is id, and value is a 
         set of userId's for those cities
  */
-//FIXME PUT IN PLACE CONTAINER, method cached results
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType{
 //    DebugLog(@"Loct Type : %@",[LocationTypeEnum getNameFromEnum:locType]);
     NSMutableDictionary *friendGroupings = [[NSMutableDictionary alloc] init];
@@ -163,11 +162,11 @@
     {
         place = [keys objectAtIndex: i];
         s = [groupings objectForKey: place];
-        [returnString appendFormat:@"\n %@",[delegate.placeIdMapping getPlaceFromId:place]];
+        [returnString appendFormat:@"\n %@",[delegate.mainDataManager.placeContainer getPlaceNameFromId:place]];
         NSEnumerator *setEnum = [s objectEnumerator];
         NSString *uid;
         while (uid = [setEnum nextObject]) {
-            [returnString appendFormat:@"\n\t %@", [delegate.peopleContainer getNameFromId:uid]];
+            [returnString appendFormat:@"\n\t %@", [delegate.mainDataManager.peopleContainer getNameFromId:uid]];
         }
     }
 }

@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "CoordPairs.h"
+#import "CoordPairsHelper.h"
 
-@implementation CoordPairs
+@implementation CoordPairsHelper
 
 @synthesize location;
 

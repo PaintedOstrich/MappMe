@@ -207,21 +207,21 @@
 - (NSString *)description{
     MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSMutableString *person = [[NSMutableString alloc] initWithString:@"\n"];
-    [person appendString:[delegate.peopleContainer getNameFromId:self.userId]];
+    [person appendString:[delegate.mainDataManager.peopleContainer getNameFromId:self.userId]];
     [person appendFormat:@"\n\t uid: %@",self.userId];
     if (self.currentLocation!= nil){
-        NSString *placeName = [delegate.placeIdMapping getPlaceFromId:self.currentLocation];
+        NSString *placeName = [delegate.mainDataManager.placeContainer getPlaceNameFromId:self.currentLocation];
         [person appendFormat:@"\n\t Current Location: %@",placeName];
     }
     if (self.hometown!=nil) {
-        NSString *placeName = [delegate.placeIdMapping getPlaceFromId:self.hometown];
+        NSString *placeName = [delegate.mainDataManager.placeContainer getPlaceNameFromId:self.hometown];
         [person appendFormat:@"\n\t HomeTown: %@",placeName];
     }
     if (self.highschool!=nil) {
         NSEnumerator *e = [self.highschool objectEnumerator];
         NSString *entry;
         while (entry = (NSString*)[e nextObject]){
-            NSString *placeName = [delegate.placeIdMapping getPlaceFromId:entry];
+            NSString *placeName = [delegate.mainDataManager.placeContainer getPlaceNameFromId:entry];
             [person appendFormat:@"\n\t High School: %@",placeName];
         }
     }
@@ -229,7 +229,7 @@
         NSEnumerator *e = [self.college objectEnumerator];
         NSString *entry;
         while (entry = (NSString*)[e nextObject]){
-            NSString *placeName = [delegate.placeIdMapping getPlaceFromId:entry];
+            NSString *placeName = [delegate.mainDataManager.placeContainer getPlaceNameFromId:entry];
             [person appendFormat:@"\n\t College: %@",placeName];
         }
 
@@ -238,7 +238,7 @@
         NSEnumerator *e = [self.gradSchool objectEnumerator];
         NSString *entry;
         while (entry = (NSString*)[e nextObject]){
-            NSString *placeName = [delegate.placeIdMapping getPlaceFromId:entry];
+            NSString *placeName = [delegate.mainDataManager.placeContainer getPlaceNameFromId:entry];
             [person appendFormat:@"\n\t Graduate School: %@",placeName];
         }
     }

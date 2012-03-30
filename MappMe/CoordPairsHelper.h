@@ -12,7 +12,7 @@
 /*
  CoordPairs class used so Location Information can be Permanently Stored In Dictionary
  */
-@interface CoordPairs : NSObject{
+@interface CoordPairsHelper : NSObject{
     CLLocationCoordinate2D location;
 }
 

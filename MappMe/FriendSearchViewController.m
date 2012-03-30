@@ -49,7 +49,7 @@
     
     friends = [NSMutableArray arrayWithCapacity:1];
     searchResults = [NSMutableArray arrayWithCapacity:1];
-    friendList = [[[delegate peopleContainer] people] allValues];
+    friendList = [[[delegate.mainDataManager peopleContainer] people] allValues];
     for (Friend* person in friendList) {
         NSUInteger sect = (NSUInteger) [theCollation sectionForObject:person collationStringSelector:@selector(name)];
         person.sectionNumber = sect;
