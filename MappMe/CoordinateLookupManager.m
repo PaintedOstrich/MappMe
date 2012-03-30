@@ -80,6 +80,7 @@
     NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
                            [lookup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
+    DebugLog(@"lookup\n\t %@", urlString);
     while(TRUE){
         NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSASCIIStringEncoding error:nil];
         NSArray *listItems = [locationString componentsSeparatedByString:@","];

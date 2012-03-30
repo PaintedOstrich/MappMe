@@ -12,6 +12,7 @@
 #import "WebViewController.h"
 #import "ListViewController.h"
 #import "FacebookDataHandler.h"
+#import "ZoomHelper.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -268,7 +269,8 @@
 }
 -(void)showPins
 {
-    [mapView addAnnotations:annotations];	
+    [mapView addAnnotations:annotations];
+    [ZoomHelper zoomToFitAnnoations:mapView];
 }
 -(void)clearMap{
     [mapView removeAnnotations:annotations];

@@ -63,6 +63,7 @@
 		A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D771502E1E400BA0B5B /* PeopleContainer.m */; };
 		A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
+		A9E3769C15257DF6004AC9E9 /* ZoomHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E3769B15257DF6004AC9E9 /* ZoomHelper.m */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
 		A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */; };
 /* End PBXBuildFile section */
@@ -175,6 +176,8 @@
 		A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainer.m; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
+		A9E3769A15257DF6004AC9E9 /* ZoomHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomHelper.h; sourceTree = "<group>"; };
+		A9E3769B15257DF6004AC9E9 /* ZoomHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomHelper.m; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayViewController.xib; sourceTree = "<group>"; };
@@ -203,10 +206,6 @@
 		680435CD14FED94600899729 = {
 			isa = PBXGroup;
 			children = (
-				68DC0BD2151D7D7E00514016 /* libz.dylib */,
-				68DC0BD0151D7C8C00514016 /* MobileCoreServices.framework */,
-				68DC0BCE151D7C7100514016 /* CFNetwork.framework */,
-				68DC0BCC151D7C6A00514016 /* SystemConfiguration.framework */,
 				68082BEB151A790000C12A91 /* facebook-ios-sdk */,
 				A90CF29F1504112D0091139C /* images */,
 				680435E214FED94600899729 /* MappMe */,
@@ -227,6 +226,10 @@
 		680435DB14FED94600899729 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68DC0BD2151D7D7E00514016 /* libz.dylib */,
+				68DC0BD0151D7C8C00514016 /* MobileCoreServices.framework */,
+				68DC0BCE151D7C7100514016 /* CFNetwork.framework */,
+				68DC0BCC151D7C6A00514016 /* SystemConfiguration.framework */,
 				A94324941500727F005F7600 /* MapKit.framework */,
 				680435DC14FED94600899729 /* UIKit.framework */,
 				680435DE14FED94600899729 /* Foundation.framework */,
@@ -264,6 +267,8 @@
 		6804360E14FEDE1300899729 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				A9E3769A15257DF6004AC9E9 /* ZoomHelper.h */,
+				A9E3769B15257DF6004AC9E9 /* ZoomHelper.m */,
 				683D38341507C0D200021ED3 /* DebugLog.h */,
 				683D38351507C0D200021ED3 /* DebugLog.m */,
 				683D38361507C0D200021ED3 /* Timer.h */,
@@ -562,6 +567,7 @@
 				A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */,
 				68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */,
 				68CFF0A41525705D00335C10 /* CoordPairsHelper.m in Sources */,
+				A9E3769C15257DF6004AC9E9 /* ZoomHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
