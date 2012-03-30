@@ -6,18 +6,22 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "CoordPairs.h"
+#import "Place.h"
 
-@implementation CoordPairs
+@implementation Place
 
 @synthesize location;
+@synthesize placeName;
 
--(id)initWithLat:(NSString *)lat andLong:(NSString *)lon{
-    if (self =[super init]){
-        location.latitude = [lat doubleValue];
-        location.longitude = [lon doubleValue];
+-(id)initPlaceWithName:(NSString *) name{
+    if(self = [super init]){
+        self.placeName= name;
     }
     return self;
+}
+-(void)addLat:(NSString *)lat andLong:(NSString *)lon{
+    location.latitude = [lat doubleValue];
+    location.longitude = [lon doubleValue];
 }
 
 

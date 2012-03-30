@@ -2,12 +2,22 @@
 //  CoordPairs.h
 //  MappMe
 //
-//  Created by Parker Spielman on 3/29/12.
+//  Created by Parker Spielman on 3/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface CoordPairs : NSObject
+/*
+ CoordPairs class used so Location Information can be Permanently Stored In Dictionary
+ */
+@interface CoordPairsHelper : NSObject{
+    CLLocationCoordinate2D location;
+}
+
+-(id)initWithLat:(NSString *)lat andLong:(NSString *)lon;
+
+@property(nonatomic)CLLocationCoordinate2D location;
 
 @end

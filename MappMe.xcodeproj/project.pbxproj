@@ -31,6 +31,8 @@
 		683D383B1507C0D200021ED3 /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38371507C0D200021ED3 /* Timer.m */; };
 		683D383C1507C0D200021ED3 /* UserInfoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38391507C0D200021ED3 /* UserInfoLog.m */; };
 		689175BD151D0C3D00078BE2 /* FacebookDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */; };
+		68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF09D15253F3000335C10 /* DataManagerSingleton.m */; };
+		68CFF0A41525705D00335C10 /* CoordPairsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF0A31525705D00335C10 /* CoordPairsHelper.m */; };
 		68DC0BC1151D7C1400514016 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DC0BAE151D7C1400514016 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68DC0BC2151D7C1400514016 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DC0BB1151D7C1400514016 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68DC0BC3151D7C1400514016 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DC0BB3151D7C1400514016 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -55,7 +57,7 @@
 		A963C344151EE8E200559DB3 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C343151EE8E200559DB3 /* settings.png */; };
 		A963C347151EE98F00559DB3 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C346151EE98F00559DB3 /* search.png */; };
 		A96AD5CF151FD52B00372528 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A96AD5CE151FD52B00372528 /* profile.png */; };
-		A9801D811502E1E400BA0B5B /* CoordPairs.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* CoordPairs.m */; };
+		A9801D811502E1E400BA0B5B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* Place.m */; };
 		A9801D821502E1E400BA0B5B /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D731502E1E400BA0B5B /* Friend.m */; };
 		A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
 		A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D771502E1E400BA0B5B /* PeopleContainer.m */; };
@@ -114,6 +116,10 @@
 		683D38391507C0D200021ED3 /* UserInfoLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoLog.m; path = MappMe/UserInfoLog.m; sourceTree = SOURCE_ROOT; };
 		689175BB151D0C3D00078BE2 /* FacebookDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookDataHandler.h; sourceTree = "<group>"; };
 		689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookDataHandler.m; sourceTree = "<group>"; };
+		68CFF09C15253F3000335C10 /* DataManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagerSingleton.h; sourceTree = "<group>"; };
+		68CFF09D15253F3000335C10 /* DataManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagerSingleton.m; sourceTree = "<group>"; };
+		68CFF0A21525705D00335C10 /* CoordPairsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; path = CoordPairsHelper.h; sourceTree = "<group>"; };
+		68CFF0A31525705D00335C10 /* CoordPairsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairsHelper.m; sourceTree = "<group>"; };
 		68DC0BAD151D7C1400514016 /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		68DC0BAE151D7C1400514016 /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		68DC0BAF151D7C1400514016 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -157,8 +163,8 @@
 		A963C343151EE8E200559DB3 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A963C346151EE98F00559DB3 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
-		A9801D701502E1E400BA0B5B /* CoordPairs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairs.h; sourceTree = "<group>"; };
-		A9801D711502E1E400BA0B5B /* CoordPairs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairs.m; sourceTree = "<group>"; };
+		A9801D701502E1E400BA0B5B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		A9801D711502E1E400BA0B5B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
 		A9801D721502E1E400BA0B5B /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
 		A9801D731502E1E400BA0B5B /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
 		A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTypeEnum.h; sourceTree = "<group>"; };
@@ -314,6 +320,8 @@
 				A9801D731502E1E400BA0B5B /* Friend.m */,
 				A9801D761502E1E400BA0B5B /* PeopleContainer.h */,
 				A9801D771502E1E400BA0B5B /* PeopleContainer.m */,
+				A9801D701502E1E400BA0B5B /* Place.h */,
+				A9801D711502E1E400BA0B5B /* Place.m */,
 				A9801D7A1502E1E400BA0B5B /* PlaceContainer.h */,
 				A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */,
 			);
@@ -327,8 +335,8 @@
 				A94C44C715059F64001FF446 /* CoordinateLookupManager.m */,
 				A9A0AC521502D8F00020265D /* MyAnnotation.h */,
 				A9A0AC531502D8F00020265D /* MyAnnotation.m */,
-				A9801D701502E1E400BA0B5B /* CoordPairs.h */,
-				A9801D711502E1E400BA0B5B /* CoordPairs.m */,
+				68CFF0A21525705D00335C10 /* CoordPairsHelper.h */,
+				68CFF0A31525705D00335C10 /* CoordPairsHelper.m */,
 			);
 			name = MapModels;
 			sourceTree = "<group>";
@@ -428,6 +436,8 @@
 		A9A0AC501502D7D30020265D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				68CFF09C15253F3000335C10 /* DataManagerSingleton.h */,
+				68CFF09D15253F3000335C10 /* DataManagerSingleton.m */,
 				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
 				A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */,
 				689175C0151D0C7000078BE2 /* MapModels */,
@@ -527,7 +537,7 @@
 				A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */,
 				A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */,
 				A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */,
-				A9801D811502E1E400BA0B5B /* CoordPairs.m in Sources */,
+				A9801D811502E1E400BA0B5B /* Place.m in Sources */,
 				A9801D821502E1E400BA0B5B /* Friend.m in Sources */,
 				A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */,
 				A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */,
@@ -550,6 +560,8 @@
 				68DC0BCB151D7C2500514016 /* Reachability.m in Sources */,
 				68DC0BD6151E538500514016 /* FriendSearchViewController.m in Sources */,
 				A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */,
+				68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */,
+				68CFF0A41525705D00335C10 /* CoordPairsHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

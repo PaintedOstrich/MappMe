@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "FBConnect.h"
 #import "PlaceContainer.h"
-#import "PersonNameAndIdMapping.h"
 #import "PeopleContainer.h"
 #import "UserInfoLog.h"
 #import "FacebookImageHandler.h"
@@ -17,7 +16,7 @@
 
 @interface MappMeAppDelegate : NSObject <UIApplicationDelegate>{
     Facebook *facebook;
-    PlaceContainer *placeIdMapping;
+    PlaceContainer *placeContainer;
     PeopleContainer *peopleContainer;
     UserInfoLog *userInfoLog;
     FacebookImageHandler *fbImageHandler;
@@ -27,7 +26,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) Facebook *facebook;
-@property (nonatomic, retain) PlaceContainer *placeIdMapping; 
+@property (nonatomic, retain) PlaceContainer *placeContainer; 
 @property (nonatomic, retain) UserInfoLog  *userInfoLog; 
 @property (nonatomic, retain) PeopleContainer *peopleContainer;
 @property (nonatomic, retain) FacebookImageHandler *fbImageHandler;

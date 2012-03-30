@@ -12,12 +12,15 @@
 /*
  CoordPairs class used so Location Information can be Permanently Stored In Dictionary
  */
-@interface CoordPairs : NSObject{
+@interface Place : NSObject{
     CLLocationCoordinate2D location;
+    NSString *placeName;
 }
 
--(id)initWithLat:(NSString *)lat andLong:(NSString *)lon;
+-(id)initPlaceWithName:(NSString *) name;
+-(void)addLat:(NSString *)lat andLong:(NSString *)lon;
 
 @property(nonatomic)CLLocationCoordinate2D location;
+@property(nonatomic,retain) NSString * placeName;
 
 @end

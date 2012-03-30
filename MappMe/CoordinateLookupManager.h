@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CoordPairs.h"
+#import <MapKit/MapKit.h>
+#import "CoordPairsHelper.h"
 
 @interface CoordinateLookupManager : NSObject
 
-+(CoordPairs *)manageCoordLookupForPlace:(NSString *)lookupString;
-+(CoordPairs *)manageCoordLookupForEdu:(NSString *)placeName withSupInfo:(NSDictionary*)supInfo 
++(CoordPairsHelper *)manageCoordLookupForPlace:(NSString *)lookupString;
++(CoordPairsHelper *)manageCoordLookupForEdu:(NSString *)placeName withSupInfo:(NSDictionary*)supInfo 
                          andTypeString:(NSString *)schoolType;
 @end

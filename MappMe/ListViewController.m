@@ -46,7 +46,7 @@
 }
 
 -(NSArray*) getFriendsInCity:(NSString*) cityName{
-    NSString * city_id = [delegate.placeIdMapping getIdFromPlace:selectedCity];
+    NSString * city_id = [delegate.placeContainer getIdFromPlace:selectedCity];
     
     NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
     return [[currentGrouping objectForKey:city_id] allObjects];

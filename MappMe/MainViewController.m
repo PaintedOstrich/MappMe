@@ -128,7 +128,7 @@
 //   
     NSArray *annotationStrings = [((UIButton*)sender).currentTitle componentsSeparatedByString:@"?"];
 	selectedCity = [annotationStrings objectAtIndex:0];
-    NSString * city_id = [delegate.placeIdMapping getIdFromPlace:selectedCity];
+    NSString * city_id = [delegate.placeContainer getIdFromPlace:selectedCity];
 
     NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
     NSDictionary * peopleInPlace = [currentGrouping objectForKey:city_id];
@@ -162,7 +162,7 @@
 
 #pragma mark - Custom Person Search and Button Views 
 -(NSArray*) getFriendsInCity:(NSString*) cityName{
-    NSString * city_id = [delegate.placeIdMapping getIdFromPlace:selectedCity];
+    NSString * city_id = [delegate.placeContainer getIdFromPlace:selectedCity];
     
     NSDictionary * currentGrouping = [delegate.peopleContainer getCurrentGrouping];
     return [[currentGrouping objectForKey:city_id] allObjects];
@@ -309,13 +309,14 @@
     [self showPins];
 }
 
+#pragma mark - main data processing dispatch
 - (void)fetchAndProcess {
     Timer * t = [[Timer alloc] init];
     /*Call Methods for info*/
-    FacebookDataHandler *dataHandler = [[FacebookDataHandler alloc] init];
-    [dataHandler getCurrentLocation];
-    [dataHandler getHometownLocation];
-    [dataHandler getEducationInfo];
+    FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
+    [fbDataHandler getCurrentLocation];
+    [fbDataHandler getHometownLocation];
+    [fbDataHandler getEducationInfo];
 
     [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
     int time = [t endTimerAndGetTotalTime];
