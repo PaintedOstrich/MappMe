@@ -31,6 +31,9 @@
 		683D383B1507C0D200021ED3 /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38371507C0D200021ED3 /* Timer.m */; };
 		683D383C1507C0D200021ED3 /* UserInfoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38391507C0D200021ED3 /* UserInfoLog.m */; };
 		689175BD151D0C3D00078BE2 /* FacebookDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */; };
+		68BEE56C15258EBC00E2433D /* ZoomHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEE56B15258EBC00E2433D /* ZoomHelper.m */; };
+		68BEE57215292D0E00E2433D /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BEE57115292D0E00E2433D /* triangle.png */; };
+		68BEE575152945B800E2433D /* DataProgressUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEE574152945B800E2433D /* DataProgressUpdater.m */; };
 		68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF09D15253F3000335C10 /* DataManagerSingleton.m */; };
 		68CFF0A41525705D00335C10 /* CoordPairsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF0A31525705D00335C10 /* CoordPairsHelper.m */; };
 		68DC0BC1151D7C1400514016 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 68DC0BAE151D7C1400514016 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -63,7 +66,6 @@
 		A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D771502E1E400BA0B5B /* PeopleContainer.m */; };
 		A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
-		A9E3769C15257DF6004AC9E9 /* ZoomHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E3769B15257DF6004AC9E9 /* ZoomHelper.m */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
 		A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */; };
 /* End PBXBuildFile section */
@@ -117,6 +119,11 @@
 		683D38391507C0D200021ED3 /* UserInfoLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoLog.m; path = MappMe/UserInfoLog.m; sourceTree = SOURCE_ROOT; };
 		689175BB151D0C3D00078BE2 /* FacebookDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookDataHandler.h; sourceTree = "<group>"; };
 		689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookDataHandler.m; sourceTree = "<group>"; };
+		68BEE56A15258EBC00E2433D /* ZoomHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomHelper.h; sourceTree = SOURCE_ROOT; };
+		68BEE56B15258EBC00E2433D /* ZoomHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomHelper.m; sourceTree = SOURCE_ROOT; };
+		68BEE57115292D0E00E2433D /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
+		68BEE573152945B800E2433D /* DataProgressUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProgressUpdater.h; sourceTree = "<group>"; };
+		68BEE574152945B800E2433D /* DataProgressUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProgressUpdater.m; sourceTree = "<group>"; };
 		68CFF09C15253F3000335C10 /* DataManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagerSingleton.h; sourceTree = "<group>"; };
 		68CFF09D15253F3000335C10 /* DataManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagerSingleton.m; sourceTree = "<group>"; };
 		68CFF0A21525705D00335C10 /* CoordPairsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairsHelper.h; sourceTree = "<group>"; };
@@ -176,8 +183,6 @@
 		A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainer.m; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
-		A9E3769A15257DF6004AC9E9 /* ZoomHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomHelper.h; sourceTree = "<group>"; };
-		A9E3769B15257DF6004AC9E9 /* ZoomHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomHelper.m; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayViewController.xib; sourceTree = "<group>"; };
@@ -244,7 +249,6 @@
 				6804360E14FEDE1300899729 /* Util */,
 				A9A0AC511502D8C70020265D /* Views */,
 				A9A0AC501502D7D30020265D /* Models */,
-				689175C1151D0CAC00078BE2 /* FacebookModels */,
 				A91AF90815008AF200FCD3D7 /* Controllers */,
 				680435E314FED94600899729 /* Supporting Files */,
 				680435EE14FED94600899729 /* MainStoryboard_iPhone.storyboard */,
@@ -267,8 +271,8 @@
 		6804360E14FEDE1300899729 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				A9E3769A15257DF6004AC9E9 /* ZoomHelper.h */,
-				A9E3769B15257DF6004AC9E9 /* ZoomHelper.m */,
+				68BEE56A15258EBC00E2433D /* ZoomHelper.h */,
+				68BEE56B15258EBC00E2433D /* ZoomHelper.m */,
 				683D38341507C0D200021ED3 /* DebugLog.h */,
 				683D38351507C0D200021ED3 /* DebugLog.m */,
 				683D38361507C0D200021ED3 /* Timer.h */,
@@ -395,6 +399,7 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				68BEE57115292D0E00E2433D /* triangle.png */,
 				A96AD5CE151FD52B00372528 /* profile.png */,
 				A963C346151EE98F00559DB3 /* search.png */,
 				A963C343151EE8E200559DB3 /* settings.png */,
@@ -446,6 +451,7 @@
 				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
 				A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */,
 				689175C0151D0C7000078BE2 /* MapModels */,
+				689175C1151D0CAC00078BE2 /* FacebookModels */,
 				689175BF151D0C4A00078BE2 /* ObjectModels */,
 			);
 			name = Models;
@@ -454,6 +460,8 @@
 		A9A0AC511502D8C70020265D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				68BEE573152945B800E2433D /* DataProgressUpdater.h */,
+				68BEE574152945B800E2433D /* DataProgressUpdater.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -524,6 +532,7 @@
 				A963C347151EE98F00559DB3 /* search.png in Resources */,
 				A96AD5CF151FD52B00372528 /* profile.png in Resources */,
 				A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */,
+				68BEE57215292D0E00E2433D /* triangle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -567,7 +576,8 @@
 				A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */,
 				68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */,
 				68CFF0A41525705D00335C10 /* CoordPairsHelper.m in Sources */,
-				A9E3769C15257DF6004AC9E9 /* ZoomHelper.m in Sources */,
+				68BEE56C15258EBC00E2433D /* ZoomHelper.m in Sources */,
+				68BEE575152945B800E2433D /* DataProgressUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

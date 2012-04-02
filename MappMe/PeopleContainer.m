@@ -31,8 +31,8 @@
 }
 #pragma mark - Logging of updates to user models
 -(void)addEntryToUserInfoLog:(NSString *)userId updateLocation:(NSString *)placeId andType:(locTypeEnum)placeType{
-    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[delegate.mainDataManager userInfoLog]addUserInfoUpdate:userId andUpdate:placeId forType:placeType];
+    DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
+    [[mainDataManager userInfoLog]addUserInfoUpdate:userId andUpdate:placeId forType:placeType];
 }
 
 #pragma mark - Parsing methods to update or add entry
@@ -55,8 +55,8 @@
         personCmp = [[Friend alloc] initWithFriend:uid withPlace:placeId LocType:locType andName: name];
         
         /* Add User Name and Id to Mapping */
-         MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        [delegate.mainDataManager.peopleContainer addId:uid andPerson:name];
+        DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
+        [mainDataManager.peopleContainer addId:uid andPerson:name];
     }
     [people setObject:personCmp forKey:uid];
 //    DebugLog(@"After %@", [people objectForKey: uid]);
@@ -148,7 +148,7 @@
 #pragma mark - Debug
 -(void)printGroupings:(locTypeEnum)locType{
     NSDictionary*groupings = [self getFriendGroupingForLocType:locType];
-    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
     
     NSArray *keys;
     int i, count;
@@ -162,11 +162,11 @@
     {
         place = [keys objectAtIndex: i];
         s = [groupings objectForKey: place];
-        [returnString appendFormat:@"\n %@",[delegate.mainDataManager.placeContainer getPlaceNameFromId:place]];
+        [returnString appendFormat:@"\n %@",[mainDataManager.placeContainer getPlaceNameFromId:place]];
         NSEnumerator *setEnum = [s objectEnumerator];
         NSString *uid;
         while (uid = [setEnum nextObject]) {
-            [returnString appendFormat:@"\n\t %@", [delegate.mainDataManager.peopleContainer getNameFromId:uid]];
+            [returnString appendFormat:@"\n\t %@", [mainDataManager.peopleContainer getNameFromId:uid]];
         }
     }
 }

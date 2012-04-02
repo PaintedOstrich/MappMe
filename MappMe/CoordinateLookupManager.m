@@ -117,7 +117,7 @@
         return nil;
     }
     
-    DebugLog(@"trying map lookup : %@ , type: %@, city: %@",placeName,schoolType,[supInfo objectForKey: @"city"]);
+    //DebugLog(@"trying map lookup : %@ , type: %@, city: %@",placeName,schoolType,[supInfo objectForKey: @"city"]);
     CoordPairsHelper *returnCoords = [self lookupString:lookup];
     if(returnCoords!= nil){
         //return returnCoords;

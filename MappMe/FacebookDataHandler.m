@@ -20,8 +20,15 @@
 @end
 @implementation FacebookDataHandler{
     NSMutableDictionary *schoolTypeMapping;
+    DataManagerSingleton * mainDataManager;
 }
 
+-(id)init{
+    if(self = [super init]){
+        mainDataManager = [DataManagerSingleton sharedManager];
+    }
+    return self;
+}
 
 #pragma mark - Custom Facebook Server communication methods
 //Asynchronous version of Graph Api Calls.  
@@ -126,7 +133,6 @@
     if (locType != tHomeTown && locType != tCurrentLocation &&![locTypeString isEqualToString:@"education"] ){
         DebugLog(@"Warning: locType set incorrectly");
     }
-    MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *friendsTemp;
     NSDictionary *friends = [bas_info objectForKey:@"fql_result_set"];
     NSEnumerator *friendsEnum = [friends objectEnumerator];
@@ -146,13 +152,12 @@
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
         
-        [delegate.mainDataManager.placeContainer addId:town_id andPlaceName:town_name];
-        [delegate.mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
+        [mainDataManager.placeContainer addId:town_id andPlaceName:town_name];
+        [mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
     }
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
 -(void)parseFbCity:(NSDictionary*)bas_info{
-    MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *citiesTemp;
     NSDictionary *coords = [bas_info objectForKey:@"fql_result_set"];
     NSEnumerator *citiesEnum = [coords objectEnumerator];
@@ -161,16 +166,15 @@
         
         /*Make sure location array is not empty*/
         if ([loc respondsToSelector:@selector(objectForKey:)]) {
-            [[delegate.mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
+            [[mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
         }
         else{
             NSString * page_id = [citiesTemp objectForKey:@"page_id"];
-            DebugLog(@"%@ not found; id: %@",[delegate.mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
+            DebugLog(@"%@ not found; id: %@",[mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
         }
     }
 }
 -(void)parseFbEdu:(NSDictionary*)bas_info{
-    MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *schoolTemp;
     NSEnumerator *schoolLocEnum = [[bas_info objectForKey:@"fql_result_set"] objectEnumerator];
     while ((schoolTemp = [schoolLocEnum nextObject])) {
@@ -179,17 +183,16 @@
             NSString * school_id = [schoolTemp objectForKey:@"page_id"];
             //If have lat and long
             if ([loc objectForKey:@"latitude"]){
-                [[delegate.mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:school_id];
+                [[mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:school_id];
             }else{
                 NSString *type = [schoolTypeMapping objectForKey:school_id];
-                [delegate.mainDataManager.placeContainer doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
+                [mainDataManager.placeContainer doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
             }
         }
         
     }
 }
 -(void)parseFbFriendsEdu:(NSDictionary*)bas_info{
-    MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     NSDictionary *friendsTemp;
     NSDictionary *friendsEdu = [bas_info objectForKey:@"fql_result_set"];
     NSEnumerator *friendsEnum = [friendsEdu objectEnumerator];
@@ -208,14 +211,12 @@
             locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
             //                    DebugLog(@"%@ -  %@, %@", school_name, school_type, school_id);
             [schoolTypeMapping setObject:school_type forKey:school_id];
-            [delegate.mainDataManager.placeContainer addId:school_id andPlaceName:school_name];
-            [delegate.mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:school_id andTypeId:placeType];
+            [mainDataManager.placeContainer addId:school_id andPlaceName:school_name];
+            [mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:school_id andTypeId:placeType];
         }
     }
 }
 -(void)parseFacebookInfoController: (NSDictionary *)infoArray{
-    MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
 	NSEnumerator *enumerator = [infoArray objectEnumerator];
 	NSDictionary *bas_info;
 
@@ -247,8 +248,8 @@
         }
     }
     
-    DebugLog(@"Number of friends %i", [delegate.mainDataManager.peopleContainer getNumPeople]);
-    DebugLog(@"Number of cities %i",[delegate.mainDataManager.placeContainer getNumPlaces]);
+    DebugLog(@"Number of friends %i", [mainDataManager.peopleContainer getNumPeople]);
+    DebugLog(@"Number of cities %i",[mainDataManager.placeContainer getNumPlaces]);
     
 //    [delegate.peopleContainer printGroupings:tHomeTown];
 //    [delegate.peopleContainer printGroupings:tCurrentLocation];
