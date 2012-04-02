@@ -15,7 +15,6 @@ static NSString * kAppId = @"291279594218895";
 
 @synthesize window = _window;
 @synthesize facebook;
-@synthesize mainDataManager;
 @synthesize backgroundQueue;
 
 
@@ -24,11 +23,6 @@ static NSString * kAppId = @"291279594218895";
     //Initiate Background Threading Queue
     //Namespace reverse dns to ensure uniqueness
     backgroundQueue = dispatch_queue_create("com.paintedostrich.mappme.bgqueue", NULL);
-    
-    //FIXME THIS SHOULD BE PERSISTED
-    mainDataManager = [[DataManagerSingleton alloc] init];
-    
-    
     
     //Initialize Login View Controller
     LoginViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];

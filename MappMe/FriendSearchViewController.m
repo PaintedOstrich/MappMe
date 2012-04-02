@@ -11,7 +11,7 @@
 #import "DebugLog.h"
 
 @implementation FriendSearchViewController{
-    MappMeAppDelegate* delegate;
+    DataManagerSingleton * mainDataManager;
     //All available friends in a flat array
     NSArray* friendList;
     //A nested array of Friend objectis to faciliate indexing in table
@@ -41,7 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    mainDataManager = [DataManagerSingleton sharedManager];
     searchBar.delegate = self;
     
     //Boilplate code to index friendlist so table can show an indexed, sorted list.
@@ -49,7 +49,7 @@
     
     friends = [NSMutableArray arrayWithCapacity:1];
     searchResults = [NSMutableArray arrayWithCapacity:1];
-    friendList = [[[delegate.mainDataManager peopleContainer] people] allValues];
+    friendList = [[[mainDataManager peopleContainer] people] allValues];
     for (Friend* person in friendList) {
         NSUInteger sect = (NSUInteger) [theCollation sectionForObject:person collationStringSelector:@selector(name)];
         person.sectionNumber = sect;
@@ -268,22 +268,22 @@ titleForHeaderInSection:(NSInteger)section {
     
     [self.tableView reloadData];
 }
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)sBar {
-    [self doneSearching_Clicked:nil];
-}
-
 - (void) doneSearching_Clicked:(id)sender {
     [self.navigationController setNavigationBarHidden: NO animated:YES];
     
     searchBar.text = @"";
     [searchBar resignFirstResponder];
-
+    
     searching = NO;
     
     [self removeOverlay];
     [self.tableView reloadData];
 }
+- (void)searchBarCancelButtonClicked:(UISearchBar *)sBar {
+    [self doneSearching_Clicked:nil];
+}
+
+
 
 #pragma mark - OverlayViewController delegate methods
 -(void) overlayTouched:(OverlayViewController *)overlayController {

@@ -19,20 +19,30 @@
 @synthesize fbImageHandler;
 
 static DataManagerSingleton *mainDataManager = nil;
-
-+(DataManagerSingleton *) sharedInstance {
     
-    NSLog (@"sharedInstance called.");
-    
-    if (nil != mainDataManager) return mainDataManager;
-    static dispatch_once_t pred;        // lock
-    dispatch_once(&pred, ^{             // this code is at most once
-        mainDataManager = [[DataManagerSingleton alloc] init];
-    });
-    
+//As a singleton of app delegatE, synch through init by use of threaded queue
+//+(id)sharedInstance {
+//    
+////    NSLog (@"sharedInstance called.");
+//    
+//    if (nil != mainDataManager) return mainDataManager;
+//    static dispatch_once_t pred;        // lock
+//    dispatch_once(&pred, ^{             // this code is at most once
+//        mainDataManager = [[DataManagerSingleton alloc] init];
+//    });
+//    
+//    return mainDataManager;
+//    
+//}
+#pragma mark Singleton Methods
++ (id)sharedManager {
+    @synchronized(self) {
+        if (mainDataManager == nil)
+            mainDataManager = [[self alloc] init];
+    }
     return mainDataManager;
-    
 }
+
 
 -(id)init{
     if (self = [super init]) {

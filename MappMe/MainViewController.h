@@ -10,12 +10,15 @@
 #import <MapKit/MapKit.h>
 #import "MBProgressHUD.h"
 #import "FriendSearchViewController.h"
+#import "DataProgressUpdater.h"
 
 /*Main Controller Interface*/
-@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, FriendSearchViewControllerDelegate> {
+
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, ProgressUpdaterDelegate, FriendSearchViewControllerDelegate> {
     IBOutlet MKMapView* mapView;
-    IBOutlet UIButton* locationTypeBtn;
+//    IBOutlet UIButton* locationTypeBtn;
 }
+
 
 
 @end

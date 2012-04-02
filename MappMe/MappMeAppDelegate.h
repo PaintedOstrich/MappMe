@@ -24,7 +24,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, retain) Facebook *facebook;
-@property (nonatomic, retain) DataManagerSingleton *mainDataManager;
 
 @property (nonatomic)  dispatch_queue_t backgroundQueue;
 

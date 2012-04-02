@@ -54,7 +54,7 @@
     if ([placeName isEqualToString:@"Work"]) {
         return  tWork;
     }
-    DebugLog(@"warning:  String not found");
+    DebugLog(@"warning:  String not found: %@", placeName);
     
     return tLocationTypeCount;
 }

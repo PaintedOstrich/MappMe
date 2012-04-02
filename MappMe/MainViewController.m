@@ -13,6 +13,7 @@
 #import "ListViewController.h"
 #import "FacebookDataHandler.h"
 #import "ZoomHelper.h"
+#import "DataProgressUpdater.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -27,22 +28,29 @@
 -(void)showCollege;
 -(void)showGrad;
 
+-(void)addLoadView;
+-(void)updateProgressBar:(float)progressAmount;
+-(void)showLocationMenu;
 @end
 
 
 @implementation MainViewController{
-    MappMeAppDelegate *delegate;
+//    MappMeAppDelegate *delegate;
+    DataManagerSingleton * mainDataManager;
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
     NSString *selectedCity;
     NSString *selectedPerson;
     locTypeEnum currDisplayedType;
     
-    IBOutlet UITableView *tableView;
+//    IBOutlet UITableView *tableView;
     
     //Display private variables
+    UIButton * locationTypeBtn;
     UIView *displayTypeContainer;
     UIView *personSearchContainer;
+    UIView *loadScreenContainer;
+    UIProgressView *loadScreenProgressBar;
     BOOL displayTypeContainerIsShown;
     BOOL isFriendAnnotationType;
 }
@@ -53,16 +61,22 @@
     [super viewDidLoad];
     [mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:20];
-    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    mainDataManager = [DataManagerSingleton sharedManager];
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
     
+    //Register Updater Delegate
+//    progressUpdaterDelegate = 
+    
     //Set Bools for view methods
     displayTypeContainerIsShown = FALSE;
     
+    [self addLoadView];
+//    [self updateProgressBar:0.0];
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
@@ -81,7 +95,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     mapView = nil;
-    locationTypeBtn = nil;
+//    locationTypeBtn = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -109,7 +123,7 @@
         ListViewController *controller = segue.destinationViewController;
         controller.selectedCity = selectedCity;
     } else if ([segue.identifier isEqualToString:@"showwebview"]){
-        NSString *fId =[delegate.mainDataManager.peopleContainer getIdFromName:selectedPerson];
+        NSString *fId =[mainDataManager.peopleContainer getIdFromName:selectedPerson];
 		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];
 		NSURL *url =[[NSURL alloc] initWithString:urlStr];
         WebViewController *controller = segue.destinationViewController;
@@ -129,9 +143,9 @@
 //   
     NSArray *annotationStrings = [((UIButton*)sender).currentTitle componentsSeparatedByString:@"?"];
 	selectedCity = [annotationStrings objectAtIndex:0];
-    NSString * city_id = [delegate.mainDataManager.placeContainer getIdFromPlace:selectedCity];
+    NSString * city_id = [mainDataManager.placeContainer getIdFromPlace:selectedCity];
 
-    NSDictionary * currentGrouping = [delegate.mainDataManager.peopleContainer getCurrentGrouping];
+    NSDictionary * currentGrouping = [mainDataManager.peopleContainer getCurrentGrouping];
     NSDictionary * peopleInPlace = [currentGrouping objectForKey:city_id];
 	if([peopleInPlace count]>1){
         [self performSegueWithIdentifier:@"showdetaillist" sender:nil];
@@ -161,17 +175,129 @@
     [self showLocationType:tGradSchool];
 }
 
-#pragma mark - Custom Person Search and Button Views 
--(NSArray*) getFriendsInCity:(NSString*) cityName{
-    NSString * city_id = [delegate.mainDataManager.placeContainer getIdFromPlace:selectedCity];
+#pragma mark - Custom Loading View and Logic
+-(void)pushSearchController{
+    DebugLog(@"changing to search controller");
+    [self performSegueWithIdentifier:@"searchview" sender:self];
+//    [self presentModalViewController: animated:YES]
+}
+-(void)addTopNavView{
+    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, -100, 320, 44)];
+//    [navContainer setAlpha:0.0];                                                   
     
-    NSDictionary * currentGrouping = [delegate.mainDataManager.peopleContainer getCurrentGrouping];
+    locationTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    locationTypeBtn.frame = CGRectMake(9, 7, 98, 37);
+    [locationTypeBtn setTitle:@"Current Location" forState:UIControlStateNormal];
+    locationTypeBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [locationTypeBtn addTarget:self action:@selector(showLocationMenu) forControlEvents:UIControlEventTouchDown];
+    [navContainer addSubview:locationTypeBtn];
+    
+    UIButton *search = [UIButton buttonWithType:UIButtonTypeCustom];
+    search.contentMode = UIViewContentModeScaleToFill;
+    [search setBackgroundImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+    [search addTarget:self action:@selector(pushSearchController) forControlEvents:UIControlEventTouchUpInside];
+    search.frame = CGRectMake(271, 7.0, 42.0, 37.0);//width and height should be same value
+    search.layer.cornerRadius = 25;//half of the width
+    [navContainer addSubview:search];
+    
+    [self.view addSubview:navContainer];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:2];
+    [navContainer setTransform:CGAffineTransformMakeTranslation(0, 100.0)];
+//    [navContainer setAlpha:1.0];
+    [UIView commitAnimations];
+}
+-(void)addLoadView{
+    //Create main view container
+    loadScreenContainer = [[UIView alloc] initWithFrame:CGRectMake(0, -20, 320, 80)];
+    [loadScreenContainer setAlpha:0.0];
+    //Create Progress Bar and Progress container
+    UIView *progessScreenContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 48)];
+    loadScreenProgressBar = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleBar];
+    loadScreenProgressBar.frame = CGRectMake(160, 25, 155, 30);
+    [progessScreenContainer addSubview:loadScreenProgressBar];
+
+    //Create and add loading label
+    UILabel* loading = [[UILabel alloc]initWithFrame:CGRectMake(5,10,155,30)];
+    loading.adjustsFontSizeToFitWidth=YES;
+    loading.text=@" Loading Friends and Places: ";
+    [loading setFont:[UIFont boldSystemFontOfSize:26]];
+    loading.textColor=[UIColor whiteColor];
+    loading.backgroundColor =[UIColor clearColor];
+    [progessScreenContainer addSubview:loading];
+    //Add Progress Container to View
+    [loadScreenContainer addSubview:progessScreenContainer];
+    
+    //Create and add info label
+    UIView *infoContainer = [[UIView alloc] initWithFrame:CGRectMake(80, 42, 160, 86)];
+    //Add Arrow Image
+    UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(60, 17, 40, 21)];
+    arrow.image = [UIImage imageNamed:@"triangle.png"];
+    [infoContainer addSubview:arrow];
+    UILabel* info = [[UILabel alloc]initWithFrame:CGRectMake(0,0,160,23)];
+    info.adjustsFontSizeToFitWidth=YES;
+    info.text=@"  Showing Current Location  ";
+    [info setFont:[UIFont boldSystemFontOfSize:20]];
+    //round corners
+    CALayer *infoLayer = info.layer;
+    [infoLayer setMasksToBounds:YES];
+    [infoLayer setCornerRadius:5.0f];
+    [infoLayer setBorderWidth:2.0f];
+    [infoLayer setBorderColor: [[UIColor blackColor] CGColor]];
+    [infoLayer setBackgroundColor: [[UIColor whiteColor] CGColor]];
+    [infoContainer addSubview:info];
+
+    [loadScreenContainer addSubview:infoContainer];
+    
+    //Rounded Container Corners
+    CALayer *dtc = progessScreenContainer.layer;
+    [dtc setMasksToBounds:YES];
+    [dtc setCornerRadius:8.0f];
+    [dtc setBorderWidth:2.0f];
+    [dtc setBorderColor: [[UIColor blackColor] CGColor]];
+    [dtc setBackgroundColor: [[UIColor blackColor] CGColor]];
+
+    [self.view addSubview:loadScreenContainer];
+    [UIView beginAnimations:nil context:nil];
+    [loadScreenContainer setAlpha:1.0];
+    [UIView commitAnimations];
+}
+-(void)hideLoadScreen{
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.45];
+    [loadScreenContainer setTransform:CGAffineTransformMakeTranslation(0, -100.0)];
+    [UIView commitAnimations];
+}
+
+#pragma mark - progress bar delegate methods
+-(void)finishedLoading{
+    DebugLog(@"called finished loading");
+    [self hideLoadScreen];
+    [self addTopNavView];
+    //Calling this removes animation...?
+//    [loadScreenContainer removeFromSuperview];
+}
+- (void)updateProgressBar:(float)progressAmount{
+    //How to avoid updating this if object is nil;
+//    DebugLog(@"main controller update progress bar called with amount :%f",progressAmount);
+    if (loadScreenProgressBar==nil) {
+        DebugLog(@"WARNING: Trying to update nil progress bar");
+    }else{
+        [loadScreenProgressBar setProgress:progressAmount animated:YES];
+    } 
+}
+#pragma mark - Custom Person Search 
+-(NSArray*) getFriendsInCity:(NSString*) cityName{
+    NSString * city_id = [mainDataManager.placeContainer getIdFromPlace:selectedCity];
+    
+    NSDictionary * currentGrouping = [mainDataManager.peopleContainer getCurrentGrouping];
     return [[currentGrouping objectForKey:city_id] allObjects];
 }
 
-
+#pragma mark - Custom View Methods
 //Helper method to create buttons for the location type menu (Used in showLocationMenu)
--(UIButton*) createButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
+-(UIButton*) createMenuButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [btn setTitle:title forState:UIControlStateNormal];
     btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
@@ -199,7 +325,7 @@
 }
 
 //Adds subview of menu selection for current location, hometown, high school, etc.
--(IBAction)showLocationMenu{
+-(void)showLocationMenu{
     //Don't add subview twice
     if(displayTypeContainerIsShown){
         return;
@@ -218,23 +344,23 @@
     [displayTypeContainer addSubview:[self createCloseBtn]];
     
     /*Navigation Buttons*/
-    UIButton *curButton = [self createButton:@"Current Location" yCordinate:20 locType:tCurrentLocation];
+    UIButton *curButton = [self createMenuButton:@"Current Location" yCordinate:20 locType:tCurrentLocation];
     [curButton addTarget:self action:@selector(showCurrentLoc) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:curButton];
     
-    UIButton *homeButton = [self createButton:@"Hometown" yCordinate:70 locType:tHomeTown];
+    UIButton *homeButton = [self createMenuButton:@"Hometown" yCordinate:70 locType:tHomeTown];
     [homeButton addTarget:self  action:@selector(showHometown) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:homeButton];
     
-    UIButton *highButton = [self createButton:@"High School" yCordinate:120 locType:tHighSchool];
+    UIButton *highButton = [self createMenuButton:@"High School" yCordinate:120 locType:tHighSchool];
     [highButton addTarget:self  action:@selector(showHighSchool) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:highButton];
 
-    UIButton *collButton = [self createButton:@"College" yCordinate:170 locType:tCollege];
+    UIButton *collButton = [self createMenuButton:@"College" yCordinate:170 locType:tCollege];
     [collButton addTarget:self  action:@selector(showCollege) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:collButton];
 
-    UIButton *gradButton = [self createButton:@"Graduate School" yCordinate:220 locType:tGradSchool];
+    UIButton *gradButton = [self createMenuButton:@"Graduate School" yCordinate:220 locType:tGradSchool];
     [gradButton addTarget:self  action:@selector(showGrad) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:gradButton];
     /*End Navigation Buttons*/
@@ -252,14 +378,13 @@
     [UIView beginAnimations:nil context:nil];
     [displayTypeContainer setAlpha:1.0];
     [UIView commitAnimations];
-
 }
 
 
 #pragma mark - Map pins methods
 -(void)makeAnnotationFromDict:(NSDictionary*)groupings{
     //Using class as wrapper to process instances of itself
-    annotations = [[NSMutableArray alloc] initWithCapacity:[[delegate.mainDataManager peopleContainer] getNumPeople]];
+    annotations = [[NSMutableArray alloc] initWithCapacity:[[mainDataManager peopleContainer] getNumPeople]];
     NSArray* annotationItems = [MyAnnotation makeAnnotationFromDict:groupings]; 
     [annotations addObjectsFromArray:annotationItems];
 }
@@ -276,7 +401,7 @@
     [mapView removeAnnotations:annotations];
 }
 -(void)showLocationType:(locTypeEnum)locType{
-    [[delegate.mainDataManager peopleContainer] printGroupings:locType];
+    [[mainDataManager peopleContainer] printGroupings:locType];
     [self closeLocationMenu];
     [self clearMap];
     currDisplayedType = locType;
@@ -288,22 +413,22 @@
     [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
     switch(locType){
         case tHomeTown:
-            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tHomeTown]];
             break;
         case tCurrentLocation:
-            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tCurrentLocation]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tCurrentLocation]];
             break;
         case tHighSchool:
-            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tHighSchool]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tHighSchool]];
             break;
         case tCollege:
-            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tCollege]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tCollege]];
             break;
         case tGradSchool:
-            [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tGradSchool]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tGradSchool]];
             break;
         case tWork:
-           [self makeAnnotationFromDict:[delegate.mainDataManager.peopleContainer getFriendGroupingForLocType:tWork]];
+           [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tWork]];
             break;
         default:
             DebugLog(@"Warning: hitting default case");
@@ -316,6 +441,7 @@
     Timer * t = [[Timer alloc] init];
     /*Call Methods for info*/
     FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
+    [fbDataHandler setProgressUpdaterDelegate:self];
     [fbDataHandler getCurrentLocation];
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
@@ -360,33 +486,33 @@
 					action:@selector(showDetail:)
 		  forControlEvents:UIControlEventTouchUpInside];
     
-//	if (annotation.type==0){
-//        
-//        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
-//        //have a sequential animation that looks better.
-//        
-//		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
-//										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
-//		pinView.animatesDrop=YES;
-//		pinView.canShowCallout=YES;
-//		pinView.pinColor=MKPinAnnotationColorGreen;
-//		pinView.rightCalloutAccessoryView = rightButton;
-//        
-//		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-//		pinView.leftCalloutAccessoryView = profileIconView;
-//        
-//		return pinView;
-//	}
-//    
-//	else{
+    //	if (annotation.type==0){
+    //        
+    //        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
+    //        //have a sequential animation that looks better.
+    //        
+    //		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
+    //										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
+    //		pinView.animatesDrop=YES;
+    //		pinView.canShowCallout=YES;
+    //		pinView.pinColor=MKPinAnnotationColorGreen;
+    //		pinView.rightCalloutAccessoryView = rightButton;
+    //        
+    //		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+    //		pinView.leftCalloutAccessoryView = profileIconView;
+    //        
+    //		return pinView;
+    //	}
+    //    
+    //	else{
     MKAnnotationView* pinView = [[MKPinAnnotationView alloc]
-									  initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
+                                 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
     pinView.canShowCallout=YES;
     //check for different type of pin (sizes)
     
     pinView.rightCalloutAccessoryView = rightButton;
     pinView.image = [MyAnnotation getPinImage:annotation.type isFriendLocationType:isFriendAnnotationType];
-   
+    
     UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
     pinView.leftCalloutAccessoryView = profileIconView;
     //  pinView.tag = @"moreThanOnePerson";
@@ -399,7 +525,7 @@
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
-    Friend* friend = [delegate.mainDataManager.peopleContainer getFriendFromId:uid];
+    Friend* friend = [mainDataManager.peopleContainer getFriendFromId:uid];
     [self getLocationsForFriend: friend];
     [self showPins];
     NSString * buttonLabel= friend.name;

@@ -23,7 +23,8 @@
   @param:  dictionary of keys:city id with values: array of friend Id's
  */
 +(NSArray*)makeAnnotationFromDict:(NSDictionary*)groupings{
-    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
     NSMutableArray *annotations = [[NSMutableArray alloc] initWithCapacity:[groupings count]];
     NSArray *keys = [groupings allKeys];
     int i, count;
@@ -31,23 +32,24 @@
     for (i = 0; i < count; i++)
     {
         NSString * placeId = [keys objectAtIndex: i];
-        Place *loc = [delegate.mainDataManager.placeContainer getPlaceFromId:placeId];
+        Place *loc = [mainDataManager.placeContainer getPlaceFromId:placeId];
         if (!loc) {
             //If this location is Null
-            DebugLog(@"%@ does not have location",[delegate.mainDataManager.placeContainer getPlaceNameFromId:placeId]);
+            DebugLog(@"%@ does not have location",[mainDataManager.placeContainer getPlaceNameFromId:placeId]);
             continue;
         }
         MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
         annotationItem.coordinate=loc.location;
+        //DebugLog(@"place: %@\n long: %d",loc.placeName, annotationItem.coordinate.longitude);
         if (annotationItem.coordinate.longitude == 0) {
-            DebugLog(@"not showing null location : %@", [delegate.mainDataManager.placeContainer getPlaceNameFromId:placeId]);
+            DebugLog(@"not showing null location : %@", [mainDataManager.placeContainer getPlaceNameFromId:placeId]);
             continue;
         }
-        annotationItem.title=[delegate.mainDataManager.placeContainer getPlaceNameFromId:placeId];
+        annotationItem.title=[mainDataManager.placeContainer getPlaceNameFromId:placeId];
         NSSet * groupPerPlace = (NSSet*)[groupings objectForKey: placeId];
         if([groupPerPlace count]==1){
             NSString *fId= [groupPerPlace anyObject];
-            NSString *fName=[delegate.mainDataManager.peopleContainer getNameFromId:fId];
+            NSString *fName=[mainDataManager.peopleContainer getNameFromId:fId];
             annotationItem.subtitle=fName;
         }
         else {
@@ -84,8 +86,10 @@
 /*Returns an array of annotations, Where each annotation is for a location coordinate of the friend
  @param:  Friend instance
  */
+//FIXME PUT IN PLACE CONTAINER
 +(NSArray*)getLocationsForFriend:(Friend *)friend{  
-    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+//    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
     NSMutableArray* annotations = [[NSMutableArray alloc]initWithCapacity:10];
     for (int type =0; type<tLocationTypeCount; type++){
         locTypeEnum locType = type;
@@ -95,11 +99,11 @@
             if([friend hasEntryForType:locType]){
                 MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
                 NSString *placeId = [friend getStringEntryForLocType:locType];
-                Place *loc = [delegate.mainDataManager.placeContainer getPlaceFromId:placeId];
+                Place *loc = [mainDataManager.placeContainer getPlaceFromId:placeId];
                 annotationItem.coordinate=loc.location;
                 annotationItem.type=locType;
                 annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
-                annotationItem.title = [delegate.mainDataManager.placeContainer getPlaceNameFromId:placeId];
+                annotationItem.title = [mainDataManager.placeContainer getPlaceNameFromId:placeId];
                 [annotations addObject:annotationItem];
             }
         } /*Dealing with Array of possible Values */
@@ -108,14 +112,14 @@
                 NSEnumerator *itemEnum = [[friend getArrayEntryForLocType:locType]objectEnumerator];
                 NSString *placeId;
                 while (placeId = [itemEnum nextObject]) {
-                    Place *loc = [delegate.mainDataManager.placeContainer getPlaceFromId:placeId];
+                    Place *loc = [mainDataManager.placeContainer getPlaceFromId:placeId];
                     /*Checks for Valid Coordinate (not valid if not found from Google Lookup)*/
                     if (loc){
                         MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
                         annotationItem.coordinate=loc.location;
                         annotationItem.type=locType;
                         annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
-                        annotationItem.title = [delegate.mainDataManager.placeContainer getPlaceNameFromId:placeId];
+                        annotationItem.title = [mainDataManager.placeContainer getPlaceNameFromId:placeId];
                         [annotations addObject:annotationItem];
                     }
                 }

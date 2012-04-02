@@ -24,4 +24,5 @@
 @property (nonatomic, retain) PeopleContainer *peopleContainer;
 @property (nonatomic, retain) FacebookImageHandler *fbImageHandler;
 
++ (id)sharedManager;
 @end
