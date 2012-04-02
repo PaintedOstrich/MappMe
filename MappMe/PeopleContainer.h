@@ -21,6 +21,7 @@
 -(void)addId:(NSString *)personId andPerson:(NSString *)personName;
 
 //Main methods called
+-(NSDictionary*)getAndSetFriendGroupingForLocType:(locTypeEnum)locType;
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType;
 -(Friend*)getFriendFromId:(NSString *)uid;
 -(NSDictionary *)getCurrentGrouping;
@@ -39,6 +40,7 @@
 
 #pragma mark - Debug
 -(NSUInteger)getNumPeople;
+-(void)printCurrentGrouping:(locTypeEnum)locType;
 -(void)printGroupings:(locTypeEnum)locType;
 -(void)printNFriends:(NSUInteger)num;
 @end

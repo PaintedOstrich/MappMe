@@ -9,7 +9,6 @@
 #import "PeopleContainer.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
-
 @implementation PeopleContainer{
     NSDictionary *currentGrouping;
     
@@ -18,6 +17,7 @@
     NSMutableDictionary *personForId;
     
 }
+
 
 @synthesize people;
 
@@ -74,7 +74,6 @@
         set of userId's for those cities
  */
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType{
-//    DebugLog(@"Loct Type : %@",[LocationTypeEnum getNameFromEnum:locType]);
     NSMutableDictionary *friendGroupings = [[NSMutableDictionary alloc] init];
     NSEnumerator *peopleIterator = [people objectEnumerator];
     Friend *tmp;
@@ -104,7 +103,13 @@
             }
         }
     }
-    currentGrouping = (NSDictionary *)friendGroupings;
+//    [self printCurrentGrouping:locType];
+    return (NSDictionary*)friendGroupings;
+}
+//methods sets current grouping, and returns grouping for a location type:
+//Method here used to allow concurrent threads to access getFriendGorupingForLocType without affecting the view variables
+-(NSDictionary*)getAndSetFriendGroupingForLocType:(locTypeEnum)locType{
+    currentGrouping = [self getFriendGroupingForLocType:locType];
     return currentGrouping;
 }
 -(NSDictionary *)getCurrentGrouping{
@@ -146,6 +151,30 @@
     return [personForId allValues];
 }
 #pragma mark - Debug
+-(void)printCurrentGrouping:(locTypeEnum)locType;{
+    NSDictionary*groupings = currentGrouping;
+    DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
+    
+    NSArray *keys;
+    int i, count;
+    NSString* place;
+    NSMutableSet *s ;
+    NSMutableString *returnString = [[NSMutableString alloc] initWithFormat:@""];    
+    keys = [groupings allKeys];
+    count = [keys count];
+    for (i = 0; i < count; i++)
+    {
+        place = [keys objectAtIndex: i];
+        s = [groupings objectForKey: place];
+        [returnString appendFormat:@"\n %@",[mainDataManager.placeContainer getPlaceNameFromId:place]];
+        NSEnumerator *setEnum = [s objectEnumerator];
+        NSString *uid;
+        while (uid = [setEnum nextObject]) {
+            [returnString appendFormat:@"\n\t %@", [mainDataManager.peopleContainer getNameFromId:uid]];
+        }
+    }
+    DebugLog(@"%@, \n%@",[LocationTypeEnum getNameFromEnum:locType], returnString);
+}
 -(void)printGroupings:(locTypeEnum)locType{
     NSDictionary*groupings = [self getFriendGroupingForLocType:locType];
     DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
@@ -169,6 +198,7 @@
             [returnString appendFormat:@"\n\t %@", [mainDataManager.peopleContainer getNameFromId:uid]];
         }
     }
+    DebugLog(@"%@, \n%@",[LocationTypeEnum getNameFromEnum:locType], returnString);
 }
 -(NSUInteger)getNumPeople{
     return [people count];

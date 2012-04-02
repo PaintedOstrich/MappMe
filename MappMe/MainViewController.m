@@ -412,22 +412,22 @@
     [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
     switch(locType){
         case tHomeTown:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tHomeTown]];
             break;
         case tCurrentLocation:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getFriendGroupingForLocType:tCurrentLocation]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tCurrentLocation]];
             break;
         case tHighSchool:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getFriendGroupingForLocType:tHighSchool]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tHighSchool]];
             break;
         case tCollege:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getFriendGroupingForLocType:tCollege]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tCollege]];
             break;
         case tGradSchool:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getFriendGroupingForLocType:tGradSchool]];
+            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tGradSchool]];
             break;
         case tWork:
-           [self makeAnnotationFromDict:[mainDataManager.peopleContainer getFriendGroupingForLocType:tWork]];
+           [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tWork]];
             break;
         default:
             DebugLog(@"Warning: hitting default case");
@@ -485,33 +485,33 @@
 					action:@selector(showDetail:)
 		  forControlEvents:UIControlEventTouchUpInside];
     
-//	if (annotation.type==0){
-//        
-//        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
-//        //have a sequential animation that looks better.
-//        
-//		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
-//										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
-//		pinView.animatesDrop=YES;
-//		pinView.canShowCallout=YES;
-//		pinView.pinColor=MKPinAnnotationColorGreen;
-//		pinView.rightCalloutAccessoryView = rightButton;
-//        
-//		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-//		pinView.leftCalloutAccessoryView = profileIconView;
-//        
-//		return pinView;
-//	}
-//    
-//	else{
+    //	if (annotation.type==0){
+    //        
+    //        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
+    //        //have a sequential animation that looks better.
+    //        
+    //		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
+    //										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
+    //		pinView.animatesDrop=YES;
+    //		pinView.canShowCallout=YES;
+    //		pinView.pinColor=MKPinAnnotationColorGreen;
+    //		pinView.rightCalloutAccessoryView = rightButton;
+    //        
+    //		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+    //		pinView.leftCalloutAccessoryView = profileIconView;
+    //        
+    //		return pinView;
+    //	}
+    //    
+    //	else{
     MKAnnotationView* pinView = [[MKPinAnnotationView alloc]
-									  initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
+                                 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
     pinView.canShowCallout=YES;
     //check for different type of pin (sizes)
     
     pinView.rightCalloutAccessoryView = rightButton;
     pinView.image = [MyAnnotation getPinImage:annotation.type isFriendLocationType:isFriendAnnotationType];
-   
+    
     UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
     pinView.leftCalloutAccessoryView = profileIconView;
     //  pinView.tag = @"moreThanOnePerson";
