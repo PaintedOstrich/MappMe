@@ -14,4 +14,6 @@
 -(void)getCurrentLocation;
 -(void)getHometownLocation;
 -(void)getEducationInfo;
+
+-(void)setProgressUpdaterDelegate:(id)delegate;
 @end

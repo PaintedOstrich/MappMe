@@ -353,6 +353,8 @@
 			children = (
 				68082C01151A81D400C12A91 /* FacebookImageHandler.h */,
 				68082C02151A81D400C12A91 /* FacebookImageHandler.m */,
+				68BEE573152945B800E2433D /* DataProgressUpdater.h */,
+				68BEE574152945B800E2433D /* DataProgressUpdater.m */,
 				689175BB151D0C3D00078BE2 /* FacebookDataHandler.h */,
 				689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */,
 			);
@@ -460,8 +462,6 @@
 		A9A0AC511502D8C70020265D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				68BEE573152945B800E2433D /* DataProgressUpdater.h */,
-				68BEE574152945B800E2433D /* DataProgressUpdater.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";

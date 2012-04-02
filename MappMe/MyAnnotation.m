@@ -40,7 +40,7 @@
         }
         MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
         annotationItem.coordinate=loc.location;
-        DebugLog(@"place: %@\n long: %d",loc.placeName, annotationItem.coordinate.longitude);
+        //DebugLog(@"place: %@\n long: %d",loc.placeName, annotationItem.coordinate.longitude);
         if (annotationItem.coordinate.longitude == 0) {
             DebugLog(@"not showing null location : %@", [mainDataManager.placeContainer getPlaceNameFromId:placeId]);
             continue;

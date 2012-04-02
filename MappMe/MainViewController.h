@@ -10,20 +10,16 @@
 #import <MapKit/MapKit.h>
 #import "MBProgressHUD.h"
 #import "FriendSearchViewController.h"
+#import "DataProgressUpdater.h"
 
 /*Main Controller Interface*/
 
-@protocol ProgressUpdaterDelegate
-- (void)updateProgressBar:(float)progressAmount;
-@end
-
-@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, FriendSearchViewControllerDelegate> {
-    id<ProgressUpdaterDelegate> progressUpdaterDelegate;
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, ProgressUpdaterDelegate, FriendSearchViewControllerDelegate> {
     IBOutlet MKMapView* mapView;
-    IBOutlet UIButton* locationTypeBtn;
+//    IBOutlet UIButton* locationTypeBtn;
 }
 
-@property (retain) id<ProgressUpdaterDelegate> progressUpdaterDelegate;
+
 
 @end
 

@@ -80,7 +80,7 @@
     NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps/geo?q=%@&output=csv", 
                            [lookup stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     
-    DebugLog(@"lookup\n\t %@", urlString);
+//    DebugLog(@"lookup\n\t %@", urlString);
     while(TRUE){
         NSString *locationString = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlString] encoding:NSASCIIStringEncoding error:nil];
         NSArray *listItems = [locationString componentsSeparatedByString:@","];
@@ -93,7 +93,7 @@
         }else{
             numTries++;
             if(numTries>=12){
-                DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",urlString);
+//                DebugLog(@"Failed finding Coords for Lookup String: \n\t %@",urlString);
                 return location;
             } 
         }

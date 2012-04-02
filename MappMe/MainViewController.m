@@ -28,11 +28,11 @@
 -(void)showCollege;
 -(void)showGrad;
 
--(void)addLoadScreen;
+-(void)addLoadView;
 -(void)updateProgressBar:(float)progressAmount;
+-(void)showLocationMenu;
 @end
 
-@synthesize progressUpdaterDelegate;
 
 @implementation MainViewController{
 //    MappMeAppDelegate *delegate;
@@ -43,9 +43,10 @@
     NSString *selectedPerson;
     locTypeEnum currDisplayedType;
     
-    IBOutlet UITableView *tableView;
+//    IBOutlet UITableView *tableView;
     
     //Display private variables
+    UIButton * locationTypeBtn;
     UIView *displayTypeContainer;
     UIView *personSearchContainer;
     UIView *loadScreenContainer;
@@ -74,8 +75,8 @@
     //Set Bools for view methods
     displayTypeContainerIsShown = FALSE;
     
-    [self addLoadScreen];
-    [self updateProgressBar:.5];
+    [self addLoadView];
+//    [self updateProgressBar:0.0];
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
@@ -94,7 +95,7 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
     mapView = nil;
-    locationTypeBtn = nil;
+//    locationTypeBtn = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -175,7 +176,36 @@
 }
 
 #pragma mark - Custom Loading View and Logic
--(void)addLoadScreen{
+-(void)pushSearchController{
+    [self performSegueWithIdentifier:@"searchview" sender:self];
+//    [self presentModalViewController: animated:YES]
+}
+-(void)addTopNavView{
+    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    [navContainer setAlpha:0.0];                                                   
+    
+    locationTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    locationTypeBtn.frame = CGRectMake(9, 7, 98, 37);
+    [locationTypeBtn setTitle:@"Current Location" forState:UIControlStateNormal];
+    locationTypeBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [locationTypeBtn addTarget:self action:@selector(showLocationMenu) forControlEvents:UIControlEventTouchDown];
+    [navContainer addSubview:locationTypeBtn];
+    
+    UIButton *search = [UIButton buttonWithType:UIButtonTypeCustom];
+    search.contentMode = UIViewContentModeScaleToFill;
+    [search setBackgroundImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+    [search addTarget:self action:@selector(pushSearchController) forControlEvents:UIControlEventTouchUpInside];
+    search.frame = CGRectMake(271, 7.0, 42.0, 37.0);//width and height should be same value
+    search.layer.cornerRadius = 25;//half of the width
+    [navContainer addSubview:search];
+    
+    [self.view addSubview:navContainer];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.45];
+    [navContainer setAlpha:1.0];
+    [UIView commitAnimations];
+}
+-(void)addLoadView{
     //Create main view container
     loadScreenContainer = [[UIView alloc] initWithFrame:CGRectMake(0, -20, 320, 80)];
     [loadScreenContainer setAlpha:0.0];
@@ -237,16 +267,23 @@
     [UIView commitAnimations];
     [loadScreenContainer removeFromSuperview];
 }
+
+#pragma mark - progress bar delegate methods
+-(void)finishedLoading{
+    DebugLog(@"called finished loading");
+    [self removeLoadScreen];
+    [self addTopNavView];
+}
 - (void)updateProgressBar:(float)progressAmount{
     //How to avoid updating this if object is nil;
-    DebugLog(@"updating progress bar");
+//    DebugLog(@"main controller update progress bar called with amount :%f",progressAmount);
     if (loadScreenProgressBar==nil) {
         DebugLog(@"WARNING: Trying to update nil progress bar");
     }else{
-        [self performSelectorOnMainThread:setProgress withObject:<#(id)#> waitUntilDone:<#(BOOL)#>[loadScreenProgressBar setProgress:progressAmount animated:YES];
+        [loadScreenProgressBar setProgress:progressAmount animated:YES];
     } 
 }
-#pragma mark - Custom Person Search and Button Views 
+#pragma mark - Custom Person Search 
 -(NSArray*) getFriendsInCity:(NSString*) cityName{
     NSString * city_id = [mainDataManager.placeContainer getIdFromPlace:selectedCity];
     
@@ -254,9 +291,9 @@
     return [[currentGrouping objectForKey:city_id] allObjects];
 }
 
-
+#pragma mark - Custom View Methods
 //Helper method to create buttons for the location type menu (Used in showLocationMenu)
--(UIButton*) createButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
+-(UIButton*) createMenuButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [btn setTitle:title forState:UIControlStateNormal];
     btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
@@ -284,7 +321,7 @@
 }
 
 //Adds subview of menu selection for current location, hometown, high school, etc.
--(IBAction)showLocationMenu{
+-(void)showLocationMenu{
     //Don't add subview twice
     if(displayTypeContainerIsShown){
         return;
@@ -303,23 +340,23 @@
     [displayTypeContainer addSubview:[self createCloseBtn]];
     
     /*Navigation Buttons*/
-    UIButton *curButton = [self createButton:@"Current Location" yCordinate:20 locType:tCurrentLocation];
+    UIButton *curButton = [self createMenuButton:@"Current Location" yCordinate:20 locType:tCurrentLocation];
     [curButton addTarget:self action:@selector(showCurrentLoc) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:curButton];
     
-    UIButton *homeButton = [self createButton:@"Hometown" yCordinate:70 locType:tHomeTown];
+    UIButton *homeButton = [self createMenuButton:@"Hometown" yCordinate:70 locType:tHomeTown];
     [homeButton addTarget:self  action:@selector(showHometown) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:homeButton];
     
-    UIButton *highButton = [self createButton:@"High School" yCordinate:120 locType:tHighSchool];
+    UIButton *highButton = [self createMenuButton:@"High School" yCordinate:120 locType:tHighSchool];
     [highButton addTarget:self  action:@selector(showHighSchool) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:highButton];
 
-    UIButton *collButton = [self createButton:@"College" yCordinate:170 locType:tCollege];
+    UIButton *collButton = [self createMenuButton:@"College" yCordinate:170 locType:tCollege];
     [collButton addTarget:self  action:@selector(showCollege) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:collButton];
 
-    UIButton *gradButton = [self createButton:@"Graduate School" yCordinate:220 locType:tGradSchool];
+    UIButton *gradButton = [self createMenuButton:@"Graduate School" yCordinate:220 locType:tGradSchool];
     [gradButton addTarget:self  action:@selector(showGrad) forControlEvents:UIControlEventTouchDown];
     [displayTypeContainer addSubview:gradButton];
     /*End Navigation Buttons*/
@@ -337,7 +374,6 @@
     [UIView beginAnimations:nil context:nil];
     [displayTypeContainer setAlpha:1.0];
     [UIView commitAnimations];
-
 }
 
 
@@ -401,6 +437,7 @@
     Timer * t = [[Timer alloc] init];
     /*Call Methods for info*/
     FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
+    [fbDataHandler setProgressUpdaterDelegate:self];
     [fbDataHandler getCurrentLocation];
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];

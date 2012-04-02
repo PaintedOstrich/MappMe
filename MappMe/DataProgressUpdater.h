@@ -7,7 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LocationTypeEnum.h"
 
-@interface DataProgressUpdater : NSObject
+@protocol ProgressUpdaterDelegate
+- (void)updateProgressBar:(float)progressAmount;
+-(void)finishedLoading;
+@end
 
+
+@interface DataProgressUpdater : NSObject{
+    id<ProgressUpdaterDelegate> progressUpdaterDelegate;
+}
+
+-(void)incrementSum:(locTypeEnum)locType;
+-(void)setTotal:(int)total forType:(locTypeEnum)locType;
+-(void)setFinishedTotal:(locTypeEnum)locType;
+//Helper to distinguish current loc and hometown lookup
+-(BOOL)hometownSet;
+
+@property (retain) id<ProgressUpdaterDelegate> progressUpdaterDelegate;
 @end
