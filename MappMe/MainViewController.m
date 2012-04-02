@@ -181,8 +181,8 @@
 //    [self presentModalViewController: animated:YES]
 }
 -(void)addTopNavView{
-    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    [navContainer setAlpha:0.0];                                                   
+    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, -100, 320, 44)];
+//    [navContainer setAlpha:0.0];                                                   
     
     locationTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     locationTypeBtn.frame = CGRectMake(9, 7, 98, 37);
@@ -201,8 +201,9 @@
     
     [self.view addSubview:navContainer];
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.45];
-    [navContainer setAlpha:1.0];
+    [UIView setAnimationDuration:2];
+    [navContainer setTransform:CGAffineTransformMakeTranslation(0, 100.0)];
+//    [navContainer setAlpha:1.0];
     [UIView commitAnimations];
 }
 -(void)addLoadView{
@@ -260,19 +261,21 @@
     [loadScreenContainer setAlpha:1.0];
     [UIView commitAnimations];
 }
--(void)removeLoadScreen{
+-(void)hideLoadScreen{
+    
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.45];
-    [loadScreenContainer setAlpha:0.0];
+    [UIView setAnimationDuration:1.45];
+    [loadScreenContainer setTransform:CGAffineTransformMakeTranslation(0, -100.0)];
     [UIView commitAnimations];
-    [loadScreenContainer removeFromSuperview];
 }
 
 #pragma mark - progress bar delegate methods
 -(void)finishedLoading{
     DebugLog(@"called finished loading");
-    [self removeLoadScreen];
+    [self hideLoadScreen];
     [self addTopNavView];
+    //Calling this removes animation...?
+//    [loadScreenContainer removeFromSuperview];
 }
 - (void)updateProgressBar:(float)progressAmount{
     //How to avoid updating this if object is nil;
