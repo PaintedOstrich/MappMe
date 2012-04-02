@@ -72,6 +72,7 @@
                         <outlet property="mapView" destination="zaN-EA-gR1" id="hcs-ST-mCZ"/>
                         <segue destination="jKP-RX-6AY" kind="push" identifier="showdetaillist" id="6Tq-j3-iIZ"/>
                         <segue destination="lvy-TQ-8oc" kind="push" identifier="showwebview" id="fOb-4Y-zbr"/>
+                        <segue destination="6Yj-bg-qVr" kind="push" identifier="searchview" id="Xu9-6B-ila"/>
                     </connections>
                 </viewController>
             </objects>
@@ -106,6 +107,7 @@
                             <outlet property="delegate" destination="6Yj-bg-qVr" id="WG3-6m-fmj"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="4tf-Az-GrU"/>
                     <connections>
                         <outlet property="searchBar" destination="dmR-1G-DKH" id="jfw-QG-e2S"/>
                     </connections>

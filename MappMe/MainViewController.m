@@ -177,6 +177,7 @@
 
 #pragma mark - Custom Loading View and Logic
 -(void)pushSearchController{
+    DebugLog(@"changing to search controller");
     [self performSegueWithIdentifier:@"searchview" sender:self];
 //    [self presentModalViewController: animated:YES]
 }
