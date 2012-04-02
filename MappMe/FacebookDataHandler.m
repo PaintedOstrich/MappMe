@@ -139,8 +139,6 @@
     } 
     if ([locTypeString isEqualToString:@"hometown_location"]){
         locType = tHomeTown;
-        [dataProgressUpdater setTotal:[friends count] forType:tHomeTown];
-        
     }
     if (locType != tHomeTown && locType != tCurrentLocation &&![locTypeString isEqualToString:@"education"] ){
         DebugLog(@"Warning: locType set incorrectly");
@@ -165,6 +163,9 @@
         [mainDataManager.placeContainer addId:town_id andPlaceName:town_name];
         [mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
         
+    }
+    if(locType == tHomeTown){
+        [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]count] forType:tHomeTown];
     }
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
@@ -219,9 +220,6 @@
     NSDictionary *friendsEdu = [bas_info objectForKey:@"fql_result_set"];
     NSEnumerator *friendsEnum = [friendsEdu objectEnumerator];
     //used for progress updater
-    int numHS=0;
-    int numCol=0;
-    int numGrad = 0;
     while ((friendsTemp = (NSDictionary *)[friendsEnum nextObject])) {
         if([[friendsTemp objectForKey:@"education"]count]==0){
             continue;
@@ -235,26 +233,16 @@
             NSString * school_name = (NSString*)[[school objectForKey:@"school"]objectForKey:@"name"];
             NSString * school_type = (NSString*)[school objectForKey:@"type"];
             locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
-            if (placeType == tHighSchool) {
-                numHS++;
-            }
-            if(placeType ==tCollege){
-                numCol++;
-            } 
-            if(placeType ==tGradSchool){
-                numGrad++;
-            }
             //                    DebugLog(@"%@ -  %@, %@", school_name, school_type, school_id);
             [schoolTypeMapping setObject:school_type forKey:school_id];
             [mainDataManager.placeContainer addId:school_id andPlaceName:school_name];
             [mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:school_id andTypeId:placeType];
         }
     }
-    DebugLog(@"num hs = %i",numHS);
     //Set totals for progress updater
-    [dataProgressUpdater setTotal:numHS forType:tHighSchool];
-    [dataProgressUpdater setTotal:numCol forType:tCollege];
-    [dataProgressUpdater setTotal:numGrad forType:tGradSchool];
+    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHighSchool]count] forType:tHighSchool];
+    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tCollege]count] forType:tCollege];
+    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tGradSchool]count] forType:tGradSchool];
 }
 -(void)parseFacebookInfoController: (NSDictionary *)infoArray{
 	NSEnumerator *enumerator = [infoArray objectEnumerator];
