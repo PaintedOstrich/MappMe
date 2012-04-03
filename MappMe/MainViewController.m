@@ -273,7 +273,7 @@
 #pragma mark - progress bar delegate methods
 -(void)finishedLoading{
     DebugLog(@"called finished loading");
-    [self hideLoadScreen];
+  //  [self hideLoadScreen];
     [self addTopNavView];
     //Calling this removes animation...?
 //    [loadScreenContainer removeFromSuperview];
@@ -401,7 +401,7 @@
     [mapView removeAnnotations:annotations];
 }
 -(void)showLocationType:(locTypeEnum)locType{
-    [[mainDataManager peopleContainer] printGroupings:locType];
+    //[[mainDataManager peopleContainer] printGroupings:locType];
     [self closeLocationMenu];
     [self clearMap];
     currDisplayedType = locType;
