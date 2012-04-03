@@ -214,6 +214,7 @@
     [dataProgressUpdater setFinishedTotal:tHighSchool];
     [dataProgressUpdater setFinishedTotal:tCollege];
     [dataProgressUpdater setFinishedTotal:tGradSchool];
+    [dataProgressUpdater endLoader];
 }
 -(void)parseFbFriendsEdu:(NSDictionary*)bas_info{
     NSDictionary *friendsTemp;

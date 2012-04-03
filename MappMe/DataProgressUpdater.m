@@ -77,10 +77,15 @@
     //DebugLog([self printTotals]);
     SEL update = @selector(callUpdateProgressProtocol:);
     [self performSelectorOnMainThread:update withObject:totalDec waitUntilDone:NO];
-    if (total >=1.0) {
+    if (total >=1) {
         SEL finished = @selector(callFinishedLoading);
-        [self performSelectorOnMainThread:finished withObject:nil waitUntilDone:NO];
+       // [self performSelectorOnMainThread:finished withObject:nil waitUntilDone:NO];
     }
+}
+-(void)endLoader{
+    DebugLog(@"manually called finished loading");
+    SEL finished = @selector(callFinishedLoading);
+    [self performSelectorOnMainThread:finished withObject:nil waitUntilDone:NO];
 }
 //Helper method to check for zero divisor and output alert!
 -(BOOL)notDivideByZero:(locTypeEnum)locType{

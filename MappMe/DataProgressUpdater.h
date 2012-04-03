@@ -22,6 +22,7 @@
 -(void)incrementSum:(locTypeEnum)locType;
 -(void)setTotal:(int)total forType:(locTypeEnum)locType;
 -(void)setFinishedTotal:(locTypeEnum)locType;
+-(void)endLoader;
 //Helper to distinguish current loc and hometown lookup
 -(BOOL)hometownSet;
 
