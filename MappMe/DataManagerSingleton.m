@@ -55,4 +55,12 @@ static DataManagerSingleton *mainDataManager = nil;
     return self;
 }
 
+-(void)clearData {
+    //Quick and dirty, reinit all data stores so they are empty again.
+    placeContainer = [[PlaceContainer alloc] init];
+    peopleContainer =[[PeopleContainer alloc] init];
+    userInfoLog = [[UserInfoLog alloc] init];
+    fbImageHandler = [[FacebookImageHandler alloc] init];
+}
+
 @end
