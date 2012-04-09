@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
+#import "DataManagerSingleton.h"
 
 @implementation LoginViewController{
     MappMeAppDelegate *delegate;
@@ -108,6 +109,8 @@
  * Called when the request logout has succeeded.
  */
 - (void)fbDidLogout {
+    //Clear all data when user log out
+    [[DataManagerSingleton sharedManager] clearData];
     // Remove saved authorization information if it exists and it is
     // ok to clear it (logout, session invalid, app unauthorized)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
