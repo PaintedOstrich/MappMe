@@ -37,9 +37,23 @@
     MKCoordinateRegion region;
     region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
     region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
-    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1; // Add a little extra space on the sides
-    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1; // Add a little extra space on the sides
+    region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.2; // Add a little extra space on the sides
+    region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.2; // Add a little extra space on the sides
     
+    float minBoxSize = 10;
+    region.span.latitudeDelta = fmax(minBoxSize,  region.span.latitudeDelta);
+    region.span.longitudeDelta = fmax(minBoxSize, region.span.longitudeDelta);
+    
+    //NSLog(@"BEFORE region.center.longitude: %f", region.center.longitude);
+    if (region.span.longitudeDelta > 60) {
+        //Try to shift the map towards USA
+        float USAEastLongitude = -75.5;
+        if (region.center.longitude > USAEastLongitude) {
+          region.center.longitude = region.center.longitude - 30;   
+        }
+    }
+    
+    //NSLog(@"latitudeDelta: %f, Longgi Delta: %f, region.center.longitude: %f", region.span.latitudeDelta, region.span.longitudeDelta, region.center.longitude);
     region = [mapView regionThatFits:region];
     [mapView setRegion:region animated:YES];
 }
