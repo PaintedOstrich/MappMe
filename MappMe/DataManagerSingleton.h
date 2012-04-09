@@ -25,4 +25,8 @@
 @property (nonatomic, retain) FacebookImageHandler *fbImageHandler;
 
 + (id)sharedManager;
+/*
+ * used to clear all data in this data manager singleton. (when we log out for example).
+ */
+- (void)clearData;
 @end
