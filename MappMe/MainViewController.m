@@ -6,14 +6,12 @@
 
 #import "MainViewController.h"
 #import "DebugLog.h"
-#import "MappMeAppDelegate.h"
 #import "Timer.h"
 #import "MyAnnotation.h"
 #import "WebViewController.h"
 #import "ListViewController.h"
 #import "FacebookDataHandler.h"
 #import "ZoomHelper.h"
-#import "DataProgressUpdater.h"
 #import "DataManagerSingleton.h"
 
 #import <QuartzCore/QuartzCore.h>
@@ -36,15 +34,12 @@
 
 
 @implementation MainViewController{
-//    MappMeAppDelegate *delegate;
     DataManagerSingleton * mainDataManager;
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
     NSString *selectedCity;
     NSString *selectedPerson;
     locTypeEnum currDisplayedType;
-    
-//    IBOutlet UITableView *tableView;
     
     //Display private variables
     UIButton * locationTypeBtn;
@@ -63,7 +58,6 @@
     [super viewDidLoad];
     [mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:20];
-//    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDataManager = [DataManagerSingleton sharedManager];
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -71,14 +65,10 @@
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
     
-    //Register Updater Delegate
-//    progressUpdaterDelegate = 
-    
     //Set Bools for view methods
     displayTypeContainerIsShown = FALSE;
     
     [self addLoadView];
-//    [self updateProgressBar:0.0];
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
@@ -94,10 +84,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
     mapView = nil;
-//    locationTypeBtn = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
