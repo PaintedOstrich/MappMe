@@ -19,6 +19,8 @@
 @implementation DataProgressUpdater{
     float hometownSum, highSchoolSum, collegeSum, gradSchoolSum, workSum;
     int hometownEntries,highSchoolEntries, collegeEntries,gradSchoolEntries, workEntries;
+    
+    BOOL calledEndUpdater, calledShowMenu;
 }
 
 @synthesize progressUpdaterDelegate;
@@ -35,7 +37,6 @@
         gradSchoolSum=0;
         workEntries=0;
         workSum=0;
-        
     }
     return self;
 }
@@ -44,7 +45,16 @@
     [progressUpdaterDelegate updateProgressBar:[progress floatValue]];
 }
 -(void)callFinishedLoading{
-    [progressUpdaterDelegate finishedLoading];
+    if(!calledEndUpdater){
+        [progressUpdaterDelegate finishedLoading];
+    }
+    calledEndUpdater = TRUE;
+}
+-(void)callShowMainMenu{
+    if(!calledShowMenu){
+        [progressUpdaterDelegate showDisplayMenu];
+    }
+    calledShowMenu = TRUE;
 }
 //Debug
 -(NSString*)printTotals{
@@ -78,8 +88,12 @@
     SEL update = @selector(callUpdateProgressProtocol:);
     [self performSelectorOnMainThread:update withObject:totalDec waitUntilDone:NO];
     if (total >=1) {
-        SEL finished = @selector(callFinishedLoading);
-       // [self performSelectorOnMainThread:finished withObject:nil waitUntilDone:NO];
+       SEL finished = @selector(callFinishedLoading);
+       [self performSelectorOnMainThread:finished withObject:nil waitUntilDone:NO];
+    }
+    if (total >=ht) {
+        SEL showMain = @selector(callShowMainMenu);
+        [self performSelectorOnMainThread:showMain withObject:nil waitUntilDone:NO];
     }
 }
 -(void)endLoader{
