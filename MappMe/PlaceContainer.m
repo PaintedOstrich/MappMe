@@ -10,6 +10,7 @@
 #import "CoordinateLookupManager.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
+#import "CoordPairsHelper.h"
 
 
 @implementation PlaceContainer{
@@ -59,13 +60,16 @@
     //Get place name from instance Variable
     Place *place = [self getPlaceFromId:place_id];
     /*Note: Can Be Nil*/
-    CoordPairsHelper *coordpair= [[CoordinateLookupManager sharedManager] manageCoordLookupForEdu:place.placeName
-                                                               withSupInfo:loc andTypeString:placeTypeName];
-    place.location = coordpair.location;
-    if (place && coordpair.location.longitude!= 0){
-        [placeAndCoords setObject:place forKey:place_id];
-    }
+    
+    [[CoordinateLookupManager sharedManager] lookupLocation:place.placeName successCB:^(CoordPairsHelper * coordpair) {
+        place.location = coordpair.location;
+        if (place && coordpair.location.longitude!= 0){
+            [placeAndCoords setObject:place forKey:place_id];
+        }
 
+    } failureCB:^(NSError *error) {
+        //TODO
+    }];
 }
 //Adds coords from passed in parameters
 //Should always be called on exisiting place
