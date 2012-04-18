@@ -17,8 +17,8 @@ static NSString * kAppId = @"291279594218895";
     backgroundQueue = dispatch_queue_create("com.paintedostrich.mappme.bgqueue", NULL);
     
     //Initialize Login View Controller
-    LoginViewController *controller = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-    facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:controller];
+    LoginViewController *loginController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
+    facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:loginController];
 
     //Facebook SingleSignon persist state
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -30,7 +30,7 @@ static NSString * kAppId = @"291279594218895";
 
     //If facebook session is not valid, show loginview, otherwise defaults to main map view
     if(![facebook isSessionValid]){ 
-        self.window.rootViewController = controller;
+        self.window.rootViewController = loginController;
         [self.window makeKeyAndVisible];
     }
     return YES;
