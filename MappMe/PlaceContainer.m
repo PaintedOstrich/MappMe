@@ -59,7 +59,7 @@
     //Get place name from instance Variable
     Place *place = [self getPlaceFromId:place_id];
     /*Note: Can Be Nil*/
-    CoordPairsHelper *coordpair= [CoordinateLookupManager manageCoordLookupForEdu:place.placeName
+    CoordPairsHelper *coordpair= [[CoordinateLookupManager sharedManager] manageCoordLookupForEdu:place.placeName
                                                                withSupInfo:loc andTypeString:placeTypeName];
     place.location = coordpair.location;
     if (place && coordpair.location.longitude!= 0){

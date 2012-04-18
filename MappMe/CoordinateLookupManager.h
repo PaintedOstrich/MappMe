@@ -12,7 +12,9 @@
 
 @interface CoordinateLookupManager : NSObject
 
-+(CoordPairsHelper *)manageCoordLookupForPlace:(NSString *)lookupString;
-+(CoordPairsHelper *)manageCoordLookupForEdu:(NSString *)placeName withSupInfo:(NSDictionary*)supInfo 
+-(CoordPairsHelper *)manageCoordLookupForPlace:(NSString *)lookupString;
+-(CoordPairsHelper *)manageCoordLookupForEdu:(NSString *)placeName withSupInfo:(NSDictionary*)supInfo 
                          andTypeString:(NSString *)schoolType;
+
++ (id)sharedManager;
 @end
