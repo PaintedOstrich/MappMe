@@ -8,17 +8,14 @@
 
 #import "FacebookDataHandler.h"
 #import "LocationTypeEnum.h"
-#import "SBJSON.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
 #import "DataProgressUpdater.h"
 #import "AFJSONRequestOperation.h"
-#import "ASIHTTPRequest.h"
 #import "DataManagerSingleton.h"
 
 @interface FacebookDataHandler()
 -(void)parseFacebookInfoController: (NSDictionary *)infoArray;
--(void)doAsynchGraphGetWithUrlString:(NSURL *)sourceURL;
 
 @end
 @implementation FacebookDataHandler{
@@ -77,52 +74,36 @@
     [queue addOperation:operation];
 }
 
-////Synchronous Version of FB Graph Requests
-//- (NSString *)doGraphGetWithUrlString:(NSString *)url_string {
-//	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url_string]];
-//	
-//    NSString * returnString;
-//	NSError *err;
-//	NSURLResponse *resp;
-//	NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:&resp error:&err];
-//	
-//	if (resp != nil) {
-//        returnString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
-//		
-//	} else if (err != nil) {
-//		DebugLog(@"error", err);
-//    }
-//	
-//	return returnString;
-//	
-//}
-//- (NSDictionary *)doMultiQuery:(NSString *)action {	
-//    MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-//    NSString * accessToken = (NSString *)[[delegate facebook] accessToken];
-//    NSString *url_string = [NSString stringWithFormat:@"https://graph.facebook.com/fql?q=%@", action];
-//	
-//    /**********String Format *****************/
-//    /*$fql_multiquery_url = 'https://graph.facebook.com/'
-//     . 'fql?q={"all+friends":"SELECT+uid2+FROM+friend+WHERE+uid1=me()",'
-//     . '"my+name":"SELECT+name+FROM+user+WHERE+uid=me()"}'
-//     . '&' . $access_token;
-//     */
-//    
-//	if (accessToken != nil) {
-//		//now that any variables have been appended, let's attach the access token....
-//		url_string = [NSString stringWithFormat:@"%@&access_token=%@", url_string, accessToken];
-//	}
-//	//encode the string
-//	url_string = [url_string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-////	DebugLog(@"URL STRING: %@", url_string);
-//    
-//    url_string = [self doGraphGetWithUrlString:url_string];
-//    SBJSON *parser = [[SBJSON alloc] init];
-//	NSDictionary *parsed_json = [parser objectWithString:url_string error:nil];	
-//    //Data encapsulates request
-//	NSDictionary *data = (NSDictionary *)[parsed_json objectForKey:@"data"];
-//    return data;
-//}
+
+#pragma Synchronous Method for Facebook Query
+
+- (NSDictionary *)parseJSON:(NSString *)jsonString
+{
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSError *error;
+    id resultObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if (resultObject == nil) {
+        NSLog(@"JSON Error: %@", error);
+        return nil;
+    }
+    
+    return resultObject;
+}
+
+- (NSDictionary *)doSyncMultiQuery:(NSString *)action {	
+    NSURL *url = [self buildQueryUrl:action];
+    
+    NSError *error;
+    NSString *jsonString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
+    if (jsonString == nil) {
+        NSLog(@"Query Error: %@", error);
+        return nil;
+    }
+
+	NSDictionary *data = [self parseJSON:jsonString];
+    return data;
+}
 
 #pragma mark - parsing methods for data processing
 -(void)parseFbFriends:(NSDictionary*)bas_info andCityType:(NSString*)locTypeString{
@@ -286,15 +267,15 @@
 #pragma mark - Query String Facebook Data Retrieval Methods
 -(void)getCurrentLocation{
     
-//    NSString* fql1 = [NSString stringWithFormat:
-//                      @"SELECT name,uid, current_location.name, current_location.id FROM user WHERE  uid IN (SELECT uid2 FROM friend WHERE uid1= me()) AND current_location>0 ORDER BY current_location DESC"];
-//    
-//    NSString* fql2 = [NSString stringWithFormat:
-//                      @"SELECT location.latitude,location.longitude,page_id FROM page WHERE page_id IN (SELECT current_location FROM #curLocFriends)"];
-//    NSString* fqlC = [NSString stringWithFormat:
-//                      @"{\"curLocFriends\":\"%@\",\"location\":\"%@\"}",fql1,fql2];
-//    NSDictionary *response = [self doMultiQuery:fqlC];  
-//    [self parseFacebookInfoController:response];
+    NSString* fql1 = [NSString stringWithFormat:
+                      @"SELECT name,uid, current_location.name, current_location.id FROM user WHERE  uid IN (SELECT uid2 FROM friend WHERE uid1= me()) AND current_location>0 ORDER BY current_location DESC"];
+    
+    NSString* fql2 = [NSString stringWithFormat:
+                      @"SELECT location.latitude,location.longitude,page_id FROM page WHERE page_id IN (SELECT current_location FROM #curLocFriends)"];
+    NSString* fqlC = [NSString stringWithFormat:
+                      @"{\"curLocFriends\":\"%@\",\"location\":\"%@\"}",fql1,fql2];
+    NSDictionary *response = [self doSyncMultiQuery:fqlC];  
+    [self parseFacebookInfoController:response];
     
 }
 -(void)getHometownLocation{
@@ -306,10 +287,7 @@
                        @"SELECT location.latitude,location.longitude,name,page_id FROM page WHERE page_id IN (SELECT hometown_location FROM #hometownFriends)"];
     NSString* fqlH = [NSString stringWithFormat:
                       @"{\"hometownFriends\":\"%@\",\"location\":\"%@\"}",fqlH1,fqlH2];
-    DebugLog(@"Hometown Location Query: \n%@",fqlH);
-    [self asynchMultQueryHelper:fqlH];
-//    NSDictionary *response = [self doMultiQuery:fqlH];  
-//    [self parseFacebookInfoController:response];    
+    [self asynchMultQueryHelper:fqlH]; 
     
 }
 -(void)getEducationInfo{
@@ -321,9 +299,6 @@
                       @"{\"friendsEdu\":\"%@\",\"schoolLocation\":\"%@\"}",fqlE1,fqlE2];
    // DebugLog(@"Education Query: \n%@",fqlE);
     [self asynchMultQueryHelper:fqlE];
-//    NSDictionary *response = [self doMultiQuery:fqlE];  
-//    [self parseFacebookInfoController:response];  
 }
-
 
 @end
