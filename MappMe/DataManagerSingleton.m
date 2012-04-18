@@ -16,7 +16,6 @@
 @synthesize placeContainer;
 @synthesize userInfoLog;
 @synthesize peopleContainer;
-@synthesize fbImageHandler;
 
 static DataManagerSingleton *mainDataManager = nil;
     
@@ -50,7 +49,6 @@ static DataManagerSingleton *mainDataManager = nil;
         placeContainer = [[PlaceContainer alloc] init];
         peopleContainer =[[PeopleContainer alloc] init];
         userInfoLog = [[UserInfoLog alloc] init];
-        fbImageHandler = [[FacebookImageHandler alloc] init];
     }
     return self;
 }
