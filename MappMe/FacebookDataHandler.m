@@ -57,7 +57,6 @@
     //Asynchronous web request through block gets facebook info
     __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:sourceURL];
     [request setCompletionBlock:^{
-        DebugLog(@"returnd succes");
         SBJSON *parser = [[SBJSON alloc] init];
         NSString *responseString = [request responseString];
         NSDictionary *parsed_json = [parser objectWithString:responseString error:nil];	
@@ -92,7 +91,7 @@
         returnString = [[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding];
 		
 	} else if (err != nil) {
-		DebugLog(@"error", err);
+		DebugLog(@"Error from Graph Api: %@", err);
     }
 	
 	return returnString;
@@ -294,6 +293,7 @@
                       @"SELECT location.latitude,location.longitude,page_id FROM page WHERE page_id IN (SELECT current_location FROM #curLocFriends)"];
     NSString* fqlC = [NSString stringWithFormat:
                       @"{\"curLocFriends\":\"%@\",\"location\":\"%@\"}",fql1,fql2];
+  //  DebugLog(@"Current Location Query: \n%@",fqlC);
     NSDictionary *response = [self doMultiQuery:fqlC];  
     [self parseFacebookInfoController:response];
     
@@ -307,6 +307,7 @@
                        @"SELECT location.latitude,location.longitude,name,page_id FROM page WHERE page_id IN (SELECT hometown_location FROM #hometownFriends)"];
     NSString* fqlH = [NSString stringWithFormat:
                       @"{\"hometownFriends\":\"%@\",\"location\":\"%@\"}",fqlH1,fqlH2];
+    DebugLog(@"Hometown Location Query: \n%@",fqlH);
     [self asynchMultQueryHelper:fqlH];
 //    NSDictionary *response = [self doMultiQuery:fqlH];  
 //    [self parseFacebookInfoController:response];    
@@ -319,6 +320,7 @@
                        @"SELECT location,name,page_id FROM page WHERE page_id IN (SELECT education FROM #friendsEdu)"];
     NSString* fqlE = [NSString stringWithFormat:
                       @"{\"friendsEdu\":\"%@\",\"schoolLocation\":\"%@\"}",fqlE1,fqlE2];
+   // DebugLog(@"Education Query: \n%@",fqlE);
     [self asynchMultQueryHelper:fqlE];
 //    NSDictionary *response = [self doMultiQuery:fqlE];  
 //    [self parseFacebookInfoController:response];  

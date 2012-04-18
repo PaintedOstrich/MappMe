@@ -12,6 +12,7 @@
 @protocol ProgressUpdaterDelegate
 - (void)updateProgressBar:(float)progressAmount;
 -(void)finishedLoading;
+-(void)showDisplayMenu;
 @end
 
 

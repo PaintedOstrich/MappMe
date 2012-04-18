@@ -91,11 +91,12 @@
 //    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
     NSMutableArray* annotations = [[NSMutableArray alloc]initWithCapacity:10];
+  //  DebugLog(@"%@",friend);
     for (int type =0; type<tLocationTypeCount; type++){
         locTypeEnum locType = type;
         /*If only one value per field */
         if (![LocationTypeEnum isArrayType:locType]){
-            DebugLog(@"%@",friend);
+
             if([friend hasEntryForType:locType]){
                 MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
                 NSString *placeId = [friend getStringEntryForLocType:locType];

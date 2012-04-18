@@ -50,6 +50,7 @@
     UIView *displayTypeContainer;
     UIView *personSearchContainer;
     UIView *loadScreenContainer;
+    UIView *loadInfoContainer;
     UIProgressView *loadScreenProgressBar;
     BOOL displayTypeContainerIsShown;
     BOOL isFriendAnnotationType;
@@ -181,8 +182,11 @@
     [self performSegueWithIdentifier:@"searchview" sender:self];
 //    [self presentModalViewController: animated:YES]
 }
--(void)addTopNavView{
-    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, -100, 320, 44)];
+-(void)pushSettingsController{
+    [self performSegueWithIdentifier:@"settingsview" sender:self];
+}
+-(void)addBottomNavView{
+    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 540, 320, 44)];
 //    [navContainer setAlpha:0.0];                                                   
     
     locationTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -191,19 +195,27 @@
     locationTypeBtn.titleLabel.font = [UIFont systemFontOfSize:10];
     [locationTypeBtn addTarget:self action:@selector(showLocationMenu) forControlEvents:UIControlEventTouchDown];
     [navContainer addSubview:locationTypeBtn];
-    
+
     UIButton *search = [UIButton buttonWithType:UIButtonTypeCustom];
     search.contentMode = UIViewContentModeScaleToFill;
     [search setBackgroundImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
     [search addTarget:self action:@selector(pushSearchController) forControlEvents:UIControlEventTouchUpInside];
-    search.frame = CGRectMake(271, 7.0, 42.0, 37.0);//width and height should be same value
+    search.frame = CGRectMake(110, 7.0, 42.0, 37.0);//width and height should be same value
     search.layer.cornerRadius = 25;//half of the width
     [navContainer addSubview:search];
+    
+    UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
+    settings.contentMode = UIViewContentModeScaleToFill;
+    [settings setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
+    [settings addTarget:self action:@selector(pushSettingsController) forControlEvents:UIControlEventTouchUpInside];
+    settings.frame = CGRectMake(284, 7.0, 29.0, 31.0);//width and height should be same value
+    settings.layer.cornerRadius = 25;//half of the width
+    [navContainer addSubview:settings];
     
     [self.view addSubview:navContainer];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2];
-    [navContainer setTransform:CGAffineTransformMakeTranslation(0, 100.0)];
+    [navContainer setTransform:CGAffineTransformMakeTranslation(0, -110.0)];
 //    [navContainer setAlpha:1.0];
     [UIView commitAnimations];
 }
@@ -229,11 +241,11 @@
     [loadScreenContainer addSubview:progessScreenContainer];
     
     //Create and add info label
-    UIView *infoContainer = [[UIView alloc] initWithFrame:CGRectMake(80, 42, 160, 86)];
+    loadInfoContainer = [[UIView alloc] initWithFrame:CGRectMake(80, 42, 160, 86)];
     //Add Arrow Image
     UIImageView *arrow = [[UIImageView alloc] initWithFrame:CGRectMake(60, 17, 40, 21)];
     arrow.image = [UIImage imageNamed:@"triangle.png"];
-    [infoContainer addSubview:arrow];
+    [loadInfoContainer addSubview:arrow];
     UILabel* info = [[UILabel alloc]initWithFrame:CGRectMake(0,0,160,23)];
     info.adjustsFontSizeToFitWidth=YES;
     info.text=@"  Showing Current Location  ";
@@ -245,9 +257,9 @@
     [infoLayer setBorderWidth:2.0f];
     [infoLayer setBorderColor: [[UIColor blackColor] CGColor]];
     [infoLayer setBackgroundColor: [[UIColor whiteColor] CGColor]];
-    [infoContainer addSubview:info];
+    [loadInfoContainer addSubview:info];
 
-    [loadScreenContainer addSubview:infoContainer];
+    [loadScreenContainer addSubview:loadInfoContainer];
     
     //Rounded Container Corners
     CALayer *dtc = progessScreenContainer.layer;
@@ -269,22 +281,38 @@
     [loadScreenContainer setTransform:CGAffineTransformMakeTranslation(0, -100.0)];
     [UIView commitAnimations];
 }
-
+#pragma mark - disable/enable Edu buttons
+-(void)enableEduButtons{
+    
+}
+-(void)disableEduButtons{
+    
+}
 #pragma mark - progress bar delegate methods
 -(void)finishedLoading{
     DebugLog(@"called finished loading");
-  //  [self hideLoadScreen];
-    [self addTopNavView];
+    [self hideLoadScreen];
+
     //Calling this removes animation...?
 //    [loadScreenContainer removeFromSuperview];
 }
+-(void)showDisplayMenu{
+    [self addBottomNavView];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    [loadInfoContainer setAlpha:0.0];
+    [UIView commitAnimations];
+}
 - (void)updateProgressBar:(float)progressAmount{
+
     //How to avoid updating this if object is nil;
 //    DebugLog(@"main controller update progress bar called with amount :%f",progressAmount);
     if (loadScreenProgressBar==nil) {
         DebugLog(@"WARNING: Trying to update nil progress bar");
     }else{
         [loadScreenProgressBar setProgress:progressAmount animated:YES];
+        //Disable Edu Buttons until finished loading
+        [self disableEduButtons];
     } 
 }
 #pragma mark - Custom Person Search 
