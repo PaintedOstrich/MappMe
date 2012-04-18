@@ -295,9 +295,11 @@
 		680435E214FED94600899729 /* MappMe */ = {
 			isa = PBXGroup;
 			children = (
+				680435EB14FED94600899729 /* MappMeAppDelegate.h */,
+				680435EC14FED94600899729 /* MappMeAppDelegate.m */,
 				6804360E14FEDE1300899729 /* Util */,
 				A9A0AC511502D8C70020265D /* Views */,
-				A9A0AC501502D7D30020265D /* Models */,
+				A9A0AC501502D7D30020265D /* Data */,
 				A91AF90815008AF200FCD3D7 /* Controllers */,
 				680435E314FED94600899729 /* Supporting Files */,
 				680435EE14FED94600899729 /* MainStoryboard_iPhone.storyboard */,
@@ -355,19 +357,15 @@
 			name = "pin images";
 			sourceTree = "<group>";
 		};
-		689175BF151D0C4A00078BE2 /* ObjectModels */ = {
+		689175BF151D0C4A00078BE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				A9801D721502E1E400BA0B5B /* Friend.h */,
 				A9801D731502E1E400BA0B5B /* Friend.m */,
-				A9801D761502E1E400BA0B5B /* PeopleContainer.h */,
-				A9801D771502E1E400BA0B5B /* PeopleContainer.m */,
 				A9801D701502E1E400BA0B5B /* Place.h */,
 				A9801D711502E1E400BA0B5B /* Place.m */,
-				A9801D7A1502E1E400BA0B5B /* PlaceContainer.h */,
-				A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */,
 			);
-			name = ObjectModels;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		689175C0151D0C7000078BE2 /* MapModels */ = {
@@ -481,6 +479,17 @@
 			name = AFNetworking;
 			sourceTree = "<group>";
 		};
+		A9106558153E4D310057B570 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				A9801D761502E1E400BA0B5B /* PeopleContainer.h */,
+				A9801D771502E1E400BA0B5B /* PeopleContainer.m */,
+				A9801D7A1502E1E400BA0B5B /* PlaceContainer.h */,
+				A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */,
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
 		A913EE64150095DB009F6A84 /* PlugIns */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,20 +531,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A9A0AC501502D7D30020265D /* Models */ = {
+		A9A0AC501502D7D30020265D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				A9106558153E4D310057B570 /* Stores */,
 				68CFF09C15253F3000335C10 /* DataManagerSingleton.h */,
 				68CFF09D15253F3000335C10 /* DataManagerSingleton.m */,
-				680435EB14FED94600899729 /* MappMeAppDelegate.h */,
-				680435EC14FED94600899729 /* MappMeAppDelegate.m */,
 				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
 				A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */,
 				689175C0151D0C7000078BE2 /* MapModels */,
 				689175C1151D0CAC00078BE2 /* FacebookModels */,
-				689175BF151D0C4A00078BE2 /* ObjectModels */,
+				689175BF151D0C4A00078BE2 /* Models */,
 			);
-			name = Models;
+			name = Data;
 			sourceTree = "<group>";
 		};
 		A9A0AC511502D8C70020265D /* Views */ = {
