@@ -9,21 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LocationTypeEnum.h"
 
-@interface Friend : NSObject{
-    NSString * userId;
-    NSString * hometown;
-    NSString * currentLocation;
-    NSArray * highschool;
-    NSArray * college;
-    NSArray * gradSchool;
-    NSArray * work;
-    NSString* name;
-//    NSString* firstName;
-//    NSString* lastName;
-    //For indexing in table view
-    NSUInteger sectionNumber;
-}
+@interface Friend : NSObject
 
+@property (nonatomic, copy) NSString *profileUrl;
 @property (nonatomic, retain) NSString *hometown;
 @property (nonatomic, retain) NSString *currentLocation;
 @property (nonatomic, retain) NSArray * highschool;
@@ -31,8 +19,6 @@
 @property (nonatomic, retain) NSArray * gradSchool;
 @property (nonatomic, retain) NSArray * work;
 @property (nonatomic, retain) NSString * userId;
-//@property (nonatomic, retain) NSString * firstName;
-//@property (nonatomic, retain) NSString * lastName;
 @property (nonatomic, retain) NSString * name;
 @property  NSUInteger sectionNumber;
 

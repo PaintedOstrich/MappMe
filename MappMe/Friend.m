@@ -21,7 +21,8 @@
 @synthesize gradSchool;
 @synthesize work;
 @synthesize userId;
-@synthesize name, sectionNumber; //firstName, lastName,
+@synthesize name, sectionNumber;
+@synthesize profileUrl;
 
 
 -(id)initWithFriend:(NSString *)friendId withPlace:(NSString *)placeId LocType:(locTypeEnum)placeType andName:(NSString*)friendName{
