@@ -9,6 +9,8 @@
 #import "PeopleContainer.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
+#import "DataManagerSingleton.h"
+
 @implementation PeopleContainer{
     NSDictionary *currentGrouping;
     

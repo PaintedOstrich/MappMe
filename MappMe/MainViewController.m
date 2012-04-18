@@ -14,6 +14,7 @@
 #import "FacebookDataHandler.h"
 #import "ZoomHelper.h"
 #import "DataProgressUpdater.h"
+#import "DataManagerSingleton.h"
 
 #import <QuartzCore/QuartzCore.h>
 

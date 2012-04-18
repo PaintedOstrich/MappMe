@@ -13,6 +13,7 @@
 #import "DebugLog.h"
 #import "DataProgressUpdater.h"
 #import "ASIHTTPRequest.h"
+#import "DataManagerSingleton.h"
 
 @interface FacebookDataHandler()
 -(void)parseFacebookInfoController: (NSDictionary *)infoArray;

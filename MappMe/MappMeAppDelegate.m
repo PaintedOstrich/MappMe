@@ -1,14 +1,6 @@
-//
-//  AppDelegate.m
-//  MappMe
-//
-//  Created by Parker Spielman on 2/29/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
 
 #import "MappMeAppDelegate.h"
 #import "LoginViewController.h"
-#import "ASIHTTPRequest.h"
 
 static NSString * kAppId = @"291279594218895";
 @implementation MappMeAppDelegate

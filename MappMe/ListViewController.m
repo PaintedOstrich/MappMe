@@ -10,6 +10,7 @@
 #import "MappMeAppDelegate.h"
 #import "Friend.h"
 #import "WebViewController.h"
+#import "DataManagerSingleton.h"
 
 
 @implementation ListViewController{

@@ -10,6 +10,7 @@
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
 #import "LocationTypeEnum.h"
+#import "DataManagerSingleton.h"
 
 @implementation MyAnnotation
 

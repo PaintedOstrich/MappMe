@@ -9,6 +9,7 @@
 #import "FriendSearchViewController.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
+#import "DataManagerSingleton.h"
 
 @implementation FriendSearchViewController{
     DataManagerSingleton * mainDataManager;
