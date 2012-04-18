@@ -20,6 +20,7 @@
 @property (nonatomic, copy)		NSString*				title;
 @property (nonatomic, copy)		NSString*				subtitle;
 @property (nonatomic)		     int				    type;
+@property (nonatomic)		    NSString*				user_id;
 
 +(NSArray*)makeAnnotationFromDict:(NSDictionary*)groupings;
 +(NSArray*)getLocationsForFriend:(Friend *)friend;

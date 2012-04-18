@@ -13,6 +13,7 @@
 #import "FacebookDataHandler.h"
 #import "ZoomHelper.h"
 #import "DataManagerSingleton.h"
+#import "UIImageView+AFNetworking.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -487,6 +488,7 @@
     }
 }
 
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(MyAnnotation *)annotation
 {
 	// if it's the user location, just return nil.
@@ -502,25 +504,6 @@
 					action:@selector(showDetail:)
 		  forControlEvents:UIControlEventTouchUpInside];
     
-    //	if (annotation.type==0){
-    //        
-    //        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
-    //        //have a sequential animation that looks better.
-    //        
-    //		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
-    //										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
-    //		pinView.animatesDrop=YES;
-    //		pinView.canShowCallout=YES;
-    //		pinView.pinColor=MKPinAnnotationColorGreen;
-    //		pinView.rightCalloutAccessoryView = rightButton;
-    //        
-    //		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-    //		pinView.leftCalloutAccessoryView = profileIconView;
-    //        
-    //		return pinView;
-    //	}
-    //    
-    //	else{
     MKAnnotationView* pinView = [[MKPinAnnotationView alloc]
                                  initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
     pinView.canShowCallout=YES;
@@ -528,11 +511,15 @@
     
     pinView.rightCalloutAccessoryView = rightButton;
     pinView.image = [MyAnnotation getPinImage:annotation.type isFriendLocationType:isFriendAnnotationType];
-    
-    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-    pinView.leftCalloutAccessoryView = profileIconView;
+
     //  pinView.tag = @"moreThanOnePerson";
     
+    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+    if (annotation.user_id !=nil) {
+        Friend* friend = [[mainDataManager peopleContainer] getFriendFromId:annotation.user_id];
+        [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
+    }
+    pinView.leftCalloutAccessoryView = profileIconView;
     return pinView;
 }
 

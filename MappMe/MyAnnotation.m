@@ -18,7 +18,7 @@
 @synthesize subtitle;
 @synthesize coordinate;
 @synthesize type;
-
+@synthesize user_id;
 
 /*Returns an array of annotations, grouping all friends per place into annotation
   @param:  dictionary of keys:city id with values: array of friend Id's
@@ -52,8 +52,10 @@
             NSString *fId= [groupPerPlace anyObject];
             NSString *fName=[mainDataManager.peopleContainer getNameFromId:fId];
             annotationItem.subtitle=fName;
+            annotationItem.user_id = fId;
         }
         else {
+            annotationItem.user_id = nil;
             annotationItem.subtitle=[[NSString alloc] initWithFormat:@"%d%@",[groupPerPlace count],@" friends"];	
         }
         //Add in type of Annotation depends on num of friends

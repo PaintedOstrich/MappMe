@@ -336,8 +336,6 @@
 			children = (
 				A94C44C615059F64001FF446 /* CoordinateLookupManager.h */,
 				A94C44C715059F64001FF446 /* CoordinateLookupManager.m */,
-				A9A0AC521502D8F00020265D /* MyAnnotation.h */,
-				A9A0AC531502D8F00020265D /* MyAnnotation.m */,
 				68CFF0A21525705D00335C10 /* CoordPairsHelper.h */,
 				68CFF0A31525705D00335C10 /* CoordPairsHelper.m */,
 			);
@@ -474,6 +472,8 @@
 		A9A0AC511502D8C70020265D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A9A0AC521502D8F00020265D /* MyAnnotation.h */,
+				A9A0AC531502D8F00020265D /* MyAnnotation.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";

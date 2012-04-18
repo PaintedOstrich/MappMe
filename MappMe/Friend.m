@@ -53,7 +53,14 @@
         }
     }
     self.userId = friendId;
+    self.profileUrl = [self buildProfileUrl];
     return self;
+}
+
+-(NSString*) buildProfileUrl
+{
+    NSString* urlStr = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square", self.userId];
+    return urlStr;
 }
 
 /*NOTE:  placeId is implicitly Cast to NSDecimalNumber, 

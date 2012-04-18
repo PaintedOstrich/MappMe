@@ -11,6 +11,7 @@
 #import "Friend.h"
 #import "WebViewController.h"
 #import "DataManagerSingleton.h"
+#import "UIImageView+AFNetworking.h"
 
 
 @implementation ListViewController{
@@ -131,17 +132,13 @@
     }
     
     NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
-    cell.textLabel.text = [[mainDataManager peopleContainer] getNameFromId:friend_id];
+    Friend* friend = [[mainDataManager peopleContainer] getFriendFromId:friend_id];
+    cell.textLabel.text = friend.name;
     
-    //Parker, the following line is causing the slowness in rendering a table list with
-    //more than 20 items. Please thread your image fetching code, use a placeholder first,
-    //and swap in the right image along the way(just like what we did previously).
-    //It is not good to download profile pics when it is not needed as it takes up the user's 3G data.
-    //cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:friend_id];
-    cell.imageView.image = [UIImage imageNamed:@"profile.png"];
-    
+    [cell.imageView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
     return cell;
 }
+
 
 #pragma mark - Table view delegate
 
