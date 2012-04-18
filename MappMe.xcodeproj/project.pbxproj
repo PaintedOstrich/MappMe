@@ -891,6 +891,7 @@
 				A91C5BED153F00C200128885 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
