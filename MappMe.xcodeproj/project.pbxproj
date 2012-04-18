@@ -370,8 +370,6 @@
 		689175C1151D0CAC00078BE2 /* FacebookModels */ = {
 			isa = PBXGroup;
 			children = (
-				68BEE573152945B800E2433D /* DataProgressUpdater.h */,
-				68BEE574152945B800E2433D /* DataProgressUpdater.m */,
 				689175BB151D0C3D00078BE2 /* FacebookDataHandler.h */,
 				689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */,
 			);
@@ -515,6 +513,8 @@
 		A9A0AC511502D8C70020265D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				68BEE573152945B800E2433D /* DataProgressUpdater.h */,
+				68BEE574152945B800E2433D /* DataProgressUpdater.m */,
 				A9A0AC521502D8F00020265D /* MyAnnotation.h */,
 				A9A0AC531502D8F00020265D /* MyAnnotation.m */,
 			);
