@@ -7,10 +7,6 @@
 //
 
 #import "Person.h"
-#import "DebugLog.h"
-//#import "MappMeAppDelegate.h"
-//#import "DataManagerSingleton.h"
-
 
 @implementation Person
 
