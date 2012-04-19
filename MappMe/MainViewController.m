@@ -377,11 +377,14 @@
 
 
 #pragma mark - Map pins methods
--(void)makeAnnotations:(NSArray*)places{
+-(void)makeAnnotations:(NSArray*)places forLocType:(locTypeEnum)locType {
     //Using class as wrapper to process instances of itself
     annotations = [[NSMutableArray alloc] initWithCapacity:[[mainDataManager peopleContainer] count]];
-    NSArray* annotationItems = [MyAnnotation makeAnnotationFromDict:groupings]; 
-    [annotations addObjectsFromArray:annotationItems];
+    for(int i=0; i < [places count]; i++) {
+        Place* place = [places objectAtIndex:i];
+        MyAnnotation* anno = [[MyAnnotation alloc] initWithPlace:place forLocType:locType];
+        [annotations addObject:anno];
+    }
 }
 -(void)getLocationsForFriend:(Person *)friend{  
      annotations = [[NSMutableArray alloc] initWithCapacity:10];
@@ -417,7 +420,7 @@
     [self setBtnTitleForAllStates:locationTypeBtn withText:[LocationTypeEnum getNameFromEnum:currDisplayedType]];
     
     NSArray* relevantPlaces = [mainDataManager.placeContainer getPlacesUsedAs:locType];
-    [self makeAnnotations:relevantPlaces];
+    [self makeAnnotations:relevantPlaces forLocType:locType];
     
     //[self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:locType]];
     [self showPins];

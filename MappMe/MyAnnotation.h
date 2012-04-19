@@ -6,23 +6,23 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "Person.h"
+#import "LocationTypeEnum.h"
 
+@class Place;
 @interface MyAnnotation : NSObject<MKAnnotation> {
     
 	CLLocationCoordinate2D	coordinate;
 	NSString*				title;
 	NSString*				subtitle;
-	int				type;
+    //Will only be set if there is only one person associated with this MKAnnotation.
+    NSString*               person_id;
 }
 
 @property (nonatomic, assign)	CLLocationCoordinate2D	coordinate;
 @property (nonatomic, copy)		NSString*				title;
 @property (nonatomic, copy)		NSString*				subtitle;
-@property (nonatomic)		     int				    type;
-@property (nonatomic)		    NSString*				user_id;
+@property (nonatomic, copy)		NSString*				person_id;
 
-+(NSArray*)makeAnnotationFromDict:(NSDictionary*)groupings;
-+(NSArray*)getLocationsForFriend:(Person *)friend;
-+(UIImage*)getPinImage:(int)type isFriendLocationType:(BOOL)isFriendType;
+-(MyAnnotation*) initWithPlace:(Place*)place forLocType:(locTypeEnum)locType;
+
 @end
