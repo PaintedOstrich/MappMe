@@ -22,17 +22,6 @@ typedef enum locTypeEnum {
   tLocationTypeCount 
 } locTypeEnum;
 
-typedef enum locPinNumberEnum {
-    tOne,
-    tTwo,
-    tThree,
-    tFive,
-    tTen,
-    tFifteen,
-    tTwentyFive,
-    tForty
-} locPinNumberEnum;
-
 @interface LocationTypeEnum : NSObject {
     
 }
