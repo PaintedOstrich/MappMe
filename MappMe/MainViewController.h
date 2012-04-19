@@ -17,9 +17,6 @@
 @interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, ProgressUpdaterDelegate, FriendSearchViewControllerDelegate> {
     IBOutlet MKMapView* mapView;
 }
-
-
-
 @end
 
 

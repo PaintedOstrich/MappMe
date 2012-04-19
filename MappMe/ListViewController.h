@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class Place;
 @interface ListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *tableView;
-    NSString *selectedCity;
+    Place *selectedCity;
 }
 
-@property(nonatomic,retain)	NSString *selectedCity;
+@property(nonatomic,strong)	Place *selectedCity;
 @end

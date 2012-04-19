@@ -20,7 +20,7 @@
     NSString *selectedFriend_id;
 }
 
-@synthesize tableView,selectedCity;
+@synthesize tableView, selectedCity;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {

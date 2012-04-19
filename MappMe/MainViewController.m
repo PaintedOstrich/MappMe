@@ -421,8 +421,6 @@
     
     NSArray* relevantPlaces = [mainDataManager.placeContainer getPlacesUsedAs:locType];
     [self makeAnnotations:relevantPlaces forLocType:locType];
-    
-    //[self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:locType]];
     [self showPins];
 }
 
