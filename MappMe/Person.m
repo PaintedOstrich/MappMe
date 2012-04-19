@@ -7,7 +7,7 @@
 //
 
 #import "Person.h"
-
+#import "DebugLog.h"
 @implementation Person
 
 @synthesize hometown;
