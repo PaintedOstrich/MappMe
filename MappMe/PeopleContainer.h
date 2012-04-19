@@ -15,7 +15,6 @@
 }
 
 -(Person*)get:(NSString*)person_id;
--(Person*) update:uid withName:name;
 -(int)count;
 
 

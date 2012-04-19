@@ -19,23 +19,9 @@
     GHAssertEquals(@"No Name", place.name, nil);
 }
 
-- (void) testUpdate {
-    GHAssertTrue(0 == [places count], @"Start with 0 places");
-    
-    Place* place = [places update:@"234" withName:@"MyPlace"];
-    GHAssertEquals(place, [places get:@"234"], nil);
-    
-    [[places update:@"234" withName:@"MyNewPlace"] addLat:@"123.1" andLong:@"456.2"];
-    GHAssertEquals(@"MyNewPlace", place.name, nil);
-    GHAssertEquals(123.1, place.location.latitude, nil);
-    GHAssertEquals(456.2, place.location.longitude, nil);
-    
-    GHAssertTrue(1 == [places count], @"still only has 1 places");
-}
-
 - (void) testGetPlacesUsedAs {
-    Place* place1 = [places update:@"1" withName:@"Place1"];
-    Place* place2 = [places update:@"2" withName:@"Place2"];
+    Place* place1 = [places get:@"1" ];
+    Place* place2 = [places get:@"2" ];
     
     Person* person1 = [[Person alloc] initPerson:@"1" withName:@"Person1"];
     Person* person2 = [[Person alloc] initPerson:@"2" withName:@"Person2"];

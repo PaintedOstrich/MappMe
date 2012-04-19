@@ -35,21 +35,6 @@
     return place;
 }
 
--(Place*)update:(NSString*)town_id withName:(NSString*)town_name
-{
-    Place* place = [self get:town_id];
-    place.name = town_name;
-    return place;
-}
-
--(Place*)update:(NSString*)town_id withLat:(NSString *)lat andLong:(NSString*)lon
-{
-    Place* place = [self get:town_id];
-    [place addLat:lat andLong:lon];
-    return place;
-}
-
-
 /*
  * Return total number of places maintained in PlaceContainer.
  */

@@ -294,7 +294,7 @@
 				680435EC14FED94600899729 /* MappMeAppDelegate.m */,
 				6804360E14FEDE1300899729 /* Util */,
 				A9A0AC511502D8C70020265D /* Views */,
-				A9A0AC501502D7D30020265D /* Data */,
+				A9A0AC501502D7D30020265D /* Data Package */,
 				A91AF90815008AF200FCD3D7 /* Controllers */,
 				680435E314FED94600899729 /* Supporting Files */,
 				680435EE14FED94600899729 /* MainStoryboard_iPhone.storyboard */,
@@ -361,24 +361,6 @@
 				A9801D711502E1E400BA0B5B /* Place.m */,
 			);
 			name = Models;
-			sourceTree = "<group>";
-		};
-		689175C0151D0C7000078BE2 /* MapModels */ = {
-			isa = PBXGroup;
-			children = (
-				A94C44C615059F64001FF446 /* CoordinateLookupManager.h */,
-				A94C44C715059F64001FF446 /* CoordinateLookupManager.m */,
-			);
-			name = MapModels;
-			sourceTree = "<group>";
-		};
-		689175C1151D0CAC00078BE2 /* FacebookModels */ = {
-			isa = PBXGroup;
-			children = (
-				689175BB151D0C3D00078BE2 /* FacebookDataHandler.h */,
-				689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */,
-			);
-			name = FacebookModels;
 			sourceTree = "<group>";
 		};
 		A90CF29F1504112D0091139C /* images */ = {
@@ -503,19 +485,21 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A9A0AC501502D7D30020265D /* Data */ = {
+		A9A0AC501502D7D30020265D /* Data Package */ = {
 			isa = PBXGroup;
 			children = (
+				689175BF151D0C4A00078BE2 /* Models */,
 				A9106558153E4D310057B570 /* Stores */,
 				68CFF09C15253F3000335C10 /* DataManagerSingleton.h */,
 				68CFF09D15253F3000335C10 /* DataManagerSingleton.m */,
+				A94C44C615059F64001FF446 /* CoordinateLookupManager.h */,
+				A94C44C715059F64001FF446 /* CoordinateLookupManager.m */,
+				689175BB151D0C3D00078BE2 /* FacebookDataHandler.h */,
+				689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */,
 				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
 				A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */,
-				689175C0151D0C7000078BE2 /* MapModels */,
-				689175C1151D0CAC00078BE2 /* FacebookModels */,
-				689175BF151D0C4A00078BE2 /* Models */,
 			);
-			name = Data;
+			name = "Data Package";
 			sourceTree = "<group>";
 		};
 		A9A0AC511502D8C70020265D /* Views */ = {

@@ -16,8 +16,6 @@
 //put annotation methods into this class
 
 -(Place*)get:(NSString*)town_id;
--(Place*)update:(NSString*)town_id withName:(NSString*)town_name;
--(Place*)update:(NSString*)town_id withLat:(NSString*)lat andLong:(NSString*)lon;
 -(int)count;
 
 //Get all the places that has someone use it as their given locType.

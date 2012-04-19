@@ -134,8 +134,10 @@
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
         
-        Place* place = [mainDataManager.placeContainer update:town_id withName:town_name];
-        Person* friend = [mainDataManager.peopleContainer update:uid withName:name];
+        Place* place = [mainDataManager.placeContainer get:town_id];
+        place.name = town_name;
+        Person* friend = [mainDataManager.peopleContainer get:uid];
+        friend.name = name;
         //Establish two way relationship between friend and place (connected by the locType)
         [friend addPlace:place withType:locType];
         [place addPerson:friend forType:locType];
@@ -155,7 +157,8 @@
         /*Make sure location array is not empty*/
         if ([loc respondsToSelector:@selector(objectForKey:)]) {
             NSString* placeId = [citiesTemp objectForKey:@"page_id"];
-            [[mainDataManager placeContainer] update:placeId withLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
+            Place* place = [[mainDataManager placeContainer] get:placeId];
+            [place addLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
         } else{
             NSString * page_id = [citiesTemp objectForKey:@"page_id"];
             //DebugLog(@"%@ not found; id: %@",[mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
@@ -172,7 +175,8 @@
             NSString *type = [schoolTypeMapping objectForKey:school_id];
             //If have lat and long
             if ([loc objectForKey:@"latitude"]){
-              [[mainDataManager placeContainer] update:school_id withLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
+                Place* place = [[mainDataManager placeContainer] get:school_id];
+                [place addLat:[loc objectForKey:@"latitude"]  andLong:[loc objectForKey:@"longitude"]]; 
             } else {
                 //TODO do look up and update the place!!!
 //                [mainDataManager.placeContainer doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
@@ -209,8 +213,12 @@
             locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
 
             [schoolTypeMapping setObject:school_type forKey:school_id];
-            Place* place = [mainDataManager.placeContainer update:school_id withName:school_name];
-            [[mainDataManager.peopleContainer update:uid withName:name] addPlace:place withType:placeType];
+            Place* place = [mainDataManager.placeContainer get:school_id];
+            place.name = school_name;
+            
+            Person* person = [mainDataManager.peopleContainer get:uid];
+            person.name = name;
+            [person addPlace:place withType:placeType];
         }
     }
     //Set totals for progress updater
