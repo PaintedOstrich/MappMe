@@ -381,6 +381,18 @@
 {
     [self showLocationType:tCurrentLocation];
 }
+-(void)showHometown{
+    [self showLocationType:tHomeTown];
+}
+-(void)showHighSchool{
+    [self showLocationType:tHighSchool];
+}
+-(void)showCollege{
+    [self showLocationType:tCollege];
+}
+-(void)showGrad{
+    [self showLocationType:tGradSchool];
+}
 
 -(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
 {
