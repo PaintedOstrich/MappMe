@@ -7,66 +7,45 @@
 //
 
 #import "PlaceContainer.h"
-#import "CoordinateLookupManager.h"
-#import "MappMeAppDelegate.h"
 #import "DebugLog.h"
-#import "CoordPairsHelper.h"
 
 
 @implementation PlaceContainer{
-    /*Container has two mappings: id to placeObject, and name to Id.  N
-     ame is passed around in instances like mapCallout's, so also necessary*/
-    NSMutableDictionary *idForPlace;
-    NSMutableDictionary *placeForId;
-    NSMutableDictionary *placeAndCoords;
-    
     NSMutableDictionary* _data;
-
 }
 
 -(id)init{
     if (self = [super init]) {
-        placeForId = [[NSMutableDictionary alloc] init];
-        idForPlace = [[NSMutableDictionary alloc] init];
-        placeAndCoords = [[NSMutableDictionary alloc] init];
-        
-        _data = [[NSMutableDictionary alloc] initWithCapacity:20];
-
+      _data = [[NSMutableDictionary alloc] initWithCapacity:20];
     }
     return self;
 }
-#pragma mark - retrieving content
-/*Returning Place objects: name, id, and coordinates*/
--(Place *)getPlaceFromId:(NSString *)placeId{
-    return [placeForId objectForKey:placeId];
-}
--(NSString *)getIdFromPlace:(NSString *)placeName{
-    return [idForPlace objectForKey:placeName];
-}
--(NSString *)getPlaceNameFromId:(NSString *)placeId{
-    Place * place = [self getPlaceFromId:placeId];
-    return place.placeName;
-}
 
 
-
-
-
-
-
-
-
-
-
-#pragma mark -addding new place and new place location
 -(Place*)update:(NSString*)town_id withName:(NSString*)town_name
 {
     Place* place = [_data objectForKey:town_id];
     
     if (place == nil) {
         place = [[Place alloc] initPlace:town_id withName:town_name];
+        [_data setValue:place forKey:town_id];
     } else {
-        place.placeName = town_name;
+        place.name = town_name;
+    }
+    return place;
+}
+
+
+/*
+ * Return a place object by id. 
+ * If this id is not registered, will create a place object with name "No Name" and return it.
+ */
+-(Place*)get:(NSString*)town_id
+{
+    Place* place = [_data objectForKey:town_id];
+    if (place == nil) {
+        place = [[Place alloc] initPlace:town_id withName:@"No Name"];
+        [_data setValue:place forKey:town_id];
     }
     return place;
 }
@@ -85,51 +64,51 @@
 
 
 
--(void)addId:(NSString *)placeId andPlaceName:(NSString *)placeName{
-    //If empty
-    if([placeForId objectForKey:placeId]== nil) {
-        Place * location = [[Place alloc] initPlaceWithName:placeName];
-        [placeForId setValue:location forKey:placeId];
-        [idForPlace setValue:placeId forKey:placeName];
-    }
-}
-
-//Adds coords from Google Maps
-//This method currently used for education info
--(void)doCoordLookupAndSet:(NSString*)place_id withDict:(NSDictionary *)loc andTypeString:(NSString *)placeTypeName{
-    //Get place name from instance Variable
-    Place *place = [self getPlaceFromId:place_id];
-    /*Note: Can Be Nil*/
-    
-    [[CoordinateLookupManager sharedManager] lookupLocation:place.placeName successCB:^(CoordPairsHelper * coordpair) {
-        place.location = coordpair.location;
-        if (place && coordpair.location.longitude!= 0){
-            [placeAndCoords setObject:place forKey:place_id];
-        }
-
-    } failureCB:^(NSError *error) {
-        //TODO
-    }];
-}
-//Adds coords from passed in parameters
-//Should always be called on exisiting place
--(void)addCoordsLat:(NSString *)lat andLong:(NSString *)lon forPlaceId:(NSString *)placeId{
-    //FIXME do I need to re-add object to dictionary, or does it retain pointer so i can update it's features?  For now just re-adding
-    Place *place = [self getPlaceFromId:placeId];
-    if(place){
-        [place addLat:lat andLong:lon];
-        [placeAndCoords setObject:place forKey:placeId];
-    }
-    else{
-        DebugLog(@"Warning: adding coords to non exisiting object with id %i", placeId);
-    }
-   
-}
-
-
-#pragma mark - Debug
--(NSUInteger)getNumPlaces{
-    return [idForPlace count];
-}
+//-(void)addId:(NSString *)placeId andPlaceName:(NSString *)placeName{
+//    //If empty
+//    if([placeForId objectForKey:placeId]== nil) {
+//        Place * location = [[Place alloc] initPlaceWithName:placeName];
+//        [placeForId setValue:location forKey:placeId];
+//        [idForPlace setValue:placeId forKey:placeName];
+//    }
+//}
+//
+////Adds coords from Google Maps
+////This method currently used for education info
+//-(void)doCoordLookupAndSet:(NSString*)place_id withDict:(NSDictionary *)loc andTypeString:(NSString *)placeTypeName{
+//    //Get place name from instance Variable
+//    Place *place = [self getPlaceFromId:place_id];
+//    /*Note: Can Be Nil*/
+//    
+//    [[CoordinateLookupManager sharedManager] lookupLocation:place.placeName successCB:^(CoordPairsHelper * coordpair) {
+//        place.location = coordpair.location;
+//        if (place && coordpair.location.longitude!= 0){
+//            [placeAndCoords setObject:place forKey:place_id];
+//        }
+//
+//    } failureCB:^(NSError *error) {
+//        //TODO
+//    }];
+//}
+////Adds coords from passed in parameters
+////Should always be called on exisiting place
+//-(void)addCoordsLat:(NSString *)lat andLong:(NSString *)lon forPlaceId:(NSString *)placeId{
+//    //FIXME do I need to re-add object to dictionary, or does it retain pointer so i can update it's features?  For now just re-adding
+//    Place *place = [self getPlaceFromId:placeId];
+//    if(place){
+//        [place addLat:lat andLong:lon];
+//        [placeAndCoords setObject:place forKey:placeId];
+//    }
+//    else{
+//        DebugLog(@"Warning: adding coords to non exisiting object with id %i", placeId);
+//    }
+//   
+//}
+//
+//
+//#pragma mark - Debug
+//-(NSUInteger)getNumPlaces{
+//    return [idForPlace count];
+//}
                       
 @end

@@ -83,6 +83,8 @@
 		A98F172B153FB45F00FB6257 /* PersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F172A153FB45F00FB6257 /* PersonTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A98F172C153FB49900FB6257 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D731502E1E400BA0B5B /* Person.m */; };
 		A98F172D153FB50C00FB6257 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38351507C0D200021ED3 /* DebugLog.m */; };
+		A98F1730153FB96500FB6257 /* PlaceContainerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F172F153FB96500FB6257 /* PlaceContainerTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A98F1731153FBA1300FB6257 /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
 		A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */; };
@@ -209,6 +211,7 @@
 		A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainer.m; sourceTree = "<group>"; };
 		A98F1726153FB24400FB6257 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTest.m; sourceTree = "<group>"; };
 		A98F172A153FB45F00FB6257 /* PersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTest.m; sourceTree = "<group>"; };
+		A98F172F153FB96500FB6257 /* PlaceContainerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainerTest.m; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
@@ -477,6 +480,7 @@
 		A91C5BD9153F00C200128885 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				A98F172F153FB96500FB6257 /* PlaceContainerTest.m */,
 				A98F172A153FB45F00FB6257 /* PersonTest.m */,
 				A98F1726153FB24400FB6257 /* PlaceTest.m */,
 				A91C5BF9153F059000128885 /* PeopleContainerTests.m */,
@@ -696,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A98F1731153FBA1300FB6257 /* PlaceContainer.m in Sources */,
 				A98F172D153FB50C00FB6257 /* DebugLog.m in Sources */,
 				A98F172C153FB49900FB6257 /* Person.m in Sources */,
 				A98F1728153FB2E200FB6257 /* Place.m in Sources */,
@@ -703,6 +708,7 @@
 				A91C5BFA153F059000128885 /* PeopleContainerTests.m in Sources */,
 				A98F1727153FB24400FB6257 /* PlaceTest.m in Sources */,
 				A98F172B153FB45F00FB6257 /* PersonTest.m in Sources */,
+				A98F1730153FB96500FB6257 /* PlaceContainerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

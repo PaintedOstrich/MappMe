@@ -138,9 +138,9 @@
         Person* friend = [mainDataManager.peopleContainer update:uid withName:name];
         [friend addPlace:place withType:locType];
     }
-    if(locType == tHomeTown){
-        [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]count] forType:tHomeTown];
-    }
+//    if(locType == tHomeTown){
+//        [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]count] forType:tHomeTown];
+//    }
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
 -(void)parseFbCity:(NSDictionary*)bas_info{
@@ -152,6 +152,13 @@
         
         /*Make sure location array is not empty*/
         if ([loc respondsToSelector:@selector(objectForKey:)]) {
+            
+            
+            
+            
+            
+            
+            
             [[mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
             //Check if it's hometown, then init
             if([dataProgressUpdater hometownSet]){

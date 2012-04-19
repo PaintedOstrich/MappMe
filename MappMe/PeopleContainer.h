@@ -18,6 +18,15 @@
 
 -(Person*) update:uid withName:name;
 
+
+
+
+
+
+
+
+
+
 /*Parsing methods to update or add entry*/
 -(void)setPersonPlaceInContainer:(NSString *)name personId:(NSString *)personId placeId:(NSString *)placeId andTypeId:(locTypeEnum)locType;
 -(void)addId:(NSString *)personId andPerson:(NSString *)personName;
