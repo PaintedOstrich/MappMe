@@ -9,6 +9,7 @@
 #import "SettingsViewController.h"
 #import "LoginViewController.h"
 #import "MappMeAppDelegate.h"
+#import "DataManagerSingleton.h"
 
 @implementation SettingsViewController {
     MappMeAppDelegate *delegate;
@@ -19,6 +20,7 @@
  * (TODO) move this method into settings page
  */
 -(IBAction)logoutBtnTapped{
+    [[DataManagerSingleton sharedManager] clearAllData];
     LoginViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
     [[delegate facebook] setSessionDelegate:controller];
     [[delegate facebook] logout];
