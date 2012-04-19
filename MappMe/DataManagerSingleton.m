@@ -18,21 +18,7 @@
 @synthesize peopleContainer;
 
 static DataManagerSingleton *mainDataManager = nil;
-    
-//As a singleton of app delegatE, synch through init by use of threaded queue
-//+(id)sharedInstance {
-//    
-////    NSLog (@"sharedInstance called.");
-//    
-//    if (nil != mainDataManager) return mainDataManager;
-//    static dispatch_once_t pred;        // lock
-//    dispatch_once(&pred, ^{             // this code is at most once
-//        mainDataManager = [[DataManagerSingleton alloc] init];
-//    });
-//    
-//    return mainDataManager;
-//    
-//}
+
 #pragma mark Singleton Methods
 + (id)sharedManager {
     @synchronized(self) {

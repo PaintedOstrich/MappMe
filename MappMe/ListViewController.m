@@ -132,7 +132,7 @@
     }
     
     NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
-    Person* friend = [[mainDataManager peopleContainer] getFriendFromId:friend_id];
+    Person* friend = [[mainDataManager peopleContainer] get:friend_id];
     cell.textLabel.text = friend.name;
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];

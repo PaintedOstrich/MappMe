@@ -401,7 +401,7 @@
 #pragma mark - Map pins methods
 -(void)makeAnnotationFromDict:(NSDictionary*)groupings{
     //Using class as wrapper to process instances of itself
-    annotations = [[NSMutableArray alloc] initWithCapacity:[[mainDataManager peopleContainer] getNumPeople]];
+    annotations = [[NSMutableArray alloc] initWithCapacity:[[mainDataManager peopleContainer] count]];
     NSArray* annotationItems = [MyAnnotation makeAnnotationFromDict:groupings]; 
     [annotations addObjectsFromArray:annotationItems];
 }
@@ -516,7 +516,7 @@
     
     UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
     if (annotation.user_id !=nil) {
-        Person* friend = [[mainDataManager peopleContainer] getFriendFromId:annotation.user_id];
+        Person* friend = [[mainDataManager peopleContainer] get:annotation.user_id];
         [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
     }
     pinView.leftCalloutAccessoryView = profileIconView;
@@ -528,7 +528,7 @@
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
-    Person* friend = [mainDataManager.peopleContainer getFriendFromId:uid];
+    Person* friend = [mainDataManager.peopleContainer get:uid];
     [self getLocationsForFriend: friend];
     [self showPins];
     NSString * buttonLabel= friend.name;
