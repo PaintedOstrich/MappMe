@@ -22,11 +22,7 @@
 -(void)showPins;
 /*View Change Methods*/
 -(void)showLocationType:(locTypeEnum)locType;
--(void)showHometown;
 -(void)showCurrentLoc;
--(void)showHighSchool;
--(void)showCollege;
--(void)showGrad;
 
 -(void)addLoadView;
 -(void)updateProgressBar:(float)progressAmount;
@@ -399,17 +395,31 @@
 -(void)clearMap{
     [mapView removeAnnotations:annotations];
 }
+
+-(void) showCurrentLoc
+{
+    [self showLocationType:tCurrentLocation];
+}
+
+-(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
+{
+    [btn setTitle:txt forState:UIControlStateNormal];
+    [btn setTitle:txt forState:UIControlStateHighlighted];
+    [btn setTitle:txt forState:UIControlStateDisabled];
+    [btn setTitle:txt forState:UIControlStateSelected];
+}
+
 -(void)showLocationType:(locTypeEnum)locType{
     [self closeLocationMenu];
     [self clearMap];
     currDisplayedType = locType;
     isFriendAnnotationType = FALSE;
-    NSString * buttonLabel= [LocationTypeEnum getNameFromEnum:currDisplayedType];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
-    [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:locType]];
+    [self setBtnTitleForAllStates:locationTypeBtn withText:[LocationTypeEnum getNameFromEnum:currDisplayedType]];
+    
+    NSArray* relevantPlaces = [mainDataManager.placeContainer getPlacesUsedAs:locType];
+    [self makeAnnotationsWithPlaces:relevantPlaces];
+    
+    //[self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:locType]];
     [self showPins];
 }
 
@@ -423,7 +433,7 @@
     [fbDataHandler getEducationInfo];
     [fbDataHandler getCurrentLocation];
 
-    [self performSelectorOnMainThread:@selector(showLocationType:) withObject:tCurrentLocation waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
     int time = [t endTimerAndGetTotalTime];
     DebugLog(@"Total App Loadtime: %i",time);
 }

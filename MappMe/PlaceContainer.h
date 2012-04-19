@@ -20,6 +20,10 @@
 -(Place*)update:(NSString*)town_id withLat:(NSString*)lat andLong:(NSString*)lon;
 -(int)count;
 
+//Get all the places that has someone use it as their given locType.
+//e.g. Get  all places with someone using this place as their home town etc.
+-(NSArray*) getPlacesUsedAs:(locTypeEnum)locType;
+
 
 
 

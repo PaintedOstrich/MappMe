@@ -58,6 +58,21 @@
     return [_data count];
 }
 
+-(NSArray*) getPlacesUsedAs:(locTypeEnum)locType
+{
+    NSMutableSet* result = [[NSMutableSet alloc] initWithCapacity:10];
+    NSArray* allPlaces = [_data allValues];
+    
+    for(int i = 0; i < [allPlaces count]; i++) {
+        Place* place = [allPlaces objectAtIndex:i];
+        NSMutableSet* people = [place getPeople:locType];
+        if ([people count] > 0) {
+            [result addObject:place];
+        }
+    }
+    return  [result allObjects];
+}
+
 
 
 

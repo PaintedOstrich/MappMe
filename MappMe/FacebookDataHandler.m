@@ -136,7 +136,9 @@
         
         Place* place = [mainDataManager.placeContainer update:town_id withName:town_name];
         Person* friend = [mainDataManager.peopleContainer update:uid withName:name];
+        //Establish two way relationship between friend and place (connected by the locType)
         [friend addPlace:place withType:locType];
+        [place addPerson:friend forType:locType];
     }
 //    if(locType == tHomeTown){
 //        [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]count] forType:tHomeTown];
