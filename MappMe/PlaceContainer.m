@@ -21,21 +21,6 @@
     return self;
 }
 
-
--(Place*)update:(NSString*)town_id withName:(NSString*)town_name
-{
-    Place* place = [_data objectForKey:town_id];
-    
-    if (place == nil) {
-        place = [[Place alloc] initPlace:town_id withName:town_name];
-        [_data setValue:place forKey:town_id];
-    } else {
-        place.name = town_name;
-    }
-    return place;
-}
-
-
 /*
  * Return a place object by id. 
  * If this id is not registered, will create a place object with name "No Name" and return it.
@@ -49,6 +34,21 @@
     }
     return place;
 }
+
+-(Place*)update:(NSString*)town_id withName:(NSString*)town_name
+{
+    Place* place = [self get:town_id];
+    place.name = town_name;
+    return place;
+}
+
+-(Place*)update:(NSString*)town_id withLat:(NSString *)lat andLong:(NSString*)lon
+{
+    Place* place = [self get:town_id];
+    [place addLat:lat andLong:lon];
+    return place;
+}
+
 
 /*
  * Return total number of places maintained in PlaceContainer.

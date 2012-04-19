@@ -15,8 +15,9 @@
 }
 //put annotation methods into this class
 
--(Place*)update:(NSString*)town_id withName:(NSString*)town_name;
 -(Place*)get:(NSString*)town_id;
+-(Place*)update:(NSString*)town_id withName:(NSString*)town_name;
+-(Place*)update:(NSString*)town_id withLat:(NSString*)lat andLong:(NSString*)lon;
 -(int)count;
 
 

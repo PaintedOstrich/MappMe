@@ -152,22 +152,11 @@
         
         /*Make sure location array is not empty*/
         if ([loc respondsToSelector:@selector(objectForKey:)]) {
-            
-            
-            
-            
-            
-            
-            
-            [[mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:[citiesTemp objectForKey:@"page_id"]];
-            //Check if it's hometown, then init
-            if([dataProgressUpdater hometownSet]){
-                [dataProgressUpdater incrementSum:tHomeTown];
-            }
-        }
-        else{
+            NSString* placeId = [citiesTemp objectForKey:@"page_id"];
+            [[mainDataManager placeContainer] update:placeId withLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
+        } else{
             NSString * page_id = [citiesTemp objectForKey:@"page_id"];
-            DebugLog(@"%@ not found; id: %@",[mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
+            //DebugLog(@"%@ not found; id: %@",[mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
         }
     }
 }
@@ -181,21 +170,22 @@
             NSString *type = [schoolTypeMapping objectForKey:school_id];
             //If have lat and long
             if ([loc objectForKey:@"latitude"]){
-                [[mainDataManager placeContainer]addCoordsLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"] forPlaceId:school_id];
-            }else{
-                [mainDataManager.placeContainer doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
+              [[mainDataManager placeContainer] update:school_id withLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
+            } else {
+                //TODO do look up and update the place!!!
+//                [mainDataManager.placeContainer doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
             }
-            if (type!= nil){
-                locTypeEnum lt = [LocationTypeEnum getEnumFromName:type];
-                [dataProgressUpdater incrementSum:lt];
-            }
+//            if (type!= nil){
+//                locTypeEnum lt = [LocationTypeEnum getEnumFromName:type];
+//                [dataProgressUpdater incrementSum:lt];
+//            }
         }
         
     }
-    [dataProgressUpdater setFinishedTotal:tHighSchool];
-    [dataProgressUpdater setFinishedTotal:tCollege];
-    [dataProgressUpdater setFinishedTotal:tGradSchool];
-    [dataProgressUpdater endLoader];
+//    [dataProgressUpdater setFinishedTotal:tHighSchool];
+//    [dataProgressUpdater setFinishedTotal:tCollege];
+//    [dataProgressUpdater setFinishedTotal:tGradSchool];
+//    [dataProgressUpdater endLoader];
 }
 -(void)parseFbFriendsEdu:(NSDictionary*)bas_info{
     NSDictionary *friendsTemp;
@@ -215,16 +205,16 @@
             NSString * school_name = (NSString*)[[school objectForKey:@"school"]objectForKey:@"name"];
             NSString * school_type = (NSString*)[school objectForKey:@"type"];
             locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
-            //                    DebugLog(@"%@ -  %@, %@", school_name, school_type, school_id);
+
             [schoolTypeMapping setObject:school_type forKey:school_id];
-            [mainDataManager.placeContainer addId:school_id andPlaceName:school_name];
-            [mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:school_id andTypeId:placeType];
+            Place* place = [mainDataManager.placeContainer update:school_id withName:school_name];
+            [[mainDataManager.peopleContainer update:uid withName:name] addPlace:place withType:placeType];
         }
     }
     //Set totals for progress updater
-    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHighSchool]count] forType:tHighSchool];
-    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tCollege]count] forType:tCollege];
-    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tGradSchool]count] forType:tGradSchool];
+//    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHighSchool]count] forType:tHighSchool];
+//    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tCollege]count] forType:tCollege];
+//    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tGradSchool]count] forType:tGradSchool];
 }
 -(void)parseFacebookInfoController: (NSDictionary *)data{
     NSDictionary* infoArray = (NSDictionary *)[data objectForKey:@"data"]; 
@@ -259,8 +249,8 @@
         }
     }
     
-    DebugLog(@"Number of friends %i", [mainDataManager.peopleContainer getNumPeople]);
-    DebugLog(@"Number of cities %i",[mainDataManager.placeContainer getNumPlaces]);
+    DebugLog(@"Number of friends %i", [mainDataManager.peopleContainer count]);
+    DebugLog(@"Number of cities %i",[mainDataManager.placeContainer count]);
     
 //    [delegate.peopleContainer printGroupings:tHomeTown];
 //    [delegate.peopleContainer printGroupings:tCurrentLocation];
