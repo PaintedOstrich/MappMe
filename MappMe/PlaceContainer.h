@@ -17,8 +17,7 @@
 
 -(Place*)update:(NSString*)town_id withName:(NSString*)town_name;
 -(Place*)get:(NSString*)town_id;
-
-
+-(int)count;
 
 
 

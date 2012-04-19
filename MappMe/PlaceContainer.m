@@ -50,6 +50,14 @@
     return place;
 }
 
+/*
+ * Return total number of places maintained in PlaceContainer.
+ */
+-(int)count
+{
+    return [_data count];
+}
+
 
 
 
