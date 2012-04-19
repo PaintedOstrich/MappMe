@@ -407,7 +407,7 @@
     Timer * t = [[Timer alloc] init];
     /*Call Methods for info*/
     FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
-    //[fbDataHandler setProgressUpdaterDelegate:self];
+    [fbDataHandler setProgressUpdaterDelegate:self];
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
     [fbDataHandler getCurrentLocation];

@@ -19,7 +19,7 @@
 
 @end
 @implementation FacebookDataHandler{
-    NSMutableDictionary *schoolTypeMapping;
+    //NSMutableDictionary *schoolTypeMapping;
     DataManagerSingleton * mainDataManager;
     DataProgressUpdater *dataProgressUpdater;
     //HTTP request operation queue
@@ -142,9 +142,9 @@
         [friend addPlace:place withType:locType];
         [place addPerson:friend forType:locType];
     }
-//    if(locType == tHomeTown){
-//        [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]count] forType:tHomeTown];
-//    }
+    if(locType == tHomeTown){
+        [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tHomeTown]count] forType:tHomeTown];
+    }
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
 -(void)parseFbCity:(NSDictionary*)bas_info{
@@ -188,10 +188,10 @@
         }
         
     }
-//    [dataProgressUpdater setFinishedTotal:tHighSchool];
-//    [dataProgressUpdater setFinishedTotal:tCollege];
-//    [dataProgressUpdater setFinishedTotal:tGradSchool];
-//    [dataProgressUpdater endLoader];
+    [dataProgressUpdater setFinishedTotal:tHighSchool];
+    [dataProgressUpdater setFinishedTotal:tCollege];
+    [dataProgressUpdater setFinishedTotal:tGradSchool];
+    [dataProgressUpdater endLoader];
 }
 -(void)parseFbFriendsEdu:(NSDictionary*)bas_info{
     NSDictionary *friendsTemp;
@@ -212,7 +212,7 @@
             NSString * school_type = (NSString*)[school objectForKey:@"type"];
             locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
 
-            [schoolTypeMapping setObject:school_type forKey:school_id];
+            //[schoolTypeMapping setObject:school_type forKey:school_id];
             Place* place = [mainDataManager.placeContainer get:school_id];
             place.name = school_name;
             
@@ -222,9 +222,9 @@
         }
     }
     //Set totals for progress updater
-//    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHighSchool]count] forType:tHighSchool];
-//    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tCollege]count] forType:tCollege];
-//    [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tGradSchool]count] forType:tGradSchool];
+    [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tHighSchool]count] forType:tHighSchool];
+    [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tCollege]count] forType:tCollege];
+    [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tGradSchool]count] forType:tGradSchool];
 }
 -(void)parseFacebookInfoController: (NSDictionary *)data{
     NSDictionary* infoArray = (NSDictionary *)[data objectForKey:@"data"]; 
@@ -235,7 +235,7 @@
      Used to help location lookup on Google Maps
      Populated in friendsEdu section
      Used in schoolLocation.  Init here so can be used in multiple calls. should prbly architect better*/
-    schoolTypeMapping = [[NSMutableDictionary alloc] init];
+    //schoolTypeMapping = [[NSMutableDictionary alloc] init];
 
     while ((bas_info = (NSDictionary *)[enumerator nextObject])) {
         NSString * loc = [bas_info objectForKey:@"name"];
