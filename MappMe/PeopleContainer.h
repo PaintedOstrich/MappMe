@@ -8,13 +8,15 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationTypeEnum.h"
-#import "Friend.h"
+#import "Person.h"
 
 @interface PeopleContainer : NSObject{
     NSMutableDictionary* people;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *people;
+
+-(Person*) update:uid withName:name;
 
 /*Parsing methods to update or add entry*/
 -(void)setPersonPlaceInContainer:(NSString *)name personId:(NSString *)personId placeId:(NSString *)placeId andTypeId:(locTypeEnum)locType;
@@ -23,7 +25,7 @@
 //Main methods called
 -(NSDictionary*)getAndSetFriendGroupingForLocType:(locTypeEnum)locType;
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType;
--(Friend*)getFriendFromId:(NSString *)uid;
+-(Person*)getFriendFromId:(NSString *)uid;
 -(NSDictionary *)getCurrentGrouping;
 
 //Search method

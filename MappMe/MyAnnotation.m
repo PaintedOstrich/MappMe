@@ -90,7 +90,7 @@
  @param:  Friend instance
  */
 //FIXME PUT IN PLACE CONTAINER
-+(NSArray*)getLocationsForFriend:(Friend *)friend{  
++(NSArray*)getLocationsForFriend:(Person *)friend{  
 //    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
     NSMutableArray* annotations = [[NSMutableArray alloc]initWithCapacity:10];

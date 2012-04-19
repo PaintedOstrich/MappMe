@@ -128,20 +128,15 @@
             //If empty entry for location, continue
             continue;
         }
-//        NSArray* keys = [friendsTemp allKeys];
-//        NSLog(@"%@ %@ %@", [keys objectAtIndex:0], [keys objectAtIndex:1], [keys objectAtIndex:2]);
-//        NSArray* vals = [friendsTemp allValues];
-//        NSLog(@"%@ %@ %@", [vals objectAtIndex:0], [vals objectAtIndex:1], [vals objectAtIndex:2]);
 
-        //NSString * uid = [NSString stringWithFormat:@"%d", [friendsTemp objectForKey:@"uid"]];
         NSString * uid = (NSString*)[friendsTemp objectForKey:@"uid"];
         NSString * town_id = [[friendsTemp objectForKey:locTypeString]objectForKey:@"id"];
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
         
-        [mainDataManager.placeContainer update:town_id withName:town_name];
-        [mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
-        
+        Place* place = [mainDataManager.placeContainer update:town_id withName:town_name];
+        Person* friend = [mainDataManager.peopleContainer update:uid withName:name];
+        [friend addPlace:place withType:locType];
     }
     if(locType == tHomeTown){
         [dataProgressUpdater setTotal:[[mainDataManager.peopleContainer getFriendGroupingForLocType:tHomeTown]count] forType:tHomeTown];

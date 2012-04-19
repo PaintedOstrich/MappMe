@@ -1,13 +1,24 @@
-//
-//  PlaceTest.m
-//  MappMe
-//
-//  Created by Di Peng on 4/18/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
-//
+#import <GHUnitIOS/GHUnit.h> 
+#import "Place.h"
 
-#import "PlaceTest.h"
+@interface PlaceTest: GHTestCase { }
+@end
 
-@implementation PlaceTest
+@implementation PlaceTest {
+    Place* place;
+}
+
+// Run before each test method
+- (void)setUp { }
+
+- (void) testInitPlace {
+    place = [[Place alloc ]initPlace:@"MyPlaceId" withName:@"MyPlace"];
+    GHAssertEqualStrings(@"MyPlaceId", place.uid,nil);
+    GHAssertEqualStrings(@"MyPlace", place.name,nil);
+}
+
+// Run after each test method
+- (void)tearDown { }
 
 @end
+

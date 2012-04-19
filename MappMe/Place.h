@@ -14,13 +14,15 @@
  */
 @interface Place : NSObject{
     CLLocationCoordinate2D location;
-    NSString *placeName;
+    NSString *name;
+    NSString* uid;
 }
 
--(id)initPlaceWithName:(NSString *) name;
--(void)addLat:(NSString *)lat andLong:(NSString *)lon;
-
 @property(nonatomic)CLLocationCoordinate2D location;
-@property(nonatomic,retain) NSString * placeName;
+@property(nonatomic,retain) NSString * name;
+@property(nonatomic,retain) NSString * uid;
 
+
+-(id)initPlace:(NSString *)placeId withName:(NSString*)placeName;
+-(void)addLat:(NSString *)lat andLong:(NSString *)lon;
 @end

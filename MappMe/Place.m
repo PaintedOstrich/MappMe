@@ -11,11 +11,13 @@
 @implementation Place
 
 @synthesize location;
-@synthesize placeName;
+@synthesize name;
+@synthesize uid;
 
--(id)initPlaceWithName:(NSString *) name{
+-(id)initPlace:(NSString *)placeId withName:(NSString*)placeName{
     if(self = [super init]){
-        self.placeName= name;
+        self.name= placeName;
+        self.uid = placeId;
     }
     return self;
 }

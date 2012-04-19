@@ -17,7 +17,7 @@
     //Mapping Dictionaries
     NSMutableDictionary *idForPerson;
     NSMutableDictionary *personForId;
-    
+    NSMutableDictionary* _data;
 }
 
 
@@ -28,9 +28,30 @@
         people = [[NSMutableDictionary alloc]initWithCapacity:20];
         personForId = [[NSMutableDictionary alloc] initWithCapacity:20];
         idForPerson = [[NSMutableDictionary alloc] initWithCapacity:20];
+        _data = [[NSMutableDictionary alloc] initWithCapacity:20];
     }
     return self;
 }
+
+-(Person*) update:uid withName:name
+{
+    Person* friend = [_data objectForKey:uid];
+    
+    if (friend == nil) {
+        friend = [[Person alloc] initPlaceWithName:town_name];
+    } else {
+        place.placeName = town_name;
+    }
+    return place;
+}
+
+
+
+
+
+
+
+
 #pragma mark - Logging of updates to user models
 -(void)addEntryToUserInfoLog:(NSString *)userId updateLocation:(NSString *)placeId andType:(locTypeEnum)placeType{
     DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
@@ -47,14 +68,14 @@
 
 -(void)setPersonPlaceInContainer:(NSString *)name personId:(NSString *)personId placeId:(NSString *)placeId andTypeId:(locTypeEnum)locType{
     NSString * uid = personId;
-    Friend *personCmp = [people objectForKey:uid];
+    Person *personCmp = [people objectForKey:uid];
     if(personCmp !=nil){
         if (![personCmp hasPlaceId:placeId forType:locType]){
             [personCmp setPlaceId:placeId forType:locType];
             [self addEntryToUserInfoLog:uid updateLocation:placeId andType:locType];
         }
     }else{
-        personCmp = [[Friend alloc] initWithFriend:uid withPlace:placeId LocType:locType andName: name];
+        personCmp = [[Person alloc] initWithFriend:uid withPlace:placeId LocType:locType andName: name];
         
         /* Add User Name and Id to Mapping */
         DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
@@ -78,7 +99,7 @@
 -(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType{
     NSMutableDictionary *friendGroupings = [[NSMutableDictionary alloc] init];
     NSEnumerator *peopleIterator = [people objectEnumerator];
-    Friend *tmp;
+    Person *tmp;
     while (tmp = [peopleIterator nextObject]) {
         if([tmp hasEntryForType:locType]){
             if ([LocationTypeEnum isArrayType:locType]){
@@ -117,9 +138,9 @@
 -(NSDictionary *)getCurrentGrouping{
     return currentGrouping;
 }
--(Friend*)getFriendFromId:(NSString *)uid{
+-(Person*)getFriendFromId:(NSString *)uid{
     NSDecimalNumber *userId = (NSDecimalNumber *)uid;
-    Friend * friend = [people objectForKey:userId];
+    Person * friend = [people objectForKey:userId];
     if (friend==nil){
         DebugLog(@"Warning: friend is missing");
     }
@@ -208,7 +229,7 @@
 -(void)printNFriends:(NSUInteger)num{
     int index = 0;
     NSEnumerator *peopleIterator = [people objectEnumerator];
-    Friend *tmp;
+    Person *tmp;
     while (tmp = [peopleIterator nextObject]) {
         if (index == num)
             break;

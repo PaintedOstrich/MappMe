@@ -405,7 +405,7 @@
     NSArray* annotationItems = [MyAnnotation makeAnnotationFromDict:groupings]; 
     [annotations addObjectsFromArray:annotationItems];
 }
--(void)getLocationsForFriend:(Friend *)friend{  
+-(void)getLocationsForFriend:(Person *)friend{  
      annotations = [[NSMutableArray alloc] initWithCapacity:10];
     [annotations addObjectsFromArray:[MyAnnotation getLocationsForFriend:friend]];
 }
@@ -516,7 +516,7 @@
     
     UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
     if (annotation.user_id !=nil) {
-        Friend* friend = [[mainDataManager peopleContainer] getFriendFromId:annotation.user_id];
+        Person* friend = [[mainDataManager peopleContainer] getFriendFromId:annotation.user_id];
         [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
     }
     pinView.leftCalloutAccessoryView = profileIconView;
@@ -528,7 +528,7 @@
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
-    Friend* friend = [mainDataManager.peopleContainer getFriendFromId:uid];
+    Person* friend = [mainDataManager.peopleContainer getFriendFromId:uid];
     [self getLocationsForFriend: friend];
     [self showPins];
     NSString * buttonLabel= friend.name;

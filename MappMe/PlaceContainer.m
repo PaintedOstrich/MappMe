@@ -29,6 +29,8 @@
         placeForId = [[NSMutableDictionary alloc] init];
         idForPlace = [[NSMutableDictionary alloc] init];
         placeAndCoords = [[NSMutableDictionary alloc] init];
+        
+        _data = [[NSMutableDictionary alloc] initWithCapacity:20];
 
     }
     return self;
@@ -46,17 +48,41 @@
     return place.placeName;
 }
 
+
+
+
+
+
+
+
+
+
+
 #pragma mark -addding new place and new place location
--(void)update:(NSString*)town_id withName:(NSString*)town_name
+-(Place*)update:(NSString*)town_id withName:(NSString*)town_name
 {
     Place* place = [_data objectForKey:town_id];
     
     if (place == nil) {
-        place = [[Place alloc] initPlaceWithName:town_name];
+        place = [[Place alloc] initPlace:town_id withName:town_name];
     } else {
         place.placeName = town_name;
     }
+    return place;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -(void)addId:(NSString *)placeId andPlaceName:(NSString *)placeName{

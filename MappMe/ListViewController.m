@@ -8,7 +8,7 @@
 
 #import "ListViewController.h"
 #import "MappMeAppDelegate.h"
-#import "Friend.h"
+#import "Person.h"
 #import "WebViewController.h"
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
@@ -132,7 +132,7 @@
     }
     
     NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
-    Friend* friend = [[mainDataManager peopleContainer] getFriendFromId:friend_id];
+    Person* friend = [[mainDataManager peopleContainer] getFriendFromId:friend_id];
     cell.textLabel.text = friend.name;
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];

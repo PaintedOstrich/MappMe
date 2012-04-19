@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
-#import "Friend.h"
+#import "Person.h"
 
 @interface MyAnnotation : NSObject<MKAnnotation> {
     
@@ -23,6 +23,6 @@
 @property (nonatomic)		    NSString*				user_id;
 
 +(NSArray*)makeAnnotationFromDict:(NSDictionary*)groupings;
-+(NSArray*)getLocationsForFriend:(Friend *)friend;
++(NSArray*)getLocationsForFriend:(Person *)friend;
 +(UIImage*)getPinImage:(int)type isFriendLocationType:(BOOL)isFriendType;
 @end

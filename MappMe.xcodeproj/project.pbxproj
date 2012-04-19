@@ -73,11 +73,13 @@
 		A963C347151EE98F00559DB3 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C346151EE98F00559DB3 /* search.png */; };
 		A96AD5CF151FD52B00372528 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A96AD5CE151FD52B00372528 /* profile.png */; };
 		A9801D811502E1E400BA0B5B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* Place.m */; };
-		A9801D821502E1E400BA0B5B /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D731502E1E400BA0B5B /* Friend.m */; };
+		A9801D821502E1E400BA0B5B /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D731502E1E400BA0B5B /* Person.m */; };
 		A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
 		A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D771502E1E400BA0B5B /* PeopleContainer.m */; };
 		A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A98A6F1D152A9DF400A81B02 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A939B757152A9CEE008B2AE7 /* libfacebook_ios_sdk.a */; };
+		A98F1727153FB24400FB6257 /* PlaceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F1726153FB24400FB6257 /* PlaceTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A98F1728153FB2E200FB6257 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* Place.m */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
 		A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */; };
@@ -194,14 +196,15 @@
 		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		A9801D701502E1E400BA0B5B /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		A9801D711502E1E400BA0B5B /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
-		A9801D721502E1E400BA0B5B /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Friend.h; sourceTree = "<group>"; };
-		A9801D731502E1E400BA0B5B /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Friend.m; sourceTree = "<group>"; };
+		A9801D721502E1E400BA0B5B /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		A9801D731502E1E400BA0B5B /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTypeEnum.h; sourceTree = "<group>"; };
 		A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTypeEnum.m; sourceTree = "<group>"; };
 		A9801D761502E1E400BA0B5B /* PeopleContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleContainer.h; sourceTree = "<group>"; };
 		A9801D771502E1E400BA0B5B /* PeopleContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleContainer.m; sourceTree = "<group>"; };
 		A9801D7A1502E1E400BA0B5B /* PlaceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceContainer.h; sourceTree = "<group>"; };
 		A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainer.m; sourceTree = "<group>"; };
+		A98F1726153FB24400FB6257 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTest.m; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
@@ -348,8 +351,8 @@
 		689175BF151D0C4A00078BE2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A9801D721502E1E400BA0B5B /* Friend.h */,
-				A9801D731502E1E400BA0B5B /* Friend.m */,
+				A9801D721502E1E400BA0B5B /* Person.h */,
+				A9801D731502E1E400BA0B5B /* Person.m */,
 				A9801D701502E1E400BA0B5B /* Place.h */,
 				A9801D711502E1E400BA0B5B /* Place.m */,
 			);
@@ -470,6 +473,7 @@
 		A91C5BD9153F00C200128885 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				A98F1726153FB24400FB6257 /* PlaceTest.m */,
 				A91C5BF9153F059000128885 /* PeopleContainerTests.m */,
 				A91C5BDA153F00C200128885 /* Supporting Files */,
 			);
@@ -654,7 +658,7 @@
 				A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */,
 				A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */,
 				A9801D811502E1E400BA0B5B /* Place.m in Sources */,
-				A9801D821502E1E400BA0B5B /* Friend.m in Sources */,
+				A9801D821502E1E400BA0B5B /* Person.m in Sources */,
 				A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */,
 				A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */,
 				A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */,
@@ -687,8 +691,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A98F1728153FB2E200FB6257 /* Place.m in Sources */,
 				A91C5BEF153F00F600128885 /* main.m in Sources */,
 				A91C5BFA153F059000128885 /* PeopleContainerTests.m in Sources */,
+				A98F1727153FB24400FB6257 /* PlaceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

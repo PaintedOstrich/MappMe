@@ -51,7 +51,7 @@
     friends = [NSMutableArray arrayWithCapacity:1];
     searchResults = [NSMutableArray arrayWithCapacity:1];
     friendList = [[[mainDataManager peopleContainer] people] allValues];
-    for (Friend* person in friendList) {
+    for (Person* person in friendList) {
         NSUInteger sect = (NSUInteger) [theCollation sectionForObject:person collationStringSelector:@selector(name)];
         person.sectionNumber = sect;
     }
@@ -63,7 +63,7 @@
         [sectionArrays addObject:sectionArray];
     }
     
-    for (Friend *person in friendList) {
+    for (Person *person in friendList) {
         [(NSMutableArray *)[sectionArrays objectAtIndex:person.sectionNumber]
          addObject:person];
     }
@@ -173,7 +173,7 @@ titleForHeaderInSection:(NSInteger)section {
                                       reuseIdentifier:CellIdentifier];
     }
 
-    Friend *person;
+    Person *person;
     if(searching)
         person = [searchResults objectAtIndex:indexPath.row];
     else {
@@ -190,7 +190,7 @@ titleForHeaderInSection:(NSInteger)section {
 #pragma mark - Table view delegate
   
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Friend *person;
+    Person *person;
     if(searching)
         person = [searchResults objectAtIndex:indexPath.row];
     else {
@@ -241,7 +241,7 @@ titleForHeaderInSection:(NSInteger)section {
     
     [searchArray addObjectsFromArray:friendList];
     
-    for (Friend* person in searchArray)
+    for (Person* person in searchArray)
     {
         NSString *sTemp = person.name;
         NSRange titleResultsRange = [sTemp rangeOfString:searchText options:NSCaseInsensitiveSearch];
