@@ -15,6 +15,8 @@
 }
 //put annotation methods into this class
 
+-(void)update:(NSString*)town_id withName:(NSString*)town_name;
+
 /*Adding (place,id) pair to mapping */
 -(void)addId:(NSString *)placeId andPlaceName:(NSString *)placeName;
 -(void)addCoordsLat:(NSString *)lat andLong:(NSString *)lon forPlaceId:(NSString *)placeId;

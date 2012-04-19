@@ -139,7 +139,7 @@
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
         
-        [mainDataManager.placeContainer addId:town_id andPlaceName:town_name];
+        [mainDataManager.placeContainer update:town_id withName:town_name];
         [mainDataManager.peopleContainer setPersonPlaceInContainer:name personId:uid placeId:town_id andTypeId:locType];
         
     }

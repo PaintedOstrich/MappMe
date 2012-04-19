@@ -19,6 +19,8 @@
     NSMutableDictionary *idForPlace;
     NSMutableDictionary *placeForId;
     NSMutableDictionary *placeAndCoords;
+    
+    NSMutableDictionary* _data;
 
 }
 
@@ -45,6 +47,18 @@
 }
 
 #pragma mark -addding new place and new place location
+-(void)update:(NSString*)town_id withName:(NSString*)town_name
+{
+    Place* place = [_data objectForKey:town_id];
+    
+    if (place == nil) {
+        place = [[Place alloc] initPlaceWithName:town_name];
+    } else {
+        place.placeName = town_name;
+    }
+}
+
+
 -(void)addId:(NSString *)placeId andPlaceName:(NSString *)placeName{
     //If empty
     if([placeForId objectForKey:placeId]== nil) {
