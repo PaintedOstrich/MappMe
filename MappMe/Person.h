@@ -26,17 +26,4 @@
 -(Person*)initPerson:(NSString*)personId withName:(NSString*)fullName;
 -(void)addPlace:(Place*)place withType:(int)locType;
 
-
-
-
-
-
-
-//-(id)initWithFriend:(NSString *)friendId withPlace:(NSString *)placeId LocType:(locTypeEnum)placeType andName: (NSString*)friendName;
-//-(BOOL)hasPlaceId:(NSString *)placeId forType:(locTypeEnum)placeType;
-//-(void)setPlaceId:(NSString *)placeId forType:(locTypeEnum)placeType;
-//-(BOOL)hasEntryForType:(locTypeEnum)locType;
-//-(NSArray *)getArrayEntryForLocType:(locTypeEnum)locType;
-//-(NSString *)getStringEntryForLocType:(locTypeEnum)locType;
-
 @end
