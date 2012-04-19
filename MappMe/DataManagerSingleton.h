@@ -22,4 +22,6 @@
 @property (nonatomic, retain) PeopleContainer *peopleContainer;
 
 + (id)sharedManager;
+//Called when we log out/switch user to clear all data.
+-(void) clearAllData;
 @end

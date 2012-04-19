@@ -9,13 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "LocationTypeEnum.h"
 #import "Person.h"
+#import "AbstractContainer.h"
 
-@interface PeopleContainer : NSObject{
-
-}
+@interface PeopleContainer : AbstractContainer
 
 -(Person*)get:(NSString*)person_id;
--(int)count;
--(NSArray*)allValues;
-
 @end

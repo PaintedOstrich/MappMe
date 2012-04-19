@@ -39,4 +39,10 @@ static DataManagerSingleton *mainDataManager = nil;
     return self;
 }
 
+-(void) clearAllData
+{
+  [placeContainer clearData];
+  [peopleContainer clearData];
+}
+
 @end

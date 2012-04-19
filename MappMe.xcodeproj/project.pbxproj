@@ -63,6 +63,7 @@
 		A91C5BEF153F00F600128885 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A91C5BEE153F00F600128885 /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A91C5BF2153F017A00128885 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A91C5BF0153F016800128885 /* GHUnitIOS.framework */; };
 		A91C5BFA153F059000128885 /* PeopleContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A91C5BF9153F059000128885 /* PeopleContainerTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A923196F154012D800F0699E /* AbstractContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A923196E154012D800F0699E /* AbstractContainer.m */; };
 		A931AC341505860300696BF9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A931AC331505860300696BF9 /* SettingsViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
@@ -187,6 +188,8 @@
 		A91C5BEE153F00F600128885 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A91C5BF0153F016800128885 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = UnitTests/GHUnitIOS.framework; sourceTree = "<group>"; };
 		A91C5BF9153F059000128885 /* PeopleContainerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleContainerTests.m; sourceTree = "<group>"; };
+		A923196D154012D800F0699E /* AbstractContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractContainer.h; sourceTree = "<group>"; };
+		A923196E154012D800F0699E /* AbstractContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractContainer.m; sourceTree = "<group>"; };
 		A931AC321505860300696BF9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		A931AC331505860300696BF9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A939B73D152A9CEE008B2AE7 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
@@ -424,6 +427,8 @@
 		A9106558153E4D310057B570 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				A923196D154012D800F0699E /* AbstractContainer.h */,
+				A923196E154012D800F0699E /* AbstractContainer.m */,
 				A9801D761502E1E400BA0B5B /* PeopleContainer.h */,
 				A9801D771502E1E400BA0B5B /* PeopleContainer.m */,
 				A9801D7A1502E1E400BA0B5B /* PlaceContainer.h */,
@@ -681,6 +686,7 @@
 				A9106552153E46FA0057B570 /* AFXMLRequestOperation.m in Sources */,
 				A9106553153E46FA0057B570 /* UIImageView+AFNetworking.m in Sources */,
 				A97F782715400577000C7768 /* CoordPairsHelper.m in Sources */,
+				A923196F154012D800F0699E /* AbstractContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

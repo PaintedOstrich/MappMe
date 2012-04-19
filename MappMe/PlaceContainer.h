@@ -8,15 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Place.h"
+#import "AbstractContainer.h"
 
 
-@interface PlaceContainer : NSObject{
+@interface PlaceContainer : AbstractContainer{
 
 }
-//put annotation methods into this class
-
 -(Place*)get:(NSString*)town_id;
--(int)count;
 
 //Get all the places that has someone use it as their given locType.
 //e.g. Get  all places with someone using this place as their home town etc.

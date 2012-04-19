@@ -7,20 +7,8 @@
 //
 
 #import "PeopleContainer.h"
-#import "MappMeAppDelegate.h"
-#import "DebugLog.h"
-#import "DataManagerSingleton.h"
 
-@implementation PeopleContainer{
-    NSMutableDictionary* _data;
-}
-
--(id)init{
-    if(self = [super init]){
-        _data = [[NSMutableDictionary alloc] initWithCapacity:20];
-    }
-    return self;
-}
+@implementation PeopleContainer
 
 /*
  * Return a person object by id. 
@@ -35,18 +23,4 @@
     }
     return person;
 }
-
-/*
- * Return total number of people maintained in PeopleContainer.
- */
--(int)count
-{
-    return [_data count];
-}
-
--(NSArray*) allValues
-{
-    return [_data allValues];
-}
-
 @end

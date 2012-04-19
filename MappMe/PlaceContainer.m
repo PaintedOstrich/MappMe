@@ -10,16 +10,7 @@
 #import "DebugLog.h"
 
 
-@implementation PlaceContainer{
-    NSMutableDictionary* _data;
-}
-
--(id)init{
-    if (self = [super init]) {
-      _data = [[NSMutableDictionary alloc] initWithCapacity:20];
-    }
-    return self;
-}
+@implementation PlaceContainer
 
 /*
  * Return a place object by id. 
@@ -33,14 +24,6 @@
         [_data setValue:place forKey:town_id];
     }
     return place;
-}
-
-/*
- * Return total number of places maintained in PlaceContainer.
- */
--(int)count
-{
-    return [_data count];
 }
 
 -(NSArray*) getPlacesUsedAs:(locTypeEnum)locType
