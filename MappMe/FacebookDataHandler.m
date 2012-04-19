@@ -160,7 +160,7 @@
             Place* place = [[mainDataManager placeContainer] get:placeId];
             [place addLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
         } else{
-            NSString * page_id = [citiesTemp objectForKey:@"page_id"];
+            //NSString * page_id = [citiesTemp objectForKey:@"page_id"];
             //DebugLog(@"%@ not found; id: %@",[mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
         }
     }
@@ -172,7 +172,7 @@
         if ([(NSString *)[schoolTemp objectForKey:@"name"]length] >3){
             NSDictionary *loc= [schoolTemp objectForKey:@"location"];
             NSString * school_id = [schoolTemp objectForKey:@"page_id"];
-            NSString *type = [schoolTypeMapping objectForKey:school_id];
+            //NSString *type = [schoolTypeMapping objectForKey:school_id];
             //If have lat and long
             if ([loc objectForKey:@"latitude"]){
                 Place* place = [[mainDataManager placeContainer] get:school_id];

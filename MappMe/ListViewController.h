@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class MyAnnotation;
+
 @interface ListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *tableView;
     MyAnnotation *selectedAnnotation;

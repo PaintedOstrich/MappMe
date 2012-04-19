@@ -17,19 +17,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface MainViewController()
-
--(void)showPins;
-/*View Change Methods*/
--(void)showLocationType:(locTypeEnum)locType;
--(void)showCurrentLoc;
-
--(void)addLoadView;
--(void)updateProgressBar:(float)progressAmount;
--(void)showLocationMenu;
-@end
-
-
 @implementation MainViewController{
     DataManagerSingleton * mainDataManager;
     MBProgressHUD *HUD;
@@ -102,7 +89,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     if ([segue.identifier isEqualToString:@"showdetaillist"]) {
         ListViewController *controller = segue.destinationViewController;
         controller.selectedAnnotation = (MyAnnotation*)sender;
@@ -117,7 +103,6 @@
         controller.searchDelegate = self;
     }
 } 
-
 
 /*
  * This method is invoked when the accesory button on annotation view is tapped.
@@ -495,7 +480,7 @@
         annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
-        annotationView.animatesDrop = YES;
+        //annotationView.animatesDrop = YES;
         
         UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         [rightButton addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
@@ -517,27 +502,6 @@
     button.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
     
     return annotationView;
-    
-//	UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//	NSString *cityNameAndFName=[[NSString alloc] initWithFormat:@"%@?%@",annotation.title,annotation.subtitle];
-//	[rightButton setTitle:cityNameAndFName forState:UIControlStateNormal];
-//	[rightButton addTarget:self
-//					action:@selector(showDetail:)
-//		  forControlEvents:UIControlEventTouchUpInside];
-//    
-//    MKAnnotationView* pinView = [[MKPinAnnotationView alloc]
-//                                 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
-//    pinView.canShowCallout=YES;
-//    //check for different type of pin (sizes)
-//    
-//    pinView.rightCalloutAccessoryView = rightButton;
-//    pinView.image = ;
-//
-//    //  pinView.tag = @"moreThanOnePerson";
-//    
-//
-//    pinView.leftCalloutAccessoryView = profileIconView;
-//    return pinView;
 }
 
 #pragma mark - FriendSearchViewControllerDelegate methods
