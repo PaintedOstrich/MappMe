@@ -1,5 +1,6 @@
 #import <GHUnitIOS/GHUnit.h> 
 #import "Person.h"
+#import "Place.h"
 
 @interface PersonTest: GHTestCase { }
 @end
@@ -26,7 +27,7 @@
     GHAssertEquals(dummyPlace, person.hometown, nil);
     
     [person addPlace:dummyPlace withType:tHighSchool];
-    GHAssertEquals(dummyPlace, [person.highschools objectAtIndex:0], nil);
+    GHAssertTrue([person.highschools containsObject:dummyPlace], @"Already has the place in highschools set");
 }
 
 // Run after each test method

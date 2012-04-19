@@ -8,17 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationTypeEnum.h"
-#import "Place.h"
 
+@class Place;
 @interface Person : NSObject
 
 @property (nonatomic, copy) NSString *profileUrl;
 @property (nonatomic, retain) Place *hometown;
 @property (nonatomic, retain) Place *currentLocation;
-@property (nonatomic, retain) NSMutableArray * highschools;
-@property (nonatomic, retain) NSMutableArray * colleges;
-@property (nonatomic, retain) NSMutableArray * gradSchools;
-@property (nonatomic, retain) NSMutableArray * workPlaces;
+@property (nonatomic, retain) NSMutableSet * highschools;
+@property (nonatomic, retain) NSMutableSet * colleges;
+@property (nonatomic, retain) NSMutableSet * gradSchools;
+@property (nonatomic, retain) NSMutableSet * workPlaces;
 @property (nonatomic, retain) NSString * uid;
 @property (nonatomic, retain) NSString * name;
 @property  NSUInteger sectionNumber;

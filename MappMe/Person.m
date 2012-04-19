@@ -37,10 +37,10 @@
         self.name= fullName;
         self.uid = personId;
         self.profileUrl = [self buildProfileUrl];
-        self.highschools = [[NSMutableArray alloc] initWithCapacity:5];
-        self.colleges = [[NSMutableArray alloc] initWithCapacity:5];
-        self.workPlaces = [[NSMutableArray alloc] initWithCapacity:5];
-        self.gradSchools = [[NSMutableArray alloc] initWithCapacity:5];
+        self.highschools = [[NSMutableSet alloc] initWithCapacity:5];
+        self.colleges = [[NSMutableSet alloc] initWithCapacity:5];
+        self.workPlaces = [[NSMutableSet alloc] initWithCapacity:5];
+        self.gradSchools = [[NSMutableSet alloc] initWithCapacity:5];
     }
     return self;
 }

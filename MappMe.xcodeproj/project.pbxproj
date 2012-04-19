@@ -32,7 +32,6 @@
 		68BEE57215292D0E00E2433D /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BEE57115292D0E00E2433D /* triangle.png */; };
 		68BEE575152945B800E2433D /* DataProgressUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEE574152945B800E2433D /* DataProgressUpdater.m */; };
 		68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF09D15253F3000335C10 /* DataManagerSingleton.m */; };
-		68CFF0A41525705D00335C10 /* CoordPairsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF0A31525705D00335C10 /* CoordPairsHelper.m */; };
 		68DC0BCD151D7C6A00514016 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC0BCC151D7C6A00514016 /* SystemConfiguration.framework */; };
 		68DC0BCF151D7C7100514016 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC0BCE151D7C7100514016 /* CFNetwork.framework */; };
 		68DC0BD1151D7C8C00514016 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC0BD0151D7C8C00514016 /* MobileCoreServices.framework */; };
@@ -139,8 +138,6 @@
 		68BEE574152945B800E2433D /* DataProgressUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProgressUpdater.m; sourceTree = "<group>"; };
 		68CFF09C15253F3000335C10 /* DataManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagerSingleton.h; sourceTree = "<group>"; };
 		68CFF09D15253F3000335C10 /* DataManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagerSingleton.m; sourceTree = "<group>"; };
-		68CFF0A21525705D00335C10 /* CoordPairsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairsHelper.h; sourceTree = "<group>"; };
-		68CFF0A31525705D00335C10 /* CoordPairsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairsHelper.m; sourceTree = "<group>"; };
 		68DC0BCC151D7C6A00514016 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		68DC0BCE151D7C7100514016 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		68DC0BD0151D7C8C00514016 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -371,8 +368,6 @@
 			children = (
 				A94C44C615059F64001FF446 /* CoordinateLookupManager.h */,
 				A94C44C715059F64001FF446 /* CoordinateLookupManager.m */,
-				68CFF0A21525705D00335C10 /* CoordPairsHelper.h */,
-				68CFF0A31525705D00335C10 /* CoordPairsHelper.m */,
 			);
 			name = MapModels;
 			sourceTree = "<group>";
@@ -680,7 +675,6 @@
 				68DC0BD6151E538500514016 /* FriendSearchViewController.m in Sources */,
 				A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */,
 				68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */,
-				68CFF0A41525705D00335C10 /* CoordPairsHelper.m in Sources */,
 				68BEE56C15258EBC00E2433D /* ZoomHelper.m in Sources */,
 				68BEE575152945B800E2433D /* DataProgressUpdater.m in Sources */,
 				A910654A153E46FA0057B570 /* AFHTTPClient.m in Sources */,

@@ -7,7 +7,6 @@
 //
 
 #import "ListViewController.h"
-#import "MappMeAppDelegate.h"
 #import "Person.h"
 #import "WebViewController.h"
 #import "DataManagerSingleton.h"
@@ -62,7 +61,6 @@
     [super viewDidLoad];
     mainDataManager = [DataManagerSingleton sharedManager];
     selectedCity = [self formatCityStr:selectedCity];
-    NSLog(@"%@",selectedCity);
     self.navigationItem.title = selectedCity;
     
     friendIds = [self getFriendsInCity:selectedCity];

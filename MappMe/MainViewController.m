@@ -38,8 +38,8 @@
     DataManagerSingleton * mainDataManager;
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
-    NSString *selectedCity;
-    NSString *selectedPerson;
+    Place *selectedCity;
+    Person *selectedPerson;
     locTypeEnum currDisplayedType;
     
     //Display private variables
@@ -69,7 +69,7 @@
     //Set Bools for view methods
     displayTypeContainerIsShown = FALSE;
     
-    [self addLoadView];
+    //[self addLoadView];
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
@@ -145,24 +145,6 @@
 		selectedPerson= [annotationStrings objectAtIndex:1] ;
         [self performSegueWithIdentifier:@"showwebview" sender:nil];
 	}
-}
-
-#pragma mark - Methods to put pins when location type is changed
-
--(void)showHometown{
-    [self showLocationType:tHomeTown];
-}
--(void)showCurrentLoc{
-    [self showLocationType:tCurrentLocation];
-} 
--(void)showHighSchool{
-    [self showLocationType:tHighSchool];
-}
--(void)showCollege{
-    [self showLocationType:tCollege];
-}
--(void)showGrad{
-    [self showLocationType:tGradSchool];
 }
 
 #pragma mark - Custom Loading View and Logic
@@ -418,7 +400,6 @@
     [mapView removeAnnotations:annotations];
 }
 -(void)showLocationType:(locTypeEnum)locType{
-    //[[mainDataManager peopleContainer] printGroupings:locType];
     [self closeLocationMenu];
     [self clearMap];
     currDisplayedType = locType;
@@ -428,28 +409,7 @@
     [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
     [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
     [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
-    switch(locType){
-        case tHomeTown:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tHomeTown]];
-            break;
-        case tCurrentLocation:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tCurrentLocation]];
-            break;
-        case tHighSchool:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tHighSchool]];
-            break;
-        case tCollege:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tCollege]];
-            break;
-        case tGradSchool:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tGradSchool]];
-            break;
-        case tWork:
-           [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tWork]];
-            break;
-        default:
-            DebugLog(@"Warning: hitting default case");
-    }
+    [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:locType]];
     [self showPins];
 }
 
@@ -458,12 +418,12 @@
     Timer * t = [[Timer alloc] init];
     /*Call Methods for info*/
     FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
-    [fbDataHandler setProgressUpdaterDelegate:self];
-    [fbDataHandler getCurrentLocation];
+    //[fbDataHandler setProgressUpdaterDelegate:self];
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
+    [fbDataHandler getCurrentLocation];
 
-    [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(showLocationType:) withObject:tCurrentLocation waitUntilDone:NO];
     int time = [t endTimerAndGetTotalTime];
     DebugLog(@"Total App Loadtime: %i",time);
 }
