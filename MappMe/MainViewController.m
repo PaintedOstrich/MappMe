@@ -50,7 +50,7 @@
     //Set Bools for view methods
     displayTypeContainerIsShown = FALSE;
     
-    //[self addLoadView];
+    [self addLoadView];
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
