@@ -16,7 +16,7 @@
 
 -(Person*)get:(NSString*)person_id;
 -(int)count;
-
+-(NSArray*)allValues;
 
 
 

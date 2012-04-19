@@ -50,7 +50,7 @@
     
     friends = [NSMutableArray arrayWithCapacity:1];
     searchResults = [NSMutableArray arrayWithCapacity:1];
-    friendList = [[[mainDataManager peopleContainer] people] allValues];
+    friendList = [[mainDataManager peopleContainer] allValues];
     for (Person* person in friendList) {
         NSUInteger sect = (NSUInteger) [theCollation sectionForObject:person collationStringSelector:@selector(name)];
         person.sectionNumber = sect;
@@ -197,7 +197,7 @@ titleForHeaderInSection:(NSInteger)section {
         person = [[friends objectAtIndex:indexPath.section]
                   objectAtIndex:indexPath.row];
     }
-    [searchDelegate didSelectFriend:person.userId];
+    [searchDelegate didSelectFriend:person.uid];
 }
 #pragma mark - Methods to manage show and hide of the overlay
 

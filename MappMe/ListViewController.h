@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class Place;
+@class MyAnnotation;
 @interface ListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *tableView;
-    Place *selectedCity;
+    MyAnnotation *selectedAnnotation;
 }
 
-@property(nonatomic,strong)	Place *selectedCity;
+@property(nonatomic,strong)	MyAnnotation *selectedAnnotation;
 @end

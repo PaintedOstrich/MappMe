@@ -10,14 +10,15 @@
 
 @implementation MyAnnotation
 
-@synthesize title, subtitle, coordinate, person_id;
+@synthesize title, subtitle, coordinate, person_id, peopleArr;
 
 -(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)locType
 {
     if(self = [super init]){
         self.title = place.name;
         self.coordinate = place.location;
-        [self countDependentConfigs:[place getPeople:locType]];
+        self.peopleArr = [[place getPeople:locType] allObjects];
+        [self countDependentConfigs:self.peopleArr];
     }
     return self;
 }
@@ -25,12 +26,12 @@
 //Some configuration such as subtitle and person_id is dependent on 
 // the number of people associated with this place.
 //We do this configuration in this method.
--(void) countDependentConfigs:(NSMutableSet*)peopleArr
+-(void) countDependentConfigs:(NSArray*)arr
 {
-    int count = [peopleArr count];
+    int count = [arr count];
     
     if(count == 1){
-        Person* person = [peopleArr anyObject];
+        Person* person = [arr objectAtIndex:0];
         self.subtitle=person.name;
         self.person_id = person.uid;
     }
@@ -161,63 +162,5 @@
 //}
 ////Returns Appropriate Image for Pin,given type and displayType(location for all friends, or location element of friend)
 //+(UIImage*)getPinImage:(int)type isFriendLocationType:(BOOL)isFriendType{
-//    //If we're showing all location types for a friend
-//    UIImage *returnImage;
-//    if(!isFriendType){
-//        //Switch based upon enum values set in above makeAnnotationFromDict
-//        switch (type) {
-//            case tTwentyFive:
-//                returnImage=[UIImage imageNamed:@"redPin.png"];
-//                break;  
-//            case tFifteen:
-//                returnImage=[UIImage imageNamed:@"orangePin.png"];
-//                break;  
-//            case tTen:
-//                returnImage=[UIImage imageNamed:@"yellowPin.png"];
-//                break; 
-//            case tFive:
-//                returnImage=[UIImage imageNamed:@"yellow-greenPin.png"];
-//                break;  
-//            case tThree:
-//                returnImage=[UIImage imageNamed:@"greenPin.png"];
-//                break;  
-//            case tTwo:
-//                returnImage=[UIImage imageNamed:@"tealPin.png"];
-//                break;
-//            case tOne:
-//                returnImage=[UIImage imageNamed:@"bluePin.png"];
-//                break;  
-//            default:
-//                DebugLog(@"Warning: Default Case Reached");
-//                break;
-//        }
-//    }
-//    //If we're showing a location criteria such as current location for all friends
-//    else{
-//        switch (type) {
-//            case tCurrentLocation:
-//                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-//                break;
-//            case tHomeTown:
-//                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-//                break;  
-//            case tHighSchool:
-//                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-//                break;  
-//            case tCollege:
-//                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-//                break; 
-//            case tGradSchool:
-//                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-//                break;  
-//            case tWork:
-//                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-//                break;  
-//            default:
-//                DebugLog(@"Warning: Default Case Reached");
-//                break;
-//        }
-//    }
-//    return returnImage;
-//}
+//   //}
 @end

@@ -15,9 +15,6 @@
     NSMutableDictionary* _data;
 }
 
-
-@synthesize people;
-
 -(id)init{
     if(self = [super init]){
         _data = [[NSMutableDictionary alloc] initWithCapacity:20];
@@ -47,6 +44,10 @@
     return [_data count];
 }
 
+-(NSArray*) allValues
+{
+    return [_data allValues];
+}
 
 
 

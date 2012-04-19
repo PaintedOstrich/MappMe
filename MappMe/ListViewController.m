@@ -9,18 +9,14 @@
 #import "ListViewController.h"
 #import "Person.h"
 #import "WebViewController.h"
-#import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "MyAnnotation.h"
 
 @implementation ListViewController{
-//    MappMeAppDelegate *delegate;
-    DataManagerSingleton * mainDataManager;
-    NSArray * friendIds;
-    NSString *selectedFriend_id;
+    NSArray * friends;
 }
 
-@synthesize tableView, selectedCity;
+@synthesize tableView, selectedAnnotation;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -39,31 +35,14 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Helper Methods to masage and gether data.
-/*
- * We may need to format city name somehow in the future.
- */
--(NSString*) formatCityStr:(NSString*) cityName {
-    return cityName;
-}
-
--(NSArray*) getFriendsInCity:(NSString*) cityName{
-    NSString * city_id = [mainDataManager.placeContainer getIdFromPlace:selectedCity];
-    
-    NSDictionary * currentGrouping = [mainDataManager.peopleContainer getCurrentGrouping];
-    return [[currentGrouping objectForKey:city_id] allObjects];
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    mainDataManager = [DataManagerSingleton sharedManager];
-    selectedCity = [self formatCityStr:selectedCity];
-    self.navigationItem.title = selectedCity;
-    
-    friendIds = [self getFriendsInCity:selectedCity];
+    self.navigationItem.title = selectedAnnotation.title;
+    friends = selectedAnnotation.peopleArr;
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -117,7 +96,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [friendIds count];
+    return [friends count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,9 +107,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
-    NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
-    Person* friend = [[mainDataManager peopleContainer] get:friend_id];
+
+    Person* friend = [friends objectAtIndex:indexPath.row];
     cell.textLabel.text = friend.name;
     
     [cell.imageView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
@@ -142,8 +120,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedFriend_id = [friendIds objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"showwebview" sender:nil];
+    [self performSegueWithIdentifier:@"showwebview" sender: [friends objectAtIndex:indexPath.row]];
 }
 
 #pragma mark - Transition Functions
@@ -152,7 +129,8 @@
 {
     
     if ([segue.identifier isEqualToString:@"showwebview"]){
-		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",selectedFriend_id];
+        NSString* fid = [(Person*)sender uid];
+		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=", fid];
 		NSURL *url =[[NSURL alloc] initWithString:urlStr];
         WebViewController *controller = segue.destinationViewController;
         controller.url = url;
