@@ -64,6 +64,7 @@
 		A91C5BF2153F017A00128885 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A91C5BF0153F016800128885 /* GHUnitIOS.framework */; };
 		A91C5BFA153F059000128885 /* PeopleContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A91C5BF9153F059000128885 /* PeopleContainerTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A923196F154012D800F0699E /* AbstractContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A923196E154012D800F0699E /* AbstractContainer.m */; };
+		A9231970154015BF00F0699E /* AbstractContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A923196E154012D800F0699E /* AbstractContainer.m */; };
 		A931AC341505860300696BF9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A931AC331505860300696BF9 /* SettingsViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
@@ -694,6 +695,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9231970154015BF00F0699E /* AbstractContainer.m in Sources */,
 				A97F780E153FF1FF000C7768 /* MyAnnotation.m in Sources */,
 				A98F1731153FBA1300FB6257 /* PlaceContainer.m in Sources */,
 				A98F172D153FB50C00FB6257 /* DebugLog.m in Sources */,
