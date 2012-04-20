@@ -39,6 +39,16 @@
 -(void)setProgressUpdaterDelegate:(id)delegate{
     [dataProgressUpdater setProgressUpdaterDelegate:delegate];
 }
+
+
+//This method establishes two way link between a person and a place given a locType.
+//E.g. Tim has St. Louis as its homeTown. St. Louis has Tim as a person considering itself as his hometown.
+-(void) link:(Place*)place withPerson:(Person*)person forLocType:(locTypeEnum)locType
+{
+    [person addPlace:place withType:locType];
+    [place addPerson:person forType:locType];
+}
+
 #pragma mark - Custom Facebook Server communication methods
 
 -(NSURL*)buildQueryUrl:(NSString*)action
@@ -140,8 +150,7 @@
         Person* friend = [mainDataManager.peopleContainer get:uid];
         friend.name = name;
         //Establish two way relationship between friend and place (connected by the locType)
-        [friend addPlace:place withType:locType];
-        [place addPerson:friend forType:locType];
+        [self link:place withPerson:friend forLocType:locType];
     }
     if(locType == tHomeTown){
         [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tHomeTown]count] forType:tHomeTown];
@@ -214,7 +223,7 @@
             
             Person* person = [mainDataManager.peopleContainer get:uid];
             person.name = name;
-            [person addPlace:place withType:placeType];
+            [self link:place withPerson:person forLocType:placeType];
         }
     }
     //Set totals for progress updater

@@ -512,6 +512,8 @@
 		A9A0AC501502D7D30020265D /* Data Package */ = {
 			isa = PBXGroup;
 			children = (
+				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
+				A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */,
 				689175BF151D0C4A00078BE2 /* Models */,
 				A9106558153E4D310057B570 /* Stores */,
 				68CFF09C15253F3000335C10 /* DataManagerSingleton.h */,
@@ -520,8 +522,6 @@
 				A94C44C715059F64001FF446 /* CoordinateLookupManager.m */,
 				689175BB151D0C3D00078BE2 /* FacebookDataHandler.h */,
 				689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */,
-				A9801D741502E1E400BA0B5B /* LocationTypeEnum.h */,
-				A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */,
 			);
 			name = "Data Package";
 			sourceTree = "<group>";

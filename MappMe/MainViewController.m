@@ -14,6 +14,7 @@
 #import "ZoomHelper.h"
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
+#import "LocationTypeEnum.h"
 
 #import <QuartzCore/QuartzCore.h>
 
@@ -416,6 +417,8 @@
     [self setBtnTitleForAllStates:locationTypeBtn withText:[LocationTypeEnum getNameFromEnum:currDisplayedType]];
     
     NSArray* relevantPlaces = [mainDataManager.placeContainer getPlacesUsedAs:locType];
+
+    //DebugLog(@"Showing %@, has %d entries", [LocationTypeEnum getNameFromEnum:locType], [relevantPlaces count]);
     [self makeAnnotations:relevantPlaces forLocType:locType];
     [self showPins];
 }
