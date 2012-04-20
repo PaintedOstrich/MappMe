@@ -11,7 +11,7 @@
 
 @implementation MyAnnotation
 
-@synthesize title, subtitle, coordinate, person_id, peopleArr, locType, placeHolderImg;
+@synthesize title, subtitle, coordinate, person_id, peopleArr, locType, placeHolderImg, place_id;
 
 -(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)type
 {
@@ -21,6 +21,7 @@
         self.peopleArr = [[place getPeople:type] allObjects];
         [self countDependentConfigs:self.peopleArr];
         self.locType = type;
+        self.place_id = place.uid;
     }
     return self;
 }
@@ -28,6 +29,7 @@
 -(MyAnnotation*) initWithPlace:(Place *)place forPerson:(Person*)person forLocType:(locTypeEnum)type
 {
     if(self = [super init]){
+        self.place_id = place.uid;
         self.title = place.name;
         self.coordinate = place.location;
         self.subtitle = [LocationTypeEnum getNameFromEnum:type];

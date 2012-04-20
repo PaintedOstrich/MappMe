@@ -15,6 +15,7 @@
 	CLLocationCoordinate2D	coordinate;
 	NSString*				title;
 	NSString*				subtitle;
+    NSString*               place_id;
     //Will only be set if there is only one person associated with this MKAnnotation.
     NSString*               person_id;
     //An array of all the people under this annotation object.
@@ -28,6 +29,7 @@
 @property (nonatomic, copy)		NSString*				title;
 @property (nonatomic, copy)		NSString*				subtitle;
 @property (nonatomic, copy)		NSString*				person_id;
+@property (nonatomic, copy)		NSString*				place_id;
 @property (nonatomic, copy)		NSString*				placeHolderImg;
 @property (nonatomic, retain)   NSArray*				peopleArr;
 @property locTypeEnum locType;
