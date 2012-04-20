@@ -18,16 +18,16 @@
     GHAssertEqualStrings(@"MyId", person.uid,nil);
     GHAssertEqualStrings(@"MyName", person.name,nil);
     GHAssertEqualStrings(@"https://graph.facebook.com/MyId/picture?type=square", person.profileUrl, nil);
-    GHAssertTrue(0 == [person.colleges count], @"No object in colleges array");
+    NSString* college = [NSString stringWithFormat:@"%d", tCollege];
+    GHAssertTrue(0 == [[person.getPlacesMapping objectForKey:college] count], @"No object in colleges array");
 }
 
 -(void) testAddPlace {
     Place* dummyPlace = [[Place alloc] initPlace:@"MyPlaceId" withName:@"MyPlace"];
-    [person addPlace:dummyPlace withType:tHomeTown];
-    GHAssertEquals(dummyPlace, person.hometown, nil);
     
+    NSString* highschool = [NSString stringWithFormat:@"%d", tHighSchool];
     [person addPlace:dummyPlace withType:tHighSchool];
-    GHAssertTrue([person.highschools containsObject:dummyPlace], @"Already has the place in highschools set");
+    GHAssertTrue([[person.getPlacesMapping objectForKey:highschool] containsObject:dummyPlace], @"Already has the place in highschools set");
 }
 
 // Run after each test method
