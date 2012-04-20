@@ -13,12 +13,6 @@
 @interface Person : NSObject
 
 @property (nonatomic, copy) NSString *profileUrl;
-@property (nonatomic, retain) Place *hometown;
-@property (nonatomic, retain) Place *currentLocation;
-@property (nonatomic, retain) NSMutableSet * highschools;
-@property (nonatomic, retain) NSMutableSet * colleges;
-@property (nonatomic, retain) NSMutableSet * gradSchools;
-@property (nonatomic, retain) NSMutableSet * workPlaces;
 @property (nonatomic, retain) NSString * uid;
 @property (nonatomic, retain) NSString * name;
 @property  NSUInteger sectionNumber;
@@ -26,4 +20,6 @@
 -(Person*)initPerson:(NSString*)personId withName:(NSString*)fullName;
 -(void)addPlace:(Place*)place withType:(int)locType;
 
+//Return the internally mainted mapping between locType and array of places.
+-(NSDictionary*) getPlacesMapping;
 @end

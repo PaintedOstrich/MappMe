@@ -8,14 +8,11 @@
 
 #import "Person.h"
 #import "DebugLog.h"
-@implementation Person
+@implementation Person {
+    //Maps locType to a set of places.
+    NSMutableDictionary* _locTypePlacesMapping;
+}
 
-@synthesize hometown;
-@synthesize currentLocation;
-@synthesize highschools;
-@synthesize colleges;
-@synthesize gradSchools;
-@synthesize workPlaces;
 @synthesize uid;
 @synthesize name, sectionNumber;
 @synthesize profileUrl;
@@ -33,39 +30,33 @@
         self.name= fullName;
         self.uid = personId;
         self.profileUrl = [self buildProfileUrl];
-        self.highschools = [[NSMutableSet alloc] initWithCapacity:5];
-        self.colleges = [[NSMutableSet alloc] initWithCapacity:5];
-        self.workPlaces = [[NSMutableSet alloc] initWithCapacity:5];
-        self.gradSchools = [[NSMutableSet alloc] initWithCapacity:5];
+        _locTypePlacesMapping = [[NSMutableDictionary alloc] initWithCapacity:6]; 
     }
     return self;
 }
 
 -(void)addPlace:(Place*)place withType:(int)locType
 {
-    switch(locType){
-        case tHomeTown:
-            self.hometown = place;
-            break;
-        case tCurrentLocation:
-            self.currentLocation = place;
-            break;
-        case tHighSchool:
-            [self.highschools addObject:place];
-            break;
-        case tCollege:
-            [self.colleges addObject:place];
-            break;
-        case tGradSchool:
-            [self.gradSchools addObject:place];
-            break;
-        case tWork:
-            [self.workPlaces addObject:place];
-            break;
-        default:{
-            DebugLog(@"Warning: hitting default case");
-        }
+    NSString* key = [NSString stringWithFormat:@"%d", locType];
+    NSMutableSet* set = [_locTypePlacesMapping objectForKey:key];
+    
+    if (set == nil) {
+        set = [[NSMutableSet alloc] initWithCapacity:5];
+        [_locTypePlacesMapping setValue:set forKey:key];
     }
+    
+    [set addObject:place];
 }
 
+-(NSDictionary*) getPlacesMapping
+{
+    NSMutableDictionary* toR = [[NSMutableDictionary alloc] initWithCapacity:6];
+    NSEnumerator *enumerator = [_locTypePlacesMapping keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        NSMutableSet *tmp = [_locTypePlacesMapping objectForKey:key];
+        [toR setValue:[tmp allObjects] forKey:key];
+    }
+    return toR;
+}
 @end

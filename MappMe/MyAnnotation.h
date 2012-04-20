@@ -9,6 +9,7 @@
 #import "LocationTypeEnum.h"
 
 @class Place;
+@class Person;
 @interface MyAnnotation : NSObject<MKAnnotation> {
     
 	CLLocationCoordinate2D	coordinate;
@@ -27,5 +28,6 @@
 @property (nonatomic, retain)   NSArray*				peopleArr;
 
 -(MyAnnotation*) initWithPlace:(Place*)place forLocType:(locTypeEnum)locType;
+-(MyAnnotation*) initWithPlace:(Place *)place forPerson:(Person*)person forLocType:(locTypeEnum)locType;
 
 @end

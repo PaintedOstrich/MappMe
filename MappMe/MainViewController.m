@@ -340,12 +340,31 @@
 
 
 #pragma mark - Map pins methods
+
+//Generate MyAnnotation objects depending on the array of places and the locType passed along
+//Also add the generated annotation into annotations array immediately.
 -(void)makeAnnotations:(NSArray*)places forLocType:(locTypeEnum)locType {
-    annotations = [[NSMutableArray alloc] initWithCapacity:[[mainDataManager peopleContainer] count]];
     for(int i=0; i < [places count]; i++) {
         Place* place = [places objectAtIndex:i];
         MyAnnotation* anno = [[MyAnnotation alloc] initWithPlace:place forLocType:locType];
         [annotations addObject:anno];
+    }
+}
+
+//Make annotations for a particular person.
+//Such annotations will have title as place name and subtitle as the type of place(e.g. HomeTown/College etc.).
+-(void)makeAnnotationsForPerson:(Person*)person {
+    NSDictionary* mapping = [person getPlacesMapping];
+    NSEnumerator *enumerator = [mapping keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        locTypeEnum locType = [key intValue];
+        NSArray* places = [mapping objectForKey:key];
+        for(int j=0; j < [places count]; j++) {
+            Place* place = [places objectAtIndex:j];
+            MyAnnotation* anno = [[MyAnnotation alloc] initWithPlace:place forPerson:person forLocType:locType];
+            [annotations addObject:anno];
+        }
     }
 }
 
@@ -354,8 +373,10 @@
     [_mapView addAnnotations:annotations];
     [ZoomHelper zoomToFitAnnoations:_mapView];
 }
+//Clear the map of pins. Also clear annotations array.
 -(void)clearMap{
     [_mapView removeAnnotations:annotations];
+    [annotations removeAllObjects];
 }
 
 -(void) showCurrentLoc
@@ -502,10 +523,8 @@
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
-    //[selectedPerson getAllPlaces];
-//    [self getLocationsForFriend: friend];
-//    [self showPins];
-
+    [self makeAnnotationsForPerson:selectedPerson];
+    [self showPins];
     [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
 }
 

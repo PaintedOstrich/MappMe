@@ -7,6 +7,7 @@
 
 #import "MyAnnotation.h"
 #import "Place.h"
+#import "LocationTypeEnum.h"
 
 @implementation MyAnnotation
 
@@ -19,6 +20,16 @@
         self.coordinate = place.location;
         self.peopleArr = [[place getPeople:locType] allObjects];
         [self countDependentConfigs:self.peopleArr];
+    }
+    return self;
+}
+
+-(MyAnnotation*) initWithPlace:(Place *)place forPerson:(Person*)person forLocType:(locTypeEnum)locType
+{
+    if(self = [super init]){
+        self.title = place.name;
+        self.coordinate = place.location;
+        self.subtitle = [LocationTypeEnum getNameFromEnum:locType];
     }
     return self;
 }
