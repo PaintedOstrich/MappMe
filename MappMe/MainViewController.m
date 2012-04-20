@@ -86,7 +86,6 @@
 
 #pragma mark - Transition Functions
 //All functions involving transition to another screen should go below
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showdetaillist"]) {
@@ -121,15 +120,14 @@
 	}
 }
 
-#pragma mark - Custom Loading View and Logic
 -(void)pushSearchController{
-    DebugLog(@"changing to search controller");
     [self performSegueWithIdentifier:@"searchview" sender:self];
-//    [self presentModalViewController: animated:YES]
 }
 -(void)pushSettingsController{
     [self performSegueWithIdentifier:@"settingsview" sender:self];
 }
+
+#pragma mark - Custom Loading View and Logic
 -(void)addBottomNavView{
     UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 540, 320, 44)];
 //    [navContainer setAlpha:0.0];                                                   
@@ -226,13 +224,7 @@
     [loadScreenContainer setTransform:CGAffineTransformMakeTranslation(0, -100.0)];
     [UIView commitAnimations];
 }
-#pragma mark - disable/enable Edu buttons
--(void)enableEduButtons{
-    
-}
--(void)disableEduButtons{
-    
-}
+
 #pragma mark - progress bar delegate methods
 -(void)finishedLoading{
     DebugLog(@"called finished loading");
@@ -257,16 +249,9 @@
     }else{
         [loadScreenProgressBar setProgress:progressAmount animated:YES];
         //Disable Edu Buttons until finished loading
-        [self disableEduButtons];
+        //[self disableEduButtons];
     } 
 }
-#pragma mark - Custom Person Search 
-//-(NSArray*) getFriendsInCity:(NSString*) cityName{
-//    NSString * city_id = [mainDataManager.placeContainer getIdFromPlace:selectedCity];
-//    
-//    NSDictionary * currentGrouping = [mainDataManager.peopleContainer getCurrentGrouping];
-//    return [[currentGrouping objectForKey:city_id] allObjects];
-//}
 
 #pragma mark - Custom View Methods
 //Helper method to create buttons for the location type menu (Used in showLocationMenu)
@@ -517,7 +502,7 @@
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
-
+    //[selectedPerson getAllPlaces];
 //    [self getLocationsForFriend: friend];
 //    [self showPins];
 
