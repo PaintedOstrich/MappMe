@@ -73,6 +73,8 @@
 		A963C344151EE8E200559DB3 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C343151EE8E200559DB3 /* settings.png */; };
 		A963C347151EE98F00559DB3 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C346151EE98F00559DB3 /* search.png */; };
 		A96AD5CF151FD52B00372528 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A96AD5CE151FD52B00372528 /* profile.png */; };
+		A978B7681541089F0014CD41 /* currentlocation.png in Resources */ = {isa = PBXBuildFile; fileRef = A978B7661541089F0014CD41 /* currentlocation.png */; };
+		A978B76B154109000014CD41 /* hometown.png in Resources */ = {isa = PBXBuildFile; fileRef = A978B76A154109000014CD41 /* hometown.png */; };
 		A97F780D153FF1D0000C7768 /* MyAnnotationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A97F780C153FF1D0000C7768 /* MyAnnotationTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A97F780E153FF1FF000C7768 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
 		A97F782715400577000C7768 /* CoordPairsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A97F782615400577000C7768 /* CoordPairsHelper.m */; };
@@ -203,6 +205,8 @@
 		A963C343151EE8E200559DB3 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A963C346151EE98F00559DB3 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
+		A978B7661541089F0014CD41 /* currentlocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = currentlocation.png; sourceTree = "<group>"; };
+		A978B76A154109000014CD41 /* hometown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hometown.png; sourceTree = "<group>"; };
 		A97F780C153FF1D0000C7768 /* MyAnnotationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotationTest.m; sourceTree = "<group>"; };
 		A97F782515400577000C7768 /* CoordPairsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairsHelper.h; sourceTree = "<group>"; };
 		A97F782615400577000C7768 /* CoordPairsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairsHelper.m; sourceTree = "<group>"; };
@@ -351,6 +355,8 @@
 		681C415B151D71F600747C4A /* pin images */ = {
 			isa = PBXGroup;
 			children = (
+				A978B76A154109000014CD41 /* hometown.png */,
+				A978B7661541089F0014CD41 /* currentlocation.png */,
 				681C415D151D724500747C4A /* bluePin.png */,
 				681C415E151D724500747C4A /* greenPin.png */,
 				681C415F151D724500747C4A /* orangePin.png */,
@@ -634,6 +640,8 @@
 				68FC2A8C153E7F0D00003A74 /* LogoutNormal@2x.png in Resources */,
 				68FC2A8D153E7F0D00003A74 /* LogoutPressed@2x.png in Resources */,
 				68FC2A8F153E806100003A74 /* loginBackground.png in Resources */,
+				A978B7681541089F0014CD41 /* currentlocation.png in Resources */,
+				A978B76B154109000014CD41 /* hometown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

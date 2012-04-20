@@ -457,7 +457,13 @@
     //If we're showing all location types for a friend
     NSString* imgName;
     if (isFriendAnnotationType) {
-      imgName = @"bluePin1.25.png";
+        if (annotation.locType == tCurrentLocation) {
+            imgName = @"currentlocation.png";
+        } else if(annotation.locType == tHomeTown) {
+            imgName = @"hometown.png";
+        } else {
+            imgName = @"redPin.png";
+        }
     } else {
         int count = [annotation.peopleArr count];
         if(count > 25){
