@@ -347,7 +347,9 @@
     for(int i=0; i < [places count]; i++) {
         Place* place = [places objectAtIndex:i];
         MyAnnotation* anno = [[MyAnnotation alloc] initWithPlace:place forLocType:locType];
-        [annotations addObject:anno];
+        if ([anno hasValidCoordinate]) {
+            [annotations addObject:anno];
+        }
     }
 }
 
@@ -363,7 +365,9 @@
         for(int j=0; j < [places count]; j++) {
             Place* place = [places objectAtIndex:j];
             MyAnnotation* anno = [[MyAnnotation alloc] initWithPlace:place forPerson:person forLocType:locType];
-            [annotations addObject:anno];
+            if ([anno hasValidCoordinate]) {
+                [annotations addObject:anno];
+            }
         }
     }
 }

@@ -53,4 +53,14 @@
     }
 }
 
+-(BOOL)hasValidCoordinate
+{
+    //For now I know (0, 0) is not a valid coordinate. 
+    //I could not find the valid range of latitude and logitude.
+    if (self.coordinate.latitude == 0 && self.coordinate.longitude == 0){
+        return FALSE;
+    }
+    return TRUE;
+}
+
 @end
