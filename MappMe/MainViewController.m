@@ -447,7 +447,6 @@
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [aV setFrame:endFrame];
         [UIView commitAnimations];
-        
     }
 }
 
@@ -492,34 +491,39 @@
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
 	// try to dequeue an existing pin view first
-	static NSString* identifier = @"AnnotationIdentifier";
-    
-    
+	NSString* identifier;
+    if (isFriendAnnotationType) {
+        identifier = @"PersonAnnotation";
+    } else {
+        identifier = @"NormalAnnotation";
+    }
+
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
     if (annotationView == nil) {
         annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
         //annotationView.animatesDrop = YES;
-        
-        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [rightButton addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
-        annotationView.rightCalloutAccessoryView = rightButton;
+        if (!isFriendAnnotationType) {
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
+            annotationView.rightCalloutAccessoryView = rightButton;
+            rightButton.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
+        }
     } else {
         annotationView.annotation = annotation;
     }
     
     annotationView.image = [self getPinImage:annotation ];
     
-    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-    if (annotation.person_id !=nil) {
-        Person* friend = [[mainDataManager peopleContainer] get:annotation.person_id];
-        [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
+    if (!isFriendAnnotationType) {
+        UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+        if (annotation.person_id !=nil) {
+            Person* friend = [[mainDataManager peopleContainer] get:annotation.person_id];
+            [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
+        }
+        annotationView.leftCalloutAccessoryView = profileIconView;   
     }
-    annotationView.leftCalloutAccessoryView = profileIconView;
-    
-    UIButton *button = (UIButton *)annotationView.rightCalloutAccessoryView;
-    button.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
     
     return annotationView;
 }
