@@ -9,6 +9,7 @@
 #import "FriendSearchViewController.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
+#import "DataManagerSingleton.h"
 
 @implementation FriendSearchViewController{
     DataManagerSingleton * mainDataManager;
@@ -49,8 +50,8 @@
     
     friends = [NSMutableArray arrayWithCapacity:1];
     searchResults = [NSMutableArray arrayWithCapacity:1];
-    friendList = [[[mainDataManager peopleContainer] people] allValues];
-    for (Friend* person in friendList) {
+    friendList = [[mainDataManager peopleContainer] allValues];
+    for (Person* person in friendList) {
         NSUInteger sect = (NSUInteger) [theCollation sectionForObject:person collationStringSelector:@selector(name)];
         person.sectionNumber = sect;
     }
@@ -62,7 +63,7 @@
         [sectionArrays addObject:sectionArray];
     }
     
-    for (Friend *person in friendList) {
+    for (Person *person in friendList) {
         [(NSMutableArray *)[sectionArrays objectAtIndex:person.sectionNumber]
          addObject:person];
     }
@@ -172,7 +173,7 @@ titleForHeaderInSection:(NSInteger)section {
                                       reuseIdentifier:CellIdentifier];
     }
 
-    Friend *person;
+    Person *person;
     if(searching)
         person = [searchResults objectAtIndex:indexPath.row];
     else {
@@ -189,14 +190,14 @@ titleForHeaderInSection:(NSInteger)section {
 #pragma mark - Table view delegate
   
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Friend *person;
+    Person *person;
     if(searching)
         person = [searchResults objectAtIndex:indexPath.row];
     else {
         person = [[friends objectAtIndex:indexPath.section]
                   objectAtIndex:indexPath.row];
     }
-    [searchDelegate didSelectFriend:person.userId];
+    [searchDelegate didSelectFriend:person];
 }
 #pragma mark - Methods to manage show and hide of the overlay
 
@@ -240,7 +241,7 @@ titleForHeaderInSection:(NSInteger)section {
     
     [searchArray addObjectsFromArray:friendList];
     
-    for (Friend* person in searchArray)
+    for (Person* person in searchArray)
     {
         NSString *sTemp = person.name;
         NSRange titleResultsRange = [sTemp rangeOfString:searchText options:NSCaseInsensitiveSearch];

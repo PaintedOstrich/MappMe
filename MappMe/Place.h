@@ -8,19 +8,28 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "Person.h"
 
-/*
- CoordPairs class used so Location Information can be Permanently Stored In Dictionary
- */
 @interface Place : NSObject{
     CLLocationCoordinate2D location;
-    NSString *placeName;
+    NSString *name;
+    NSString* uid;
 }
 
--(id)initPlaceWithName:(NSString *) name;
+@property(nonatomic)CLLocationCoordinate2D location;
+@property(nonatomic,retain) NSString * name;
+@property(nonatomic,retain) NSString * uid;
+
+
+-(id)initPlace:(NSString *)placeId withName:(NSString*)placeName;
 -(void)addLat:(NSString *)lat andLong:(NSString *)lon;
 
-@property(nonatomic)CLLocationCoordinate2D location;
-@property(nonatomic,retain) NSString * placeName;
 
+//Get the set of people using this place as the specified locType.
+//We use set over array as set will keep Person objects added unique.
+-(NSMutableSet*)getPeople:(locTypeEnum)locType;
+
+//Link this person with this place. (e.g. add Tom forType home_town means that
+// this place is Tom's home_town).
+-(void)addPerson:(Person *)person forType:(locTypeEnum)locType;
 @end

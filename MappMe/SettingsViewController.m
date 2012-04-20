@@ -2,13 +2,14 @@
 //  SettingsViewController.m
 //  MappMe
 //
-//  Created by #BAL on 3/4/12.
+//  Created by Codier on 3/4/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "SettingsViewController.h"
 #import "LoginViewController.h"
 #import "MappMeAppDelegate.h"
+#import "DataManagerSingleton.h"
 
 @implementation SettingsViewController {
     MappMeAppDelegate *delegate;
@@ -19,6 +20,7 @@
  * (TODO) move this method into settings page
  */
 -(IBAction)logoutBtnTapped{
+    [[DataManagerSingleton sharedManager] clearAllData];
     LoginViewController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
     [[delegate facebook] setSessionDelegate:controller];
     [[delegate facebook] logout];

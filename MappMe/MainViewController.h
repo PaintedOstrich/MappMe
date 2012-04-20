@@ -15,12 +15,8 @@
 /*Main Controller Interface*/
 
 @interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, ProgressUpdaterDelegate, FriendSearchViewControllerDelegate> {
-    IBOutlet MKMapView* mapView;
-//    IBOutlet UIButton* locationTypeBtn;
+    IBOutlet MKMapView* _mapView;
 }
-
-
-
 @end
 
 

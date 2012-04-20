@@ -10,9 +10,9 @@
 #import <MapKit/MapKit.h>
 #import "CoordPairsHelper.h"
 
+@class Place;
 @interface CoordinateLookupManager : NSObject
 
-+(CoordPairsHelper *)manageCoordLookupForPlace:(NSString *)lookupString;
-+(CoordPairsHelper *)manageCoordLookupForEdu:(NSString *)placeName withSupInfo:(NSDictionary*)supInfo 
-                         andTypeString:(NSString *)schoolType;
+- (void)lookupLocation:(Place*)place;
++ (id)sharedManager;
 @end

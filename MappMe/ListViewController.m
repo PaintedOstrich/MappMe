@@ -7,19 +7,16 @@
 //
 
 #import "ListViewController.h"
-#import "MappMeAppDelegate.h"
-#import "Friend.h"
+#import "Person.h"
 #import "WebViewController.h"
-
+#import "UIImageView+AFNetworking.h"
+#import "MyAnnotation.h"
 
 @implementation ListViewController{
-//    MappMeAppDelegate *delegate;
-    DataManagerSingleton * mainDataManager;
-    NSArray * friendIds;
-    NSString *selectedFriend_id;
+    NSArray * friends;
 }
 
-@synthesize tableView,selectedCity;
+@synthesize tableView, selectedAnnotation;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,32 +35,14 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Helper Methods to masage and gether data.
-/*
- * We may need to format city name somehow in the future.
- */
--(NSString*) formatCityStr:(NSString*) cityName {
-    return cityName;
-}
-
--(NSArray*) getFriendsInCity:(NSString*) cityName{
-    NSString * city_id = [mainDataManager.placeContainer getIdFromPlace:selectedCity];
-    
-    NSDictionary * currentGrouping = [mainDataManager.peopleContainer getCurrentGrouping];
-    return [[currentGrouping objectForKey:city_id] allObjects];
-}
-
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    mainDataManager = [DataManagerSingleton sharedManager];
-    selectedCity = [self formatCityStr:selectedCity];
-    NSLog(@"%@",selectedCity);
-    self.navigationItem.title = selectedCity;
-    
-    friendIds = [self getFriendsInCity:selectedCity];
+    self.navigationItem.title = selectedAnnotation.title;
+    friends = selectedAnnotation.peopleArr;
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -117,7 +96,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [friendIds count];
+    return [friends count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,26 +107,20 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+
+    Person* friend = [friends objectAtIndex:indexPath.row];
+    cell.textLabel.text = friend.name;
     
-    NSString *friend_id = [friendIds objectAtIndex:indexPath.row];
-    cell.textLabel.text = [[mainDataManager peopleContainer] getNameFromId:friend_id];
-    
-    //Parker, the following line is causing the slowness in rendering a table list with
-    //more than 20 items. Please thread your image fetching code, use a placeholder first,
-    //and swap in the right image along the way(just like what we did previously).
-    //It is not good to download profile pics when it is not needed as it takes up the user's 3G data.
-    //cell.imageView.image = [[delegate fbImageHandler] getProfPicFromId:friend_id];
-    cell.imageView.image = [UIImage imageNamed:@"profile.png"];
-    
+    [cell.imageView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
     return cell;
 }
+
 
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    selectedFriend_id = [friendIds objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"showwebview" sender:nil];
+    [self performSegueWithIdentifier:@"showwebview" sender: [friends objectAtIndex:indexPath.row]];
 }
 
 #pragma mark - Transition Functions
@@ -156,7 +129,8 @@
 {
     
     if ([segue.identifier isEqualToString:@"showwebview"]){
-		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",selectedFriend_id];
+        NSString* fid = [(Person*)sender uid];
+		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=", fid];
 		NSURL *url =[[NSURL alloc] initWithString:urlStr];
         WebViewController *controller = segue.destinationViewController;
         controller.url = url;

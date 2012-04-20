@@ -17,7 +17,8 @@
 }
 
 -(id)initWithLat:(NSString *)lat andLong:(NSString *)lon;
-
+-(NSString*) latAsString;
+-(NSString*) longAsString;
 @property(nonatomic)CLLocationCoordinate2D location;
 
 @end

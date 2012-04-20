@@ -7,188 +7,63 @@
 
 #import "MyAnnotation.h"
 #import "Place.h"
-#import "MappMeAppDelegate.h"
-#import "DebugLog.h"
 #import "LocationTypeEnum.h"
 
 @implementation MyAnnotation
 
-@synthesize title;
-@synthesize subtitle;
-@synthesize coordinate;
-@synthesize type;
+@synthesize title, subtitle, coordinate, person_id, peopleArr, locType, placeHolderImg;
 
-
-/*Returns an array of annotations, grouping all friends per place into annotation
-  @param:  dictionary of keys:city id with values: array of friend Id's
- */
-+(NSArray*)makeAnnotationFromDict:(NSDictionary*)groupings{
-//    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
-    NSMutableArray *annotations = [[NSMutableArray alloc] initWithCapacity:[groupings count]];
-    NSArray *keys = [groupings allKeys];
-    int i, count;
-    count = [keys count];
-    for (i = 0; i < count; i++)
-    {
-        NSString * placeId = [keys objectAtIndex: i];
-        Place *loc = [mainDataManager.placeContainer getPlaceFromId:placeId];
-        if (!loc) {
-            //If this location is Null
-            DebugLog(@"%@ does not have location",[mainDataManager.placeContainer getPlaceNameFromId:placeId]);
-            continue;
-        }
-        MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
-        annotationItem.coordinate=loc.location;
-        //DebugLog(@"place: %@\n long: %d",loc.placeName, annotationItem.coordinate.longitude);
-        if (annotationItem.coordinate.longitude == 0) {
-            DebugLog(@"not showing null location : %@", [mainDataManager.placeContainer getPlaceNameFromId:placeId]);
-            continue;
-        }
-        annotationItem.title=[mainDataManager.placeContainer getPlaceNameFromId:placeId];
-        NSSet * groupPerPlace = (NSSet*)[groupings objectForKey: placeId];
-        if([groupPerPlace count]==1){
-            NSString *fId= [groupPerPlace anyObject];
-            NSString *fName=[mainDataManager.peopleContainer getNameFromId:fId];
-            annotationItem.subtitle=fName;
-        }
-        else {
-            annotationItem.subtitle=[[NSString alloc] initWithFormat:@"%d%@",[groupPerPlace count],@" friends"];	
-        }
-        //Add in type of Annotation depends on num of friends
-        //the bigger the number, more people at that location
-        if([groupPerPlace count]>25){
-            annotationItem.type=tTwentyFive;
-        }
-        else if([groupPerPlace count]>15){
-            annotationItem.type=tFifteen;
-        }
-        else if([groupPerPlace count]>10){
-            annotationItem.type=tTen;
-        }
-        else if([groupPerPlace count]>5){
-            annotationItem.type=tFive;
-        }
-        else if([groupPerPlace count]>3){
-            annotationItem.type=tThree;
-        }
-        else if([groupPerPlace count]>2){
-            annotationItem.type=tTwo;
-        }
-        else{
-            annotationItem.type=tOne;
-        }
-        [annotations addObject:annotationItem];
+-(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)type
+{
+    if(self = [super init]){
+        self.title = place.name;
+        self.coordinate = place.location;
+        self.peopleArr = [[place getPeople:type] allObjects];
+        [self countDependentConfigs:self.peopleArr];
+        self.locType = type;
     }
-    return (NSArray*)annotations;
+    return self;
 }
 
-/*Returns an array of annotations, Where each annotation is for a location coordinate of the friend
- @param:  Friend instance
- */
-//FIXME PUT IN PLACE CONTAINER
-+(NSArray*)getLocationsForFriend:(Friend *)friend{  
-//    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    DataManagerSingleton * mainDataManager = [DataManagerSingleton sharedManager];
-    NSMutableArray* annotations = [[NSMutableArray alloc]initWithCapacity:10];
-  //  DebugLog(@"%@",friend);
-    for (int type =0; type<tLocationTypeCount; type++){
-        locTypeEnum locType = type;
-        /*If only one value per field */
-        if (![LocationTypeEnum isArrayType:locType]){
+-(MyAnnotation*) initWithPlace:(Place *)place forPerson:(Person*)person forLocType:(locTypeEnum)type
+{
+    if(self = [super init]){
+        self.title = place.name;
+        self.coordinate = place.location;
+        self.subtitle = [LocationTypeEnum getNameFromEnum:type];
+        self.locType = type;
+        self.placeHolderImg = @"profile.png";
+    }
+    return self;
+}
 
-            if([friend hasEntryForType:locType]){
-                MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
-                NSString *placeId = [friend getStringEntryForLocType:locType];
-                Place *loc = [mainDataManager.placeContainer getPlaceFromId:placeId];
-                annotationItem.coordinate=loc.location;
-                annotationItem.type=locType;
-                annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
-                annotationItem.title = [mainDataManager.placeContainer getPlaceNameFromId:placeId];
-                [annotations addObject:annotationItem];
-            }
-        } /*Dealing with Array of possible Values */
-        else{
-            if([friend hasEntryForType:locType]){
-                NSEnumerator *itemEnum = [[friend getArrayEntryForLocType:locType]objectEnumerator];
-                NSString *placeId;
-                while (placeId = [itemEnum nextObject]) {
-                    Place *loc = [mainDataManager.placeContainer getPlaceFromId:placeId];
-                    /*Checks for Valid Coordinate (not valid if not found from Google Lookup)*/
-                    if (loc){
-                        MyAnnotation* annotationItem=[[MyAnnotation alloc] init];
-                        annotationItem.coordinate=loc.location;
-                        annotationItem.type=locType;
-                        annotationItem.subtitle = [LocationTypeEnum getNameFromEnum:locType];
-                        annotationItem.title = [mainDataManager.placeContainer getPlaceNameFromId:placeId];
-                        [annotations addObject:annotationItem];
-                    }
-                }
-            }    
-        }
-        
+//Some configuration such as subtitle and person_id is dependent on 
+// the number of people associated with this place.
+//We do this configuration in this method.
+-(void) countDependentConfigs:(NSArray*)arr
+{
+    int count = [arr count];
+    
+    if(count == 1){
+        Person* person = [arr objectAtIndex:0];
+        self.subtitle=person.name;
+        self.person_id = person.uid;
+        self.placeHolderImg = @"profile.png";
     }
-    return (NSArray*)annotations;
+    else {
+        self.subtitle=[[NSString alloc] initWithFormat:@"%d%@",count,@" friends"];
+        self.placeHolderImg = @"group.png";
+    }
 }
-//Returns Appropriate Image for Pin,given type and displayType(location for all friends, or location element of friend)
-+(UIImage*)getPinImage:(int)type isFriendLocationType:(BOOL)isFriendType{
-    //If we're showing all location types for a friend
-    UIImage *returnImage;
-    if(!isFriendType){
-        //Switch based upon enum values set in above makeAnnotationFromDict
-        switch (type) {
-            case tTwentyFive:
-                returnImage=[UIImage imageNamed:@"redPin.png"];
-                break;  
-            case tFifteen:
-                returnImage=[UIImage imageNamed:@"orangePin.png"];
-                break;  
-            case tTen:
-                returnImage=[UIImage imageNamed:@"yellowPin.png"];
-                break; 
-            case tFive:
-                returnImage=[UIImage imageNamed:@"yellow-greenPin.png"];
-                break;  
-            case tThree:
-                returnImage=[UIImage imageNamed:@"greenPin.png"];
-                break;  
-            case tTwo:
-                returnImage=[UIImage imageNamed:@"tealPin.png"];
-                break;
-            case tOne:
-                returnImage=[UIImage imageNamed:@"bluePin.png"];
-                break;  
-            default:
-                DebugLog(@"Warning: Default Case Reached");
-                break;
-        }
+
+-(BOOL)hasValidCoordinate
+{
+    //For now I know (0, 0) is not a valid coordinate. 
+    //I could not find the valid range of latitude and logitude.
+    if (self.coordinate.latitude == 0 && self.coordinate.longitude == 0){
+        return FALSE;
     }
-    //If we're showing a location criteria such as current location for all friends
-    else{
-        switch (type) {
-            case tCurrentLocation:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-                break;
-            case tHomeTown:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-                break;  
-            case tHighSchool:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-                break;  
-            case tCollege:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-                break; 
-            case tGradSchool:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-                break;  
-            case tWork:
-                returnImage=[UIImage imageNamed:@"bluePin1.25.png"];
-                break;  
-            default:
-                DebugLog(@"Warning: Default Case Reached");
-                break;
-        }
-    }
-    return returnImage;
+    return TRUE;
 }
+
 @end

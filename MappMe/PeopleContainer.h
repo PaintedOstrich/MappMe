@@ -8,39 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationTypeEnum.h"
-#import "Friend.h"
+#import "Person.h"
+#import "AbstractContainer.h"
 
-@interface PeopleContainer : NSObject{
-    NSMutableDictionary* people;
-}
+@interface PeopleContainer : AbstractContainer
 
-@property (nonatomic, retain) NSMutableDictionary *people;
-
-/*Parsing methods to update or add entry*/
--(void)setPersonPlaceInContainer:(NSString *)name personId:(NSString *)personId placeId:(NSString *)placeId andTypeId:(locTypeEnum)locType;
--(void)addId:(NSString *)personId andPerson:(NSString *)personName;
-
-//Main methods called
--(NSDictionary*)getAndSetFriendGroupingForLocType:(locTypeEnum)locType;
--(NSDictionary*)getFriendGroupingForLocType:(locTypeEnum)locType;
--(Friend*)getFriendFromId:(NSString *)uid;
--(NSDictionary *)getCurrentGrouping;
-
-//Search method
--(NSArray *)getFriendsWithName:(NSString *)name;
-
-//Additional available methods
-//Mapping
--(NSString *)getIdFromName:(NSString *)placeName;
--(NSString *)getNameFromId:(NSString *)placeId;
-
-//Retrieve all friends
--(NSArray *)getAllFriendIds;
--(NSArray *)getAllFriends;
-
-#pragma mark - Debug
--(NSUInteger)getNumPeople;
--(void)printCurrentGrouping:(locTypeEnum)locType;
--(void)printGroupings:(locTypeEnum)locType;
--(void)printNFriends:(NSUInteger)num;
+-(Person*)get:(NSString*)person_id;
 @end

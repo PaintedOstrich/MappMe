@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class MyAnnotation;
+
 @interface ListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
     IBOutlet UITableView *tableView;
-    NSString *selectedCity;
+    MyAnnotation *selectedAnnotation;
 }
 
-@property(nonatomic,retain)	NSString *selectedCity;
+@property(nonatomic,strong)	MyAnnotation *selectedAnnotation;
 @end

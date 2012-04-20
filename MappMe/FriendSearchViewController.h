@@ -9,9 +9,9 @@
 #import "OverlayViewController.h"
 
 @class FriendSearchViewController;
-
+@class Person;
 @protocol FriendSearchViewControllerDelegate
-- (void)didSelectFriend:(NSString*)uid;
+- (void)didSelectFriend:(Person*)selectedPerson;
 @end
 
 

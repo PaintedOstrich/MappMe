@@ -6,44 +6,23 @@
 
 #import "MainViewController.h"
 #import "DebugLog.h"
-#import "MappMeAppDelegate.h"
 #import "Timer.h"
 #import "MyAnnotation.h"
 #import "WebViewController.h"
 #import "ListViewController.h"
 #import "FacebookDataHandler.h"
 #import "ZoomHelper.h"
-#import "DataProgressUpdater.h"
+#import "DataManagerSingleton.h"
+#import "UIImageView+AFNetworking.h"
+#import "LocationTypeEnum.h"
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface MainViewController()
-
--(void)showPins;
-/*View Change Methods*/
--(void)showLocationType:(locTypeEnum)locType;
--(void)showHometown;
--(void)showCurrentLoc;
--(void)showHighSchool;
--(void)showCollege;
--(void)showGrad;
-
--(void)addLoadView;
--(void)updateProgressBar:(float)progressAmount;
--(void)showLocationMenu;
-@end
-
-
 @implementation MainViewController{
-//    MappMeAppDelegate *delegate;
     DataManagerSingleton * mainDataManager;
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
-    NSString *selectedCity;
-    NSString *selectedPerson;
     locTypeEnum currDisplayedType;
-    
-//    IBOutlet UITableView *tableView;
     
     //Display private variables
     UIButton * locationTypeBtn;
@@ -60,9 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [mapView setDelegate:self];
+    [_mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:20];
-//    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     mainDataManager = [DataManagerSingleton sharedManager];
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     [self.navigationController.view addSubview:HUD];
@@ -70,14 +48,10 @@
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
     
-    //Register Updater Delegate
-//    progressUpdaterDelegate = 
-    
     //Set Bools for view methods
     displayTypeContainerIsShown = FALSE;
     
     [self addLoadView];
-//    [self updateProgressBar:0.0];
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
@@ -93,10 +67,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-    mapView = nil;
-//    locationTypeBtn = nil;
+    _mapView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -116,15 +87,13 @@
 
 #pragma mark - Transition Functions
 //All functions involving transition to another screen should go below
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
     if ([segue.identifier isEqualToString:@"showdetaillist"]) {
         ListViewController *controller = segue.destinationViewController;
-        controller.selectedCity = selectedCity;
+        controller.selectedAnnotation = (MyAnnotation*)sender;
     } else if ([segue.identifier isEqualToString:@"showwebview"]){
-        NSString *fId =[mainDataManager.peopleContainer getIdFromName:selectedPerson];
+        NSString *fId = [(Person*)sender uid];
 		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];
 		NSURL *url =[[NSURL alloc] initWithString:urlStr];
         WebViewController *controller = segue.destinationViewController;
@@ -135,56 +104,31 @@
     }
 } 
 
-
 /*
  * This method is invoked when the accesory button on annotation view is tapped.
  * Takes the user into a list of friends or the friend's facebook page directly
  */
-- (void) showDetail:(id)sender {
-//   
-    NSArray *annotationStrings = [((UIButton*)sender).currentTitle componentsSeparatedByString:@"?"];
-	selectedCity = [annotationStrings objectAtIndex:0];
-    NSString * city_id = [mainDataManager.placeContainer getIdFromPlace:selectedCity];
-
-    NSDictionary * currentGrouping = [mainDataManager.peopleContainer getCurrentGrouping];
-    NSDictionary * peopleInPlace = [currentGrouping objectForKey:city_id];
-	if([peopleInPlace count]>1){
-        [self performSegueWithIdentifier:@"showdetaillist" sender:nil];
+- (void) showDetail:(UIButton*)btn {
+    //This trick got back the annotation associtaed with the pinView we tapped.
+    MyAnnotation* annotation = [annotations objectAtIndex:btn.tag];
+    int count = [annotation.peopleArr count];
+	if(count>1){
+        [self performSegueWithIdentifier:@"showdetaillist" sender:annotation];
 	}
 	//only one person, go to the facebook page directly.!
 	else {
-		selectedPerson= [annotationStrings objectAtIndex:1] ;
-        [self performSegueWithIdentifier:@"showwebview" sender:nil];
+        [self performSegueWithIdentifier:@"showwebview" sender:[annotation.peopleArr objectAtIndex:0]];
 	}
 }
 
-#pragma mark - Methods to put pins when location type is changed
-
--(void)showHometown{
-    [self showLocationType:tHomeTown];
-}
--(void)showCurrentLoc{
-    [self showLocationType:tCurrentLocation];
-} 
--(void)showHighSchool{
-    [self showLocationType:tHighSchool];
-}
--(void)showCollege{
-    [self showLocationType:tCollege];
-}
--(void)showGrad{
-    [self showLocationType:tGradSchool];
-}
-
-#pragma mark - Custom Loading View and Logic
 -(void)pushSearchController{
-    DebugLog(@"changing to search controller");
     [self performSegueWithIdentifier:@"searchview" sender:self];
-//    [self presentModalViewController: animated:YES]
 }
 -(void)pushSettingsController{
     [self performSegueWithIdentifier:@"settingsview" sender:self];
 }
+
+#pragma mark - Custom Loading View and Logic
 -(void)addBottomNavView{
     UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 540, 320, 44)];
 //    [navContainer setAlpha:0.0];                                                   
@@ -281,13 +225,7 @@
     [loadScreenContainer setTransform:CGAffineTransformMakeTranslation(0, -100.0)];
     [UIView commitAnimations];
 }
-#pragma mark - disable/enable Edu buttons
--(void)enableEduButtons{
-    
-}
--(void)disableEduButtons{
-    
-}
+
 #pragma mark - progress bar delegate methods
 -(void)finishedLoading{
     DebugLog(@"called finished loading");
@@ -312,15 +250,8 @@
     }else{
         [loadScreenProgressBar setProgress:progressAmount animated:YES];
         //Disable Edu Buttons until finished loading
-        [self disableEduButtons];
+        //[self disableEduButtons];
     } 
-}
-#pragma mark - Custom Person Search 
--(NSArray*) getFriendsInCity:(NSString*) cityName{
-    NSString * city_id = [mainDataManager.placeContainer getIdFromPlace:selectedCity];
-    
-    NSDictionary * currentGrouping = [mainDataManager.peopleContainer getCurrentGrouping];
-    return [[currentGrouping objectForKey:city_id] allObjects];
 }
 
 #pragma mark - Custom View Methods
@@ -410,57 +341,85 @@
 
 
 #pragma mark - Map pins methods
--(void)makeAnnotationFromDict:(NSDictionary*)groupings{
-    //Using class as wrapper to process instances of itself
-    annotations = [[NSMutableArray alloc] initWithCapacity:[[mainDataManager peopleContainer] getNumPeople]];
-    NSArray* annotationItems = [MyAnnotation makeAnnotationFromDict:groupings]; 
-    [annotations addObjectsFromArray:annotationItems];
+
+//Generate MyAnnotation objects depending on the array of places and the locType passed along
+//Also add the generated annotation into annotations array immediately.
+-(void)makeAnnotations:(NSArray*)places forLocType:(locTypeEnum)locType {
+    for(int i=0; i < [places count]; i++) {
+        Place* place = [places objectAtIndex:i];
+        MyAnnotation* anno = [[MyAnnotation alloc] initWithPlace:place forLocType:locType];
+        if ([anno hasValidCoordinate]) {
+            [annotations addObject:anno];
+        }
+    }
 }
--(void)getLocationsForFriend:(Friend *)friend{  
-     annotations = [[NSMutableArray alloc] initWithCapacity:10];
-    [annotations addObjectsFromArray:[MyAnnotation getLocationsForFriend:friend]];
+
+//Make annotations for a particular person.
+//Such annotations will have title as place name and subtitle as the type of place(e.g. HomeTown/College etc.).
+-(void)makeAnnotationsForPerson:(Person*)person {
+    NSDictionary* mapping = [person getPlacesMapping];
+    NSEnumerator *enumerator = [mapping keyEnumerator];
+    id key;
+    while ((key = [enumerator nextObject])) {
+        locTypeEnum locType = [key intValue];
+        NSArray* places = [mapping objectForKey:key];
+        for(int j=0; j < [places count]; j++) {
+            Place* place = [places objectAtIndex:j];
+            MyAnnotation* anno = [[MyAnnotation alloc] initWithPlace:place forPerson:person forLocType:locType];
+            if ([anno hasValidCoordinate]) {
+                [annotations addObject:anno];
+            }
+        }
+    }
 }
+
 -(void)showPins
 {
-    [mapView addAnnotations:annotations];
-    [ZoomHelper zoomToFitAnnoations:mapView];
+    [_mapView addAnnotations:annotations];
+    [ZoomHelper zoomToFitAnnoations:_mapView];
 }
+//Clear the map of pins. Also clear annotations array.
 -(void)clearMap{
-    [mapView removeAnnotations:annotations];
+    [_mapView removeAnnotations:annotations];
+    [annotations removeAllObjects];
 }
+
+-(void) showCurrentLoc
+{
+    [self showLocationType:tCurrentLocation];
+}
+-(void)showHometown{
+    [self showLocationType:tHomeTown];
+}
+-(void)showHighSchool{
+    [self showLocationType:tHighSchool];
+}
+-(void)showCollege{
+    [self showLocationType:tCollege];
+}
+-(void)showGrad{
+    [self showLocationType:tGradSchool];
+}
+
+-(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
+{
+    [btn setTitle:txt forState:UIControlStateNormal];
+    [btn setTitle:txt forState:UIControlStateHighlighted];
+    [btn setTitle:txt forState:UIControlStateDisabled];
+    [btn setTitle:txt forState:UIControlStateSelected];
+}
+
 -(void)showLocationType:(locTypeEnum)locType{
-    //[[mainDataManager peopleContainer] printGroupings:locType];
     [self closeLocationMenu];
     [self clearMap];
     currDisplayedType = locType;
     isFriendAnnotationType = FALSE;
-    NSString * buttonLabel= [LocationTypeEnum getNameFromEnum:currDisplayedType];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
-    switch(locType){
-        case tHomeTown:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tHomeTown]];
-            break;
-        case tCurrentLocation:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tCurrentLocation]];
-            break;
-        case tHighSchool:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tHighSchool]];
-            break;
-        case tCollege:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tCollege]];
-            break;
-        case tGradSchool:
-            [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tGradSchool]];
-            break;
-        case tWork:
-           [self makeAnnotationFromDict:[mainDataManager.peopleContainer getAndSetFriendGroupingForLocType:tWork]];
-            break;
-        default:
-            DebugLog(@"Warning: hitting default case");
-    }
+    [self setBtnTitleForAllStates:locationTypeBtn withText:[LocationTypeEnum getNameFromEnum:currDisplayedType]];
+    
+    NSArray* relevantPlaces = [mainDataManager.placeContainer getPlacesUsedAs:locType];
+
+    //DebugLog(@"Showing %@, has %d entries", [LocationTypeEnum getNameFromEnum:locType], [relevantPlaces count]);
+    [self makeAnnotations:relevantPlaces forLocType:locType];
     [self showPins];
 }
 
@@ -470,9 +429,9 @@
     /*Call Methods for info*/
     FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
     [fbDataHandler setProgressUpdaterDelegate:self];
-    [fbDataHandler getCurrentLocation];
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
+    [fbDataHandler getCurrentLocation];
 
     [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
     int time = [t endTimerAndGetTotalTime];
@@ -495,8 +454,42 @@
         [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
         [aV setFrame:endFrame];
         [UIView commitAnimations];
-        
     }
+}
+
+
+-(UIImage*) getPinImage:(MyAnnotation*)annotation
+{
+    //If we're showing all location types for a friend
+    NSString* imgName;
+    if (isFriendAnnotationType) {
+        if (annotation.locType == tCurrentLocation) {
+            imgName = @"currentlocation.png";
+        } else if(annotation.locType == tHomeTown) {
+            imgName = @"hometown.png";
+        } else {
+            imgName = @"redPin.png";
+        }
+    } else {
+        int count = [annotation.peopleArr count];
+        if(count > 25){
+            imgName = @"redPin.png";
+        } else if(count > 15) {
+            imgName = @"orangePin.png";
+        } else if(count > 10) {
+            imgName = @"yellowPin.png";
+        } else if(count > 5) {
+            imgName = @"yellow-greenPin.png";
+        } else if(count > 3) {
+            imgName = @"greenPin.png";
+        } else if(count > 1) {
+            imgName = @"tealPin.png";
+        } else {
+            imgName = @"bluePin.png";
+        }   
+    }
+
+    return [UIImage imageNamed:imgName];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(MyAnnotation *)annotation
@@ -505,62 +498,51 @@
     if ([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
 	// try to dequeue an existing pin view first
-	static NSString* AnnotationIdentifier = @"AnnotationIdentifier";
+	NSString* identifier;
+    if (isFriendAnnotationType) {
+        identifier = @"PersonAnnotation";
+    } else {
+        identifier = @"NormalAnnotation";
+    }
+
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if (annotationView == nil) {
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        annotationView.enabled = YES;
+        annotationView.canShowCallout = YES;
+        //annotationView.animatesDrop = YES;
+        if (!isFriendAnnotationType) {
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
+            annotationView.rightCalloutAccessoryView = rightButton;
+            rightButton.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
+        }
+    } else {
+        annotationView.annotation = annotation;
+    }
     
-	UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-	NSString *cityNameAndFName=[[NSString alloc] initWithFormat:@"%@?%@",annotation.title,annotation.subtitle];
-	[rightButton setTitle:cityNameAndFName forState:UIControlStateNormal];
-	[rightButton addTarget:self
-					action:@selector(showDetail:)
-		  forControlEvents:UIControlEventTouchUpInside];
+    annotationView.image = [self getPinImage:annotation ];
     
-    //	if (annotation.type==0){
-    //        
-    //        //The only reason we still need this duplicate block is that MKPinAnnotationView seem to 
-    //        //have a sequential animation that looks better.
-    //        
-    //		MKPinAnnotationView* pinView = [[MKPinAnnotationView alloc]
-    //										 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
-    //		pinView.animatesDrop=YES;
-    //		pinView.canShowCallout=YES;
-    //		pinView.pinColor=MKPinAnnotationColorGreen;
-    //		pinView.rightCalloutAccessoryView = rightButton;
-    //        
-    //		UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-    //		pinView.leftCalloutAccessoryView = profileIconView;
-    //        
-    //		return pinView;
-    //	}
-    //    
-    //	else{
-    MKAnnotationView* pinView = [[MKPinAnnotationView alloc]
-                                 initWithAnnotation:annotation reuseIdentifier:AnnotationIdentifier];
-    pinView.canShowCallout=YES;
-    //check for different type of pin (sizes)
+    if (!isFriendAnnotationType) {
+        UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:annotation.placeHolderImg]];
+        if (annotation.person_id !=nil) {
+            Person* friend = [[mainDataManager peopleContainer] get:annotation.person_id];
+            [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:annotation.placeHolderImg]];
+        }
+        annotationView.leftCalloutAccessoryView = profileIconView;   
+    }
     
-    pinView.rightCalloutAccessoryView = rightButton;
-    pinView.image = [MyAnnotation getPinImage:annotation.type isFriendLocationType:isFriendAnnotationType];
-    
-    UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
-    pinView.leftCalloutAccessoryView = profileIconView;
-    //  pinView.tag = @"moreThanOnePerson";
-    
-    return pinView;
+    return annotationView;
 }
 
 #pragma mark - FriendSearchViewControllerDelegate methods
-- (void)didSelectFriend:(NSString *)uid {
+- (void)didSelectFriend:(Person *)selectedPerson {
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
-    Friend* friend = [mainDataManager.peopleContainer getFriendFromId:uid];
-    [self getLocationsForFriend: friend];
+    [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
-    NSString * buttonLabel= friend.name;
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
-    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
+    [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
 }
 
 @end
