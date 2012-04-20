@@ -10,8 +10,9 @@
 #import <MapKit/MapKit.h>
 #import "CoordPairsHelper.h"
 
+@class Place;
 @interface CoordinateLookupManager : NSObject
 
-- (void)lookupLocation:(NSString*)locationStr successCB:(void (^)(CoordPairsHelper*))successCB failureCB:(void (^)(NSError *error))failureCB;
+- (void)lookupLocation:(Place*)place;
 + (id)sharedManager;
 @end

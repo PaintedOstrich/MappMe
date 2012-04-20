@@ -20,5 +20,16 @@
     return self;
 }
 
+-(NSString*) latAsString
+{
+    NSString* str = [NSString stringWithFormat:@"%f", location.latitude];
+    return str;
+}
+
+-(NSString*) longAsString
+{
+    NSString* str = [NSString stringWithFormat:@"%f", location.longitude];
+    return str;
+}
 
 @end

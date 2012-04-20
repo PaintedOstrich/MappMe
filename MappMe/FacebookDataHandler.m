@@ -13,6 +13,7 @@
 #import "DataProgressUpdater.h"
 #import "AFJSONRequestOperation.h"
 #import "DataManagerSingleton.h"
+#import "CoordinateLookupManager.h"
 
 @interface FacebookDataHandler()
 -(void)parseFacebookInfoController: (NSDictionary *)infoArray;
@@ -174,17 +175,12 @@
             NSString * school_id = [schoolTemp objectForKey:@"page_id"];
             //NSString *type = [schoolTypeMapping objectForKey:school_id];
             //If have lat and long
+            Place* place = [[mainDataManager placeContainer] get:school_id];
             if ([loc objectForKey:@"latitude"]){
-                Place* place = [[mainDataManager placeContainer] get:school_id];
                 [place addLat:[loc objectForKey:@"latitude"]  andLong:[loc objectForKey:@"longitude"]]; 
             } else {
-                //TODO do look up and update the place!!!
-//                [mainDataManager.placeContainer doCoordLookupAndSet:school_id withDict:loc andTypeString:type];
+                [[CoordinateLookupManager sharedManager] lookupLocation:place];
             }
-//            if (type!= nil){
-//                locTypeEnum lt = [LocationTypeEnum getEnumFromName:type];
-//                [dataProgressUpdater incrementSum:lt];
-//            }
         }
         
     }
@@ -262,8 +258,6 @@
     DebugLog(@"Number of friends %i", [mainDataManager.peopleContainer count]);
     DebugLog(@"Number of cities %i",[mainDataManager.placeContainer count]);
     
-//    [delegate.peopleContainer printGroupings:tHomeTown];
-//    [delegate.peopleContainer printGroupings:tCurrentLocation];
 }
 
 #pragma mark - Query String Facebook Data Retrieval Methods
