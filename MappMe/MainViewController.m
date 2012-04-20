@@ -515,7 +515,7 @@
             UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             [rightButton addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
             annotationView.rightCalloutAccessoryView = rightButton;
-            rightButton.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
+            //rightButton.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
         }
     } else {
         annotationView.annotation = annotation;
@@ -524,6 +524,7 @@
     annotationView.image = [self getPinImage:annotation ];
     
     if (!isFriendAnnotationType) {
+        annotationView.rightCalloutAccessoryView.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
         UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:annotation.placeHolderImg]];
         if (annotation.person_id !=nil) {
             Person* friend = [[mainDataManager peopleContainer] get:annotation.person_id];
