@@ -76,6 +76,7 @@
 		A978B7681541089F0014CD41 /* currentlocation.png in Resources */ = {isa = PBXBuildFile; fileRef = A978B7661541089F0014CD41 /* currentlocation.png */; };
 		A978B76B154109000014CD41 /* hometown.png in Resources */ = {isa = PBXBuildFile; fileRef = A978B76A154109000014CD41 /* hometown.png */; };
 		A978B76C15410D1C0014CD41 /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
+		A978B76E15411E540014CD41 /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = A978B76D15411E540014CD41 /* group.png */; };
 		A97F780D153FF1D0000C7768 /* MyAnnotationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A97F780C153FF1D0000C7768 /* MyAnnotationTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A97F780E153FF1FF000C7768 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
 		A97F782715400577000C7768 /* CoordPairsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A97F782615400577000C7768 /* CoordPairsHelper.m */; };
@@ -208,6 +209,7 @@
 		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		A978B7661541089F0014CD41 /* currentlocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = currentlocation.png; sourceTree = "<group>"; };
 		A978B76A154109000014CD41 /* hometown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hometown.png; sourceTree = "<group>"; };
+		A978B76D15411E540014CD41 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
 		A97F780C153FF1D0000C7768 /* MyAnnotationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotationTest.m; sourceTree = "<group>"; };
 		A97F782515400577000C7768 /* CoordPairsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairsHelper.h; sourceTree = "<group>"; };
 		A97F782615400577000C7768 /* CoordPairsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairsHelper.m; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A978B76D15411E540014CD41 /* group.png */,
 				68FC2A86153E7F0D00003A74 /* LoginWithFacebookNormal@2x.png */,
 				68FC2A87153E7F0D00003A74 /* LoginWithFacebookPressed@2x.png */,
 				68FC2A88153E7F0D00003A74 /* LogoutNormal@2x.png */,
@@ -643,6 +646,7 @@
 				68FC2A8F153E806100003A74 /* loginBackground.png in Resources */,
 				A978B7681541089F0014CD41 /* currentlocation.png in Resources */,
 				A978B76B154109000014CD41 /* hometown.png in Resources */,
+				A978B76E15411E540014CD41 /* group.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

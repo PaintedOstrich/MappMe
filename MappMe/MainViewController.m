@@ -524,10 +524,10 @@
     annotationView.image = [self getPinImage:annotation ];
     
     if (!isFriendAnnotationType) {
-        UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"profile.png"]];
+        UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:annotation.placeHolderImg]];
         if (annotation.person_id !=nil) {
             Person* friend = [[mainDataManager peopleContainer] get:annotation.person_id];
-            [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
+            [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:annotation.placeHolderImg]];
         }
         annotationView.leftCalloutAccessoryView = profileIconView;   
     }

@@ -11,7 +11,7 @@
 
 @implementation MyAnnotation
 
-@synthesize title, subtitle, coordinate, person_id, peopleArr, locType;
+@synthesize title, subtitle, coordinate, person_id, peopleArr, locType, placeHolderImg;
 
 -(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)type
 {
@@ -32,6 +32,7 @@
         self.coordinate = place.location;
         self.subtitle = [LocationTypeEnum getNameFromEnum:type];
         self.locType = type;
+        self.placeHolderImg = @"profile.png";
     }
     return self;
 }
@@ -47,9 +48,11 @@
         Person* person = [arr objectAtIndex:0];
         self.subtitle=person.name;
         self.person_id = person.uid;
+        self.placeHolderImg = @"profile.png";
     }
     else {
-        self.subtitle=[[NSString alloc] initWithFormat:@"%d%@",count,@" friends"];	
+        self.subtitle=[[NSString alloc] initWithFormat:@"%d%@",count,@" friends"];
+        self.placeHolderImg = @"group.png";
     }
 }
 
