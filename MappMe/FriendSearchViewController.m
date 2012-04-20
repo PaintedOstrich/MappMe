@@ -197,7 +197,7 @@ titleForHeaderInSection:(NSInteger)section {
         person = [[friends objectAtIndex:indexPath.section]
                   objectAtIndex:indexPath.row];
     }
-    [searchDelegate didSelectFriend:person.uid];
+    [searchDelegate didSelectFriend:person];
 }
 #pragma mark - Methods to manage show and hide of the overlay
 

@@ -356,7 +356,6 @@
 
 #pragma mark - Map pins methods
 -(void)makeAnnotations:(NSArray*)places forLocType:(locTypeEnum)locType {
-    //Using class as wrapper to process instances of itself
     annotations = [[NSMutableArray alloc] initWithCapacity:[[mainDataManager peopleContainer] count]];
     for(int i=0; i < [places count]; i++) {
         Place* place = [places objectAtIndex:i];
@@ -364,10 +363,7 @@
         [annotations addObject:anno];
     }
 }
--(void)getLocationsForFriend:(Person *)friend{  
-//     annotations = [[NSMutableArray alloc] initWithCapacity:10];
-//    [annotations addObjectsFromArray:[MyAnnotation getLocationsForFriend:friend]];
-}
+
 -(void)showPins
 {
     [_mapView addAnnotations:annotations];
@@ -517,18 +513,15 @@
 }
 
 #pragma mark - FriendSearchViewControllerDelegate methods
-- (void)didSelectFriend:(NSString *)uid {
-//    [self.navigationController popViewControllerAnimated:TRUE];
-//    [self clearMap];
-//    isFriendAnnotationType = TRUE;
-//    Person* friend = [mainDataManager.peopleContainer get:uid];
+- (void)didSelectFriend:(Person *)selectedPerson {
+    [self.navigationController popViewControllerAnimated:TRUE];
+    [self clearMap];
+    isFriendAnnotationType = TRUE;
+
 //    [self getLocationsForFriend: friend];
 //    [self showPins];
-//    NSString * buttonLabel= friend.name;
-//    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
-//    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
-//    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
-//    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
+
+    [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
 }
 
 @end
