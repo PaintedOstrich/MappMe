@@ -515,20 +515,20 @@
     
     return annotationView;
 }
-
+//THIS Method not working.
 #pragma mark - FriendSearchViewControllerDelegate methods
 - (void)didSelectFriend:(NSString *)uid {
-//    [self.navigationController popViewControllerAnimated:TRUE];
-//    [self clearMap];
-//    isFriendAnnotationType = TRUE;
-//    Person* friend = [mainDataManager.peopleContainer get:uid];
-//    [self getLocationsForFriend: friend];
-//    [self showPins];
-//    NSString * buttonLabel= friend.name;
-//    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
-//    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
-//    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
-//    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
+    [self.navigationController popViewControllerAnimated:TRUE];
+    [self clearMap];
+    isFriendAnnotationType = TRUE;
+    Person* friend = [mainDataManager.peopleContainer get:uid];
+    [self getLocationsForFriend: friend];
+    [self showPins];
+    NSString * buttonLabel= friend.name;
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateNormal];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateHighlighted];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateDisabled];
+    [locationTypeBtn setTitle:buttonLabel forState:UIControlStateSelected];
 }
 
 @end

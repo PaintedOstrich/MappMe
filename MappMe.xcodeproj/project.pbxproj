@@ -44,6 +44,7 @@
 		68FC2A8C153E7F0D00003A74 /* LogoutNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A88153E7F0D00003A74 /* LogoutNormal@2x.png */; };
 		68FC2A8D153E7F0D00003A74 /* LogoutPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A89153E7F0D00003A74 /* LogoutPressed@2x.png */; };
 		68FC2A8F153E806100003A74 /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A8E153E806100003A74 /* loginBackground.png */; };
+		68FC2AA615422BB200003A74 /* logout background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AA515422BB200003A74 /* logout background.png */; };
 		A910654A153E46FA0057B570 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106535153E46FA0057B570 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A910654B153E46FA0057B570 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106537153E46FA0057B570 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A910654C153E46FA0057B570 /* AFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106539153E46FA0057B570 /* AFImageCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -156,6 +157,7 @@
 		68FC2A88153E7F0D00003A74 /* LogoutNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoutNormal@2x.png"; sourceTree = "<group>"; };
 		68FC2A89153E7F0D00003A74 /* LogoutPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoutPressed@2x.png"; sourceTree = "<group>"; };
 		68FC2A8E153E806100003A74 /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBackground.png; sourceTree = "<group>"; };
+		68FC2AA515422BB200003A74 /* logout background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logout background.png"; path = "MappMe/logout background.png"; sourceTree = "<group>"; };
 		A9106534153E46FA0057B570 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		A9106535153E46FA0057B570 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
 		A9106536153E46FA0057B570 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -380,6 +382,7 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				68FC2AA515422BB200003A74 /* logout background.png */,
 				68FC2A86153E7F0D00003A74 /* LoginWithFacebookNormal@2x.png */,
 				68FC2A87153E7F0D00003A74 /* LoginWithFacebookPressed@2x.png */,
 				68FC2A88153E7F0D00003A74 /* LogoutNormal@2x.png */,
@@ -634,6 +637,7 @@
 				68FC2A8C153E7F0D00003A74 /* LogoutNormal@2x.png in Resources */,
 				68FC2A8D153E7F0D00003A74 /* LogoutPressed@2x.png in Resources */,
 				68FC2A8F153E806100003A74 /* loginBackground.png in Resources */,
+				68FC2AA615422BB200003A74 /* logout background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
