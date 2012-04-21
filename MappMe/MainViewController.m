@@ -370,8 +370,12 @@
             imgName = @"currentlocation.png";
         } else if(annotation.locType == tHomeTown) {
             imgName = @"hometown.png";
+        } else if(annotation.locType==tCollege){
+            imgName = @"college.png";
+        } else if(annotation.locType==tHighSchool){
+            imgName = @"highschool.png";
         } else {
-            imgName = @"redPin.png";
+            imgName = @"question.png";
         }
     } else {
         int count = [annotation.peopleArr count];
