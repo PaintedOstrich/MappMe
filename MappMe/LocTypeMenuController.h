@@ -14,10 +14,12 @@
 
 @interface LocTypeMenuController : UIViewController {
      IBOutlet UIView* backgroundView;
+     locTypeEnum selectedLocType;
 }
 
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
 @property (retain) id<LocTypeMenuControllerDelegate> delegate;
+@property locTypeEnum selectedLocType;
 
 - (void)presentInParentViewController:(UIViewController *)parentViewController;
 - (void)dismissFromParentViewController;

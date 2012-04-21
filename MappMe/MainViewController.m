@@ -257,6 +257,7 @@
 -(void)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
     controller.delegate = self;
+    controller.selectedLocType = currDisplayedType;
     [controller presentInParentViewController:self];
 }
 
@@ -450,6 +451,7 @@
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
+    currDisplayedType = tNilLocType;
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
     [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];

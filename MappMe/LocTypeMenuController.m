@@ -11,6 +11,10 @@
 #import "GradientView.h"
 
 @interface LocTypeMenuController () {
+    IBOutlet UIButton* hometownBtn;
+    IBOutlet UIButton* currentLocationBtn;
+    IBOutlet UIButton* collegeBtn;
+    IBOutlet UIButton* highschoolBtn;
 }
 
 
@@ -23,6 +27,7 @@
 
 @synthesize backgroundView = _backgroundView;
 @synthesize delegate = _delegate;
+@synthesize selectedLocType=_selectedLocType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +45,7 @@
     self.backgroundView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.backgroundView.layer.borderWidth = 3.0f;
     self.backgroundView.layer.cornerRadius = 10.0f;
+    [self updateButtonHighlight];
 }
 
 - (void)viewDidUnload
@@ -57,6 +63,26 @@
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 {
     [self didMoveToParentViewController:self.parentViewController];
+}
+
+-(void)updateButtonHighlight
+{
+    switch (self.selectedLocType) {
+        case tHomeTown:
+            hometownBtn.highlighted = TRUE;
+            break;
+        case tCurrentLocation:
+            currentLocationBtn.highlighted = TRUE;
+            break;
+        case tCollege:
+            collegeBtn.highlighted = TRUE;
+            break;
+        case tHighSchool:
+            highschoolBtn.highlighted = TRUE;
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)presentInParentViewController:(UIViewController *)parentViewController
