@@ -23,6 +23,7 @@
 
 @implementation LocTypeMenuController{
     GradientView *gradientView;
+    IBOutlet UIButton* closeButton;
 }
 
 @synthesize backgroundView = _backgroundView;
@@ -55,9 +56,30 @@
     // e.g. self.myOutlet = nil;
 }
 
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self layoutForInterfaceOrientation:toInterfaceOrientation];
+}
+
+/*
+ * Reposition the Close button whenever we rotate the view
+ */
+- (void)layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    CGRect rect = closeButton.frame;
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        rect.origin = CGPointMake(255, 95);
+    } else {
+        rect.origin = CGPointMake(340, 15);
+    }
+    closeButton.frame = rect;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 - (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
@@ -95,6 +117,8 @@
     fadeAnimation.duration = 0.1;
     [gradientView.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
 
+    self.view.frame = parentViewController.view.bounds;
+    [self layoutForInterfaceOrientation:parentViewController.interfaceOrientation];
     [parentViewController.view addSubview:self.view];
     [parentViewController addChildViewController:self];
     

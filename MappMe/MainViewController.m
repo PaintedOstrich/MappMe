@@ -149,7 +149,7 @@
     [self.view addSubview:navContainer];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2];
-    [navContainer setTransform:CGAffineTransformMakeTranslation(0, -110.0)];
+    [navContainer setTransform:CGAffineTransformMakeTranslation(0, -310.0)];
 //    [navContainer setAlpha:1.0];
     [UIView commitAnimations];
 }
