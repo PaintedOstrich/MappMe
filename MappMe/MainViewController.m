@@ -14,9 +14,6 @@
 #import "ZoomHelper.h"
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
-#import "LocationTypeEnum.h"
-#import "LocTypeMenuController.h"
-
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -256,16 +253,6 @@
 }
 
 #pragma mark - Custom View Methods
-//Helper method to create buttons for the location type menu (Used in showLocationMenu)
-//-(UIButton*) createMenuButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//    [btn setTitle:title forState:UIControlStateNormal];
-//    btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
-//    btn.highlighted = (locType == currDisplayedType);
-//    btn.enabled = (locType != currDisplayedType);
-//    return btn;
-//}
-
 //Create a round close button to be used in location type menu
 -(UIButton*) createCloseBtn {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -280,6 +267,7 @@
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
+    controller.delegate = self;
     [controller presentInParentViewController:self];
 }
 
@@ -328,29 +316,17 @@
     [annotations removeAllObjects];
 }
 
--(void) showCurrentLoc
-{
-    [self showLocationType:tCurrentLocation];
-}
--(void)showHometown{
-    [self showLocationType:tHomeTown];
-}
--(void)showHighSchool{
-    [self showLocationType:tHighSchool];
-}
--(void)showCollege{
-    [self showLocationType:tCollege];
-}
--(void)showGrad{
-    [self showLocationType:tGradSchool];
-}
-
 -(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
 {
     [btn setTitle:txt forState:UIControlStateNormal];
     [btn setTitle:txt forState:UIControlStateHighlighted];
     [btn setTitle:txt forState:UIControlStateDisabled];
     [btn setTitle:txt forState:UIControlStateSelected];
+}
+
+-(void) showCurrentLoc
+{
+    [self showLocationType:tCurrentLocation];
 }
 
 -(void)showLocationType:(locTypeEnum)locType{
@@ -488,6 +464,12 @@
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
     [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
+}
+
+#pragma mark - LocTypeMenuController Delegate methods
+-(void) disSelectLocType:(locTypeEnum)locType
+{
+    [self showLocationType:locType];
 }
 
 @end

@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LocTypeMenuControllerDelegate
+- (void)disSelectLocType:(locTypeEnum)locType;
+@end
+
 @interface LocTypeMenuController : UIViewController {
      IBOutlet UIView* backgroundView;
 }
 
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
+@property (retain) id<LocTypeMenuControllerDelegate> delegate;
 
 - (void)presentInParentViewController:(UIViewController *)parentViewController;
 - (void)dismissFromParentViewController;

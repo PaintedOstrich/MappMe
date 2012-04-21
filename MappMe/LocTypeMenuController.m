@@ -22,6 +22,7 @@
 }
 
 @synthesize backgroundView = _backgroundView;
+@synthesize delegate = _delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -122,6 +123,30 @@
          [gradientView removeFromSuperview];
          [self removeFromParentViewController];
      }];
+}
+
+- (IBAction)showHomeTown:(id)sender
+{
+    [self.delegate disSelectLocType:tHomeTown];
+    [self dismissFromParentViewController];
+}
+
+- (IBAction)showCurrentLocation:(id)sender
+{
+    [self.delegate disSelectLocType:tCurrentLocation];
+    [self dismissFromParentViewController];
+}
+
+- (IBAction)showCollege:(id)sender
+{
+    [self.delegate disSelectLocType:tCollege];
+    [self dismissFromParentViewController];
+}
+
+- (IBAction)showHighSchool:(id)sender
+{
+    [self.delegate disSelectLocType:tHighSchool];
+    [self dismissFromParentViewController];
 }
 
 @end
