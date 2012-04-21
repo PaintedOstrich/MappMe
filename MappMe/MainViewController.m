@@ -244,8 +244,45 @@
         //[self disableEduButtons];
     } 
 }
+#pragma mark - Custom View Methods
+//Helper method to create buttons for the location type menu (Used in showLocationMenu)
+-(UIButton*) createMenuButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [btn setTitle:title forState:UIControlStateNormal];
+    btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
+    btn.highlighted = (locType == currDisplayedType);
+    btn.enabled = (locType != currDisplayedType);
+    return btn;
+}
 
-#pragma mark - Location Menu Methods
+//Create a round close button to be used in location type menu
+-(UIButton*) createCloseBtn {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.contentMode = UIViewContentModeScaleToFill;
+    [button setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(closeLocationMenu) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(205, -15.0, 50.0, 50.0);//width and height should be same value
+    button.layer.cornerRadius = 25;//half of the width
+    return button;
+}
+
+-(void) closeLocationMenu {
+    if(displayTypeContainerIsShown){
+      [displayTypeContainer removeFromSuperview];
+      displayTypeContainerIsShown = FALSE;
+    }
+}
+-(void)setImagesForButton{
+    //Will finish once merged
+    UIButton* loginButton;
+    UIImage *loginImage = [UIImage imageNamed:@"LoginWithFacebookNormal@2x.png"];
+    UIImage *stretchableButtonImage = [loginImage stretchableImageWithLeftCapWidth:0 topCapHeight:0]; 
+    [loginButton setBackgroundImage:stretchableButtonImage forState:UIControlStateNormal];
+    UIImage *loginImagePressed = [UIImage imageNamed:@"LoginWithFacebookPressed@2x.png"];
+    UIImage *stretchableButtonImagePress = [loginImagePressed stretchableImageWithLeftCapWidth:0 topCapHeight:0]; 
+    [loginButton setBackgroundImage:stretchableButtonImagePress forState:UIControlStateHighlighted];
+}
+
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
