@@ -136,10 +136,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.facebook setSessionDelegate:self];
+    
+//    //If facebook session is not valid, show loginview, otherwise defaults to main map view
+//    if(![delegate.facebook isSessionValid]){ 
+//        self.window.rootViewController = loginController;
+//        [self.window makeKeyAndVisible];
+//    }
+    
     animationQueue = [[NSMutableArray alloc] initWithCapacity:5];
     pinNum = 0;
-    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
 	// Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -241,10 +248,10 @@
 - (void)fbDidLogin {
     NSLog(@"called fbDidLogin");
     [self storeAuthData:[delegate.facebook accessToken] expiresAt:[delegate.facebook expirationDate]];
-    
-    UINavigationController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNavController"];
-    delegate.window.rootViewController = controller;
-    [delegate.window makeKeyAndVisible];
+    [self dismissModalViewControllerAnimated:NO];
+    //[delegate.facebook setSessionDelegate:nil];
+    //sleep(5);
+    //[self performSegueWithIdentifier:@"mapview" sender:self];
 }
 -(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
     NSLog(@"token extended");
