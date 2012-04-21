@@ -257,14 +257,14 @@
 
 #pragma mark - Custom View Methods
 //Helper method to create buttons for the location type menu (Used in showLocationMenu)
--(UIButton*) createMenuButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btn setTitle:title forState:UIControlStateNormal];
-    btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
-    btn.highlighted = (locType == currDisplayedType);
-    btn.enabled = (locType != currDisplayedType);
-    return btn;
-}
+//-(UIButton*) createMenuButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    [btn setTitle:title forState:UIControlStateNormal];
+//    btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
+//    btn.highlighted = (locType == currDisplayedType);
+//    btn.enabled = (locType != currDisplayedType);
+//    return btn;
+//}
 
 //Create a round close button to be used in location type menu
 -(UIButton*) createCloseBtn {
@@ -277,69 +277,10 @@
     return button;
 }
 
-//-(void) closeLocationMenu {
-//    if(displayTypeContainerIsShown){
-//      [displayTypeContainer removeFromSuperview];
-//      displayTypeContainerIsShown = FALSE;
-//    }
-//}
-
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
     [controller presentInParentViewController:self];
-//    //Don't add subview twice
-//    if(displayTypeContainerIsShown){
-//        return;
-//    }
-//    displayTypeContainerIsShown = TRUE;
-//    
-//    displayTypeContainer = [[UIView alloc] initWithFrame:CGRectMake(40, 90, 240, 280)];
-//    [displayTypeContainer setAlpha:0.0];
-//    [displayTypeContainer.layer setBackgroundColor:[[UIColor clearColor] CGColor]];
-//    
-//    
-//    UIView *displayTypeView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 240, 280)];
-//    [displayTypeView setAlpha:0.65];
-//    [displayTypeContainer addSubview:displayTypeView];
-//    
-//    [displayTypeContainer addSubview:[self createCloseBtn]];
-//    
-//    /*Navigation Buttons*/
-//    UIButton *curButton = [self createMenuButton:@"Current Location" yCordinate:20 locType:tCurrentLocation];
-//    [curButton addTarget:self action:@selector(showCurrentLoc) forControlEvents:UIControlEventTouchDown];
-//    [displayTypeContainer addSubview:curButton];
-//    
-//    UIButton *homeButton = [self createMenuButton:@"Hometown" yCordinate:70 locType:tHomeTown];
-//    [homeButton addTarget:self  action:@selector(showHometown) forControlEvents:UIControlEventTouchDown];
-//    [displayTypeContainer addSubview:homeButton];
-//    
-//    UIButton *highButton = [self createMenuButton:@"High School" yCordinate:120 locType:tHighSchool];
-//    [highButton addTarget:self  action:@selector(showHighSchool) forControlEvents:UIControlEventTouchDown];
-//    [displayTypeContainer addSubview:highButton];
-//
-//    UIButton *collButton = [self createMenuButton:@"College" yCordinate:170 locType:tCollege];
-//    [collButton addTarget:self  action:@selector(showCollege) forControlEvents:UIControlEventTouchDown];
-//    [displayTypeContainer addSubview:collButton];
-//
-//    UIButton *gradButton = [self createMenuButton:@"Graduate School" yCordinate:220 locType:tGradSchool];
-//    [gradButton addTarget:self  action:@selector(showGrad) forControlEvents:UIControlEventTouchDown];
-//    [displayTypeContainer addSubview:gradButton];
-//    /*End Navigation Buttons*/
-//
-//    //Rounded Container Corners
-//    CALayer *dtc = displayTypeView.layer;
-//    [dtc setMasksToBounds:YES];
-//    [dtc setCornerRadius:8.0f];
-//    [dtc setBorderWidth:2.0f];
-//    [dtc setBorderColor: [[UIColor blackColor] CGColor]];
-//    [dtc setBackgroundColor: [[UIColor blueColor] CGColor]];
-//    
-//    //Add View To Screen
-//    [self.view addSubview:displayTypeContainer];
-//    [UIView beginAnimations:nil context:nil];
-//    [displayTypeContainer setAlpha:1.0];
-//    [UIView commitAnimations];
 }
 
 
