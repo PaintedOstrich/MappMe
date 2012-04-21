@@ -94,6 +94,10 @@
 		A98F1730153FB96500FB6257 /* PlaceContainerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F172F153FB96500FB6257 /* PlaceContainerTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A98F1731153FBA1300FB6257 /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
+		A9AADE43154239620096BC3C /* LocTypeMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9AADE41154239620096BC3C /* LocTypeMenuController.m */; };
+		A9AADE44154239620096BC3C /* LocTypeMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE42154239620096BC3C /* LocTypeMenuController.xib */; };
+		A9AADE4615423ACB0096BC3C /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE4515423ACB0096BC3C /* CloseButton.png */; };
+		A9AADE49154250D80096BC3C /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = A9AADE48154250D80096BC3C /* GradientView.m */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
 		A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */; };
 /* End PBXBuildFile section */
@@ -228,6 +232,12 @@
 		A98F172F153FB96500FB6257 /* PlaceContainerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainerTest.m; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
+		A9AADE40154239620096BC3C /* LocTypeMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocTypeMenuController.h; sourceTree = "<group>"; };
+		A9AADE41154239620096BC3C /* LocTypeMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocTypeMenuController.m; sourceTree = "<group>"; };
+		A9AADE42154239620096BC3C /* LocTypeMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocTypeMenuController.xib; sourceTree = "<group>"; };
+		A9AADE4515423ACB0096BC3C /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
+		A9AADE47154250D80096BC3C /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		A9AADE48154250D80096BC3C /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayViewController.xib; sourceTree = "<group>"; };
@@ -389,6 +399,7 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A9AADE4515423ACB0096BC3C /* CloseButton.png */,
 				A978B76D15411E540014CD41 /* group.png */,
 				68FC2A86153E7F0D00003A74 /* LoginWithFacebookNormal@2x.png */,
 				68FC2A87153E7F0D00003A74 /* LoginWithFacebookPressed@2x.png */,
@@ -476,6 +487,9 @@
 				A9FC7BCB15215765007D72F6 /* OverlayViewController.h */,
 				A9FC7BCC15215765007D72F6 /* OverlayViewController.m */,
 				A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */,
+				A9AADE40154239620096BC3C /* LocTypeMenuController.h */,
+				A9AADE41154239620096BC3C /* LocTypeMenuController.m */,
+				A9AADE42154239620096BC3C /* LocTypeMenuController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -534,6 +548,8 @@
 			children = (
 				68BEE573152945B800E2433D /* DataProgressUpdater.h */,
 				68BEE574152945B800E2433D /* DataProgressUpdater.m */,
+				A9AADE47154250D80096BC3C /* GradientView.h */,
+				A9AADE48154250D80096BC3C /* GradientView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -647,6 +663,8 @@
 				A978B7681541089F0014CD41 /* currentlocation.png in Resources */,
 				A978B76B154109000014CD41 /* hometown.png in Resources */,
 				A978B76E15411E540014CD41 /* group.png in Resources */,
+				A9AADE44154239620096BC3C /* LocTypeMenuController.xib in Resources */,
+				A9AADE4615423ACB0096BC3C /* CloseButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +719,8 @@
 				A9106553153E46FA0057B570 /* UIImageView+AFNetworking.m in Sources */,
 				A97F782715400577000C7768 /* CoordPairsHelper.m in Sources */,
 				A923196F154012D800F0699E /* AbstractContainer.m in Sources */,
+				A9AADE43154239620096BC3C /* LocTypeMenuController.m in Sources */,
+				A9AADE49154250D80096BC3C /* GradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
