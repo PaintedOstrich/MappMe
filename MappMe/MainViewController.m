@@ -442,7 +442,7 @@
     
     return annotationView;
 }
-
+//THIS Method not working.
 #pragma mark - FriendSearchViewControllerDelegate methods
 - (void)didSelectFriend:(Person *)selectedPerson {
     [self.navigationController popViewControllerAnimated:TRUE];
