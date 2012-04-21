@@ -21,15 +21,11 @@
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
     locTypeEnum currDisplayedType;
-    
     //Display private variables
     UIButton * locationTypeBtn;
-    UIView *displayTypeContainer;
-    UIView *personSearchContainer;
     UIView *loadScreenContainer;
     UIView *loadInfoContainer;
     UIProgressView *loadScreenProgressBar;
-    BOOL displayTypeContainerIsShown;
     BOOL isFriendAnnotationType;
 }
 
@@ -45,9 +41,6 @@
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
-    
-    //Set Bools for view methods
-    displayTypeContainerIsShown = FALSE;
     
     [self addLoadView];
     // Show the HUD while the provided method executes in a new thread
