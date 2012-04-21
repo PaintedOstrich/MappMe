@@ -37,8 +37,8 @@
     [_mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:20];
     mainDataManager = [DataManagerSingleton sharedManager];
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;

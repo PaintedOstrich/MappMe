@@ -245,9 +245,7 @@
     NSLog(@"called fbDidLogin");
     [self storeAuthData:[delegate.facebook accessToken] expiresAt:[delegate.facebook expirationDate]];
     [self dismissModalViewControllerAnimated:NO];
-    //[delegate.facebook setSessionDelegate:nil];
-    //sleep(5);
-    //[self performSegueWithIdentifier:@"mapview" sender:self];
+    [self performSegueWithIdentifier:@"mapview" sender:self];
 }
 -(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
     NSLog(@"token extended");

@@ -61,12 +61,12 @@
     
     if ((token == (NSString *) [NSNull null]) || (token.length == 0)) {
         [self dialogDidCancel:url];
-        [self dismissWithSuccess:NO animated:YES];
+        [self dismissWithSuccess:NO animated:NO];
     } else {
         if ([_loginDelegate respondsToSelector:@selector(fbDialogLogin:expirationDate:)]) {
             [_loginDelegate fbDialogLogin:token expirationDate:expirationDate];
         }
-        [self dismissWithSuccess:YES animated:YES];
+        [self dismissWithSuccess:YES animated:NO];
     }
     
 }
