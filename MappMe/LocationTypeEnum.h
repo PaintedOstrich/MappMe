@@ -13,13 +13,15 @@
          for (int i =0; i<tLocationTypeCount; i++)
  */
 typedef enum locTypeEnum {
+  //Represent when no loc type is selected.
+  tNilLocType,
   tCurrentLocation,
   tHomeTown,
   tHighSchool,
   tCollege,
   tGradSchool,
   tWork,
-  tLocationTypeCount 
+  tLocationTypeCount
 } locTypeEnum;
 
 @interface LocationTypeEnum : NSObject {

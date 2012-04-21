@@ -14,8 +14,6 @@
 #import "ZoomHelper.h"
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
-#import "LocationTypeEnum.h"
-
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -23,15 +21,11 @@
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
     locTypeEnum currDisplayedType;
-    
     //Display private variables
     UIButton * locationTypeBtn;
-    UIView *displayTypeContainer;
-    UIView *personSearchContainer;
     UIView *loadScreenContainer;
     UIView *loadInfoContainer;
     UIProgressView *loadScreenProgressBar;
-    BOOL displayTypeContainerIsShown;
     BOOL isFriendAnnotationType;
 }
 
@@ -47,9 +41,6 @@
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
-    
-    //Set Bools for view methods
-    displayTypeContainerIsShown = FALSE;
     
     [self addLoadView];
     // Show the HUD while the provided method executes in a new thread
@@ -254,89 +245,13 @@
     } 
 }
 
-#pragma mark - Custom View Methods
-//Helper method to create buttons for the location type menu (Used in showLocationMenu)
--(UIButton*) createMenuButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btn setTitle:title forState:UIControlStateNormal];
-    btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
-    btn.highlighted = (locType == currDisplayedType);
-    btn.enabled = (locType != currDisplayedType);
-    return btn;
-}
-
-//Create a round close button to be used in location type menu
--(UIButton*) createCloseBtn {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.contentMode = UIViewContentModeScaleToFill;
-    [button setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(closeLocationMenu) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(205, -15.0, 50.0, 50.0);//width and height should be same value
-    button.layer.cornerRadius = 25;//half of the width
-    return button;
-}
-
--(void) closeLocationMenu {
-    if(displayTypeContainerIsShown){
-      [displayTypeContainer removeFromSuperview];
-      displayTypeContainerIsShown = FALSE;
-    }
-}
-
+#pragma mark - Location Menu Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
-    //Don't add subview twice
-    if(displayTypeContainerIsShown){
-        return;
-    }
-    displayTypeContainerIsShown = TRUE;
-    
-    displayTypeContainer = [[UIView alloc] initWithFrame:CGRectMake(40, 90, 240, 280)];
-    [displayTypeContainer setAlpha:0.0];
-    [displayTypeContainer.layer setBackgroundColor:[[UIColor clearColor] CGColor]];
-    
-    
-    UIView *displayTypeView= [[UIView alloc] initWithFrame:CGRectMake(0, 0, 240, 280)];
-    [displayTypeView setAlpha:0.65];
-    [displayTypeContainer addSubview:displayTypeView];
-    
-    [displayTypeContainer addSubview:[self createCloseBtn]];
-    
-    /*Navigation Buttons*/
-    UIButton *curButton = [self createMenuButton:@"Current Location" yCordinate:20 locType:tCurrentLocation];
-    [curButton addTarget:self action:@selector(showCurrentLoc) forControlEvents:UIControlEventTouchDown];
-    [displayTypeContainer addSubview:curButton];
-    
-    UIButton *homeButton = [self createMenuButton:@"Hometown" yCordinate:70 locType:tHomeTown];
-    [homeButton addTarget:self  action:@selector(showHometown) forControlEvents:UIControlEventTouchDown];
-    [displayTypeContainer addSubview:homeButton];
-    
-    UIButton *highButton = [self createMenuButton:@"High School" yCordinate:120 locType:tHighSchool];
-    [highButton addTarget:self  action:@selector(showHighSchool) forControlEvents:UIControlEventTouchDown];
-    [displayTypeContainer addSubview:highButton];
-
-    UIButton *collButton = [self createMenuButton:@"College" yCordinate:170 locType:tCollege];
-    [collButton addTarget:self  action:@selector(showCollege) forControlEvents:UIControlEventTouchDown];
-    [displayTypeContainer addSubview:collButton];
-
-    UIButton *gradButton = [self createMenuButton:@"Graduate School" yCordinate:220 locType:tGradSchool];
-    [gradButton addTarget:self  action:@selector(showGrad) forControlEvents:UIControlEventTouchDown];
-    [displayTypeContainer addSubview:gradButton];
-    /*End Navigation Buttons*/
-
-    //Rounded Container Corners
-    CALayer *dtc = displayTypeView.layer;
-    [dtc setMasksToBounds:YES];
-    [dtc setCornerRadius:8.0f];
-    [dtc setBorderWidth:2.0f];
-    [dtc setBorderColor: [[UIColor blackColor] CGColor]];
-    [dtc setBackgroundColor: [[UIColor blueColor] CGColor]];
-    
-    //Add View To Screen
-    [self.view addSubview:displayTypeContainer];
-    [UIView beginAnimations:nil context:nil];
-    [displayTypeContainer setAlpha:1.0];
-    [UIView commitAnimations];
+    LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
+    controller.delegate = self;
+    controller.selectedLocType = currDisplayedType;
+    [controller presentInParentViewController:self];
 }
 
 
@@ -384,23 +299,6 @@
     [annotations removeAllObjects];
 }
 
--(void) showCurrentLoc
-{
-    [self showLocationType:tCurrentLocation];
-}
--(void)showHometown{
-    [self showLocationType:tHomeTown];
-}
--(void)showHighSchool{
-    [self showLocationType:tHighSchool];
-}
--(void)showCollege{
-    [self showLocationType:tCollege];
-}
--(void)showGrad{
-    [self showLocationType:tGradSchool];
-}
-
 -(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
 {
     [btn setTitle:txt forState:UIControlStateNormal];
@@ -409,8 +307,13 @@
     [btn setTitle:txt forState:UIControlStateSelected];
 }
 
+-(void) showCurrentLoc
+{
+    [self showLocationType:tCurrentLocation];
+}
+
 -(void)showLocationType:(locTypeEnum)locType{
-    [self closeLocationMenu];
+   // [self closeLocationMenu];
     [self clearMap];
     currDisplayedType = locType;
     isFriendAnnotationType = FALSE;
@@ -467,8 +370,12 @@
             imgName = @"currentlocation.png";
         } else if(annotation.locType == tHomeTown) {
             imgName = @"hometown.png";
+        } else if(annotation.locType==tCollege){
+            imgName = @"college.png";
+        } else if(annotation.locType==tHighSchool){
+            imgName = @"highschool.png";
         } else {
-            imgName = @"redPin.png";
+            imgName = @"question.png";
         }
     } else {
         int count = [annotation.peopleArr count];
@@ -541,9 +448,16 @@
     [self.navigationController popViewControllerAnimated:TRUE];
     [self clearMap];
     isFriendAnnotationType = TRUE;
+    currDisplayedType = tNilLocType;
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
     [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
+}
+
+#pragma mark - LocTypeMenuController Delegate methods
+-(void) disSelectLocType:(locTypeEnum)locType
+{
+    [self showLocationType:locType];
 }
 
 @end

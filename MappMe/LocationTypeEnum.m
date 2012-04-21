@@ -35,6 +35,7 @@
             return @"Work";
         default:{
             DebugLog(@"Warning: hitting default case");
+            return @"";
             break;
         }
     }
