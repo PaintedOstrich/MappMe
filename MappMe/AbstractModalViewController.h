@@ -13,6 +13,7 @@
 #import <UIKit/UIKit.h>
 
 @interface AbstractModalViewController : UIViewController {
+ //The semi transparent background modal view.
  IBOutlet UIView* backgroundView;   
 }
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;

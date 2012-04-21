@@ -15,6 +15,7 @@
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
 #import "PersonMenuViewController.h"
+#import "SettingsMenuController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -141,7 +142,7 @@
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
     settings.contentMode = UIViewContentModeScaleToFill;
     [settings setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
-    [settings addTarget:self action:@selector(pushSettingsController) forControlEvents:UIControlEventTouchUpInside];
+    [settings addTarget:self action:@selector(showSettingsMenu) forControlEvents:UIControlEventTouchUpInside];
     settings.frame = CGRectMake(284, 7.0, 29.0, 31.0);//width and height should be same value
     settings.layer.cornerRadius = 25;//half of the width
     [navContainer addSubview:settings];
@@ -276,6 +277,7 @@
     [loginButton setBackgroundImage:stretchableButtonImagePress forState:UIControlStateHighlighted];
 }
 
+#pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
@@ -283,6 +285,15 @@
     controller.selectedLocType = currDisplayedType;
     [controller presentInParentViewController:self];
 }
+
+-(void)showSettingsMenu{
+    SettingsMenuController *controller = [[SettingsMenuController alloc] initWithNibName:@"SettingsMenuController" bundle:nil];
+    //controller.delegate = self;
+    //controller.selectedLocType = currDisplayedType;
+    [controller presentInParentViewController:self];
+}
+
+
 
 
 #pragma mark - Map pins methods
