@@ -46,6 +46,25 @@
 		68FC2A8F153E806100003A74 /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A8E153E806100003A74 /* loginBackground.png */; };
 		68FC2AA615422BB200003A74 /* logout background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AA515422BB200003A74 /* logout background.png */; };
 		68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FC2AA81542321000003A74 /* PersonMenuViewController.m */; };
+		68FC2ABA1543426700003A74 /* _hometown button.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AAE1543426700003A74 /* _hometown button.png */; };
+		68FC2ABB1543426700003A74 /* _hometown button pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AAF1543426700003A74 /* _hometown button pressed.png */; };
+		68FC2ABC1543426700003A74 /* _current location button.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB01543426700003A74 /* _current location button.png */; };
+		68FC2ABD1543426700003A74 /* _current location button pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB11543426700003A74 /* _current location button pressed.png */; };
+		68FC2ABE1543426700003A74 /* _work button.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB21543426700003A74 /* _work button.png */; };
+		68FC2ABF1543426700003A74 /* _work button pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB31543426700003A74 /* _work button pressed.png */; };
+		68FC2AC01543426700003A74 /* _high school button.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB41543426700003A74 /* _high school button.png */; };
+		68FC2AC11543426700003A74 /* _high school button pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB51543426700003A74 /* _high school button pressed.png */; };
+		68FC2AC21543426700003A74 /* _college button.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB61543426700003A74 /* _college button.png */; };
+		68FC2AC31543426700003A74 /* _college button pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB71543426700003A74 /* _college button pressed.png */; };
+		68FC2AC41543426700003A74 /* _grad school button.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB81543426700003A74 /* _grad school button.png */; };
+		68FC2AC51543426700003A74 /* _grad school button pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AB91543426700003A74 /* _grad school button pressed.png */; };
+		68FC2ACE1543429300003A74 /* intro background .png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AC71543429300003A74 /* intro background .png */; };
+		68FC2ACF1543429300003A74 /* grad school pin .png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AC81543429300003A74 /* grad school pin .png */; };
+		68FC2AD01543429300003A74 /* current location pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AC91543429300003A74 /* current location pin.png */; };
+		68FC2AD11543429300003A74 /* college pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2ACA1543429300003A74 /* college pin.png */; };
+		68FC2AD21543429300003A74 /* high school pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2ACB1543429300003A74 /* high school pin.png */; };
+		68FC2AD31543429300003A74 /* work pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2ACC1543429300003A74 /* work pin.png */; };
+		68FC2AD41543429300003A74 /* hometown pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2ACD1543429300003A74 /* hometown pin.png */; };
 		A910654A153E46FA0057B570 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106535153E46FA0057B570 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A910654B153E46FA0057B570 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106537153E46FA0057B570 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A910654C153E46FA0057B570 /* AFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106539153E46FA0057B570 /* AFImageCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -161,6 +180,25 @@
 		68FC2AA515422BB200003A74 /* logout background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logout background.png"; path = "MappMe/logout background.png"; sourceTree = "<group>"; };
 		68FC2AA71542321000003A74 /* PersonMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuViewController.h; sourceTree = "<group>"; };
 		68FC2AA81542321000003A74 /* PersonMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuViewController.m; sourceTree = "<group>"; };
+		68FC2AAE1543426700003A74 /* _hometown button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_hometown button.png"; sourceTree = "<group>"; };
+		68FC2AAF1543426700003A74 /* _hometown button pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_hometown button pressed.png"; sourceTree = "<group>"; };
+		68FC2AB01543426700003A74 /* _current location button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_current location button.png"; sourceTree = "<group>"; };
+		68FC2AB11543426700003A74 /* _current location button pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_current location button pressed.png"; sourceTree = "<group>"; };
+		68FC2AB21543426700003A74 /* _work button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_work button.png"; sourceTree = "<group>"; };
+		68FC2AB31543426700003A74 /* _work button pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_work button pressed.png"; sourceTree = "<group>"; };
+		68FC2AB41543426700003A74 /* _high school button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_high school button.png"; sourceTree = "<group>"; };
+		68FC2AB51543426700003A74 /* _high school button pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_high school button pressed.png"; sourceTree = "<group>"; };
+		68FC2AB61543426700003A74 /* _college button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_college button.png"; sourceTree = "<group>"; };
+		68FC2AB71543426700003A74 /* _college button pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_college button pressed.png"; sourceTree = "<group>"; };
+		68FC2AB81543426700003A74 /* _grad school button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_grad school button.png"; sourceTree = "<group>"; };
+		68FC2AB91543426700003A74 /* _grad school button pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "_grad school button pressed.png"; sourceTree = "<group>"; };
+		68FC2AC71543429300003A74 /* intro background .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "intro background .png"; sourceTree = "<group>"; };
+		68FC2AC81543429300003A74 /* grad school pin .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grad school pin .png"; sourceTree = "<group>"; };
+		68FC2AC91543429300003A74 /* current location pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "current location pin.png"; sourceTree = "<group>"; };
+		68FC2ACA1543429300003A74 /* college pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "college pin.png"; sourceTree = "<group>"; };
+		68FC2ACB1543429300003A74 /* high school pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "high school pin.png"; sourceTree = "<group>"; };
+		68FC2ACC1543429300003A74 /* work pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "work pin.png"; sourceTree = "<group>"; };
+		68FC2ACD1543429300003A74 /* hometown pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hometown pin.png"; sourceTree = "<group>"; };
 		A9106534153E46FA0057B570 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		A9106535153E46FA0057B570 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
 		A9106536153E46FA0057B570 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPRequestOperation.h; path = AFNetworking/AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -383,14 +421,49 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		A90CF29F1504112D0091139C /* images */ = {
+		68FC2AAD1543420500003A74 /* ButtonImages */ = {
 			isa = PBXGroup;
 			children = (
-				68FC2AA515422BB200003A74 /* logout background.png */,
+				68FC2AC61543428500003A74 /* Icon pin images */,
+				68FC2AAE1543426700003A74 /* _hometown button.png */,
+				68FC2AAF1543426700003A74 /* _hometown button pressed.png */,
+				68FC2AB01543426700003A74 /* _current location button.png */,
+				68FC2AB11543426700003A74 /* _current location button pressed.png */,
+				68FC2AB21543426700003A74 /* _work button.png */,
+				68FC2AB31543426700003A74 /* _work button pressed.png */,
+				68FC2AB41543426700003A74 /* _high school button.png */,
+				68FC2AB51543426700003A74 /* _high school button pressed.png */,
+				68FC2AB61543426700003A74 /* _college button.png */,
+				68FC2AB71543426700003A74 /* _college button pressed.png */,
+				68FC2AB81543426700003A74 /* _grad school button.png */,
+				68FC2AB91543426700003A74 /* _grad school button pressed.png */,
 				68FC2A86153E7F0D00003A74 /* LoginWithFacebookNormal@2x.png */,
 				68FC2A87153E7F0D00003A74 /* LoginWithFacebookPressed@2x.png */,
 				68FC2A88153E7F0D00003A74 /* LogoutNormal@2x.png */,
 				68FC2A89153E7F0D00003A74 /* LogoutPressed@2x.png */,
+			);
+			name = ButtonImages;
+			sourceTree = "<group>";
+		};
+		68FC2AC61543428500003A74 /* Icon pin images */ = {
+			isa = PBXGroup;
+			children = (
+				68FC2AC81543429300003A74 /* grad school pin .png */,
+				68FC2AC91543429300003A74 /* current location pin.png */,
+				68FC2ACA1543429300003A74 /* college pin.png */,
+				68FC2ACB1543429300003A74 /* high school pin.png */,
+				68FC2ACC1543429300003A74 /* work pin.png */,
+				68FC2ACD1543429300003A74 /* hometown pin.png */,
+			);
+			name = "Icon pin images";
+			sourceTree = "<group>";
+		};
+		A90CF29F1504112D0091139C /* images */ = {
+			isa = PBXGroup;
+			children = (
+				68FC2AAD1543420500003A74 /* ButtonImages */,
+				68FC2AC71543429300003A74 /* intro background .png */,
+				68FC2AA515422BB200003A74 /* logout background.png */,
 				68FC2A70153E49C600003A74 /* welcomePin.png */,
 				68BEE57115292D0E00E2433D /* triangle.png */,
 				A96AD5CE151FD52B00372528 /* profile.png */,
@@ -643,6 +716,25 @@
 				68FC2A8D153E7F0D00003A74 /* LogoutPressed@2x.png in Resources */,
 				68FC2A8F153E806100003A74 /* loginBackground.png in Resources */,
 				68FC2AA615422BB200003A74 /* logout background.png in Resources */,
+				68FC2ABA1543426700003A74 /* _hometown button.png in Resources */,
+				68FC2ABB1543426700003A74 /* _hometown button pressed.png in Resources */,
+				68FC2ABC1543426700003A74 /* _current location button.png in Resources */,
+				68FC2ABD1543426700003A74 /* _current location button pressed.png in Resources */,
+				68FC2ABE1543426700003A74 /* _work button.png in Resources */,
+				68FC2ABF1543426700003A74 /* _work button pressed.png in Resources */,
+				68FC2AC01543426700003A74 /* _high school button.png in Resources */,
+				68FC2AC11543426700003A74 /* _high school button pressed.png in Resources */,
+				68FC2AC21543426700003A74 /* _college button.png in Resources */,
+				68FC2AC31543426700003A74 /* _college button pressed.png in Resources */,
+				68FC2AC41543426700003A74 /* _grad school button.png in Resources */,
+				68FC2AC51543426700003A74 /* _grad school button pressed.png in Resources */,
+				68FC2ACE1543429300003A74 /* intro background .png in Resources */,
+				68FC2ACF1543429300003A74 /* grad school pin .png in Resources */,
+				68FC2AD01543429300003A74 /* current location pin.png in Resources */,
+				68FC2AD11543429300003A74 /* college pin.png in Resources */,
+				68FC2AD21543429300003A74 /* high school pin.png in Resources */,
+				68FC2AD31543429300003A74 /* work pin.png in Resources */,
+				68FC2AD41543429300003A74 /* hometown pin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -295,7 +295,16 @@
       displayTypeContainerIsShown = FALSE;
     }
 }
-
+-(void)setImagesForButton{
+    //Will finish once merged
+    UIButton* loginButton;
+    UIImage *loginImage = [UIImage imageNamed:@"LoginWithFacebookNormal@2x.png"];
+    UIImage *stretchableButtonImage = [loginImage stretchableImageWithLeftCapWidth:0 topCapHeight:0]; 
+    [loginButton setBackgroundImage:stretchableButtonImage forState:UIControlStateNormal];
+    UIImage *loginImagePressed = [UIImage imageNamed:@"LoginWithFacebookPressed@2x.png"];
+    UIImage *stretchableButtonImagePress = [loginImagePressed stretchableImageWithLeftCapWidth:0 topCapHeight:0]; 
+    [loginButton setBackgroundImage:stretchableButtonImagePress forState:UIControlStateHighlighted];
+}
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     //Don't add subview twice
