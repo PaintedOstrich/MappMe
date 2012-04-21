@@ -252,18 +252,7 @@
     } 
 }
 
-#pragma mark - Custom View Methods
-//Create a round close button to be used in location type menu
--(UIButton*) createCloseBtn {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.contentMode = UIViewContentModeScaleToFill;
-    [button setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(closeLocationMenu) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(205, -15.0, 50.0, 50.0);//width and height should be same value
-    button.layer.cornerRadius = 25;//half of the width
-    return button;
-}
-
+#pragma mark - Location Menu Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
