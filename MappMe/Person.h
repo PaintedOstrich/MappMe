@@ -13,6 +13,7 @@
 @interface Person : NSObject
 
 @property (nonatomic, copy) NSString *profileUrl;
+@property (nonatomic, copy) NSString *largeProfileUrl;
 @property (nonatomic, retain) NSString * uid;
 @property (nonatomic, retain) NSString * name;
 @property  NSUInteger sectionNumber;

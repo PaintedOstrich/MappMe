@@ -47,9 +47,9 @@
                     <connections>
                         <outlet property="_mapView" destination="zaN-EA-gR1" id="ssM-Uy-MT2"/>
                         <segue destination="jKP-RX-6AY" kind="push" identifier="showdetaillist" id="6Tq-j3-iIZ"/>
-                        <segue destination="lvy-TQ-8oc" kind="push" identifier="showwebview" id="fOb-4Y-zbr"/>
                         <segue destination="6Yj-bg-qVr" kind="push" identifier="searchview" id="Xu9-6B-ila"/>
                         <segue destination="tAr-t5-IJA" kind="modal" identifier="settingsview" modalTransitionStyle="partialCurl" id="KPq-Xf-wkD"/>
+                        <segue destination="hOJ-ov-awn" kind="push" identifier="personmenusegue" id="0aB-y2-ki3"/>
                     </connections>
                 </viewController>
             </objects>
@@ -88,6 +88,7 @@
                     <navigationItem key="navigationItem" id="4tf-Az-GrU"/>
                     <connections>
                         <outlet property="searchBar" destination="dmR-1G-DKH" id="jfw-QG-e2S"/>
+                        <segue destination="hOJ-ov-awn" kind="push" identifier="personmenusegue" id="CyB-Rb-He3"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -153,7 +154,7 @@
                     <navigationItem key="navigationItem" title="City Name" id="sIe-HC-SOf"/>
                     <connections>
                         <outlet property="tableView" destination="CzP-7D-IA6" id="8xG-JS-7RJ"/>
-                        <segue destination="lvy-TQ-8oc" kind="push" identifier="showwebview" id="g6m-oi-yyk"/>
+                        <segue destination="hOJ-ov-awn" kind="push" identifier="personmenusegue" id="XXX-fZ-e8S"/>
                     </connections>
                 </tableViewController>
             </objects>
@@ -187,7 +188,7 @@
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="2331" y="1577"/>
+            <point key="canvasLocation" x="2763" y="1405"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OWo-eI-CRH">
@@ -211,6 +212,106 @@
                 </navigationController>
             </objects>
             <point key="canvasLocation" x="260" y="1501"/>
+        </scene>
+        <!--Person Menu View Controller-->
+        <scene sceneID="fPO-m1-aTv">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y9B-NL-zyX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="hOJ-ov-awn" customClass="PersonMenuViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J2A-DO-zGe">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="YlK-kp-uv7">
+                                <rect key="frame" x="17" y="29" width="150" height="120"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Di Peng" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="oBL-Ow-hUy">
+                                <rect key="frame" x="175" y="34" width="131" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IeB-Wz-9v9">
+                                <rect key="frame" x="10" y="157" width="300" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Mapp Di">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showFriend:" destination="hOJ-ov-awn" eventType="touchUpInside" id="F68-ne-YD6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AMW-db-4VN">
+                                <rect key="frame" x="10" y="202" width="300" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Mapp Mutual Friends (24)">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xqI-fp-PTR">
+                                <rect key="frame" x="10" y="267" width="300" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Contact Di">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pw3-5Z-MpE">
+                                <rect key="frame" x="10" y="312" width="300" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Go to Di's Profile">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UzZ-H3-JW8">
+                                <rect key="frame" x="175" y="63" width="140" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" title="Hometown: Guilin">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="s1u-an-SBE"/>
+                    <connections>
+                        <outlet property="contactButton" destination="xqI-fp-PTR" id="RuH-ja-vVo"/>
+                        <outlet property="friendName" destination="oBL-Ow-hUy" id="nJk-bC-vEf"/>
+                        <outlet property="mappPersonButton" destination="IeB-Wz-9v9" id="dfi-Ep-5Tx"/>
+                        <outlet property="mutualFriendButton" destination="AMW-db-4VN" id="OGa-NY-IRt"/>
+                        <outlet property="profileButton" destination="pw3-5Z-MpE" id="4pY-Xl-ITI"/>
+                        <outlet property="profileImage" destination="YlK-kp-uv7" id="5a5-0f-dkF"/>
+                        <segue destination="lvy-TQ-8oc" kind="push" identifier="showwebview" id="s1q-SU-ej2"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2218" y="1592"/>
         </scene>
     </scenes>
     <resources>
@@ -241,6 +342,18 @@
                 <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
             </relationships>
         </class>
+        <class className="PersonMenuViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonMenuViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showFriend:"/>
+                <relationship kind="outlet" name="contactButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="friendName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mappPersonButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mutualFriendButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
         <class className="SettingsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
@@ -261,6 +374,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="g6m-oi-yyk"/>
+        <segue reference="CyB-Rb-He3"/>
     </inferredMetricsTieBreakers>
 </document>

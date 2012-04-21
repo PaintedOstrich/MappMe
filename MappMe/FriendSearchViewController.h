@@ -14,13 +14,10 @@
 - (void)didSelectFriend:(Person*)selectedPerson;
 @end
 
-
 @interface FriendSearchViewController : UITableViewController <UISearchBarDelegate, OverlayViewControllerDelegate> {
-    id<FriendSearchViewControllerDelegate> searchDelegate;
     IBOutlet UISearchBar* searchBar;
 }
 
-@property (retain) id<FriendSearchViewControllerDelegate> searchDelegate;
 @end
 
 

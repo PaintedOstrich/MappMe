@@ -11,6 +11,8 @@
 #import "WebViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MyAnnotation.h"
+#import "PersonMenuViewController.h"
+#import "MainViewController.h"
 
 @implementation ListViewController{
     NSArray * friends;
@@ -120,7 +122,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"showwebview" sender: [friends objectAtIndex:indexPath.row]];
+    [self performSegueWithIdentifier:@"personmenusegue" sender: [friends objectAtIndex:indexPath.row]];
 }
 
 #pragma mark - Transition Functions
@@ -128,12 +130,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    if ([segue.identifier isEqualToString:@"showwebview"]){
-        NSString* fid = [(Person*)sender uid];
-		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=", fid];
-		NSURL *url =[[NSURL alloc] initWithString:urlStr];
-        WebViewController *controller = segue.destinationViewController;
-        controller.url = url;
+    if ([segue.identifier isEqualToString:@"personmenusegue"]){
+        Person *friend = (Person*)sender;
+        PersonMenuViewController *controller = segue.destinationViewController;
+        controller.person = friend;
     }
 }
 

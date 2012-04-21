@@ -14,6 +14,8 @@
 #import "ZoomHelper.h"
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
+#import "PersonMenuViewController.h"
+#import "FriendSearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -83,15 +85,13 @@
     if ([segue.identifier isEqualToString:@"showdetaillist"]) {
         ListViewController *controller = segue.destinationViewController;
         controller.selectedAnnotation = (MyAnnotation*)sender;
-    } else if ([segue.identifier isEqualToString:@"showwebview"]){
-        NSString *fId = [(Person*)sender uid];
-		NSString *urlStr = [[NSString alloc] initWithFormat:@"%@%@",@"http://m.facebook.com/profile.php?id=",fId];
-		NSURL *url =[[NSURL alloc] initWithString:urlStr];
-        WebViewController *controller = segue.destinationViewController;
-        controller.url = url;
+//        personmenusegue
+    } else if ([segue.identifier isEqualToString:@"personmenusegue"]){
+        Person *friend = (Person*)sender;
+        PersonMenuViewController *controller = segue.destinationViewController;
+        controller.person = friend;
     } else if ([segue.identifier isEqualToString:@"searchview"]){
-        FriendSearchViewController* controller = segue.destinationViewController;
-        controller.searchDelegate = self;
+//        FriendSearchViewController* controller = segue.destinationViewController;
     }
 } 
 
@@ -108,7 +108,7 @@
 	}
 	//only one person, go to the facebook page directly.!
 	else {
-        [self performSegueWithIdentifier:@"showwebview" sender:[annotation.peopleArr objectAtIndex:0]];
+        [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
 	}
 }
 

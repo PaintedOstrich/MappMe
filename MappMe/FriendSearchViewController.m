@@ -10,6 +10,7 @@
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
 #import "DataManagerSingleton.h"
+#import "PersonMenuViewController.h"
 
 @implementation FriendSearchViewController{
     DataManagerSingleton * mainDataManager;
@@ -26,8 +27,6 @@
     //tapping the view has the same effect as tapping the cancel button.
     OverlayViewController* overlayViewCtrl;
 }
-
-@synthesize searchDelegate;
 
 - (void)didReceiveMemoryWarning
 {
