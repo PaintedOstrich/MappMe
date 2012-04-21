@@ -12,6 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DebugLog.h"
 #import "Timer.h"
+#import "DataManagerSingleton.h"
 
 //#define MAX(a,b) ((a < b) ?  (b) : (a))
 
@@ -262,6 +263,7 @@
  * Called when the request logout has succeeded.
  */
 - (void)fbDidLogout {
+    [[DataManagerSingleton sharedManager] clearAllData];
     // Remove saved authorization information if it exists and it is
     // ok to clear it (logout, session invalid, app unauthorized)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

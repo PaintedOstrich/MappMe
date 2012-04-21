@@ -7,6 +7,7 @@
 //
 
 #import "SettingsMenuController.h"
+#import "MappMeAppDelegate.h"
 
 @interface SettingsMenuController ()
 
@@ -39,6 +40,14 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+-(IBAction)logoutBtnPressed:(id)sender
+{
+    MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[delegate facebook] logout];
+
+    [[[self parentViewController] navigationController] popToRootViewControllerAnimated:YES];
 }
 
 @end

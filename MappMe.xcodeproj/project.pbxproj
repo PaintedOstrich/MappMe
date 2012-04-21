@@ -86,7 +86,6 @@
 		A91C5BFA153F059000128885 /* PeopleContainerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A91C5BF9153F059000128885 /* PeopleContainerTests.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A923196F154012D800F0699E /* AbstractContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A923196E154012D800F0699E /* AbstractContainer.m */; };
 		A9231970154015BF00F0699E /* AbstractContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A923196E154012D800F0699E /* AbstractContainer.m */; };
-		A931AC341505860300696BF9 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A931AC331505860300696BF9 /* SettingsViewController.m */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
 		A94C44C815059F64001FF446 /* CoordinateLookupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A94C44C715059F64001FF446 /* CoordinateLookupManager.m */; };
@@ -250,8 +249,6 @@
 		A91C5BF9153F059000128885 /* PeopleContainerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleContainerTests.m; sourceTree = "<group>"; };
 		A923196D154012D800F0699E /* AbstractContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractContainer.h; sourceTree = "<group>"; };
 		A923196E154012D800F0699E /* AbstractContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractContainer.m; sourceTree = "<group>"; };
-		A931AC321505860300696BF9 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		A931AC331505860300696BF9 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		A939B73D152A9CEE008B2AE7 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		A94324941500727F005F7600 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A943249615007983005F7600 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
@@ -576,8 +573,6 @@
 		A91AF90815008AF200FCD3D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				A931AC321505860300696BF9 /* SettingsViewController.h */,
-				A931AC331505860300696BF9 /* SettingsViewController.m */,
 				680435F414FED94600899729 /* LoginViewController.h */,
 				680435F514FED94600899729 /* LoginViewController.m */,
 				6804361514FEEF4200899729 /* MainViewController.h */,
@@ -833,7 +828,6 @@
 				A9801D831502E1E400BA0B5B /* LocationTypeEnum.m in Sources */,
 				A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */,
 				A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */,
-				A931AC341505860300696BF9 /* SettingsViewController.m in Sources */,
 				A94C44C815059F64001FF446 /* CoordinateLookupManager.m in Sources */,
 				683D383A1507C0D200021ED3 /* DebugLog.m in Sources */,
 				683D383B1507C0D200021ED3 /* Timer.m in Sources */,
