@@ -17,13 +17,9 @@
     IBOutlet UIButton* highschoolBtn;
 }
 
-
-- (IBAction)close:(id)sender;
 @end
 
 @implementation LocTypeMenuController{
-    GradientView *gradientView;
-    IBOutlet UIButton* closeButton;
 }
 
 @synthesize backgroundView = _backgroundView;
@@ -42,10 +38,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.backgroundView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.backgroundView.layer.borderWidth = 3.0f;
-    self.backgroundView.layer.cornerRadius = 10.0f;
     [self updateButtonHighlight];
 }
 
@@ -57,25 +49,25 @@
 }
 
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self layoutForInterfaceOrientation:toInterfaceOrientation];
-}
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+//{
+//    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+//    [self layoutForInterfaceOrientation:toInterfaceOrientation];
+//}
 
 /*
  * Reposition the Close button whenever we rotate the view
  */
-- (void)layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    CGRect rect = closeButton.frame;
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-        rect.origin = CGPointMake(255, 95);
-    } else {
-        rect.origin = CGPointMake(340, 15);
-    }
-    closeButton.frame = rect;
-}
+//- (void)layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//{
+//    CGRect rect = closeButton.frame;
+//    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+//        rect.origin = CGPointMake(255, 95);
+//    } else {
+//        rect.origin = CGPointMake(340, 15);
+//    }
+//    closeButton.frame = rect;
+//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -107,73 +99,73 @@
     }
 }
 
-- (void)presentInParentViewController:(UIViewController *)parentViewController
-{
-    gradientView = [[GradientView alloc] initWithFrame:parentViewController.view.bounds];
-    [parentViewController.view addSubview:gradientView];
-    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
-    fadeAnimation.toValue = [NSNumber numberWithFloat:1.0f];
-    fadeAnimation.duration = 0.1;
-    [gradientView.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
+//- (void)presentInParentViewController:(UIViewController *)parentViewController
+//{
+//    gradientView = [[GradientView alloc] initWithFrame:parentViewController.view.bounds];
+//    [parentViewController.view addSubview:gradientView];
+//    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+//    fadeAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
+//    fadeAnimation.toValue = [NSNumber numberWithFloat:1.0f];
+//    fadeAnimation.duration = 0.1;
+//    [gradientView.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
+//
+//    self.view.frame = parentViewController.view.bounds;
+//    [self layoutForInterfaceOrientation:parentViewController.interfaceOrientation];
+//    [parentViewController.view addSubview:self.view];
+//    [parentViewController addChildViewController:self];
+//    
+//    CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
+//    
+//    bounceAnimation.duration = 0.4;
+//    bounceAnimation.delegate = self;
+//    
+//    bounceAnimation.values = [NSArray arrayWithObjects:
+//                              [NSNumber numberWithFloat:0.7f],
+//                              [NSNumber numberWithFloat:1.2f],
+//                              [NSNumber numberWithFloat:0.9f],
+//                              [NSNumber numberWithFloat:1.0f],
+//                              nil];
+//    
+//    bounceAnimation.keyTimes = [NSArray arrayWithObjects:
+//                                [NSNumber numberWithFloat:0.0f],
+//                                [NSNumber numberWithFloat:0.334f],
+//                                [NSNumber numberWithFloat:0.666f],
+//                                [NSNumber numberWithFloat:1.0f],
+//                                nil];
+//    
+//    bounceAnimation.timingFunctions = [NSArray arrayWithObjects:
+//                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+//                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+//                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+//                                       nil];
+//    
+//    [self.view.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
+//}
 
-    self.view.frame = parentViewController.view.bounds;
-    [self layoutForInterfaceOrientation:parentViewController.interfaceOrientation];
-    [parentViewController.view addSubview:self.view];
-    [parentViewController addChildViewController:self];
-    
-    CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    
-    bounceAnimation.duration = 0.4;
-    bounceAnimation.delegate = self;
-    
-    bounceAnimation.values = [NSArray arrayWithObjects:
-                              [NSNumber numberWithFloat:0.7f],
-                              [NSNumber numberWithFloat:1.2f],
-                              [NSNumber numberWithFloat:0.9f],
-                              [NSNumber numberWithFloat:1.0f],
-                              nil];
-    
-    bounceAnimation.keyTimes = [NSArray arrayWithObjects:
-                                [NSNumber numberWithFloat:0.0f],
-                                [NSNumber numberWithFloat:0.334f],
-                                [NSNumber numberWithFloat:0.666f],
-                                [NSNumber numberWithFloat:1.0f],
-                                nil];
-    
-    bounceAnimation.timingFunctions = [NSArray arrayWithObjects:
-                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-                                       nil];
-    
-    [self.view.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
-}
 
+//- (IBAction)close:(id)sender
+//{
+//    [self dismissFromParentViewController];
+//}
 
-- (IBAction)close:(id)sender
-{
-    [self dismissFromParentViewController];
-}
-
-- (void)dismissFromParentViewController
-{
-    [self willMoveToParentViewController:nil];
-    
-    [UIView animateWithDuration:0.4 animations:^
-     {
-         CGRect rect = self.view.bounds;
-         rect.origin.y += rect.size.height;
-         self.view.frame = rect;
-         gradientView.alpha = 0.0f;
-     }
-                     completion:^(BOOL finished)
-     {
-         [self.view removeFromSuperview];
-         [gradientView removeFromSuperview];
-         [self removeFromParentViewController];
-     }];
-}
+//- (void)dismissFromParentViewController
+//{
+//    [self willMoveToParentViewController:nil];
+//    
+//    [UIView animateWithDuration:0.4 animations:^
+//     {
+//         CGRect rect = self.view.bounds;
+//         rect.origin.y += rect.size.height;
+//         self.view.frame = rect;
+//         gradientView.alpha = 0.0f;
+//     }
+//                     completion:^(BOOL finished)
+//     {
+//         [self.view removeFromSuperview];
+//         [gradientView removeFromSuperview];
+//         [self removeFromParentViewController];
+//     }];
+//}
 
 - (IBAction)showHomeTown:(id)sender
 {

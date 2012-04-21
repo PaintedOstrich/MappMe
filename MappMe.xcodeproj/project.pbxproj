@@ -104,6 +104,7 @@
 		A9801D841502E1E400BA0B5B /* PeopleContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D771502E1E400BA0B5B /* PeopleContainer.m */; };
 		A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A98A6F1D152A9DF400A81B02 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A939B757152A9CEE008B2AE7 /* libfacebook_ios_sdk.a */; };
+		A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98B98FB15430C3700433160 /* AbstractModalViewController.m */; };
 		A98F1727153FB24400FB6257 /* PlaceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F1726153FB24400FB6257 /* PlaceTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A98F1728153FB2E200FB6257 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* Place.m */; };
 		A98F172B153FB45F00FB6257 /* PersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F172A153FB45F00FB6257 /* PersonTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -272,6 +273,8 @@
 		A9801D771502E1E400BA0B5B /* PeopleContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleContainer.m; sourceTree = "<group>"; };
 		A9801D7A1502E1E400BA0B5B /* PlaceContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceContainer.h; sourceTree = "<group>"; };
 		A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainer.m; sourceTree = "<group>"; };
+		A98B98FA15430C3700433160 /* AbstractModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractModalViewController.h; sourceTree = "<group>"; };
+		A98B98FB15430C3700433160 /* AbstractModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractModalViewController.m; sourceTree = "<group>"; };
 		A98F1726153FB24400FB6257 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTest.m; sourceTree = "<group>"; };
 		A98F172A153FB45F00FB6257 /* PersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTest.m; sourceTree = "<group>"; };
 		A98F172F153FB96500FB6257 /* PlaceContainerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainerTest.m; sourceTree = "<group>"; };
@@ -583,6 +586,8 @@
 				A9FC7BCB15215765007D72F6 /* OverlayViewController.h */,
 				A9FC7BCC15215765007D72F6 /* OverlayViewController.m */,
 				A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */,
+				A98B98FA15430C3700433160 /* AbstractModalViewController.h */,
+				A98B98FB15430C3700433160 /* AbstractModalViewController.m */,
 				A9AADE40154239620096BC3C /* LocTypeMenuController.h */,
 				A9AADE41154239620096BC3C /* LocTypeMenuController.m */,
 				A9AADE42154239620096BC3C /* LocTypeMenuController.xib */,
@@ -845,6 +850,7 @@
 				A9AADE43154239620096BC3C /* LocTypeMenuController.m in Sources */,
 				A9AADE49154250D80096BC3C /* GradientView.m in Sources */,
 				68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */,
+				A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

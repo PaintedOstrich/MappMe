@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AbstractModalViewController.h"
 
 @protocol LocTypeMenuControllerDelegate
 - (void)disSelectLocType:(locTypeEnum)locType;
 @end
 
-@interface LocTypeMenuController : UIViewController {
-     IBOutlet UIView* backgroundView;
+@interface LocTypeMenuController : AbstractModalViewController {
      locTypeEnum selectedLocType;
 }
 
@@ -21,6 +21,6 @@
 @property (retain) id<LocTypeMenuControllerDelegate> delegate;
 @property locTypeEnum selectedLocType;
 
-- (void)presentInParentViewController:(UIViewController *)parentViewController;
-- (void)dismissFromParentViewController;
+//- (void)presentInParentViewController:(UIViewController *)parentViewController;
+//- (void)dismissFromParentViewController;
 @end
