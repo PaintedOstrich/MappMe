@@ -23,9 +23,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="vtU-NI-ESJ"/>
+                    <connections>
+                        <segue destination="xeA-W3-eop" kind="modal" identifier="mapview" modalTransitionStyle="flipHorizontal" id="gs8-gQ-mq2"/>
+                    </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="248" y="2157"/>
+            <point key="canvasLocation" x="304" y="1541"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="M2C-YB-JYb">
@@ -207,11 +210,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="xeA-W3-eop" kind="relationship" relationship="rootViewController" id="hT8-DU-JFX"/>
+                        <segue destination="0SU-jp-eK1" kind="relationship" relationship="rootViewController" id="VBn-JX-fdo"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="260" y="1501"/>
+            <point key="canvasLocation" x="-360" y="1541"/>
         </scene>
         <!--Person Menu View Controller-->
         <scene sceneID="fPO-m1-aTv">
