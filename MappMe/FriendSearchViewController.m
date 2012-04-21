@@ -10,6 +10,7 @@
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
 #import "DataManagerSingleton.h"
+#import "PersonMenuViewController.h"
 
 @implementation FriendSearchViewController{
     DataManagerSingleton * mainDataManager;
@@ -26,8 +27,6 @@
     //tapping the view has the same effect as tapping the cancel button.
     OverlayViewController* overlayViewCtrl;
 }
-
-@synthesize searchDelegate;
 
 - (void)didReceiveMemoryWarning
 {
@@ -197,7 +196,15 @@ titleForHeaderInSection:(NSInteger)section {
         person = [[friends objectAtIndex:indexPath.section]
                   objectAtIndex:indexPath.row];
     }
-    [searchDelegate didSelectFriend:person.uid];
+    [self performSegueWithIdentifier:@"personmenusegue" sender:person];
+}
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"personmenusegue"]){
+        PersonMenuViewController *controller = segue.destinationViewController;
+        controller.person = (Person*)sender;
+    }
 }
 #pragma mark - Methods to manage show and hide of the overlay
 

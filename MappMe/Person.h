@@ -13,6 +13,7 @@
 @interface Person : NSObject
 
 @property (nonatomic, copy) NSString *profileUrl;
+@property (nonatomic, copy) NSString *largeProfileUrl;
 @property (nonatomic, retain) Place *hometown;
 @property (nonatomic, retain) Place *currentLocation;
 @property (nonatomic, retain) NSMutableSet * highschools;

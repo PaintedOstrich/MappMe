@@ -19,20 +19,29 @@
 @synthesize uid;
 @synthesize name, sectionNumber;
 @synthesize profileUrl;
+@synthesize largeProfileUrl;
 
 
--(NSString*) buildProfileUrl
+-(NSString*) buildProfileUrl:(BOOL)large
 {
-    NSString* urlStr = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square", self.uid];
+    NSString* urlStr;
+    if (large) {
+        urlStr = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", self.uid];
+    }
+    else{
+        urlStr = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square", self.uid];
+    }
     return urlStr;
 }
+
 
 -(id)initPerson:(NSString*)personId withName:(NSString*)fullName
 {
     if(self = [super init]){
         self.name= fullName;
         self.uid = personId;
-        self.profileUrl = [self buildProfileUrl];
+        self.profileUrl = [self buildProfileUrl:NO];
+        self.largeProfileUrl = [self buildProfileUrl:YES];
         self.highschools = [[NSMutableSet alloc] initWithCapacity:5];
         self.colleges = [[NSMutableSet alloc] initWithCapacity:5];
         self.workPlaces = [[NSMutableSet alloc] initWithCapacity:5];

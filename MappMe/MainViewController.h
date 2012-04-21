@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "MBProgressHUD.h"
-#import "FriendSearchViewController.h"
+#import "PersonMenuViewController.h"
 #import "DataProgressUpdater.h"
 
 /*Main Controller Interface*/
 
-@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, ProgressUpdaterDelegate, FriendSearchViewControllerDelegate> {
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, ProgressUpdaterDelegate, MappFriendDelegate> {
     IBOutlet MKMapView* _mapView;
 }
 @end
