@@ -10,14 +10,10 @@
 
 @class FriendSearchViewController;
 @class Person;
-@protocol FriendSearchViewControllerDelegate
-- (void)didSelectFriend:(Person*)selectedPerson;
-@end
 
 @interface FriendSearchViewController : UITableViewController <UISearchBarDelegate, OverlayViewControllerDelegate> {
     IBOutlet UISearchBar* searchBar;
 }
-
 @end
 
 

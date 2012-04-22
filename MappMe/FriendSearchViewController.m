@@ -196,7 +196,7 @@ titleForHeaderInSection:(NSInteger)section {
         person = [[friends objectAtIndex:indexPath.section]
                   objectAtIndex:indexPath.row];
     }
-    [searchDelegate didSelectFriend:person];
+    [self performSegueWithIdentifier:@"personmenusegue" sender:person];
 }
 #pragma mark - Methods to manage show and hide of the overlay
 
@@ -290,6 +290,15 @@ titleForHeaderInSection:(NSInteger)section {
     [self doneSearching_Clicked:nil];
 }
 
+#pragma mark - Screen Transition Functions
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+   if ([segue.identifier isEqualToString:@"personmenusegue"]){
+       PersonMenuViewController *controller = segue.destinationViewController;
+       controller.person = (Person*)sender;
+   }
+}
 
 
 @end

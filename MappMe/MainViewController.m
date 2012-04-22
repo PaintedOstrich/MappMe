@@ -15,7 +15,6 @@
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
 #import "PersonMenuViewController.h"
-#import "FriendSearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -266,12 +265,6 @@
     return button;
 }
 
--(void) closeLocationMenu {
-    if(displayTypeContainerIsShown){
-      [displayTypeContainer removeFromSuperview];
-      displayTypeContainerIsShown = FALSE;
-    }
-}
 -(void)setImagesForButton{
     //Will finish once merged
     UIButton* loginButton;
