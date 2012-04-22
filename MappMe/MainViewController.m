@@ -86,8 +86,6 @@
         Person *friend = (Person*)sender;
         PersonMenuViewController *controller = segue.destinationViewController;
         controller.person = friend;
-    } else if ([segue.identifier isEqualToString:@"searchview"]){
-//        FriendSearchViewController* controller = segue.destinationViewController;
     }
 } 
 
@@ -482,7 +480,7 @@
 //THIS Method not working.
 #pragma mark - FriendSearchViewControllerDelegate methods
 - (void)didSelectFriend:(Person *)selectedPerson {
-    [self.navigationController popViewControllerAnimated:TRUE];
+    [self.navigationController popToViewController:self animated:YES];
     [self clearMap];
     isFriendAnnotationType = TRUE;
     currDisplayedType = tNilLocType;

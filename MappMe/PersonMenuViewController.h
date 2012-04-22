@@ -7,20 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Person.h"
 
+@class Person;
 @protocol MappFriendDelegate
 - (void)didSelectFriend:(Person*)person;
 @end
 
 @interface PersonMenuViewController : UIViewController{
     Person* person;
-    IBOutlet UIButton*mappPersonButton;
-    IBOutlet UIButton*mutualFriendButton;
-    IBOutlet UIButton*contactButton;
-    IBOutlet UIButton*profileButton;
-    IBOutlet UIImageView*profileImage;
-    IBOutlet UILabel*friendName;
     id<MappFriendDelegate> searchDelegate;
 }
 
