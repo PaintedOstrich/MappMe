@@ -15,10 +15,8 @@ static NSString * kAppId = @"291279594218895";
     //Initiate Background Threading Queue
     //Namespace reverse dns to ensure uniqueness
     backgroundQueue = dispatch_queue_create("com.paintedostrich.mappme.bgqueue", NULL);
-    
-    //Initialize Login View Controller
-    LoginViewController *loginController = [self.window.rootViewController.storyboard instantiateViewControllerWithIdentifier:@"LoginController"];
-    facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:loginController];
+
+    facebook = [[Facebook alloc] initWithAppId:kAppId andDelegate:nil];
 
     //Facebook SingleSignon persist state
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -26,12 +24,6 @@ static NSString * kAppId = @"291279594218895";
         && [defaults objectForKey:@"FBExpirationDateKey"]) {
         facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
         facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-    }
-
-    //If facebook session is not valid, show loginview, otherwise defaults to main map view
-    if(![facebook isSessionValid]){ 
-        self.window.rootViewController = loginController;
-        [self.window makeKeyAndVisible];
     }
     return YES;
 }

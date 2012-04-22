@@ -12,6 +12,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DebugLog.h"
 #import "Timer.h"
+#import "DataManagerSingleton.h"
 
 //#define MAX(a,b) ((a < b) ?  (b) : (a))
 
@@ -136,10 +137,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.facebook setSessionDelegate:self];
+    
+//    //If facebook session is not valid, show loginview, otherwise defaults to main map view
+//    if(![delegate.facebook isSessionValid]){ 
+//        self.window.rootViewController = loginController;
+//        [self.window makeKeyAndVisible];
+//    }
+    
     animationQueue = [[NSMutableArray alloc] initWithCapacity:5];
     pinNum = 0;
-    delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
 	// Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -219,11 +227,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
+    return interfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
 #pragma mark - FB Private Helpers
@@ -241,10 +245,8 @@
 - (void)fbDidLogin {
     NSLog(@"called fbDidLogin");
     [self storeAuthData:[delegate.facebook accessToken] expiresAt:[delegate.facebook expirationDate]];
-    
-    UINavigationController* controller = [self.storyboard instantiateViewControllerWithIdentifier:@"MainNavController"];
-    delegate.window.rootViewController = controller;
-    [delegate.window makeKeyAndVisible];
+    [self dismissModalViewControllerAnimated:NO];
+    [self performSegueWithIdentifier:@"mapview" sender:self];
 }
 -(void)fbDidExtendToken:(NSString *)accessToken expiresAt:(NSDate *)expiresAt {
     NSLog(@"token extended");
@@ -261,6 +263,7 @@
  * Called when the request logout has succeeded.
  */
 - (void)fbDidLogout {
+    [[DataManagerSingleton sharedManager] clearAllData];
     // Remove saved authorization information if it exists and it is
     // ok to clear it (logout, session invalid, app unauthorized)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

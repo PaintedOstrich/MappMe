@@ -11,5 +11,4 @@
 
 @interface LoginViewController : UIViewController <FBSessionDelegate>
 
--(IBAction)loginButtonPress;
 @end

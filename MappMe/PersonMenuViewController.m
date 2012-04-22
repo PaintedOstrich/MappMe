@@ -10,6 +10,7 @@
 #import "WebViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MainViewController.h"
+#import "Person.h"
 
 @interface PersonMenuViewController ()
 @end
@@ -17,7 +18,12 @@
 @implementation PersonMenuViewController{
     NSArray*mutualFriends;
     UIViewController*rootVC;
-    
+    IBOutlet UIButton*mappPersonButton;
+    IBOutlet UIButton*mutualFriendButton;
+    IBOutlet UIButton*contactButton;
+    IBOutlet UIButton*profileButton;
+    IBOutlet UIImageView*profileImage;
+    IBOutlet UILabel*friendName;
 }
 
 @synthesize person;
@@ -41,11 +47,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setUpDelegate];
+   	mutualFriends =[[NSArray alloc] init];
+    [self refreshUI];
+}
+
+-(void) setUpDelegate
+{
+    //isMemberOfClass: will only return YES if the instance's class is exactly the same
+    //isKindOfClass: will return YES if the instance's class is the same, or a subclass of the given class.
     NSArray *viewControllers = self.navigationController.viewControllers;
-    rootVC= [viewControllers objectAtIndex:0];
-    [self setSearchDelegate:(id)rootVC];
-	mutualFriends =[[NSArray alloc] init];
+    rootVC= [viewControllers objectAtIndex:1];
+    if([rootVC isMemberOfClass:[MainViewController class]]){
+        [self setSearchDelegate:(id)rootVC];
+    } else {
+        [NSException raise:@"Invalid controller as delegate for PersonMenuViewController" format:@"The given controller is not MainViewController"];
+    }
+}
+
+-(void) refreshUI
+{
     friendName.text= person.name;
     profileImage.contentMode = UIViewContentModeScaleAspectFill;
     [profileImage setImageWithURL:[NSURL URLWithString:person.largeProfileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
@@ -58,23 +79,21 @@
     label = [[NSString alloc]initWithFormat:@"Go to %@'s Profile",person.name];
     [self setButtonLabel:profileButton toLabel:label];
 }
+
 -(IBAction)showFriend:(id)sender{
-    //FIXME: Will need to change controller when merging
-//    UIViewController *mvc = ;
-//    while (![mvc isKindOfClass:[MainViewController class]]) {
-//        NSLog(@"trying to match controllers");
-//        mvc= mvc.presentingViewController;
-//    }
-//    
-//    [[self navigationController] popViewControllerAnimated:YES];
     [searchDelegate didSelectFriend:self.person];
-    [[self navigationController] popToViewController:rootVC animated:YES];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+     [[self navigationController] setNavigationBarHidden:FALSE animated:TRUE]; 
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -15,6 +15,7 @@
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
 #import "PersonMenuViewController.h"
+#import "SettingsMenuController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -37,8 +38,8 @@
     [_mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:20];
     mainDataManager = [DataManagerSingleton sharedManager];
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:HUD];
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
@@ -52,10 +53,6 @@
     [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
 }
 
--(void) viewWillDisappear:(BOOL)animated{
-    [[self navigationController] setNavigationBarHidden:FALSE animated:TRUE];
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -65,7 +62,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,8 +86,6 @@
         Person *friend = (Person*)sender;
         PersonMenuViewController *controller = segue.destinationViewController;
         controller.person = friend;
-    } else if ([segue.identifier isEqualToString:@"searchview"]){
-//        FriendSearchViewController* controller = segue.destinationViewController;
     }
 } 
 
@@ -141,7 +136,7 @@
     UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
     settings.contentMode = UIViewContentModeScaleToFill;
     [settings setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
-    [settings addTarget:self action:@selector(pushSettingsController) forControlEvents:UIControlEventTouchUpInside];
+    [settings addTarget:self action:@selector(showSettingsMenu) forControlEvents:UIControlEventTouchUpInside];
     settings.frame = CGRectMake(284, 7.0, 29.0, 31.0);//width and height should be same value
     settings.layer.cornerRadius = 25;//half of the width
     [navContainer addSubview:settings];
@@ -276,6 +271,7 @@
     [loginButton setBackgroundImage:stretchableButtonImagePress forState:UIControlStateHighlighted];
 }
 
+#pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(void)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
@@ -283,6 +279,15 @@
     controller.selectedLocType = currDisplayedType;
     [controller presentInParentViewController:self];
 }
+
+-(void)showSettingsMenu{
+    SettingsMenuController *controller = [[SettingsMenuController alloc] initWithNibName:@"SettingsMenuController" bundle:nil];
+    //controller.delegate = self;
+    //controller.selectedLocType = currDisplayedType;
+    [controller presentInParentViewController:self];
+}
+
+
 
 
 #pragma mark - Map pins methods
@@ -475,7 +480,7 @@
 //THIS Method not working.
 #pragma mark - FriendSearchViewControllerDelegate methods
 - (void)didSelectFriend:(Person *)selectedPerson {
-    [self.navigationController popViewControllerAnimated:TRUE];
+    [self.navigationController popToViewController:self animated:YES];
     [self clearMap];
     isFriendAnnotationType = TRUE;
     currDisplayedType = tNilLocType;
