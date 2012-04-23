@@ -17,13 +17,16 @@
     IBOutlet UIView* background;
     IBOutlet UIProgressView* progressbar;
     IBOutlet UILabel* locTypeLabel;
+    float _totalSum;
+    float _currentSum;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        _totalSum = 0.0;
+        _currentSum = 0.0;
     }
     return self;
 }
@@ -61,17 +64,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-//{
-//    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-//    [self layoutForInterfaceOrientation:toInterfaceOrientation];
-//}
-//
-//-(void) layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-//{
-//    
-//}
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
@@ -87,10 +79,34 @@
 - (void)dismissFromParentViewController
 {
     [self willMoveToParentViewController:nil];
-    [self.view removeFromSuperview];
-    [self removeFromParentViewController];
+    
+    [UIView animateWithDuration:0.8 animations:^
+     {
+         CGRect rect = self.view.bounds;
+         rect.origin.y -= rect.size.height;
+         self.view.frame = rect;
+     }
+                     completion:^(BOOL finished)
+     {
+         [self.view removeFromSuperview];
+         [self removeFromParentViewController];
+     }];
 }
 
+-(void) startWithSum:(float)sum{
+    _totalSum = sum;
+    _currentSum = 0;
+    [progressbar setProgress:0.0 animated:NO];
+}
 
+-(void) increment:(float)amount
+{
+    _currentSum += amount;
+    float percentage = _currentSum/_totalSum;
+    [progressbar setProgress:percentage animated:YES];
+    if (_currentSum >= _totalSum) {
+        [self dismissFromParentViewController];
+    }
+}
 
 @end

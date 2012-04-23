@@ -12,4 +12,10 @@
 
 - (void)presentInParentViewController:(UIViewController *)parentViewController;
 - (void)dismissFromParentViewController;
+
+//Reset progress bar and current amount to zero and set the total range of progress bar.
+- (void) startWithSum:(float)sum;
+
+//Increment by x-amount. Will dismiss itself when the value exceeds sum.
+-(void) increment:(float)amount;
 @end
