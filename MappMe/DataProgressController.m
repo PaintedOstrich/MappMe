@@ -7,6 +7,7 @@
 //
 
 #import "DataProgressController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface DataProgressController ()
 
@@ -30,7 +31,27 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    // Additional styling of the UI
+    [self styleUI];
+}
+
+-(void) styleUI
+{
+    //round corners
+    CALayer *locTypeLayer = locTypeLabel.layer;
+    [locTypeLayer setMasksToBounds:YES];
+    [locTypeLayer setCornerRadius:5.0f];
+    [locTypeLayer setBorderWidth:2.0f];
+    [locTypeLayer setBorderColor: [[UIColor blackColor] CGColor]];
+    [locTypeLayer setBackgroundColor: [[UIColor whiteColor] CGColor]];
+    
+    //Rounded Container Corners
+    CALayer *bg = background.layer;
+    [bg setMasksToBounds:YES];
+    [bg setCornerRadius:8.0f];
+    [bg setBorderWidth:2.0f];
+    [bg setBorderColor: [[UIColor blackColor] CGColor]];
+    [bg setBackgroundColor: [[UIColor blackColor] CGColor]];
 }
 
 - (void)viewDidUnload
@@ -40,9 +61,36 @@
     // e.g. self.myOutlet = nil;
 }
 
+//- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+//{
+//    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+//    [self layoutForInterfaceOrientation:toInterfaceOrientation];
+//}
+//
+//-(void) layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+//{
+//    
+//}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
+
+- (void)presentInParentViewController:(UIViewController *)parentViewController
+{
+
+    [parentViewController.view addSubview:self.view];
+    [parentViewController addChildViewController:self];
+}
+
+- (void)dismissFromParentViewController
+{
+    [self willMoveToParentViewController:nil];
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
+
+
 
 @end

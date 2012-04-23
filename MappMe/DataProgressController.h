@@ -10,4 +10,6 @@
 
 @interface DataProgressController : UIViewController
 
+- (void)presentInParentViewController:(UIViewController *)parentViewController;
+- (void)dismissFromParentViewController;
 @end
