@@ -88,6 +88,8 @@ static FacebookDataHandler *FBHandler = nil;
                                              
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                              NSLog(@"Error from Graph Api: %@", error.localizedDescription);
+                                             DebugLog(@"Retrying....");
+                                             [self asynchMultQueryHelper:action];
                                          }];
     operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
     [queue addOperation:operation];
