@@ -106,7 +106,7 @@
     NSDecimalNumber *num = [[NSDecimalNumber alloc] initWithFloat:percentage];
     [self performSelectorOnMainThread:@selector(update:) withObject:num waitUntilDone:NO];
     if (_currentSum >= _totalSum) {
-        [self performSelectorOnMainThread:@selector(loadingFinish) withObject:nil waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(loadingFinish) withObject:nil waitUntilDone:NO];
     }
 }
 

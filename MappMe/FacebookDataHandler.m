@@ -32,7 +32,7 @@
         queue = [[NSOperationQueue alloc] init];
         _progressController = controller;
         //TODO may need to tweak these numbers.
-        [_progressController startWithSum:400.0];
+        [_progressController startWithSum:300.0];
     }
     return self;
 }
@@ -75,10 +75,12 @@
                                              NSDictionary* data = (NSDictionary*)JSON;
                                              DebugLog(@"And Data returned is: %@", [data description]);
                                               [self parseFacebookInfoController:JSON];
+                                            [_progressController increment:100.0];
                                              
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                              DebugLog(@"returnd failure");
                                              NSLog(@"Error from Graph Api: %@", error.localizedDescription);
+                                             [_progressController increment:100.0];
                                          }];
     operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
     [queue addOperation:operation];
@@ -112,6 +114,7 @@
     }
 
 	NSDictionary *data = [self parseJSON:jsonString];
+    [_progressController increment:100.0];
     return data;
 }
 
@@ -151,8 +154,6 @@
         //Establish two way relationship between friend and place (connected by the locType)
         [self link:place withPerson:friend forLocType:locType];
     }
-    //Each request goes through parse friend and parse city. so 1/8.
-    [_progressController increment:50.0];
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
 -(void)parseFbCity:(NSDictionary*)bas_info{
@@ -172,7 +173,6 @@
             //DebugLog(@"%@ not found; id: %@",[mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
         }
     }
-    [_progressController increment:50.0];
 }
 -(void)parseFbEdu:(NSDictionary*)bas_info{
     NSDictionary *schoolTemp;
