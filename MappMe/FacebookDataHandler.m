@@ -31,6 +31,8 @@
         mainDataManager = [DataManagerSingleton sharedManager];
         queue = [[NSOperationQueue alloc] init];
         _progressController = controller;
+        //TODO may need to tweak these numbers.
+        [_progressController startWithSum:400.0];
     }
     return self;
 }
@@ -69,6 +71,9 @@
     AFJSONRequestOperation *operation = [AFJSONRequestOperation
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                             DebugLog(@"Request URL is: %@", [[request URL] description]);
+                                             NSDictionary* data = (NSDictionary*)JSON;
+                                             DebugLog(@"And Data returned is: %@", [data description]);
                                               [self parseFacebookInfoController:JSON];
                                              
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
@@ -264,6 +269,8 @@
                       @"{\"curLocFriends\":\"%@\",\"location\":\"%@\"}",fql1,fql2];
     NSDictionary *response = [self doSyncMultiQuery:fqlC];  
     [self parseFacebookInfoController:response];
+    //Complete 1/4th
+    [_progressController increment:100.0];
     
 }
 -(void)getHometownLocation{
