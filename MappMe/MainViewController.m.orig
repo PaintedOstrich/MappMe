@@ -294,18 +294,25 @@
         if (annotation.locType == tCurrentLocation) {
             imgName = @"currentLocationPin.png";
         } else if(annotation.locType == tHomeTown) {
-            imgName = @"hometownPin.png";
+<<<<<<< HEAD
+            imgName = @"hometown.png";
         } else if(annotation.locType==tCollege){
-            imgName = @"collegePin.png";
+            imgName = @"college.png";
         } else if(annotation.locType==tHighSchool){
-            imgName = @"highSchoolPin.png";
-        } else if(annotation.locType==tGradSchool){
-            imgName = @"gradSchoolPin.png";
-        } else if(annotation.locType==tHighSchool){
-            imgName = @"workPin.png";
-        }  
-        else {
+            imgName = @"highschool.png";
+        } else {
             imgName = @"question.png";
+=======
+            imgName = @"hometownPin.png";
+        }else if(annotation.locType == tHighSchool) {
+            imgName = @"highSchoolPin.png";
+        }else if(annotation.locType == tCollege) {
+            imgName = @"collegePin.png";
+        }else if(annotation.locType == tGradSchool) {
+            imgName = @"gradSchoolPin.png";
+        }else {
+            imgName = @"workPin.png";
+>>>>>>> pins for friend view
         }
     } else {
         int count = [annotation.peopleArr count];
@@ -359,7 +366,6 @@
     }
     
     annotationView.image = [self getPinImage:annotation ];
-    
     if (!isFriendAnnotationType) {
         annotationView.rightCalloutAccessoryView.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
         UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:annotation.placeHolderImg]];
