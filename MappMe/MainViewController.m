@@ -255,7 +255,7 @@
 #pragma mark - main data processing dispatch
 - (void)fetchAndProcess {
     Timer * t = [[Timer alloc] init];
-    FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
+    FacebookDataHandler *fbDataHandler = [FacebookDataHandler sharedInstance];
     /*Call Methods for info*/
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
