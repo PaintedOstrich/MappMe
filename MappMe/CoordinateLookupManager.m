@@ -27,9 +27,9 @@ TOO_MANY_QUERIES = 620,
 } MapStatusCode;
 
 @implementation CoordinateLookupManager {
+    NSOperationQueue *queue;
 }
 
-@synthesize queue;
 @synthesize delegate = _delegate;
 
 
@@ -137,6 +137,11 @@ TOO_MANY_QUERIES = 620,
         DebugLog(@"All Operations finished!!");
         [_delegate allOperationFinished];
     }
+}
+
+-(void) cancelAllOperations
+{
+    [queue cancelAllOperations];
 }
 
 @end

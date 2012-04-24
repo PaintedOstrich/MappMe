@@ -13,6 +13,8 @@
 #import "DebugLog.h"
 #import "Timer.h"
 #import "DataManagerSingleton.h"
+#import "FacebookDataHandler.h"
+#import "CoordinateLookupManager.h"
 
 //#define MAX(a,b) ((a < b) ?  (b) : (a))
 
@@ -264,6 +266,8 @@
  */
 - (void)fbDidLogout {
     [[DataManagerSingleton sharedManager] clearAllData];
+    [[FacebookDataHandler sharedInstance] cancelAllOperations];
+    [[CoordinateLookupManager sharedManager] cancelAllOperations];
     // Remove saved authorization information if it exists and it is
     // ok to clear it (logout, session invalid, app unauthorized)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
