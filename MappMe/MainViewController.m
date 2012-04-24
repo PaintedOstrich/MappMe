@@ -50,6 +50,9 @@
 
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess:) onTarget:self withObject:fbDataHandler animated:YES];
+    
+    //TODO (SHOULD refactor this)
+    [self showDisplayMenu];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
