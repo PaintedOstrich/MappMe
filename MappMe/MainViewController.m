@@ -101,7 +101,7 @@
  * This method is invoked when the accesory button on annotation view is tapped.
  * Takes the user into a list of friends or the friend's facebook page directly
  */
-- (void) showDetail:(UIButton*)btn {
+- (void) showFriendGroupDetail:(UIButton*)btn {
     //This trick got back the annotation associtaed with the pinView we tapped.
     MyAnnotation* annotation = [annotations objectAtIndex:btn.tag];
     int count = [annotation.peopleArr count];
@@ -113,6 +113,20 @@
         [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
 	}
 }
+//FIXME: Change to go to different menu with person options and location options
+- (void) showLocationDetail:(UIButton*)btn {
+    //This trick got back the annotation associtaed with the pinView we tapped.
+    MyAnnotation* annotation = [annotations objectAtIndex:btn.tag];
+    int count = [annotation.peopleArr count];
+	if(count>1){
+        [self performSegueWithIdentifier:@"showdetaillist" sender:annotation];
+	}
+	//only one person, go to the facebook page directly.!
+	else {
+        [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
+	}
+}
+
 
 -(void)pushSearchController{
     [self performSegueWithIdentifier:@"searchview" sender:self];
@@ -348,12 +362,13 @@
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
         //annotationView.animatesDrop = YES;
+        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         if (!isFriendAnnotationType) {
-            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            [rightButton addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
-            annotationView.rightCalloutAccessoryView = rightButton;
-            //rightButton.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
+            [rightButton addTarget:self action:@selector(showFriendGroupDetail:) forControlEvents:UIControlEventTouchUpInside];
+        } else{
+            [rightButton addTarget:self action:@selector(showLocationDetail:) forControlEvents:UIControlEventTouchUpInside];
         }
+        annotationView.rightCalloutAccessoryView = rightButton;
     } else {
         annotationView.annotation = annotation;
     }
