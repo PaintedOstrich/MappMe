@@ -17,11 +17,24 @@
 -(void)parseFacebookInfoController: (NSDictionary *)infoArray;
 
 @end
+
+static FacebookDataHandler *FBHandler = nil;
+
 @implementation FacebookDataHandler{
     //NSMutableDictionary *schoolTypeMapping;
     DataManagerSingleton * mainDataManager;
     //HTTP request operation queue
     NSOperationQueue *queue;
+}
+
+#pragma mark Singleton Methods
++ (id)sharedInstance {
+    @synchronized(self) {
+        if (FBHandler == nil) {
+            FBHandler = [[self alloc] init];
+        }
+    }
+    return FBHandler;
 }
 
 -(id)init{
@@ -30,6 +43,11 @@
         queue = [[NSOperationQueue alloc] init];
     }
     return self;
+}
+
+-(void) cancelAllOperations
+{
+    [queue cancelAllOperations];
 }
 
 //This method establishes two way link between a person and a place given a locType.

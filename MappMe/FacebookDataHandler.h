@@ -13,7 +13,9 @@
 /*Class handles communication with Facebook Server for Data and Processes Returned Info*/
 @interface FacebookDataHandler : NSObject
 
++ (id)sharedInstance;
 -(void)getCurrentLocation;
 -(void)getHometownLocation;
 -(void)getEducationInfo;
+-(void) cancelAllOperations;
 @end
