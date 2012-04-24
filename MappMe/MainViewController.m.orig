@@ -101,7 +101,7 @@
  * This method is invoked when the accesory button on annotation view is tapped.
  * Takes the user into a list of friends or the friend's facebook page directly
  */
-- (void) showFriendGroupDetail:(UIButton*)btn {
+- (void) showDetail:(UIButton*)btn {
     //This trick got back the annotation associtaed with the pinView we tapped.
     MyAnnotation* annotation = [annotations objectAtIndex:btn.tag];
     int count = [annotation.peopleArr count];
@@ -113,20 +113,6 @@
         [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
 	}
 }
-//FIXME: Change to go to different menu with person options and location options
-- (void) showLocationDetail:(UIButton*)btn {
-    //This trick got back the annotation associtaed with the pinView we tapped.
-    MyAnnotation* annotation = [annotations objectAtIndex:btn.tag];
-    int count = [annotation.peopleArr count];
-	if(count>1){
-        [self performSegueWithIdentifier:@"showdetaillist" sender:annotation];
-	}
-	//only one person, go to the facebook page directly.!
-	else {
-        [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
-	}
-}
-
 
 -(void)pushSearchController{
     [self performSegueWithIdentifier:@"searchview" sender:self];
@@ -308,18 +294,25 @@
         if (annotation.locType == tCurrentLocation) {
             imgName = @"currentLocationPin.png";
         } else if(annotation.locType == tHomeTown) {
-            imgName = @"hometownPin.png";
+<<<<<<< HEAD
+            imgName = @"hometown.png";
         } else if(annotation.locType==tCollege){
-            imgName = @"collegePin.png";
+            imgName = @"college.png";
         } else if(annotation.locType==tHighSchool){
-            imgName = @"highSchoolPin.png";
-        } else if(annotation.locType==tGradSchool){
-            imgName = @"gradSchoolPin.png";
-        } else if(annotation.locType==tHighSchool){
-            imgName = @"workPin.png";
-        }  
-        else {
+            imgName = @"highschool.png";
+        } else {
             imgName = @"question.png";
+=======
+            imgName = @"hometownPin.png";
+        }else if(annotation.locType == tHighSchool) {
+            imgName = @"highSchoolPin.png";
+        }else if(annotation.locType == tCollege) {
+            imgName = @"collegePin.png";
+        }else if(annotation.locType == tGradSchool) {
+            imgName = @"gradSchoolPin.png";
+        }else {
+            imgName = @"workPin.png";
+>>>>>>> pins for friend view
         }
     } else {
         int count = [annotation.peopleArr count];
@@ -362,19 +355,17 @@
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
         //annotationView.animatesDrop = YES;
-        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         if (!isFriendAnnotationType) {
-            [rightButton addTarget:self action:@selector(showFriendGroupDetail:) forControlEvents:UIControlEventTouchUpInside];
-        } else{
-            [rightButton addTarget:self action:@selector(showLocationDetail:) forControlEvents:UIControlEventTouchUpInside];
+            UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self action:@selector(showDetail:) forControlEvents:UIControlEventTouchUpInside];
+            annotationView.rightCalloutAccessoryView = rightButton;
+            //rightButton.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
         }
-        annotationView.rightCalloutAccessoryView = rightButton;
     } else {
         annotationView.annotation = annotation;
     }
     
     annotationView.image = [self getPinImage:annotation ];
-    
     if (!isFriendAnnotationType) {
         annotationView.rightCalloutAccessoryView.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
         UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:annotation.placeHolderImg]];
