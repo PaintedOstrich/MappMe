@@ -40,7 +40,7 @@
     //Rounded Container Corners
     CALayer *bg = background.layer;
     [bg setMasksToBounds:YES];
-    [bg setCornerRadius:8.0f];
+    [bg setCornerRadius:4.0f];
     [bg setBorderWidth:2.0f];
     [bg setBorderColor: [[UIColor blackColor] CGColor]];
     [bg setBackgroundColor: [[UIColor blackColor] CGColor]];
