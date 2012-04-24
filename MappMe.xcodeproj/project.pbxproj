@@ -466,9 +466,6 @@
 		68FA1AF3154725E500631EBF /* SubViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A950E5D61544730F00D7E50B /* DataProgressController.h */,
-				A950E5D71544730F00D7E50B /* DataProgressController.m */,
-				A950E5D81544730F00D7E50B /* DataProgressController.xib */,
 				A98B98FD1543192A00433160 /* SettingsMenuController.h */,
 				A98B98FE1543192A00433160 /* SettingsMenuController.m */,
 				A98B98FF1543192A00433160 /* SettingsMenuController.xib */,
@@ -808,7 +805,6 @@
 				A97CE6091546DF8300553D9B /* camera (1).png in Resources */,
 				A97CE60A1546DF8300553D9B /* camera.png in Resources */,
 				A97CE60B1546DF8300553D9B /* photo (2).png in Resources */,
-				A950E5DA1544730F00D7E50B /* DataProgressController.xib in Resources */,
 				68FA1B011547275F00631EBF /* _hometownButton.png in Resources */,
 				68FA1B021547275F00631EBF /* _hometownButtonPressed.png in Resources */,
 				68FA1B031547275F00631EBF /* _currentLocationButton.png in Resources */,
