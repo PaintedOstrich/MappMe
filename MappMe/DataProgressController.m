@@ -17,16 +17,30 @@
     IBOutlet UIView* background;
     IBOutlet UIProgressView* progressbar;
     IBOutlet UILabel* locTypeLabel;
-    float _totalSum;
-    float _currentSum;
+    
+    //True if current location query is done
+    BOOL FBCurLocationDone;
+    BOOL FBHomeTownDone;
+    BOOL FBEducationDone;
+    //True only when location look up queue is empty.
+    BOOL AllPlaceQueryDone;
+    
+    
+    //Only update the progress bar if this limit is reached to prevent blocking UI
+    int _minUpdateLimit;
+    int _updateCount;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _totalSum = 0.0;
-        _currentSum = 0.0;
+        FBCurLocationDone=FALSE;
+        FBHomeTownDone=FALSE;
+        FBEducationDone=FALSE;
+        AllPlaceQueryDone=FALSE;
+        _minUpdateLimit = 20;
+        _updateCount = 0;
     }
     return self;
 }
@@ -36,6 +50,7 @@
     [super viewDidLoad];
     // Additional styling of the UI
     [self styleUI];
+    [progressbar setProgress:0.0 animated:NO];
 }
 
 -(void) styleUI
@@ -93,26 +108,44 @@
      }];
 }
 
--(void) startWithSum:(float)sum{
-    _totalSum = sum;
-    _currentSum = 0;
-    [progressbar setProgress:0.0 animated:NO];
-}
-
--(void) increment:(float)amount
+-(void) queryFinished:(ProgressType)type
 {
-    _currentSum += amount;
-    float percentage = _currentSum/_totalSum;
-    NSDecimalNumber *num = [[NSDecimalNumber alloc] initWithFloat:percentage];
-    [self performSelectorOnMainThread:@selector(update:) withObject:num waitUntilDone:NO];
-    if (_currentSum >= _totalSum) {
-        [self performSelectorOnMainThread:@selector(loadingFinish) withObject:nil waitUntilDone:NO];
+    if (type == FBCurLocation) {
+        FBCurLocationDone = TRUE;
+        [self performSelectorOnMainThread:@selector(update:) withObject:nil waitUntilDone:NO];
+    } else if (type == FBHomeTown) {
+        FBHomeTownDone = TRUE;
+        [self performSelectorOnMainThread:@selector(update:) withObject:nil waitUntilDone:NO];
+    } else if (type == FBEducation) {
+        FBEducationDone = TRUE;
+        [self performSelectorOnMainThread:@selector(update:) withObject:nil waitUntilDone:NO];
+    } else if (type == PlaceQuery) {
+        _updateCount ++;
+        if (_updateCount >= _minUpdateLimit) {
+            _updateCount = 0;
+            [self performSelectorOnMainThread:@selector(update:) withObject:nil waitUntilDone:NO];
+        }
     }
 }
 
+//update should only be invoked on main thread as it involves UI manipulation.
 -(void) update:(NSDecimalNumber*)percentage
 {
-  [progressbar setProgress:[percentage floatValue] animated:YES];
+    float score = 0.0;
+    if (FBCurLocationDone) {
+        score += 0.2;
+    } 
+    if (FBHomeTownDone) {
+        score += 0.2;
+    } 
+    if (FBEducationDone) {
+        score += 0.2;
+    }
+    
+    score += currentQueuelength/maxLength;
+    
+    
+    [progressbar setProgress:[percentage floatValue] animated:YES];
 }
 
 -(void) loadingFinish
