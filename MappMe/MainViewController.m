@@ -43,9 +43,13 @@
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
-    [self addLoadView];
+
+    DataProgressController *controller = [[DataProgressController alloc] initWithNibName:@"DataProgressController" bundle:nil];
+    [controller presentInParentViewController:self];
+    FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] initWitProgressController:controller];
+
     // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
+    [HUD showWhileExecuting:@selector(fetchAndProcess:) onTarget:self withObject:fbDataHandler animated:YES];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -147,10 +151,6 @@
 //    [navContainer setAlpha:1.0];
     [UIView commitAnimations];
 }
--(void)addLoadView{
-    DataProgressController *controller = [[DataProgressController alloc] initWithNibName:@"DataProgressController" bundle:nil];
-    [controller presentInParentViewController:self];
-}
 
 -(void)showDisplayMenu{
     [self addBottomNavView];
@@ -248,10 +248,9 @@
 }
 
 #pragma mark - main data processing dispatch
-- (void)fetchAndProcess {
+- (void)fetchAndProcess:(FacebookDataHandler*)fbDataHandler {
     Timer * t = [[Timer alloc] init];
     /*Call Methods for info*/
-    FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
     [fbDataHandler getCurrentLocation];

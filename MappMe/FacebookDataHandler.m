@@ -7,12 +7,12 @@
 //
 
 #import "FacebookDataHandler.h"
-#import "LocationTypeEnum.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
 #import "AFJSONRequestOperation.h"
 #import "DataManagerSingleton.h"
 #import "CoordinateLookupManager.h"
+#import "DataProgressController.h"
 
 @interface FacebookDataHandler()
 -(void)parseFacebookInfoController: (NSDictionary *)infoArray;
@@ -23,12 +23,14 @@
     DataManagerSingleton * mainDataManager;
     //HTTP request operation queue
     NSOperationQueue *queue;
+    DataProgressController* _progressController;
 }
 
--(id)init{
+-(id)initWitProgressController:(DataProgressController*)controller{
     if(self = [super init]){
         mainDataManager = [DataManagerSingleton sharedManager];
         queue = [[NSOperationQueue alloc] init];
+        _progressController = controller;
     }
     return self;
 }
