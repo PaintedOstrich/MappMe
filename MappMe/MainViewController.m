@@ -23,7 +23,7 @@
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
     locTypeEnum currDisplayedType;
-    //Display private variables
+    IBOutlet UIButton * cameraBtn;
     IBOutlet UIButton * locationTypeBtn;
     BOOL isFriendAnnotationType;
     IBOutlet UIView* progressIndicator;
@@ -57,12 +57,6 @@
     _mapView = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
-
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -71,6 +65,25 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - Screen Layout Methods
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    [self layoutForInterfaceOrientation:toInterfaceOrientation];
+}
+
+-(void) layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    //Only show camera button when it is in landscape
+    [cameraBtn setHidden:UIInterfaceOrientationIsPortrait(interfaceOrientation)];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
 
 #pragma mark - Transition Functions
 //All functions involving transition to another screen should go below
@@ -339,6 +352,18 @@
     [UIView setAnimationDuration:2];
     [progressIndicator setTransform:CGAffineTransformMakeTranslation(0, 110.0)];
     [UIView commitAnimations];
+}
+
+#pragma mark - Screen shot methods
+-(IBAction)takeScreenShot:(UIButton*)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Sorry"
+                          message: @"Under Construction"
+                          delegate: nil
+                          cancelButtonTitle:@"Oh Can't Wait!"
+                          otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

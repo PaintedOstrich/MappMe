@@ -93,6 +93,9 @@
 		A96AD5CF151FD52B00372528 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A96AD5CE151FD52B00372528 /* profile.png */; };
 		A978B76C15410D1C0014CD41 /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
 		A978B76E15411E540014CD41 /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = A978B76D15411E540014CD41 /* group.png */; };
+		A97CE6091546DF8300553D9B /* camera (1).png in Resources */ = {isa = PBXBuildFile; fileRef = A97CE6061546DF8300553D9B /* camera (1).png */; };
+		A97CE60A1546DF8300553D9B /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = A97CE6071546DF8300553D9B /* camera.png */; };
+		A97CE60B1546DF8300553D9B /* photo (2).png in Resources */ = {isa = PBXBuildFile; fileRef = A97CE6081546DF8300553D9B /* photo (2).png */; };
 		A97F780D153FF1D0000C7768 /* MyAnnotationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A97F780C153FF1D0000C7768 /* MyAnnotationTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A97F780E153FF1FF000C7768 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
 		A97F782715400577000C7768 /* CoordPairsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A97F782615400577000C7768 /* CoordPairsHelper.m */; };
@@ -256,6 +259,9 @@
 		A963C346151EE98F00559DB3 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		A978B76D15411E540014CD41 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
+		A97CE6061546DF8300553D9B /* camera (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera (1).png"; sourceTree = "<group>"; };
+		A97CE6071546DF8300553D9B /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
+		A97CE6081546DF8300553D9B /* photo (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo (2).png"; sourceTree = "<group>"; };
 		A97F780C153FF1D0000C7768 /* MyAnnotationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotationTest.m; sourceTree = "<group>"; };
 		A97F782515400577000C7768 /* CoordPairsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordPairsHelper.h; sourceTree = "<group>"; };
 		A97F782615400577000C7768 /* CoordPairsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordPairsHelper.m; sourceTree = "<group>"; };
@@ -501,6 +507,9 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A97CE6061546DF8300553D9B /* camera (1).png */,
+				A97CE6071546DF8300553D9B /* camera.png */,
+				A97CE6081546DF8300553D9B /* photo (2).png */,
 				68FC2AAD1543420500003A74 /* ButtonImages */,
 				68FC2AC71543429300003A74 /* intro background .png */,
 				68FC2AA515422BB200003A74 /* logout background.png */,
@@ -792,6 +801,9 @@
 				68FC2AD31543429300003A74 /* work pin.png in Resources */,
 				68FC2AD41543429300003A74 /* hometown pin.png in Resources */,
 				A98B99011543192B00433160 /* SettingsMenuController.xib in Resources */,
+				A97CE6091546DF8300553D9B /* camera (1).png in Resources */,
+				A97CE60A1546DF8300553D9B /* camera.png in Resources */,
+				A97CE60B1546DF8300553D9B /* photo (2).png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
