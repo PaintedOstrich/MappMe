@@ -469,6 +469,9 @@
 				A98B98FD1543192A00433160 /* SettingsMenuController.h */,
 				A98B98FE1543192A00433160 /* SettingsMenuController.m */,
 				A98B98FF1543192A00433160 /* SettingsMenuController.xib */,
+				A98B98FD1543192A00433160 /* SettingsMenuController.h */,
+				A98B98FE1543192A00433160 /* SettingsMenuController.m */,
+				A98B98FF1543192A00433160 /* SettingsMenuController.xib */,
 				A9AADE40154239620096BC3C /* LocTypeMenuController.h */,
 				A9AADE41154239620096BC3C /* LocTypeMenuController.m */,
 				A9AADE42154239620096BC3C /* LocTypeMenuController.xib */,
@@ -618,9 +621,6 @@
 				A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */,
 				68FC2AA71542321000003A74 /* PersonMenuViewController.h */,
 				68FC2AA81542321000003A74 /* PersonMenuViewController.m */,
-				A98B98FD1543192A00433160 /* SettingsMenuController.h */,
-				A98B98FE1543192A00433160 /* SettingsMenuController.m */,
-				A98B98FF1543192A00433160 /* SettingsMenuController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
