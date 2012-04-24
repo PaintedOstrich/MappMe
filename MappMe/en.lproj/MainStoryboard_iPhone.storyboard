@@ -67,6 +67,7 @@
                     <navigationItem key="navigationItem" id="Czc-J2-yNZ"/>
                     <connections>
                         <outlet property="_mapView" destination="zaN-EA-gR1" id="ssM-Uy-MT2"/>
+                        <outlet property="progressIndicator" destination="N1Z-4P-kq5" id="dQf-td-sDI"/>
                         <segue destination="jKP-RX-6AY" kind="push" identifier="showdetaillist" id="6Tq-j3-iIZ"/>
                         <segue destination="6Yj-bg-qVr" kind="push" identifier="searchview" id="Xu9-6B-ila"/>
                         <segue destination="tAr-t5-IJA" kind="modal" identifier="settingsview" modalTransitionStyle="partialCurl" id="KPq-Xf-wkD"/>
@@ -358,6 +359,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
+                <relationship kind="outlet" name="progressIndicator" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="PersonMenuViewController" superclassName="UIViewController">
