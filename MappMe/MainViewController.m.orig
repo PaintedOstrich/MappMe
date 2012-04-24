@@ -16,6 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
+#import "DataProgressController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -23,10 +24,12 @@
     MBProgressHUD *HUD;
     NSMutableArray * annotations;
     locTypeEnum currDisplayedType;
-    IBOutlet UIButton * cameraBtn;
-    IBOutlet UIButton * locationTypeBtn;
+    //Display private variables
+    UIButton * locationTypeBtn;
+    UIView *loadScreenContainer;
+    UIView *loadInfoContainer;
     BOOL isFriendAnnotationType;
-    IBOutlet UIView* progressIndicator;
+    DataProgressController *progressIndicator;
 }
 
 #pragma mark - View lifecycle
@@ -41,10 +44,17 @@
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
+
+    progressIndicator = [[DataProgressController alloc] initWithNibName:@"DataProgressController" bundle:nil];
+    [progressIndicator presentInParentViewController:self];
+    
     [[CoordinateLookupManager sharedManager] setDelegate:self];
 
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
+    
+    //TODO (SHOULD refactor this)
+    [self showDisplayMenu];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -57,6 +67,12 @@
     _mapView = nil;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    // Return YES for supported orientations
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+}
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
@@ -65,25 +81,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Screen Layout Methods
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
-    [self layoutForInterfaceOrientation:toInterfaceOrientation];
-}
-
--(void) layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    //Only show camera button when it is in landscape
-    [cameraBtn setHidden:UIInterfaceOrientationIsPortrait(interfaceOrientation)];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
 
 #pragma mark - Transition Functions
 //All functions involving transition to another screen should go below
@@ -117,20 +114,67 @@
 	}
 }
 
--(IBAction)pushSearchController{
+-(void)pushSearchController{
     [self performSegueWithIdentifier:@"searchview" sender:self];
+}
+-(void)pushSettingsController{
+    [self performSegueWithIdentifier:@"settingsview" sender:self];
+}
+
+#pragma mark - Custom Loading View and Logic
+-(void)addBottomNavView{
+    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 540, 320, 44)];
+//    [navContainer setAlpha:0.0];                                                   
+    
+    locationTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    locationTypeBtn.frame = CGRectMake(9, 7, 98, 37);
+    [locationTypeBtn setTitle:@"Current Location" forState:UIControlStateNormal];
+    locationTypeBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+    [locationTypeBtn addTarget:self action:@selector(showLocationMenu) forControlEvents:UIControlEventTouchDown];
+    [navContainer addSubview:locationTypeBtn];
+
+    UIButton *search = [UIButton buttonWithType:UIButtonTypeCustom];
+    search.contentMode = UIViewContentModeScaleToFill;
+    [search setBackgroundImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+    [search addTarget:self action:@selector(pushSearchController) forControlEvents:UIControlEventTouchUpInside];
+    search.frame = CGRectMake(110, 7.0, 42.0, 37.0);//width and height should be same value
+    search.layer.cornerRadius = 25;//half of the width
+    [navContainer addSubview:search];
+    
+    UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
+    settings.contentMode = UIViewContentModeScaleToFill;
+    [settings setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
+    [settings addTarget:self action:@selector(showSettingsMenu) forControlEvents:UIControlEventTouchUpInside];
+    settings.frame = CGRectMake(284, 7.0, 29.0, 31.0);//width and height should be same value
+    settings.layer.cornerRadius = 25;//half of the width
+    [navContainer addSubview:settings];
+    
+    [self.view addSubview:navContainer];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:2];
+    [navContainer setTransform:CGAffineTransformMakeTranslation(0, -110.0)];
+//    [navContainer setAlpha:1.0];
+    [UIView commitAnimations];
+}
+
+-(void)showDisplayMenu{
+    [self addBottomNavView];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    [loadInfoContainer setAlpha:0.0];
+    [UIView commitAnimations];
 }
 
 #pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
--(IBAction)showLocationMenu{
+-(void)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
     controller.delegate = self;
     controller.selectedLocType = currDisplayedType;
     [controller presentInParentViewController:self];
 }
 
--(IBAction)showSettingsMenu{
+-(void)showSettingsMenu{
     SettingsMenuController *controller = [[SettingsMenuController alloc] initWithNibName:@"SettingsMenuController" bundle:nil];
     //controller.delegate = self;
     //controller.selectedLocType = currDisplayedType;
@@ -250,18 +294,25 @@
         if (annotation.locType == tCurrentLocation) {
             imgName = @"currentLocationPin.png";
         } else if(annotation.locType == tHomeTown) {
-            imgName = @"hometownPin.png";
+<<<<<<< HEAD
+            imgName = @"hometown.png";
         } else if(annotation.locType==tCollege){
-            imgName = @"collegePin.png";
+            imgName = @"college.png";
         } else if(annotation.locType==tHighSchool){
-            imgName = @"highSchoolPin.png";
-        } else if(annotation.locType==tGradSchool){
-            imgName = @"gradSchoolPin.png";
-        } else if(annotation.locType==tHighSchool){
-            imgName = @"workPin.png";
-        }  
-        else {
+            imgName = @"highschool.png";
+        } else {
             imgName = @"question.png";
+=======
+            imgName = @"hometownPin.png";
+        }else if(annotation.locType == tHighSchool) {
+            imgName = @"highSchoolPin.png";
+        }else if(annotation.locType == tCollege) {
+            imgName = @"collegePin.png";
+        }else if(annotation.locType == tGradSchool) {
+            imgName = @"gradSchoolPin.png";
+        }else {
+            imgName = @"workPin.png";
+>>>>>>> pins for friend view
         }
     } else {
         int count = [annotation.peopleArr count];
@@ -315,7 +366,6 @@
     }
     
     annotationView.image = [self getPinImage:annotation ];
-    
     if (!isFriendAnnotationType) {
         annotationView.rightCalloutAccessoryView.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
         UIImageView *profileIconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:annotation.placeHolderImg]];
@@ -353,22 +403,7 @@
 }
 -(void) dissmissLoadingView
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2];
-    [progressIndicator setTransform:CGAffineTransformMakeTranslation(0, 110.0)];
-    [UIView commitAnimations];
-}
-
-#pragma mark - Screen shot methods
--(IBAction)takeScreenShot:(UIButton*)sender
-{
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Sorry"
-                          message: @"Under Construction"
-                          delegate: nil
-                          cancelButtonTitle:@"Oh Can't Wait!"
-                          otherButtonTitles:nil];
-    [alert show];
+    [progressIndicator dismissFromParentViewController];
 }
 
 @end
