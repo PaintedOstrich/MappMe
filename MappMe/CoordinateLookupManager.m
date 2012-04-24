@@ -93,7 +93,7 @@ TOO_MANY_QUERIES = 620,
     } else if (status == BAD_KEY) {
         DebugLog(@"%@ caused bad key", [place getFullAddress]);
     } else if (status == TOO_MANY_QUERIES) {
-        //DebugLog(@"query limit reached (may be too fast)");
+        DebugLog(@"query limit reached (may be too fast)");
     } else {
         DebugLog(@"unknown status code:%d is caused by this lookup:%@", status, [place getFullAddress]);
     }
@@ -114,13 +114,14 @@ TOO_MANY_QUERIES = 620,
             CoordPairsHelper* location = [self parseResponse:operation.responseString forPlace:place];
             if (location.status == SUCCESS) {
                 [place addLat:location.latAsString andLong:location.longAsString];
-                [self checkFinishConditions];
             } else if (location.status == TOO_MANY_QUERIES){
                 //Keep retrying this request.
                 [self lookupLocation:place];
             }
+            [self checkFinishConditions];
         } failure:^(AFHTTPRequestOperation *operation , NSError *error) {
             NSLog(@"Failed: %@", error.localizedDescription);
+            [self checkFinishConditions];
         }];
         [queue addOperation:operation];
         

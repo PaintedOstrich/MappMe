@@ -44,5 +44,4 @@ static DataManagerSingleton *mainDataManager = nil;
   [placeContainer clearData];
   [peopleContainer clearData];
 }
-
 @end

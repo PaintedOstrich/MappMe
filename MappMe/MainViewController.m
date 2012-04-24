@@ -368,10 +368,17 @@
 }
 -(void) dissmissLoadingView
 {
+    [self savePlacesToDisk];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:2];
     [progressIndicator setTransform:CGAffineTransformMakeTranslation(0, 110.0)];
     [UIView commitAnimations];
+}
+
+-(void) savePlacesToDisk
+{
+    [[[DataManagerSingleton sharedManager] placeContainer] savePlacesToDisk];
+    DebugLog(@"Saving places data to file");
 }
 
 #pragma mark - Screen shot methods

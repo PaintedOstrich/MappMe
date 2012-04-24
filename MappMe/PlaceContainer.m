@@ -10,7 +10,52 @@
 #import "DebugLog.h"
 
 
-@implementation PlaceContainer
+@implementation PlaceContainer {
+    NSString* _path;
+}
+
+-(id)init
+{
+    if(self = [super init]){
+        [self setupPath];
+        [self loadPlacesFromDisk];
+    }
+    return self;
+}
+
+#pragma mark - Persistence code
+
+-(void)setupPath
+{
+    NSString *documentsDirectory = nil;
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    documentsDirectory = [paths objectAtIndex:0];
+    _path = [documentsDirectory stringByAppendingPathComponent:@"places.dat"];
+    NSLog(@"Saving places in %@", _path);
+}
+
+-(void) loadPlacesFromDisk
+{
+    NSDictionary* places = [NSKeyedUnarchiver unarchiveObjectWithFile:_path];
+    if (!places) {
+        DebugLog(@"Did not have places persistent file set up");
+    } else {
+//        DebugLog(@"%@", [places allKeys]);
+//        DebugLog(@"%@", [places allValues]);
+        NSEnumerator *enumerator = [places keyEnumerator];
+        id key;
+        while ((key = [enumerator nextObject])) {
+            Place* p = [places objectForKey:key];
+            [self get:key].location = p.location;
+            [self get:key].name = p.name;
+        }
+    }
+}
+
+-(void) savePlacesToDisk
+{
+    [NSKeyedArchiver archiveRootObject:_data toFile:_path];
+}
 
 /*
  * Return a place object by id. 
