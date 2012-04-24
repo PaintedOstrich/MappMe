@@ -61,12 +61,58 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tYM-iC-8R0">
+                                <rect key="frame" x="279" y="446" width="41" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="settings.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showSettingsMenu" destination="xeA-W3-eop" eventType="touchUpInside" id="o3X-wO-zp2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ywt-Bj-O5i">
+                                <rect key="frame" x="6" y="8" width="102" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
+                                <state key="normal" title="Current Location">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showLocationMenu" destination="xeA-W3-eop" eventType="touchUpInside" id="B6E-4D-Uhm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h1y-ha-PTr">
+                                <rect key="frame" x="276" y="6" width="47" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="search.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pushSearchController" destination="xeA-W3-eop" eventType="touchUpInside" id="mHl-LA-Pn2"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Czc-J2-yNZ"/>
                     <connections>
                         <outlet property="_mapView" destination="zaN-EA-gR1" id="ssM-Uy-MT2"/>
+                        <outlet property="locationTypeBtn" destination="ywt-Bj-O5i" id="Ckg-So-dYc"/>
                         <outlet property="progressIndicator" destination="N1Z-4P-kq5" id="dQf-td-sDI"/>
                         <segue destination="jKP-RX-6AY" kind="push" identifier="showdetaillist" id="6Tq-j3-iIZ"/>
                         <segue destination="6Yj-bg-qVr" kind="push" identifier="searchview" id="Xu9-6B-ila"/>
@@ -338,6 +384,8 @@
     </scenes>
     <resources>
         <image name="loginBackground.png" width="276" height="413"/>
+        <image name="search.png" width="128" height="128"/>
+        <image name="settings.png" width="26" height="26"/>
     </resources>
     <classes>
         <class className="FriendSearchViewController" superclassName="UITableViewController">
@@ -359,7 +407,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="progressIndicator" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="PersonMenuViewController" superclassName="UIViewController">
