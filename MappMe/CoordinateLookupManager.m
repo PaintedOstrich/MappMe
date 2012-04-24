@@ -78,7 +78,7 @@ TOO_MANY_QUERIES = 620,
         NSString *latitude = [listItems objectAtIndex:2];
         NSString *longitude = [listItems objectAtIndex:3];
         location = [[CoordPairsHelper alloc] initWithLat:latitude andLong:longitude andStatusCode:status];
-        DebugLog(@"%@ is found successfully", [place getFullAddress]);
+        //DebugLog(@"%@ is found successfully", [place getFullAddress]);
         return location;
     } else if(status == UNKNOWN_ADDRESS) {
         DebugLog(@"%@ is an unknown address", [place getFullAddress]);
@@ -91,7 +91,7 @@ TOO_MANY_QUERIES = 620,
     } else if (status == BAD_KEY) {
         DebugLog(@"%@ caused bad key", [place getFullAddress]);
     } else if (status == TOO_MANY_QUERIES) {
-        DebugLog(@"query limit reached (may be too fast)");
+        //DebugLog(@"query limit reached (may be too fast)");
     } else {
         DebugLog(@"unknown status code:%d is caused by this lookup:%@", status, [place getFullAddress]);
     }
@@ -103,7 +103,7 @@ TOO_MANY_QUERIES = 620,
 - (void)lookupLocation:(Place*) place
 {
     if ([place.name isEqualToString:@"No Name"]) {
-         DebugLog(@"A place with id:%@ is initialized without a name, Huh???", place.uid);
+        // DebugLog(@"A place with id:%@ is initialized without a name, Huh???", place.uid);
     } else {
         NSURL *url = [self buildUrl:place.name];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
