@@ -28,7 +28,6 @@
     UIButton * locationTypeBtn;
     UIView *loadScreenContainer;
     UIView *loadInfoContainer;
-    UIProgressView *loadScreenProgressBar;
     BOOL isFriendAnnotationType;
 }
 
@@ -37,14 +36,13 @@
 {
     [super viewDidLoad];
     [_mapView setDelegate:self];
-    annotations = [[NSMutableArray alloc]initWithCapacity:20];
+    annotations = [[NSMutableArray alloc]initWithCapacity:80];
     mainDataManager = [DataManagerSingleton sharedManager];
     HUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:HUD];
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
-    
     [self addLoadView];
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
@@ -153,72 +151,13 @@
     DataProgressController *controller = [[DataProgressController alloc] initWithNibName:@"DataProgressController" bundle:nil];
     [controller presentInParentViewController:self];
 }
--(void)hideLoadScreen{
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.45];
-    [loadScreenContainer setTransform:CGAffineTransformMakeTranslation(0, -100.0)];
-    [UIView commitAnimations];
-}
 
-#pragma mark - progress bar delegate methods
--(void)finishedLoading{
-    DebugLog(@"called finished loading");
-    [self hideLoadScreen];
-
-    //Calling this removes animation...?
-//    [loadScreenContainer removeFromSuperview];
-}
 -(void)showDisplayMenu{
     [self addBottomNavView];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     [loadInfoContainer setAlpha:0.0];
     [UIView commitAnimations];
-}
-- (void)updateProgressBar:(float)progressAmount{
-
-    //How to avoid updating this if object is nil;
-//    DebugLog(@"main controller update progress bar called with amount :%f",progressAmount);
-    if (loadScreenProgressBar==nil) {
-        DebugLog(@"WARNING: Trying to update nil progress bar");
-    }else{
-        [loadScreenProgressBar setProgress:progressAmount animated:YES];
-        //Disable Edu Buttons until finished loading
-        //[self disableEduButtons];
-    } 
-}
-#pragma mark - Custom View Methods
-//Helper method to create buttons for the location type menu (Used in showLocationMenu)
--(UIButton*) createMenuButton:(NSString*)title yCordinate:(CGFloat)yCor locType: (locTypeEnum) locType {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [btn setTitle:title forState:UIControlStateNormal];
-    btn.frame = CGRectMake(30.0, yCor, 180.0, 40.0);
-    btn.highlighted = (locType == currDisplayedType);
-    btn.enabled = (locType != currDisplayedType);
-    return btn;
-}
-
-//Create a round close button to be used in location type menu
--(UIButton*) createCloseBtn {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.contentMode = UIViewContentModeScaleToFill;
-    [button setBackgroundImage:[UIImage imageNamed:@"close.png"] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(closeLocationMenu) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(205, -15.0, 50.0, 50.0);//width and height should be same value
-    button.layer.cornerRadius = 25;//half of the width
-    return button;
-}
-
--(void)setImagesForButton{
-    //Will finish once merged
-    UIButton* loginButton;
-    UIImage *loginImage = [UIImage imageNamed:@"LoginWithFacebookNormal@2x.png"];
-    UIImage *stretchableButtonImage = [loginImage stretchableImageWithLeftCapWidth:0 topCapHeight:0]; 
-    [loginButton setBackgroundImage:stretchableButtonImage forState:UIControlStateNormal];
-    UIImage *loginImagePressed = [UIImage imageNamed:@"LoginWithFacebookPressed@2x.png"];
-    UIImage *stretchableButtonImagePress = [loginImagePressed stretchableImageWithLeftCapWidth:0 topCapHeight:0]; 
-    [loginButton setBackgroundImage:stretchableButtonImagePress forState:UIControlStateHighlighted];
 }
 
 #pragma mark - Modal Popup Methods
@@ -236,9 +175,6 @@
     //controller.selectedLocType = currDisplayedType;
     [controller presentInParentViewController:self];
 }
-
-
-
 
 #pragma mark - Map pins methods
 
@@ -316,7 +252,6 @@
     Timer * t = [[Timer alloc] init];
     /*Call Methods for info*/
     FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
-    [fbDataHandler setProgressUpdaterDelegate:self];
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
     [fbDataHandler getCurrentLocation];

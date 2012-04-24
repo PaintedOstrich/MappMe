@@ -10,7 +10,6 @@
 #import "LocationTypeEnum.h"
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
-#import "DataProgressUpdater.h"
 #import "AFJSONRequestOperation.h"
 #import "DataManagerSingleton.h"
 #import "CoordinateLookupManager.h"
@@ -22,7 +21,6 @@
 @implementation FacebookDataHandler{
     //NSMutableDictionary *schoolTypeMapping;
     DataManagerSingleton * mainDataManager;
-    DataProgressUpdater *dataProgressUpdater;
     //HTTP request operation queue
     NSOperationQueue *queue;
 }
@@ -30,16 +28,10 @@
 -(id)init{
     if(self = [super init]){
         mainDataManager = [DataManagerSingleton sharedManager];
-        dataProgressUpdater = [[DataProgressUpdater alloc] init];
         queue = [[NSOperationQueue alloc] init];
     }
     return self;
 }
-//sets progress updater delegate to be main controller, in this case
--(void)setProgressUpdaterDelegate:(id)delegate{
-    [dataProgressUpdater setProgressUpdaterDelegate:delegate];
-}
-
 
 //This method establishes two way link between a person and a place given a locType.
 //E.g. Tim has St. Louis as its homeTown. St. Louis has Tim as a person considering itself as his hometown.
@@ -152,9 +144,6 @@
         //Establish two way relationship between friend and place (connected by the locType)
         [self link:place withPerson:friend forLocType:locType];
     }
-    if(locType == tHomeTown){
-        [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tHomeTown]count] forType:tHomeTown];
-    }
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
 -(void)parseFbCity:(NSDictionary*)bas_info{
@@ -193,10 +182,6 @@
         }
         
     }
-    [dataProgressUpdater setFinishedTotal:tHighSchool];
-    [dataProgressUpdater setFinishedTotal:tCollege];
-    [dataProgressUpdater setFinishedTotal:tGradSchool];
-    [dataProgressUpdater endLoader];
 }
 -(void)parseFbFriendsEdu:(NSDictionary*)bas_info{
     NSDictionary *friendsTemp;
@@ -226,10 +211,6 @@
             [self link:place withPerson:person forLocType:placeType];
         }
     }
-    //Set totals for progress updater
-    [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tHighSchool]count] forType:tHighSchool];
-    [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tCollege]count] forType:tCollege];
-    [dataProgressUpdater setTotal:[[mainDataManager.placeContainer getPlacesUsedAs:tGradSchool]count] forType:tGradSchool];
 }
 -(void)parseFacebookInfoController: (NSDictionary *)data{
     NSDictionary* infoArray = (NSDictionary *)[data objectForKey:@"data"]; 
