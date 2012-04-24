@@ -14,11 +14,13 @@
  */
 @interface CoordPairsHelper : NSObject{
     CLLocationCoordinate2D location;
+    int status;
 }
 
--(id)initWithLat:(NSString *)lat andLong:(NSString *)lon;
+-(id)initWithLat:(NSString *)lat andLong:(NSString *)lon andStatusCode:(int)statusCode;
 -(NSString*) latAsString;
 -(NSString*) longAsString;
 @property(nonatomic)CLLocationCoordinate2D location;
+@property int status;
 
 @end

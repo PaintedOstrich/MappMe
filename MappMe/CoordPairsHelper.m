@@ -10,12 +10,13 @@
 
 @implementation CoordPairsHelper
 
-@synthesize location;
+@synthesize location, status;
 
--(id)initWithLat:(NSString *)lat andLong:(NSString *)lon{
+-(id)initWithLat:(NSString *)lat andLong:(NSString *)lon andStatusCode:(int)statusCode{
     if (self =[super init]){
         location.latitude = [lat doubleValue];
         location.longitude = [lon doubleValue];
+        self.status = statusCode;
     }
     return self;
 }

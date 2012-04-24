@@ -46,6 +46,9 @@ TOO_MANY_QUERIES = 620,
 -(id)init{
     if (self = [super init]) {
       queue = [[NSOperationQueue alloc] init];
+      //Only allow 2 concurrent requests at a time.
+      //Too many requests results in Google map shutting us out.
+      [queue setMaxConcurrentOperationCount:2];
     }
     return self;
 }
@@ -74,8 +77,8 @@ TOO_MANY_QUERIES = 620,
     if(status == SUCCESS) {
         NSString *latitude = [listItems objectAtIndex:2];
         NSString *longitude = [listItems objectAtIndex:3];
-        location = [[CoordPairsHelper alloc] initWithLat:latitude andLong:longitude];
-        DebugLog(@"%@ is found successfully", [place getFullAddress]);
+        location = [[CoordPairsHelper alloc] initWithLat:latitude andLong:longitude andStatusCode:status];
+        //DebugLog(@"%@ is found successfully", [place getFullAddress]);
         return location;
     } else if(status == UNKNOWN_ADDRESS) {
         DebugLog(@"%@ is an unknown address", [place getFullAddress]);
@@ -88,28 +91,30 @@ TOO_MANY_QUERIES = 620,
     } else if (status == BAD_KEY) {
         DebugLog(@"%@ caused bad key", [place getFullAddress]);
     } else if (status == TOO_MANY_QUERIES) {
-        DebugLog(@"query limit reached (may be too fast)");
+        //DebugLog(@"query limit reached (may be too fast)");
     } else {
         DebugLog(@"unknown status code:%d is caused by this lookup:%@", status, [place getFullAddress]);
     }
-    return nil;
+    location = [[CoordPairsHelper alloc] initWithLat:0 andLong:0 andStatusCode:status];
+    return location;
     
 }
 
 - (void)lookupLocation:(Place*) place
 {
     if ([place.name isEqualToString:@"No Name"]) {
-        //TODO should not happen. figure out why.
+         DebugLog(@"A place with id:%@ is initialized without a name, Huh???", place.uid);
     } else {
         NSURL *url = [self buildUrl:place.name];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation , id responseObject) {
             CoordPairsHelper* location = [self parseResponse:operation.responseString forPlace:place];
-            if (location !=nil) {
+            if (location.status == SUCCESS) {
                 [place addLat:location.latAsString andLong:location.longAsString];
-            } else {
-                //NSlog(@"Did not find");
+            } else if (location.status == TOO_MANY_QUERIES){
+                //Keep retrying this request.
+                [self lookupLocation:place];
             }
         } failure:^(AFHTTPRequestOperation *operation , NSError *error) {
             NSLog(@"Failed: %@", error.localizedDescription);
