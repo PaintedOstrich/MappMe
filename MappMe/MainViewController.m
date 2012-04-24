@@ -46,10 +46,9 @@
 
     DataProgressController *controller = [[DataProgressController alloc] initWithNibName:@"DataProgressController" bundle:nil];
     [controller presentInParentViewController:self];
-    FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] initWitProgressController:controller];
 
     // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:@selector(fetchAndProcess:) onTarget:self withObject:fbDataHandler animated:YES];
+    [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
     
     //TODO (SHOULD refactor this)
     [self showDisplayMenu];
@@ -251,8 +250,9 @@
 }
 
 #pragma mark - main data processing dispatch
-- (void)fetchAndProcess:(FacebookDataHandler*)fbDataHandler {
+- (void)fetchAndProcess {
     Timer * t = [[Timer alloc] init];
+    FacebookDataHandler *fbDataHandler = [[FacebookDataHandler alloc] init];
     /*Call Methods for info*/
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
