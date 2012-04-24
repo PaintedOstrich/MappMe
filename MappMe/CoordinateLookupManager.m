@@ -29,7 +29,7 @@ TOO_MANY_QUERIES = 620,
 @implementation CoordinateLookupManager {
 }
 
-@synthesize queue;
+@synthesize queue, isStarted;
 
 
 #pragma mark Singleton Methods
@@ -46,9 +46,9 @@ TOO_MANY_QUERIES = 620,
 -(id)init{
     if (self = [super init]) {
       queue = [[NSOperationQueue alloc] init];
-      //Only allow 2 concurrent requests at a time.
-      //Too many requests results in Google map shutting us out.
-      [queue setMaxConcurrentOperationCount:2];
+      //Allow no requests at all before we start operation queue.
+      [queue setMaxConcurrentOperationCount:0];
+      isStarted = FALSE;
     }
     return self;
 }
@@ -122,6 +122,12 @@ TOO_MANY_QUERIES = 620,
         [queue addOperation:operation];
 
     }
+}
+
+-(void) startOperations
+{
+    isStarted = TRUE;
+    [queue setMaxConcurrentOperationCount:2];
 }
 
 @end

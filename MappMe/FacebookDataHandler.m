@@ -62,20 +62,18 @@
 }
 
 //Asynchronous version of Graph Api Calls.  
--(void)asynchMultQueryHelper:(NSString*)action{
+-(void)asynchMultQueryHelper:(NSString*)action queryType:(ProgressType)queryType{
     NSURL * sourceURL = [self buildQueryUrl:action];
     NSURLRequest *request = [NSURLRequest requestWithURL:sourceURL];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-                                             DebugLog(@"Request URL is: %@", [[request URL] description]);
-                                             NSDictionary* data = (NSDictionary*)JSON;
-                                             DebugLog(@"And Data returned is: %@", [data description]);
                                               [self parseFacebookInfoController:JSON];
+                                              [_progressController queryFinished:queryType];
                                              
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-                                             DebugLog(@"returnd failure");
+                                             DebugLog(@"Request type: %d is done", queryType);
                                              NSLog(@"Error from Graph Api: %@", error.localizedDescription);
                                          }];
     operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
@@ -275,6 +273,7 @@
                       @"{\"curLocFriends\":\"%@\",\"location\":\"%@\"}",fql1,fql2];
     NSDictionary *response = [self doSyncMultiQuery:fqlC];  
     [self parseFacebookInfoController:response];
+    [_progressController queryFinished:FBCurLocation];
     
 }
 -(void)getHometownLocation{
@@ -286,7 +285,7 @@
                        @"SELECT location.latitude,location.longitude,name,page_id FROM page WHERE page_id IN (SELECT hometown_location FROM #hometownFriends)"];
     NSString* fqlH = [NSString stringWithFormat:
                       @"{\"hometownFriends\":\"%@\",\"location\":\"%@\"}",fqlH1,fqlH2];
-    [self asynchMultQueryHelper:fqlH]; 
+    [self asynchMultQueryHelper:fqlH queryType:FBHomeTown]; 
     
 }
 -(void)getEducationInfo{
@@ -297,7 +296,7 @@
     NSString* fqlE = [NSString stringWithFormat:
                       @"{\"friendsEdu\":\"%@\",\"schoolLocation\":\"%@\"}",fqlE1,fqlE2];
    // DebugLog(@"Education Query: \n%@",fqlE);
-    [self asynchMultQueryHelper:fqlE];
+    [self asynchMultQueryHelper:fqlE queryType:FBEducation];
 }
 
 @end
