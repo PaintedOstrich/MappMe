@@ -88,8 +88,6 @@
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
 		A94C44C815059F64001FF446 /* CoordinateLookupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A94C44C715059F64001FF446 /* CoordinateLookupManager.m */; };
-		A950E5D91544730F00D7E50B /* DataProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = A950E5D71544730F00D7E50B /* DataProgressController.m */; };
-		A950E5DA1544730F00D7E50B /* DataProgressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A950E5D81544730F00D7E50B /* DataProgressController.xib */; };
 		A963C344151EE8E200559DB3 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C343151EE8E200559DB3 /* settings.png */; };
 		A963C347151EE98F00559DB3 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C346151EE98F00559DB3 /* search.png */; };
 		A96AD5CF151FD52B00372528 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A96AD5CE151FD52B00372528 /* profile.png */; };
@@ -254,9 +252,6 @@
 		A943249715007983005F7600 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		A94C44C615059F64001FF446 /* CoordinateLookupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateLookupManager.h; sourceTree = "<group>"; };
 		A94C44C715059F64001FF446 /* CoordinateLookupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinateLookupManager.m; sourceTree = "<group>"; };
-		A950E5D61544730F00D7E50B /* DataProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProgressController.h; sourceTree = "<group>"; };
-		A950E5D71544730F00D7E50B /* DataProgressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProgressController.m; sourceTree = "<group>"; };
-		A950E5D81544730F00D7E50B /* DataProgressController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DataProgressController.xib; sourceTree = "<group>"; };
 		A963C343151EE8E200559DB3 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A963C346151EE98F00559DB3 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
@@ -598,9 +593,6 @@
 				A98B98FD1543192A00433160 /* SettingsMenuController.h */,
 				A98B98FE1543192A00433160 /* SettingsMenuController.m */,
 				A98B98FF1543192A00433160 /* SettingsMenuController.xib */,
-				A950E5D61544730F00D7E50B /* DataProgressController.h */,
-				A950E5D71544730F00D7E50B /* DataProgressController.m */,
-				A950E5D81544730F00D7E50B /* DataProgressController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -800,7 +792,6 @@
 				68FC2AD31543429300003A74 /* work pin.png in Resources */,
 				68FC2AD41543429300003A74 /* hometown pin.png in Resources */,
 				A98B99011543192B00433160 /* SettingsMenuController.xib in Resources */,
-				A950E5DA1544730F00D7E50B /* DataProgressController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,7 +849,6 @@
 				68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */,
 				A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */,
 				A98B99001543192B00433160 /* SettingsMenuController.m in Sources */,
-				A950E5D91544730F00D7E50B /* DataProgressController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

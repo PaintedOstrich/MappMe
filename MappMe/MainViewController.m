@@ -16,7 +16,6 @@
 #import "UIImageView+AFNetworking.h"
 #import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
-#import "DataProgressController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -29,7 +28,7 @@
     UIView *loadScreenContainer;
     UIView *loadInfoContainer;
     BOOL isFriendAnnotationType;
-    DataProgressController *progressIndicator;
+    IBOutlet UIView* progressIndicator;
 }
 
 #pragma mark - View lifecycle
@@ -44,9 +43,6 @@
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
-
-    progressIndicator = [[DataProgressController alloc] initWithNibName:@"DataProgressController" bundle:nil];
-    [progressIndicator presentInParentViewController:self];
     
     [[CoordinateLookupManager sharedManager] setDelegate:self];
 
@@ -392,7 +388,10 @@
 }
 -(void) dissmissLoadingView
 {
-    [progressIndicator dismissFromParentViewController];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:2];
+    [progressIndicator setTransform:CGAffineTransformMakeTranslation(0, 110.0)];
+    [UIView commitAnimations];
 }
 
 @end
