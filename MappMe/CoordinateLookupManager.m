@@ -28,6 +28,7 @@ TOO_MANY_QUERIES = 620,
 
 @implementation CoordinateLookupManager {
     NSOperationQueue *queue;
+    BOOL operationsStarted;
 }
 
 @synthesize delegate = _delegate;
@@ -49,6 +50,7 @@ TOO_MANY_QUERIES = 620,
       queue = [[NSOperationQueue alloc] init];
       //Initially allow no out going reqeust.
       [queue setMaxConcurrentOperationCount:0];
+        operationsStarted = FALSE;
     }
     return self;
 }
@@ -122,10 +124,12 @@ TOO_MANY_QUERIES = 620,
         }];
         [queue addOperation:operation];
         
-        if ([queue operationCount] > 3) {
+        if ([queue operationCount] > 3 && !operationsStarted) {
             //Only start operations now to make sure the didFinishOperations
             //method is not invoked too early.
             [queue setMaxConcurrentOperationCount:2];
+            operationsStarted = TRUE;
+            DebugLog(@"This should only be called once");
         }
 
     }
