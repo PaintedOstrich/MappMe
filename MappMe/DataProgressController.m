@@ -16,36 +16,14 @@
 
 @implementation DataProgressController {
     IBOutlet UIView* background;
-    IBOutlet UIProgressView* progressbar;
+    IBOutlet UIActivityIndicatorView* spinner;
     IBOutlet UILabel* locTypeLabel;
-    
-    //True if current location query is done
-    BOOL FBCurLocationDone;
-    BOOL FBHomeTownDone;
-    BOOL FBEducationDone;
-    //True only when location look up queue is empty.
-    BOOL AllPlaceQueryDone;
-    
-    
-    //Only update the progress bar if this limit is reached to prevent blocking UI
-    int _minUpdateLimit;
-    int _updateCount;
-    
-    //Total query count
-    int _totalPlaceQueries;
-    int _completedQueryCount;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        FBCurLocationDone=FALSE;
-        FBHomeTownDone=FALSE;
-        FBEducationDone=FALSE;
-        AllPlaceQueryDone=FALSE;
-        _minUpdateLimit = 20;
-        _updateCount = 0;
     }
     return self;
 }
@@ -55,7 +33,6 @@
     [super viewDidLoad];
     // Additional styling of the UI
     [self styleUI];
-    [progressbar setProgress:0.0 animated:NO];
 }
 
 -(void) styleUI
@@ -113,61 +90,6 @@
      }];
 }
 
--(void) queryFinished:(ProgressType)type
-{
-    if (type == FBCurLocation) {
-        FBCurLocationDone = TRUE;
-        [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-    } else if (type == FBHomeTown) {
-        FBHomeTownDone = TRUE;
-        [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-    } else if (type == FBEducation) {
-        FBEducationDone = TRUE;
-        [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-    } else if (type == PlaceQuery) {
-        _updateCount ++;
-        if (_updateCount >= _minUpdateLimit) {
-            _updateCount = 0;
-            [self performSelectorOnMainThread:@selector(update) withObject:nil waitUntilDone:NO];
-        }
-    }
-}
-
-//update should only be invoked on main thread as it involves UI manipulation.
--(void) update
-{
-    float score = 0.0;
-    if (FBCurLocationDone) {
-        score += 0.3;
-    } 
-    if (FBHomeTownDone) {
-        score += 0.4;
-    } 
-    if (FBEducationDone) {
-        score += 0.3;
-    }
-    
-    if (FBCurLocationDone && FBHomeTownDone&& FBEducationDone) {
-        //This means all three query to facebook have come back and
-        //parsing finished(we only call querFinished when parsing is done)
-        //hence we can start the query queue in coordinate look up manager
-        CoordinateLookupManager* manager = [CoordinateLookupManager sharedManager];
-        if ([manager isStarted]) {
-            _completedQueryCount += _minUpdateLimit;
-            score += ((float)_completedQueryCount/(float)_totalPlaceQueries);
-        } else {
-            _totalPlaceQueries = [manager.queue operationCount];
-            NSLog(@"Total number of operations are: %d", _totalPlaceQueries);
-            _completedQueryCount = 0;
-            [manager startOperations];
-        }
-    }
-    
-    score = score / 2.0;
-    
-    
-    [progressbar setProgress:score animated:YES];
-}
 
 -(void) loadingFinish
 {

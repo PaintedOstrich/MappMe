@@ -29,7 +29,7 @@ TOO_MANY_QUERIES = 620,
 @implementation CoordinateLookupManager {
 }
 
-@synthesize queue, isStarted;
+@synthesize queue;
 
 
 #pragma mark Singleton Methods
@@ -46,9 +46,8 @@ TOO_MANY_QUERIES = 620,
 -(id)init{
     if (self = [super init]) {
       queue = [[NSOperationQueue alloc] init];
-      //Allow no requests at all before we start operation queue.
-      [queue setMaxConcurrentOperationCount:0];
-      isStarted = FALSE;
+      //Allow 2 requests happen at the same time.
+      [queue setMaxConcurrentOperationCount:2];
     }
     return self;
 }
@@ -112,6 +111,7 @@ TOO_MANY_QUERIES = 620,
             CoordPairsHelper* location = [self parseResponse:operation.responseString forPlace:place];
             if (location.status == SUCCESS) {
                 [place addLat:location.latAsString andLong:location.longAsString];
+
             } else if (location.status == TOO_MANY_QUERIES){
                 //Keep retrying this request.
                 [self lookupLocation:place];
@@ -122,12 +122,6 @@ TOO_MANY_QUERIES = 620,
         [queue addOperation:operation];
 
     }
-}
-
--(void) startOperations
-{
-    isStarted = TRUE;
-    [queue setMaxConcurrentOperationCount:2];
 }
 
 @end

@@ -16,7 +16,4 @@
 -(void)getCurrentLocation;
 -(void)getHometownLocation;
 -(void)getEducationInfo;
-
--(id)initWitProgressController:(DataProgressController*)controller;
-
 @end

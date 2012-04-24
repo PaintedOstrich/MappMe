@@ -30,7 +30,6 @@
 		689175BD151D0C3D00078BE2 /* FacebookDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */; };
 		68BEE56C15258EBC00E2433D /* ZoomHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEE56B15258EBC00E2433D /* ZoomHelper.m */; };
 		68BEE57215292D0E00E2433D /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BEE57115292D0E00E2433D /* triangle.png */; };
-		68BEE575152945B800E2433D /* DataProgressUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEE574152945B800E2433D /* DataProgressUpdater.m */; };
 		68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF09D15253F3000335C10 /* DataManagerSingleton.m */; };
 		68DC0BCD151D7C6A00514016 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC0BCC151D7C6A00514016 /* SystemConfiguration.framework */; };
 		68DC0BCF151D7C7100514016 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68DC0BCE151D7C7100514016 /* CFNetwork.framework */; };
@@ -177,8 +176,6 @@
 		68BEE56A15258EBC00E2433D /* ZoomHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomHelper.h; sourceTree = SOURCE_ROOT; };
 		68BEE56B15258EBC00E2433D /* ZoomHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomHelper.m; sourceTree = SOURCE_ROOT; };
 		68BEE57115292D0E00E2433D /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
-		68BEE573152945B800E2433D /* DataProgressUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProgressUpdater.h; sourceTree = "<group>"; };
-		68BEE574152945B800E2433D /* DataProgressUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProgressUpdater.m; sourceTree = "<group>"; };
 		68CFF09C15253F3000335C10 /* DataManagerSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManagerSingleton.h; sourceTree = "<group>"; };
 		68CFF09D15253F3000335C10 /* DataManagerSingleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManagerSingleton.m; sourceTree = "<group>"; };
 		68DC0BCC151D7C6A00514016 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -660,8 +657,6 @@
 		A9A0AC511502D8C70020265D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				68BEE573152945B800E2433D /* DataProgressUpdater.h */,
-				68BEE574152945B800E2433D /* DataProgressUpdater.m */,
 				A9AADE47154250D80096BC3C /* GradientView.h */,
 				A9AADE48154250D80096BC3C /* GradientView.m */,
 			);
@@ -846,7 +841,6 @@
 				A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */,
 				68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */,
 				68BEE56C15258EBC00E2433D /* ZoomHelper.m in Sources */,
-				68BEE575152945B800E2433D /* DataProgressUpdater.m in Sources */,
 				A910654A153E46FA0057B570 /* AFHTTPClient.m in Sources */,
 				A910654B153E46FA0057B570 /* AFHTTPRequestOperation.m in Sources */,
 				A910654C153E46FA0057B570 /* AFImageCache.m in Sources */,
