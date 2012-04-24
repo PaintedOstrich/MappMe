@@ -23,7 +23,7 @@
 
 -(id)initPlace:(NSString *)placeId withName:(NSString*)placeName;
 -(void)addLat:(NSString *)lat andLong:(NSString *)lon;
-
+-(void) addMetaData:(NSDictionary*)locInfo;
 
 //Get the set of people using this place as the specified locType.
 //We use set over array as set will keep Person objects added unique.
@@ -32,4 +32,8 @@
 //Link this person with this place. (e.g. add Tom forType home_town means that
 // this place is Tom's home_town).
 -(void)addPerson:(Person *)person forType:(locTypeEnum)locType;
+
+//Some scholl address has meta data(state, country, zip code etc.) 
+//We ll decide what we mean by full address and return it for a better Google Map look up.
+-(NSString*) getFullAddress;
 @end

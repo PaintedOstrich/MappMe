@@ -38,6 +38,15 @@
     GHAssertTrue([[place getPeople:tHomeTown] count] == 1, @"adding same person twice will not affect total count");
 }
 
+-(void) testGetFullAddress {
+    GHAssertEqualStrings(@"MyPlace", [place getFullAddress],nil);
+    NSMutableDictionary* metaData = [[NSMutableDictionary alloc] initWithCapacity:5];
+    [metaData setValue:@"" forKey:@"city"];
+    [metaData setValue:@"MO" forKey:@"state"];
+    [place addMetaData:metaData];
+    GHAssertEqualStrings(@"MyPlace  MO", [place getFullAddress],nil);
+}
+
 // Run after each test method
 - (void)tearDown { 
     place = nil;

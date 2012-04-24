@@ -187,6 +187,14 @@
             if ([loc objectForKey:@"latitude"]){
                 [place addLat:[loc objectForKey:@"latitude"]  andLong:[loc objectForKey:@"longitude"]]; 
             } else {
+                //loc = { city="ShenZhen";
+                //        country="China";
+                //        state = "";
+                //        zip = "";
+                //      }
+                if (loc) {
+                    [place addMetaData:loc];
+                }
                 [[CoordinateLookupManager sharedManager] lookupLocation:place];
             }
         }

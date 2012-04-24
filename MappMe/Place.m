@@ -7,10 +7,12 @@
 //
 
 #import "Place.h"
+#import "DebugLog.h"
 
 @implementation Place {
     //Mapping from locType to an array of person.
     NSMutableDictionary* _mapping;
+    NSMutableDictionary* _metaData;
 }
 
 @synthesize location;
@@ -22,6 +24,7 @@
         self.name= placeName;
         self.uid = placeId;
         _mapping = [[NSMutableDictionary alloc] initWithCapacity:5];
+        _metaData = nil;
     }
     return self;
 }
@@ -29,6 +32,27 @@
 -(void)addLat:(NSString *)lat andLong:(NSString *)lon{
     location.latitude = [lat doubleValue];
     location.longitude = [lon doubleValue];
+}
+
+-(void) addMetaData:(NSDictionary*)locInfo
+{
+    //e.g. locInfo = { city="ShenZhen";
+    //        country="China";
+    //        state = "";
+    //        zip = "";
+    //      }
+    _metaData = [[NSMutableDictionary alloc] initWithCapacity:5];
+    [_metaData setDictionary:locInfo];
+    
+    
+    //Be defensive, prevent null showing up in the full address
+    if (![_metaData objectForKey:@"city"]) {
+        [_metaData setValue:@"" forKey:@"city"];
+    }
+    
+    if (![_metaData objectForKey:@"state"]) {
+        [_metaData setValue:@"" forKey:@"state"];
+    }
 }
 
 -(NSMutableSet*)getPeople:(locTypeEnum)locType
@@ -46,6 +70,15 @@
 {
     NSMutableSet* peopleSet = [self getPeople:locType];
     [peopleSet addObject:person];
+}
+
+-(NSString*) getFullAddress
+{
+    NSString* address = name;
+    if (_metaData!=nil){
+        address = [NSString stringWithFormat:@"%@ %@ %@",name, [_metaData objectForKey:@"city"], [_metaData objectForKey:@"state"]];
+    }
+    return address;
 }
 
 
