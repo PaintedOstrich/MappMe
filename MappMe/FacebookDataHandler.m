@@ -151,6 +151,8 @@
         //Establish two way relationship between friend and place (connected by the locType)
         [self link:place withPerson:friend forLocType:locType];
     }
+    //Each request goes through parse friend and parse city. so 1/8.
+    [_progressController increment:50.0];
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
 -(void)parseFbCity:(NSDictionary*)bas_info{
@@ -170,6 +172,7 @@
             //DebugLog(@"%@ not found; id: %@",[mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
         }
     }
+    [_progressController increment:50.0];
 }
 -(void)parseFbEdu:(NSDictionary*)bas_info{
     NSDictionary *schoolTemp;
@@ -269,8 +272,6 @@
                       @"{\"curLocFriends\":\"%@\",\"location\":\"%@\"}",fql1,fql2];
     NSDictionary *response = [self doSyncMultiQuery:fqlC];  
     [self parseFacebookInfoController:response];
-    //Complete 1/4th
-    [_progressController increment:100.0];
     
 }
 -(void)getHometownLocation{

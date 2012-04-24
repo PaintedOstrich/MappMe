@@ -103,10 +103,21 @@
 {
     _currentSum += amount;
     float percentage = _currentSum/_totalSum;
-    [progressbar setProgress:percentage animated:YES];
+    NSDecimalNumber *num = [[NSDecimalNumber alloc] initWithFloat:percentage];
+    [self performSelectorOnMainThread:@selector(update:) withObject:num waitUntilDone:NO];
     if (_currentSum >= _totalSum) {
-        [self dismissFromParentViewController];
+        [self performSelectorOnMainThread:@selector(loadingFinish) withObject:nil waitUntilDone:YES];
     }
+}
+
+-(void) update:(NSDecimalNumber*)percentage
+{
+  [progressbar setProgress:[percentage floatValue] animated:YES];
+}
+
+-(void) loadingFinish
+{
+    [self dismissFromParentViewController];
 }
 
 @end
