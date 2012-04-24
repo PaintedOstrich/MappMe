@@ -11,10 +11,11 @@
 #import "MBProgressHUD.h"
 #import "PersonMenuViewController.h"
 #import "LocTypeMenuController.h"
+#import "CoordinateLookupManager.h"
 
 /*Main Controller Interface*/
 
-@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, LocTypeMenuControllerDelegate, MappFriendDelegate> {
+@interface MainViewController : UIViewController <MKMapViewDelegate, MBProgressHUDDelegate, LocTypeMenuControllerDelegate, MappFriendDelegate, CoordinateLookupManagerDelegate> {
     IBOutlet MKMapView* _mapView;
 }
 @end

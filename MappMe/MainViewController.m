@@ -29,6 +29,7 @@
     UIView *loadScreenContainer;
     UIView *loadInfoContainer;
     BOOL isFriendAnnotationType;
+    DataProgressController *progressIndicator;
 }
 
 #pragma mark - View lifecycle
@@ -44,8 +45,10 @@
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
 
-    DataProgressController *controller = [[DataProgressController alloc] initWithNibName:@"DataProgressController" bundle:nil];
-    [controller presentInParentViewController:self];
+    progressIndicator = [[DataProgressController alloc] initWithNibName:@"DataProgressController" bundle:nil];
+    [progressIndicator presentInParentViewController:self];
+    
+    [[CoordinateLookupManager sharedManager] setDelegate:self];
 
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
@@ -380,6 +383,16 @@
 -(void) disSelectLocType:(locTypeEnum)locType
 {
     [self showLocationType:locType];
+}
+
+#pragma mark - CoodinateLookUpManager Delegate methods
+-(void) allOperationFinished
+{
+    [self performSelectorOnMainThread:@selector(dissmissLoadingView) withObject:nil waitUntilDone:NO];
+}
+-(void) dissmissLoadingView
+{
+    [progressIndicator dismissFromParentViewController];
 }
 
 @end

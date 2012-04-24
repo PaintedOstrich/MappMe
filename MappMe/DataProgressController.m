@@ -17,7 +17,6 @@
 @implementation DataProgressController {
     IBOutlet UIView* background;
     IBOutlet UIActivityIndicatorView* spinner;
-    IBOutlet UILabel* locTypeLabel;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,13 +36,6 @@
 
 -(void) styleUI
 {
-    //round corners
-    CALayer *locTypeLayer = locTypeLabel.layer;
-    [locTypeLayer setMasksToBounds:YES];
-    [locTypeLayer setCornerRadius:5.0f];
-    [locTypeLayer setBorderWidth:2.0f];
-    [locTypeLayer setBorderColor: [[UIColor blackColor] CGColor]];
-    [locTypeLayer setBackgroundColor: [[UIColor whiteColor] CGColor]];
     
     //Rounded Container Corners
     CALayer *bg = background.layer;
