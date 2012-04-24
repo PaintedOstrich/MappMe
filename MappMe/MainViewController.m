@@ -43,14 +43,10 @@
     
     // Regiser for HUD callbacks so we can remove it from the window at the right time
     HUD.delegate = self;
-    
     [[CoordinateLookupManager sharedManager] setDelegate:self];
 
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
-    
-    //TODO (SHOULD refactor this)
-    [self showDisplayMenu];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -118,48 +114,48 @@
 }
 
 #pragma mark - Custom Loading View and Logic
--(void)addBottomNavView{
-    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 540, 320, 44)];
-//    [navContainer setAlpha:0.0];                                                   
-    
-    locationTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    locationTypeBtn.frame = CGRectMake(9, 7, 98, 37);
-    [locationTypeBtn setTitle:@"Current Location" forState:UIControlStateNormal];
-    locationTypeBtn.titleLabel.font = [UIFont systemFontOfSize:10];
-    [locationTypeBtn addTarget:self action:@selector(showLocationMenu) forControlEvents:UIControlEventTouchDown];
-    [navContainer addSubview:locationTypeBtn];
-
-    UIButton *search = [UIButton buttonWithType:UIButtonTypeCustom];
-    search.contentMode = UIViewContentModeScaleToFill;
-    [search setBackgroundImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
-    [search addTarget:self action:@selector(pushSearchController) forControlEvents:UIControlEventTouchUpInside];
-    search.frame = CGRectMake(110, 7.0, 42.0, 37.0);//width and height should be same value
-    search.layer.cornerRadius = 25;//half of the width
-    [navContainer addSubview:search];
-    
-    UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
-    settings.contentMode = UIViewContentModeScaleToFill;
-    [settings setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
-    [settings addTarget:self action:@selector(showSettingsMenu) forControlEvents:UIControlEventTouchUpInside];
-    settings.frame = CGRectMake(284, 7.0, 29.0, 31.0);//width and height should be same value
-    settings.layer.cornerRadius = 25;//half of the width
-    [navContainer addSubview:settings];
-    
-    [self.view addSubview:navContainer];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2];
-    [navContainer setTransform:CGAffineTransformMakeTranslation(0, -110.0)];
-//    [navContainer setAlpha:1.0];
-    [UIView commitAnimations];
-}
-
--(void)showDisplayMenu{
-    [self addBottomNavView];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.0];
-    [loadInfoContainer setAlpha:0.0];
-    [UIView commitAnimations];
-}
+//-(void)addBottomNavView{
+//    UIView *navContainer = [[UIView alloc] initWithFrame:CGRectMake(0, 540, 320, 44)];
+////    [navContainer setAlpha:0.0];                                                   
+//    
+//    locationTypeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    locationTypeBtn.frame = CGRectMake(9, 7, 98, 37);
+//    [locationTypeBtn setTitle:@"Current Location" forState:UIControlStateNormal];
+//    locationTypeBtn.titleLabel.font = [UIFont systemFontOfSize:10];
+//    [locationTypeBtn addTarget:self action:@selector(showLocationMenu) forControlEvents:UIControlEventTouchDown];
+//    [navContainer addSubview:locationTypeBtn];
+//
+//    UIButton *search = [UIButton buttonWithType:UIButtonTypeCustom];
+//    search.contentMode = UIViewContentModeScaleToFill;
+//    [search setBackgroundImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+//    [search addTarget:self action:@selector(pushSearchController) forControlEvents:UIControlEventTouchUpInside];
+//    search.frame = CGRectMake(110, 7.0, 42.0, 37.0);//width and height should be same value
+//    search.layer.cornerRadius = 25;//half of the width
+//    [navContainer addSubview:search];
+//    
+//    UIButton *settings = [UIButton buttonWithType:UIButtonTypeCustom];
+//    settings.contentMode = UIViewContentModeScaleToFill;
+//    [settings setBackgroundImage:[UIImage imageNamed:@"settings.png"] forState:UIControlStateNormal];
+//    [settings addTarget:self action:@selector(showSettingsMenu) forControlEvents:UIControlEventTouchUpInside];
+//    settings.frame = CGRectMake(284, 7.0, 29.0, 31.0);//width and height should be same value
+//    settings.layer.cornerRadius = 25;//half of the width
+//    [navContainer addSubview:settings];
+//    
+//    [self.view addSubview:navContainer];
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:2];
+//    [navContainer setTransform:CGAffineTransformMakeTranslation(0, -110.0)];
+////    [navContainer setAlpha:1.0];
+//    [UIView commitAnimations];
+//}
+//
+//-(void)showDisplayMenu{
+//    [self addBottomNavView];
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:1.0];
+//    [loadInfoContainer setAlpha:0.0];
+//    [UIView commitAnimations];
+//}
 
 #pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
