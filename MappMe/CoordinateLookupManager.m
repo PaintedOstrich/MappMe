@@ -93,7 +93,7 @@ TOO_MANY_QUERIES = 620,
     } else if (status == BAD_KEY) {
         DebugLog(@"%@ caused bad key", [place getFullAddress]);
     } else if (status == TOO_MANY_QUERIES) {
-        DebugLog(@"query limit reached (may be too fast)");
+        //DebugLog(@"query limit reached (may be too fast)");
     } else {
         DebugLog(@"unknown status code:%d is caused by this lookup:%@", status, [place getFullAddress]);
     }

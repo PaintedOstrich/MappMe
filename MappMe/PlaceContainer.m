@@ -18,7 +18,6 @@
 {
     if(self = [super init]){
         [self setupPath];
-        [self loadPlacesFromDisk];
     }
     return self;
 }
@@ -40,7 +39,7 @@
     if (!places) {
         DebugLog(@"Did not have places persistent file set up");
     } else {
-//        DebugLog(@"%@", [places allKeys]);
+          DebugLog(@"Loaded %d places from disk!", [places count]);
 //        DebugLog(@"%@", [places allValues]);
         NSEnumerator *enumerator = [places keyEnumerator];
         id key;

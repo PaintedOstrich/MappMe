@@ -232,6 +232,8 @@
 #pragma mark - main data processing dispatch
 - (void)fetchAndProcess {
     Timer * t = [[Timer alloc] init];
+    //Load stored places from disk.
+    [[mainDataManager placeContainer] loadPlacesFromDisk];
     FacebookDataHandler *fbDataHandler = [FacebookDataHandler sharedInstance];
     /*Call Methods for info*/
     [fbDataHandler getHometownLocation];
