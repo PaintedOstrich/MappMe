@@ -25,6 +25,10 @@
     locTypeEnum currDisplayedType;
     IBOutlet UIButton * cameraBtn;
     IBOutlet UIButton * locationTypeBtn;
+    IBOutlet UIButton * settingsBtn;
+    IBOutlet UIButton * searchBtn;
+    //Used to do transform animation to buy us time......
+    IBOutlet UIButton * hiddenBtn;
     BOOL isFriendAnnotationType;
     IBOutlet UIView* progressIndicator;
     BOOL _finishedSaving;
@@ -85,7 +89,22 @@
 -(void) layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     //Only show camera button when it is in landscape
-    [cameraBtn setHidden:UIInterfaceOrientationIsPortrait(interfaceOrientation)];
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        [cameraBtn setAlpha:0.0f];
+    } else {
+        [UIView animateWithDuration:0.5 animations:^
+         {
+             [cameraBtn setAlpha:1.0f];
+             cameraBtn.transform = CGAffineTransformMakeScale(1.6f, 1.6f);
+         }
+                         completion:^(BOOL finished)
+         {
+             [UIView animateWithDuration:0.5 animations:^
+              {
+                  cameraBtn.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+              }];
+         }];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -245,6 +264,76 @@
     [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
     int time = [t endTimerAndGetTotalTime];
     DebugLog(@"Total App Loadtime: %i",time);
+    [self performSelectorOnMainThread:@selector(bounceControls) withObject:nil waitUntilDone:NO];
+}
+
+#pragma mark - animation functions
+
+-(void) bounceControls
+{
+    float duration = 0.5f;
+    [UIView animateWithDuration:2.0f animations:^
+     {
+         //Wait for 3 seconds before starting animation proper.
+         [self popAnimation:hiddenBtn];
+     }  completion:^(BOOL finished)
+     {
+            [UIView animateWithDuration:duration animations:^
+             {
+                 [self popAnimation:locationTypeBtn];
+             }
+                             completion:^(BOOL finished)
+             {
+                 [UIView animateWithDuration:duration animations:^
+                  {
+                      [self shrinkAnimation:locationTypeBtn];
+                  }
+                                  completion:^(BOOL finished)
+                  {
+                      [UIView animateWithDuration:duration animations:^
+                       {
+                           [self popAnimation:searchBtn];
+                       }
+                                       completion:^(BOOL finished)
+                       {
+                           [UIView animateWithDuration:duration animations:^
+                            {
+                                [self shrinkAnimation:searchBtn];
+                            }
+                                            completion:^(BOOL finished)
+                            {
+                                [UIView animateWithDuration:duration animations:^
+                                 {
+                                     [self popAnimation:settingsBtn];
+                                 }
+                                                 completion:^(BOOL finished)
+                                 {
+                                     [UIView animateWithDuration:duration animations:^
+                                      {
+                                          [self shrinkAnimation:settingsBtn];
+                                      }
+                                                      completion:^(BOOL finished)
+                                      {
+                                          
+                                      }];
+                                 }];
+                            }];
+                       }];
+                  }];
+             }];
+    }];
+}
+
+-(void) popAnimation:(UIButton*) btn
+{
+    float scale = 1.6f;
+    [btn setAlpha:1.0f];
+    btn.transform = CGAffineTransformMakeScale(scale, scale);
+}
+
+-(void) shrinkAnimation:(UIButton*) btn
+{
+    btn.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 }
 
 #pragma mark MKMapViewDelegate
