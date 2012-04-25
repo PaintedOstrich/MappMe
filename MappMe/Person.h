@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSString *largeProfileUrl;
 @property (nonatomic, retain) NSString * uid;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSArray *mutualFriends;
 @property  NSUInteger sectionNumber;
 
 -(Person*)initPerson:(NSString*)personId withName:(NSString*)fullName;

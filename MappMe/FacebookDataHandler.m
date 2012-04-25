@@ -238,6 +238,25 @@ static FacebookDataHandler *FBHandler = nil;
         }
     }
 }
+//Parses mutual friends and stores them as array for person
+-(void)parseMutualFriends:(NSDictionary*)bas_info{
+    NSDictionary *uids;
+    NSDictionary *mutualFriendsFromFb = [bas_info objectForKey:@"fql_result_set"];
+    NSEnumerator *friendsEnum = [mutualFriendsFromFb objectEnumerator];
+    NSString *personId;
+    
+    NSMutableArray *friendIds = [[NSMutableArray alloc]initWithCapacity:[mutualFriendsFromFb count]];
+    while ((uids = (NSDictionary *)[friendsEnum nextObject])) {
+        if (!personId) {
+             personId = [[NSString alloc] initWithFormat:@"%i",[uids objectForKey:@"uid1"]];
+        }
+        [friendIds addObject:[[NSString alloc] initWithFormat:@"%i",[uids objectForKey:@"uid2"]]];
+    }
+    Person* person = [mainDataManager.peopleContainer get:personId];
+    DebugLog(@"%@",person);
+    [person setMutualFriends:(NSArray*)friendIds];
+    
+}
 -(void)parseFacebookInfoController: (NSDictionary *)data{
     NSDictionary* infoArray = (NSDictionary *)[data objectForKey:@"data"]; 
 	NSEnumerator *enumerator = [infoArray objectEnumerator];
@@ -268,6 +287,9 @@ static FacebookDataHandler *FBHandler = nil;
         }
         if ([loc isEqualToString:@"schoolLocation"]){
             [self parseFbEdu:bas_info];
+        }
+        if([loc isEqualToString:@"mutualFriends"]){
+            [self parseMutualFriends:bas_info];
         }
     }
     
@@ -309,8 +331,18 @@ static FacebookDataHandler *FBHandler = nil;
                        @"SELECT location,name,page_id FROM page WHERE page_id IN (SELECT education FROM #friendsEdu)"];
     NSString* fqlE = [NSString stringWithFormat:
                       @"{\"friendsEdu\":\"%@\",\"schoolLocation\":\"%@\"}",fqlE1,fqlE2];
-   // DebugLog(@"Education Query: \n%@",fqlE);
     [self asynchMultQueryHelper:fqlE];
 }
+
+-(void)getMutualFriends:(NSString*)friendId{
+    NSString* mutual = [NSString stringWithFormat:
+                       @"SELECT uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1=me() AND uid2 = '%@' ) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1=me())", friendId];
+        NSString* fql = [NSString stringWithFormat:
+                      @"{\"mutualFriends\":\"%@\"}",mutual];
+    [self asynchMultQueryHelper:fql];
+}
+
+
+
 
 @end
