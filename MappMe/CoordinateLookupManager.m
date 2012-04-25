@@ -47,8 +47,8 @@ TOO_MANY_QUERIES = 620,
 -(id)init{
     if (self = [super init]) {
       queue = [[NSOperationQueue alloc] init];
-      //Initially allow no out going reqeust.
-      [queue setMaxConcurrentOperationCount:0];
+      //restrict concurrent queries.
+      [queue setMaxConcurrentOperationCount:2];
     }
     return self;
 }
@@ -78,7 +78,7 @@ TOO_MANY_QUERIES = 620,
         NSString *latitude = [listItems objectAtIndex:2];
         NSString *longitude = [listItems objectAtIndex:3];
         location = [[CoordPairsHelper alloc] initWithLat:latitude andLong:longitude andStatusCode:status];
-        DebugLog(@"%@ is found successfully", [place getFullAddress]);
+        //DebugLog(@"%@ is found successfully", [place getFullAddress]);
         return location;
     } else if(status == UNKNOWN_ADDRESS) {
         DebugLog(@"%@ is an unknown address", [place getFullAddress]);
@@ -91,7 +91,7 @@ TOO_MANY_QUERIES = 620,
     } else if (status == BAD_KEY) {
         DebugLog(@"%@ caused bad key", [place getFullAddress]);
     } else if (status == TOO_MANY_QUERIES) {
-        DebugLog(@"query limit reached (may be too fast)");
+        //DebugLog(@"query limit reached (may be too fast)");
     } else {
         DebugLog(@"unknown status code:%d is caused by this lookup:%@", status, [place getFullAddress]);
     }
@@ -103,7 +103,7 @@ TOO_MANY_QUERIES = 620,
 - (void)lookupLocation:(Place*) place
 {
     if ([place.name isEqualToString:@"No Name"]) {
-         DebugLog(@"A place with id:%@ is initialized without a name, Huh???", place.uid);
+        // DebugLog(@"A place with id:%@ is initialized without a name, Huh???", place.uid);
     } else {
         NSURL *url = [self buildUrl:place.name];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -112,22 +112,17 @@ TOO_MANY_QUERIES = 620,
             CoordPairsHelper* location = [self parseResponse:operation.responseString forPlace:place];
             if (location.status == SUCCESS) {
                 [place addLat:location.latAsString andLong:location.longAsString];
-                [self checkFinishConditions];
             } else if (location.status == TOO_MANY_QUERIES){
                 //Keep retrying this request.
                 [self lookupLocation:place];
             }
+            [self checkFinishConditions];
         } failure:^(AFHTTPRequestOperation *operation , NSError *error) {
             NSLog(@"Failed: %@", error.localizedDescription);
+            [self checkFinishConditions];
         }];
         [queue addOperation:operation];
-        
-        if ([queue operationCount] > 3) {
-            //Only start operations now to make sure the didFinishOperations
-            //method is not invoked too early.
-            [queue setMaxConcurrentOperationCount:2];
-        }
-
+        [_delegate someOperationAdded];
     }
 }
 

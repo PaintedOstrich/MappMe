@@ -88,6 +88,8 @@ static FacebookDataHandler *FBHandler = nil;
                                              
                                          } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
                                              NSLog(@"Error from Graph Api: %@", error.localizedDescription);
+                                             DebugLog(@"Retrying....");
+                                             [self asynchMultQueryHelper:action];
                                          }];
     operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
     [queue addOperation:operation];
@@ -116,8 +118,8 @@ static FacebookDataHandler *FBHandler = nil;
     NSError *error;
     NSString *jsonString = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
     if (jsonString == nil) {
-        NSLog(@"Query Error: %@", error);
-        return nil;
+        NSLog(@"Query Error: %@, Retrying....", error);
+        return [self doSyncMultiQuery:action];
     }
 
 	NSDictionary *data = [self parseJSON:jsonString];
@@ -192,7 +194,7 @@ static FacebookDataHandler *FBHandler = nil;
             Place* place = [[mainDataManager placeContainer] get:school_id];
             if ([loc objectForKey:@"latitude"]){
                 [place addLat:[loc objectForKey:@"latitude"]  andLong:[loc objectForKey:@"longitude"]]; 
-            } else {
+            } else if (![place hasValidLocation]){
                 //loc = { city="ShenZhen";
                 //        country="China";
                 //        state = "";

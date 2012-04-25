@@ -25,14 +25,27 @@
     locTypeEnum currDisplayedType;
     IBOutlet UIButton * cameraBtn;
     IBOutlet UIButton * locationTypeBtn;
+    IBOutlet UIButton * settingsBtn;
+    IBOutlet UIButton * searchBtn;
+    //Used to do transform animation to buy us time......
+    IBOutlet UIButton * hiddenBtn;
     BOOL isFriendAnnotationType;
     IBOutlet UIView* progressIndicator;
+    BOOL _finishedSaving;
+    BOOL _startedOperations;
 }
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Places is not saved to disk
+    //We use this flag to make sure saving function is only invoked once
+    //so if places are saved to disk once already during this user session.
+    //_fisnishedSaving will be TRUE.
+    _finishedSaving = FALSE;
+    _startedOperations = FALSE;
+
     [_mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:80];
     mainDataManager = [DataManagerSingleton sharedManager];
@@ -76,7 +89,22 @@
 -(void) layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     //Only show camera button when it is in landscape
-    [cameraBtn setHidden:UIInterfaceOrientationIsPortrait(interfaceOrientation)];
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        [cameraBtn setAlpha:0.0f];
+    } else {
+        [UIView animateWithDuration:0.5 animations:^
+         {
+             [cameraBtn setAlpha:1.0f];
+             cameraBtn.transform = CGAffineTransformMakeScale(1.6f, 1.6f);
+         }
+                         completion:^(BOOL finished)
+         {
+             [UIView animateWithDuration:0.5 animations:^
+              {
+                  cameraBtn.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+              }];
+         }];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -225,6 +253,8 @@
 #pragma mark - main data processing dispatch
 - (void)fetchAndProcess {
     Timer * t = [[Timer alloc] init];
+    //Load stored places from disk.
+    [[mainDataManager placeContainer] loadPlacesFromDisk];
     FacebookDataHandler *fbDataHandler = [FacebookDataHandler sharedInstance];
     /*Call Methods for info*/
     [fbDataHandler getHometownLocation];
@@ -234,6 +264,76 @@
     [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
     int time = [t endTimerAndGetTotalTime];
     DebugLog(@"Total App Loadtime: %i",time);
+    [self performSelectorOnMainThread:@selector(bounceControls) withObject:nil waitUntilDone:NO];
+}
+
+#pragma mark - animation functions
+
+-(void) bounceControls
+{
+    float duration = 0.5f;
+    [UIView animateWithDuration:2.0f animations:^
+     {
+         //Wait for 3 seconds before starting animation proper.
+         [self popAnimation:hiddenBtn];
+     }  completion:^(BOOL finished)
+     {
+            [UIView animateWithDuration:duration animations:^
+             {
+                 [self popAnimation:locationTypeBtn];
+             }
+                             completion:^(BOOL finished)
+             {
+                 [UIView animateWithDuration:duration animations:^
+                  {
+                      [self shrinkAnimation:locationTypeBtn];
+                  }
+                                  completion:^(BOOL finished)
+                  {
+                      [UIView animateWithDuration:duration animations:^
+                       {
+                           [self popAnimation:searchBtn];
+                       }
+                                       completion:^(BOOL finished)
+                       {
+                           [UIView animateWithDuration:duration animations:^
+                            {
+                                [self shrinkAnimation:searchBtn];
+                            }
+                                            completion:^(BOOL finished)
+                            {
+                                [UIView animateWithDuration:duration animations:^
+                                 {
+                                     [self popAnimation:settingsBtn];
+                                 }
+                                                 completion:^(BOOL finished)
+                                 {
+                                     [UIView animateWithDuration:duration animations:^
+                                      {
+                                          [self shrinkAnimation:settingsBtn];
+                                      }
+                                                      completion:^(BOOL finished)
+                                      {
+                                          
+                                      }];
+                                 }];
+                            }];
+                       }];
+                  }];
+             }];
+    }];
+}
+
+-(void) popAnimation:(UIButton*) btn
+{
+    float scale = 1.6f;
+    [btn setAlpha:1.0f];
+    btn.transform = CGAffineTransformMakeScale(scale, scale);
+}
+
+-(void) shrinkAnimation:(UIButton*) btn
+{
+    btn.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 }
 
 #pragma mark MKMapViewDelegate
@@ -362,16 +462,45 @@
 }
 
 #pragma mark - CoodinateLookUpManager Delegate methods
+-(void) someOperationAdded
+{
+    [self performSelectorOnMainThread:@selector(showLoadingView) withObject:nil waitUntilDone:NO];
+}
+
+-(void) showLoadingView
+{
+    if(!_startedOperations) {
+        DebugLog(@"ShowLoadingView should only be called once.");
+        _startedOperations = TRUE;
+        //Show the loading banner when operations for locations is started.
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:2];
+        [progressIndicator setAlpha:1.0];
+        [UIView commitAnimations];
+    }
+}
+
 -(void) allOperationFinished
 {
     [self performSelectorOnMainThread:@selector(dissmissLoadingView) withObject:nil waitUntilDone:NO];
 }
 -(void) dissmissLoadingView
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2];
-    [progressIndicator setTransform:CGAffineTransformMakeTranslation(0, 110.0)];
-    [UIView commitAnimations];
+    //_finishedSaving flag make sure this is called only once per user session.
+    if (!_finishedSaving) {
+        _finishedSaving = TRUE;
+        [self savePlacesToDisk];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:2];
+        [progressIndicator setTransform:CGAffineTransformMakeTranslation(0, 110.0)];
+        [UIView commitAnimations];   
+    }
+}
+
+-(void) savePlacesToDisk
+{
+    [[[DataManagerSingleton sharedManager] placeContainer] savePlacesToDisk];
+    DebugLog(@"Saving places data to file");
 }
 
 #pragma mark - Screen shot methods

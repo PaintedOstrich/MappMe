@@ -11,6 +11,8 @@
 #import "CoordPairsHelper.h"
 
 @protocol CoordinateLookupManagerDelegate
+//For MainViewController to put up the loading banner at the bottom.
+- (void)someOperationAdded;
 //Invoked when all operation in operation queue is completed succssfully.
 - (void)allOperationFinished;
 @end

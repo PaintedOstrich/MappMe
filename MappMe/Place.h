@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "Person.h"
 
-@interface Place : NSObject{
+@interface Place : NSObject <NSCoding>{
     CLLocationCoordinate2D location;
     NSString *name;
     NSString* uid;
@@ -36,4 +36,6 @@
 //Some scholl address has meta data(state, country, zip code etc.) 
 //We ll decide what we mean by full address and return it for a better Google Map look up.
 -(NSString*) getFullAddress;
+
+-(BOOL)hasValidLocation;
 @end
