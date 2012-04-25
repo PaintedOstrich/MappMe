@@ -141,12 +141,9 @@
     [super viewDidLoad];
     delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.facebook setSessionDelegate:self];
-    
-//    //If facebook session is not valid, show loginview, otherwise defaults to main map view
-//    if(![delegate.facebook isSessionValid]){ 
-//        self.window.rootViewController = loginController;
-//        [self.window makeKeyAndVisible];
-//    }
+    if([[delegate facebook] isSessionValid]){
+        [self performSegueWithIdentifier:@"mapview" sender:self];
+    }
     
     animationQueue = [[NSMutableArray alloc] initWithCapacity:5];
     pinNum = 0;
