@@ -17,7 +17,7 @@
 -(Person*)get:(NSString*)person_id
 {
     Person* person = [_data objectForKey:person_id];
-    if (person == nil) {
+    if (person == nil && person_id != nil) {
         person = [[Person alloc] initPerson:person_id withName:@"No Name"];
         [_data setValue:person forKey:person_id];
     }

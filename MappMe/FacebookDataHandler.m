@@ -248,13 +248,13 @@ static FacebookDataHandler *FBHandler = nil;
     NSMutableArray *friendIds = [[NSMutableArray alloc]initWithCapacity:[mutualFriendsFromFb count]];
     while ((uids = (NSDictionary *)[friendsEnum nextObject])) {
         if (!personId) {
-             personId = [[NSString alloc] initWithFormat:@"%i",[uids objectForKey:@"uid1"]];
+             personId = [uids objectForKey:@"uid1"];
         }
         [friendIds addObject:[[NSString alloc] initWithFormat:@"%i",[uids objectForKey:@"uid2"]]];
     }
     Person* person = [mainDataManager.peopleContainer get:personId];
-    DebugLog(@"%@",person);
     [person setMutualFriends:(NSArray*)friendIds];
+    DebugLog(@"%@",person);
     
 }
 -(void)parseFacebookInfoController: (NSDictionary *)data{
