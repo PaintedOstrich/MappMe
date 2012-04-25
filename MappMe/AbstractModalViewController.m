@@ -99,8 +99,8 @@
     bounceAnimation.delegate = self;
     
     bounceAnimation.values = [NSArray arrayWithObjects:
-                              [NSNumber numberWithFloat:0.7f],
-                              [NSNumber numberWithFloat:1.2f],
+                              [NSNumber numberWithFloat:0.8f],
+                              [NSNumber numberWithFloat:1.1f],
                               [NSNumber numberWithFloat:0.9f],
                               [NSNumber numberWithFloat:1.0f],
                               nil];
