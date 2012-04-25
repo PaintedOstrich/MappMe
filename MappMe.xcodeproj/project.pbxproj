@@ -88,7 +88,6 @@
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
 		A94C44C815059F64001FF446 /* CoordinateLookupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A94C44C715059F64001FF446 /* CoordinateLookupManager.m */; };
-		A963C344151EE8E200559DB3 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C343151EE8E200559DB3 /* settings.png */; };
 		A963C347151EE98F00559DB3 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C346151EE98F00559DB3 /* search.png */; };
 		A96AD5CF151FD52B00372528 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A96AD5CE151FD52B00372528 /* profile.png */; };
 		A978B76C15410D1C0014CD41 /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
@@ -115,6 +114,7 @@
 		A98F1731153FBA1300FB6257 /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A9A019CD1547C1B2006CF4A4 /* SettingsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A019CB1547C1B1006CF4A4 /* SettingsMenuController.m */; };
 		A9A019CE1547C1B2006CF4A4 /* SettingsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9A019CC1547C1B2006CF4A4 /* SettingsMenuController.xib */; };
+		A9A019D01547D0AB006CF4A4 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A019CF1547D0AB006CF4A4 /* settings.png */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
 		A9AADE43154239620096BC3C /* LocTypeMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9AADE41154239620096BC3C /* LocTypeMenuController.m */; };
 		A9AADE44154239620096BC3C /* LocTypeMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE42154239620096BC3C /* LocTypeMenuController.xib */; };
@@ -255,7 +255,6 @@
 		A943249715007983005F7600 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		A94C44C615059F64001FF446 /* CoordinateLookupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateLookupManager.h; sourceTree = "<group>"; };
 		A94C44C715059F64001FF446 /* CoordinateLookupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinateLookupManager.m; sourceTree = "<group>"; };
-		A963C343151EE8E200559DB3 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A963C346151EE98F00559DB3 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		A978B76D15411E540014CD41 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
@@ -283,6 +282,7 @@
 		A9A019CA1547C1B1006CF4A4 /* SettingsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenuController.h; sourceTree = "<group>"; };
 		A9A019CB1547C1B1006CF4A4 /* SettingsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMenuController.m; sourceTree = "<group>"; };
 		A9A019CC1547C1B2006CF4A4 /* SettingsMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuController.xib; sourceTree = "<group>"; };
+		A9A019CF1547D0AB006CF4A4 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		A9AADE40154239620096BC3C /* LocTypeMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocTypeMenuController.h; sourceTree = "<group>"; };
@@ -532,6 +532,7 @@
 		A90CF29F1504112D0091139C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				A9A019CF1547D0AB006CF4A4 /* settings.png */,
 				A97CE6061546DF8300553D9B /* camera (1).png */,
 				A97CE6071546DF8300553D9B /* camera.png */,
 				A97CE6081546DF8300553D9B /* photo (2).png */,
@@ -542,7 +543,6 @@
 				68BEE57115292D0E00E2433D /* triangle.png */,
 				A96AD5CE151FD52B00372528 /* profile.png */,
 				A963C346151EE98F00559DB3 /* search.png */,
-				A963C343151EE8E200559DB3 /* settings.png */,
 				68FC2A8E153E806100003A74 /* loginBackground.png */,
 				681C415B151D71F600747C4A /* pin images */,
 			);
@@ -774,7 +774,6 @@
 				681C4168151D724500747C4A /* tealPin.png in Resources */,
 				681C4169151D724500747C4A /* yellow-greenPin.png in Resources */,
 				681C416A151D724500747C4A /* yellowPin.png in Resources */,
-				A963C344151EE8E200559DB3 /* settings.png in Resources */,
 				A963C347151EE98F00559DB3 /* search.png in Resources */,
 				A96AD5CF151FD52B00372528 /* profile.png in Resources */,
 				A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */,
@@ -820,6 +819,7 @@
 				68FA1B17154727EB00631EBF /* currentLocationPin.png in Resources */,
 				68FA1B18154727EB00631EBF /* hometownPin.png in Resources */,
 				A9A019CE1547C1B2006CF4A4 /* SettingsMenuController.xib in Resources */,
+				A9A019D01547D0AB006CF4A4 /* settings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
