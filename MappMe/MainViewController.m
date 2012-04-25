@@ -28,6 +28,7 @@
     BOOL isFriendAnnotationType;
     IBOutlet UIView* progressIndicator;
     BOOL _finishedSaving;
+    BOOL _startedOperations;
 }
 
 #pragma mark - View lifecycle
@@ -39,6 +40,7 @@
     //so if places are saved to disk once already during this user session.
     //_fisnishedSaving will be TRUE.
     _finishedSaving = FALSE;
+    _startedOperations = FALSE;
 
     [_mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:80];
@@ -371,6 +373,24 @@
 }
 
 #pragma mark - CoodinateLookUpManager Delegate methods
+-(void) someOperationAdded
+{
+    [self performSelectorOnMainThread:@selector(showLoadingView) withObject:nil waitUntilDone:NO];
+}
+
+-(void) showLoadingView
+{
+    if(!_startedOperations) {
+        DebugLog(@"ShowLoadingView should only be called once.");
+        _startedOperations = TRUE;
+        //Show the loading banner when operations for locations is started.
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:2];
+        [progressIndicator setAlpha:1.0];
+        [UIView commitAnimations];
+    }
+}
+
 -(void) allOperationFinished
 {
     [self performSelectorOnMainThread:@selector(dissmissLoadingView) withObject:nil waitUntilDone:NO];

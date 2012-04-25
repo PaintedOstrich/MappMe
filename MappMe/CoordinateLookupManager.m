@@ -122,6 +122,7 @@ TOO_MANY_QUERIES = 620,
             [self checkFinishConditions];
         }];
         [queue addOperation:operation];
+        [_delegate someOperationAdded];
     }
 }
 
