@@ -27,12 +27,19 @@
     IBOutlet UIButton * locationTypeBtn;
     BOOL isFriendAnnotationType;
     IBOutlet UIView* progressIndicator;
+    BOOL _finishedSaving;
 }
 
 #pragma mark - View lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Places is not saved to disk
+    //We use this flag to make sure saving function is only invoked once
+    //so if places are saved to disk once already during this user session.
+    //_fisnishedSaving will be TRUE.
+    _finishedSaving = FALSE;
+
     [_mapView setDelegate:self];
     annotations = [[NSMutableArray alloc]initWithCapacity:80];
     mainDataManager = [DataManagerSingleton sharedManager];
@@ -368,11 +375,15 @@
 }
 -(void) dissmissLoadingView
 {
-    [self savePlacesToDisk];
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:2];
-    [progressIndicator setTransform:CGAffineTransformMakeTranslation(0, 110.0)];
-    [UIView commitAnimations];
+    //_finishedSaving flag make sure this is called only once per user session.
+    if (!_finishedSaving) {
+        _finishedSaving = TRUE;
+        [self savePlacesToDisk];
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:2];
+        [progressIndicator setTransform:CGAffineTransformMakeTranslation(0, 110.0)];
+        [UIView commitAnimations];   
+    }
 }
 
 -(void) savePlacesToDisk
