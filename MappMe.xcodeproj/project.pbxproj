@@ -106,8 +106,6 @@
 		A9801D861502E1E400BA0B5B /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
 		A98A6F1D152A9DF400A81B02 /* libfacebook_ios_sdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A939B757152A9CEE008B2AE7 /* libfacebook_ios_sdk.a */; };
 		A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98B98FB15430C3700433160 /* AbstractModalViewController.m */; };
-		A98B99001543192B00433160 /* SettingsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A98B98FE1543192A00433160 /* SettingsMenuController.m */; };
-		A98B99011543192B00433160 /* SettingsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A98B98FF1543192A00433160 /* SettingsMenuController.xib */; };
 		A98F1727153FB24400FB6257 /* PlaceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F1726153FB24400FB6257 /* PlaceTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A98F1728153FB2E200FB6257 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D711502E1E400BA0B5B /* Place.m */; };
 		A98F172B153FB45F00FB6257 /* PersonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F172A153FB45F00FB6257 /* PersonTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -115,6 +113,8 @@
 		A98F172D153FB50C00FB6257 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38351507C0D200021ED3 /* DebugLog.m */; };
 		A98F1730153FB96500FB6257 /* PlaceContainerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A98F172F153FB96500FB6257 /* PlaceContainerTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A98F1731153FBA1300FB6257 /* PlaceContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */; };
+		A9A019CD1547C1B2006CF4A4 /* SettingsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A019CB1547C1B1006CF4A4 /* SettingsMenuController.m */; };
+		A9A019CE1547C1B2006CF4A4 /* SettingsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9A019CC1547C1B2006CF4A4 /* SettingsMenuController.xib */; };
 		A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9A0AC531502D8F00020265D /* MyAnnotation.m */; };
 		A9AADE43154239620096BC3C /* LocTypeMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9AADE41154239620096BC3C /* LocTypeMenuController.m */; };
 		A9AADE44154239620096BC3C /* LocTypeMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE42154239620096BC3C /* LocTypeMenuController.xib */; };
@@ -277,12 +277,12 @@
 		A9801D7B1502E1E400BA0B5B /* PlaceContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainer.m; sourceTree = "<group>"; };
 		A98B98FA15430C3700433160 /* AbstractModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractModalViewController.h; sourceTree = "<group>"; };
 		A98B98FB15430C3700433160 /* AbstractModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractModalViewController.m; sourceTree = "<group>"; };
-		A98B98FD1543192A00433160 /* SettingsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenuController.h; sourceTree = "<group>"; };
-		A98B98FE1543192A00433160 /* SettingsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMenuController.m; sourceTree = "<group>"; };
-		A98B98FF1543192A00433160 /* SettingsMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuController.xib; sourceTree = "<group>"; };
 		A98F1726153FB24400FB6257 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTest.m; sourceTree = "<group>"; };
 		A98F172A153FB45F00FB6257 /* PersonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonTest.m; sourceTree = "<group>"; };
 		A98F172F153FB96500FB6257 /* PlaceContainerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceContainerTest.m; sourceTree = "<group>"; };
+		A9A019CA1547C1B1006CF4A4 /* SettingsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenuController.h; sourceTree = "<group>"; };
+		A9A019CB1547C1B1006CF4A4 /* SettingsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMenuController.m; sourceTree = "<group>"; };
+		A9A019CC1547C1B2006CF4A4 /* SettingsMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuController.xib; sourceTree = "<group>"; };
 		A9A0AC521502D8F00020265D /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		A9A0AC531502D8F00020265D /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
 		A9AADE40154239620096BC3C /* LocTypeMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocTypeMenuController.h; sourceTree = "<group>"; };
@@ -466,12 +466,9 @@
 		68FA1AF3154725E500631EBF /* SubViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				A98B98FD1543192A00433160 /* SettingsMenuController.h */,
-				A98B98FE1543192A00433160 /* SettingsMenuController.m */,
-				A98B98FF1543192A00433160 /* SettingsMenuController.xib */,
-				A98B98FD1543192A00433160 /* SettingsMenuController.h */,
-				A98B98FE1543192A00433160 /* SettingsMenuController.m */,
-				A98B98FF1543192A00433160 /* SettingsMenuController.xib */,
+				A9A019CA1547C1B1006CF4A4 /* SettingsMenuController.h */,
+				A9A019CB1547C1B1006CF4A4 /* SettingsMenuController.m */,
+				A9A019CC1547C1B2006CF4A4 /* SettingsMenuController.xib */,
 				A9AADE40154239620096BC3C /* LocTypeMenuController.h */,
 				A9AADE41154239620096BC3C /* LocTypeMenuController.m */,
 				A9AADE42154239620096BC3C /* LocTypeMenuController.xib */,
@@ -801,7 +798,6 @@
 				A9AADE9D154266E30096BC3C /* college.png in Resources */,
 				68FC2AA615422BB200003A74 /* logout background.png in Resources */,
 				68FC2ACE1543429300003A74 /* intro background .png in Resources */,
-				A98B99011543192B00433160 /* SettingsMenuController.xib in Resources */,
 				A97CE6091546DF8300553D9B /* camera (1).png in Resources */,
 				A97CE60A1546DF8300553D9B /* camera.png in Resources */,
 				A97CE60B1546DF8300553D9B /* photo (2).png in Resources */,
@@ -823,6 +819,7 @@
 				68FA1B16154727EB00631EBF /* highSchoolPin.png in Resources */,
 				68FA1B17154727EB00631EBF /* currentLocationPin.png in Resources */,
 				68FA1B18154727EB00631EBF /* hometownPin.png in Resources */,
+				A9A019CE1547C1B2006CF4A4 /* SettingsMenuController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -879,7 +876,7 @@
 				A9AADE49154250D80096BC3C /* GradientView.m in Sources */,
 				68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */,
 				A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */,
-				A98B99001543192B00433160 /* SettingsMenuController.m in Sources */,
+				A9A019CD1547C1B2006CF4A4 /* SettingsMenuController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
