@@ -255,9 +255,9 @@ static FacebookDataHandler *FBHandler = nil;
     }
     Person* person = [mainDataManager.peopleContainer get:personId];
     [person setMutualFriends:(NSArray*)friendIds];
-//    DebugLog(@"just set these mutual friends %@",friendIds);
-    DebugLog(@"person Id from result%@", personId)
-    DebugLog(@"freind printout:%@",person.name);
+//    DebugLog(@"just got these mutual friends %@",friendIds);
+    DebugLog(@"person Id from result: %@", personId)
+    DebugLog(@"friend printout: %@",person.name);
     
 }
 -(void)parseFacebookInfoController: (NSDictionary *)data{
