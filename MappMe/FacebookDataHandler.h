@@ -20,4 +20,5 @@
 -(void)getMutualFriends:(NSString*)friendId;
 
 -(void) cancelAllOperations;
+
 @end

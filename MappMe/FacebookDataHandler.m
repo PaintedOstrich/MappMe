@@ -149,9 +149,9 @@ static FacebookDataHandler *FBHandler = nil;
         if([[friendsTemp objectForKey:locTypeString]count]==0){
             //If empty entry for location, continue
             continue;
-        }
-
-        NSString * uid = (NSString*)[friendsTemp objectForKey:@"uid"];
+        }   
+        
+        NSString * uid = [[friendsTemp objectForKey:@"uid"] stringValue];
         NSString * town_id = [[friendsTemp objectForKey:locTypeString]objectForKey:@"id"];
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
