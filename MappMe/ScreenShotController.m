@@ -60,8 +60,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(void) updateScreenShot:(UIImage*) screenShot
 {
     [self.screenShotView setImage:screenShot];
-    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
-    [self.screenShotView setTransform:rotate];
+//    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
+//    [self.screenShotView setTransform:rotate];
 }
 
 -(IBAction) uploadImage

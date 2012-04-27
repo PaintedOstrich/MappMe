@@ -43,8 +43,9 @@
 							<object class="IBUIImageView" id="382631886">
 								<reference key="NSNextResponder" ref="263409734"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{55, -25}, {136, 212}}</string>
+								<string key="NSFrame">{{14, 15}, {220, 130}}</string>
 								<reference key="NSSuperview" ref="263409734"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="974239076"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<int key="IBUIContentMode">1</int>
@@ -56,6 +57,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{17, 157}, {212, 37}}</string>
 								<reference key="NSSuperview" ref="263409734"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="1026632609"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -91,6 +93,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{17, 202}, {212, 37}}</string>
 								<reference key="NSSuperview" ref="263409734"/>
+								<reference key="NSWindow"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -110,6 +113,7 @@
 						</array>
 						<string key="NSFrame">{{35, 99}, {249, 268}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="382631886"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
@@ -121,6 +125,7 @@
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="263409734"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -206,9 +211,9 @@
 						<int key="objectID">4</int>
 						<reference key="object" ref="263409734"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="382631886"/>
 							<reference ref="974239076"/>
 							<reference ref="1026632609"/>
+							<reference ref="382631886"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -246,7 +251,59 @@
 			<nil key="sourceID"/>
 			<int key="maxID">14</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">AbstractModalViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">close:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">close:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">close:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">backgroundView</string>
+						<string key="NS.object.0">UIView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">backgroundView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">backgroundView</string>
+							<string key="candidateClassName">UIView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AbstractModalViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">ScreenShotController</string>
+					<string key="superclassName">AbstractModalViewController</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">screenShotView</string>
+						<string key="NS.object.0">UIImageView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">screenShotView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">screenShotView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/ScreenShotController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
