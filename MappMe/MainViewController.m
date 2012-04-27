@@ -530,6 +530,7 @@
 }
 
 #pragma mark - Screen shot methods
+static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(IBAction)takeScreenShot:(UIButton*)sender
 {
     
@@ -545,11 +546,13 @@
      {
          [whiteScreen removeFromSuperview];
          UIImageView* screenShot = [[UIImageView alloc] initWithImage:[self doTakeScreenShot]];
-         screenShot.bounds = self.view.bounds;
+         CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
+         [screenShot setTransform:rotate];
          screenShot.contentMode = UIViewContentModeScaleAspectFit;
          [self.view addSubview:screenShot];
      }];
 }
+
 
 -(UIImage*) doTakeScreenShot
 {
@@ -590,7 +593,7 @@
             CGContextRestoreGState(context);
         }
     }
-    
+   // CGContextRotateCTM (context, radians(-90));
     // Retrieve the screenshot image
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -599,54 +602,78 @@
     return image;
 }
 
-static inline double radians (double degrees) {return degrees * M_PI/180;}
--(UIImage*)imageByScalingToSize:(CGSize)targetSize
-{
-    UIImage* sourceImage = self; 
-    CGFloat targetWidth = targetSize.width;
-    CGFloat targetHeight = targetSize.height;
-    
-    CGImageRef imageRef = [sourceImage CGImage];
-    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-    CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
-    
-    if (bitmapInfo == kCGImageAlphaNone) {
-        bitmapInfo = kCGImageAlphaNoneSkipLast;
-    }
-    
-    CGContextRef bitmap;
-    
-    if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown) {
-        bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
-        
-    } else {
-        bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
-        
-    }       
-    
-    if (sourceImage.imageOrientation == UIImageOrientationLeft) {
-        CGContextRotateCTM (bitmap, radians(90));
-        CGContextTranslateCTM (bitmap, 0, -targetHeight);
-        
-    } else if (sourceImage.imageOrientation == UIImageOrientationRight) {
-        CGContextRotateCTM (bitmap, radians(-90));
-        CGContextTranslateCTM (bitmap, -targetWidth, 0);
-        
-    } else if (sourceImage.imageOrientation == UIImageOrientationUp) {
-        // NOTHING
-    } else if (sourceImage.imageOrientation == UIImageOrientationDown) {
-        CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
-        CGContextRotateCTM (bitmap, radians(-180.));
-    }
-    
-    CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
-    CGImageRef ref = CGBitmapContextCreateImage(bitmap);
-    UIImage* newImage = [UIImage imageWithCGImage:ref];
-    
-    CGContextRelease(bitmap);
-    CGImageRelease(ref);
-    
-    return newImage; 
-}
+
+//The following code snippets may come in handy. They may not.... Just keep them around
+// for a while
+
+//-(UIImage*)rotate:(UIImage*) src orientation:(UIImageOrientation) orientation
+//{
+//    UIGraphicsBeginImageContext(src.size);
+//    
+////    CGContextRef context = UIGraphicsGetCurrentContext();
+////    
+////    if (orientation == UIImageOrientationRight) {
+////        CGContextRotateCTM (context, radians(90));
+////    } else if (orientation == UIImageOrientationLeft) {
+////        CGContextRotateCTM (context, radians(-90));
+////    } else if (orientation == UIImageOrientationDown) {
+////        // NOTHING
+////    } else if (orientation == UIImageOrientationUp) {
+////        CGContextRotateCTM (context, radians(90));
+////    }
+////    
+////    [src drawAtPoint:CGPointMake(0, 0)];
+//    
+//    return UIGraphicsGetImageFromCurrentImageContext();
+//}
+//
+////-(UIImage*)imageByScalingToSize:(CGSize)targetSize
+////{
+////    UIImage* sourceImage = self; 
+////    CGFloat targetWidth = targetSize.width;
+////    CGFloat targetHeight = targetSize.height;
+////    
+////    CGImageRef imageRef = [sourceImage CGImage];
+////    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+////    CGColorSpaceRef colorSpaceInfo = CGImageGetColorSpace(imageRef);
+////    
+////    if (bitmapInfo == kCGImageAlphaNone) {
+////        bitmapInfo = kCGImageAlphaNoneSkipLast;
+////    }
+////    
+////    CGContextRef bitmap;
+////    
+////    if (sourceImage.imageOrientation == UIImageOrientationUp || sourceImage.imageOrientation == UIImageOrientationDown) {
+////        bitmap = CGBitmapContextCreate(NULL, targetWidth, targetHeight, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+////        
+////    } else {
+////        bitmap = CGBitmapContextCreate(NULL, targetHeight, targetWidth, CGImageGetBitsPerComponent(imageRef), CGImageGetBytesPerRow(imageRef), colorSpaceInfo, bitmapInfo);
+////        
+////    }       
+////    
+////    if (sourceImage.imageOrientation == UIImageOrientationLeft) {
+////        CGContextRotateCTM (bitmap, radians(90));
+////        CGContextTranslateCTM (bitmap, 0, -targetHeight);
+////        
+////    } else if (sourceImage.imageOrientation == UIImageOrientationRight) {
+////        CGContextRotateCTM (bitmap, radians(-90));
+////        CGContextTranslateCTM (bitmap, -targetWidth, 0);
+////        
+////    } else if (sourceImage.imageOrientation == UIImageOrientationUp) {
+////        // NOTHING
+////    } else if (sourceImage.imageOrientation == UIImageOrientationDown) {
+////        CGContextTranslateCTM (bitmap, targetWidth, targetHeight);
+////        CGContextRotateCTM (bitmap, radians(-180.));
+////    }
+////    
+////    CGContextDrawImage(bitmap, CGRectMake(0, 0, targetWidth, targetHeight), imageRef);
+////    CGImageRef ref = CGBitmapContextCreateImage(bitmap);
+////    UIImage* newImage = [UIImage imageWithCGImage:ref];
+////    
+////    CGContextRelease(bitmap);
+////    CGImageRelease(ref);
+////    
+////    return newImage; 
+////}
 
 @end
