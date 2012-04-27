@@ -13,4 +13,6 @@
 }
 @property (strong, nonatomic) IBOutlet UIImageView *screenShotView;
 
+-(void) updateScreenShot:(UIImage*) screenShot;
+
 @end

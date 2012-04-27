@@ -192,10 +192,7 @@
     ScreenShotController* controller = [[ScreenShotController alloc] initWithNibName:@"ScreenShotController" bundle:nil];
 
     [controller presentInParentViewController:self];
-    
-    [controller.screenShotView setImage:screenShot];
-//    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
-//    [controller.screenShotView setTransform:rotate];
+    [controller updateScreenShot:screenShot];
 }
 
 #pragma mark - Map pins methods
@@ -542,7 +539,6 @@
 }
 
 #pragma mark - Screen shot methods
-static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(IBAction)takeScreenShot:(UIButton*)sender
 {
     

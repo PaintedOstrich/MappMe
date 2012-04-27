@@ -50,4 +50,17 @@
 {
 }
 
+/*
+ * Update the image in imageview with the passed in screenShot image
+ * The reason for this method is that we need to rotate our imageView -90 degrees
+ * as the passed in image is always in portrait mode
+ */
+static inline double radians (double degrees) {return degrees * M_PI/180;}
+-(void) updateScreenShot:(UIImage*) screenShot
+{
+    [self.screenShotView setImage:screenShot];
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
+    [self.screenShotView setTransform:rotate];
+}
+
 @end
