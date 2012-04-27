@@ -194,8 +194,8 @@
     [controller presentInParentViewController:self];
     
     [controller.screenShotView setImage:screenShot];
-    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
-    [controller.screenShotView setTransform:rotate];
+//    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
+//    [controller.screenShotView setTransform:rotate];
 }
 
 #pragma mark - Map pins methods
@@ -557,11 +557,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                      completion:^(BOOL finished)
      {
          [whiteScreen removeFromSuperview];
-//         UIImageView* screenShot = [[UIImageView alloc] initWithImage:[self doTakeScreenShot]];
-//         CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
-//         [screenShot setTransform:rotate];
-//         screenShot.contentMode = UIViewContentModeScaleAspectFit;
-//         [self.view addSubview:screenShot];
          [self showScreeShotMenu:[self doTakeScreenShot]];
          
      }];
