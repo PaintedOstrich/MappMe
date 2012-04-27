@@ -68,7 +68,7 @@
 -(void) refreshUI
 {
     friendName.text= person.name;
-    profileImage.contentMode = UIViewContentModeScaleAspectFill;
+    //profileImage.contentMode = UIViewContentModeScaleAspectFill;
     [profileImage setImageWithURL:[NSURL URLWithString:person.largeProfileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
     NSString * label = [[NSString alloc]initWithFormat:@"Mapp %@",person.name];
     [self setButtonLabel:mappPersonButton toLabel:label];

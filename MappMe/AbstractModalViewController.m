@@ -91,6 +91,7 @@
     self.view.frame = parentViewController.view.bounds;
     [self layoutForInterfaceOrientation:parentViewController.interfaceOrientation];
     [parentViewController.view addSubview:self.view];
+    //must add this second
     [parentViewController addChildViewController:self];
     
     CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
@@ -131,6 +132,7 @@
 {
     [self willMoveToParentViewController:nil];
     
+    //sequential animation through blocks
     [UIView animateWithDuration:0.4 animations:^
      {
          CGRect rect = self.view.bounds;
@@ -141,6 +143,7 @@
                      completion:^(BOOL finished)
      {
          [self.view removeFromSuperview];
+         ///remove view first hten controller
          [gradientView removeFromSuperview];
          [self removeFromParentViewController];
      }];
