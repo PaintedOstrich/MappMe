@@ -16,6 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
+#import "ScreenShotController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -183,6 +184,13 @@
     SettingsMenuController *controller = [[SettingsMenuController alloc] initWithNibName:@"SettingsMenuController" bundle:nil];
     //controller.delegate = self;
     //controller.selectedLocType = currDisplayedType;
+    [controller presentInParentViewController:self];
+}
+
+-(void) showScreeShotMenu:(UIImage*)screenShot
+{
+    ScreenShotController* controller = [[ScreenShotController alloc] initWithNibName:@"ScreenShotController" bundle:nil];
+    //[controller.screenShotView setImage:screenShot];
     [controller presentInParentViewController:self];
 }
 
@@ -545,11 +553,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                      completion:^(BOOL finished)
      {
          [whiteScreen removeFromSuperview];
-         UIImageView* screenShot = [[UIImageView alloc] initWithImage:[self doTakeScreenShot]];
-         CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
-         [screenShot setTransform:rotate];
-         screenShot.contentMode = UIViewContentModeScaleAspectFit;
-         [self.view addSubview:screenShot];
+//         UIImageView* screenShot = [[UIImageView alloc] initWithImage:[self doTakeScreenShot]];
+//         CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
+//         [screenShot setTransform:rotate];
+//         screenShot.contentMode = UIViewContentModeScaleAspectFit;
+//         [self.view addSubview:screenShot];
+         [self showScreeShotMenu:[self doTakeScreenShot]];
+         
      }];
 }
 

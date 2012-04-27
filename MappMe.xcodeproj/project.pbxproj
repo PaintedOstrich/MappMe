@@ -93,6 +93,8 @@
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
 		A94C44C815059F64001FF446 /* CoordinateLookupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A94C44C715059F64001FF446 /* CoordinateLookupManager.m */; };
+		A95B9459154A656600182E33 /* ScreenShotController.m in Sources */ = {isa = PBXBuildFile; fileRef = A95B9457154A656500182E33 /* ScreenShotController.m */; };
+		A95B945A154A656600182E33 /* ScreenShotController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A95B9458154A656500182E33 /* ScreenShotController.xib */; };
 		A963C347151EE98F00559DB3 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A963C346151EE98F00559DB3 /* search.png */; };
 		A96AD5CF151FD52B00372528 /* profile.png in Resources */ = {isa = PBXBuildFile; fileRef = A96AD5CE151FD52B00372528 /* profile.png */; };
 		A978B76C15410D1C0014CD41 /* LocationTypeEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = A9801D751502E1E400BA0B5B /* LocationTypeEnum.m */; };
@@ -264,6 +266,9 @@
 		A943249715007983005F7600 /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		A94C44C615059F64001FF446 /* CoordinateLookupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateLookupManager.h; sourceTree = "<group>"; };
 		A94C44C715059F64001FF446 /* CoordinateLookupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinateLookupManager.m; sourceTree = "<group>"; };
+		A95B9456154A656400182E33 /* ScreenShotController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenShotController.h; sourceTree = "<group>"; };
+		A95B9457154A656500182E33 /* ScreenShotController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenShotController.m; sourceTree = "<group>"; };
+		A95B9458154A656500182E33 /* ScreenShotController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenShotController.xib; sourceTree = "<group>"; };
 		A963C346151EE98F00559DB3 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		A96AD5CE151FD52B00372528 /* profile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profile.png; sourceTree = "<group>"; };
 		A978B76D15411E540014CD41 /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
@@ -485,6 +490,9 @@
 				A9FC7BCB15215765007D72F6 /* OverlayViewController.h */,
 				A9FC7BCC15215765007D72F6 /* OverlayViewController.m */,
 				A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */,
+				A95B9456154A656400182E33 /* ScreenShotController.h */,
+				A95B9457154A656500182E33 /* ScreenShotController.m */,
+				A95B9458154A656500182E33 /* ScreenShotController.xib */,
 			);
 			name = SubViewControllers;
 			sourceTree = "<group>";
@@ -829,6 +837,7 @@
 				68FA1B18154727EB00631EBF /* hometownPin.png in Resources */,
 				A9A019D01547D0AB006CF4A4 /* settings.png in Resources */,
 				687E43F9154DABD700CE245F /* SettingsMenuController.xib in Resources */,
+				A95B945A154A656600182E33 /* ScreenShotController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,6 +896,7 @@
 				A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */,
 				68963A93154ADF9200286C3B /* UtilFunctions.m in Sources */,
 				687E43F8154DABD700CE245F /* SettingsMenuController.m in Sources */,
+				A95B9459154A656600182E33 /* ScreenShotController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
