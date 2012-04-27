@@ -155,13 +155,14 @@ static FacebookDataHandler *FBHandler = nil;
         NSString * town_id = [[friendsTemp objectForKey:locTypeString]objectForKey:@"id"];
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
-        
-        Place* place = [mainDataManager.placeContainer get:town_id];
-        place.name = town_name;
-        Person* friend = [mainDataManager.peopleContainer get:uid];
-        friend.name = name;
-        //Establish two way relationship between friend and place (connected by the locType)
-        [self link:place withPerson:friend forLocType:locType];
+        if (town_id != nil && uid != nil) {
+            Place* place = [mainDataManager.placeContainer get:town_id];
+            place.name = town_name;
+            Person* friend = [mainDataManager.peopleContainer get:uid];
+            friend.name = name;
+            //Establish two way relationship between friend and place (connected by the locType)
+            [self link:place withPerson:friend forLocType:locType];
+        }
     }
 }
 /* Location Queries From Facebook:  Adds an Dictionary of cities and facbeook ids to mapping*/
@@ -175,8 +176,10 @@ static FacebookDataHandler *FBHandler = nil;
         /*Make sure location array is not empty*/
         if ([loc respondsToSelector:@selector(objectForKey:)]) {
             NSString* placeId = [citiesTemp objectForKey:@"page_id"];
-            Place* place = [[mainDataManager placeContainer] get:placeId];
-            [place addLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
+            if (placeId != nil) {
+                 Place* place = [[mainDataManager placeContainer] get:placeId];
+                 [place addLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
+            }
         } else{
             //NSString * page_id = [citiesTemp objectForKey:@"page_id"];
             //DebugLog(@"%@ not found; id: %@",[mainDataManager.placeContainer getPlaceNameFromId:page_id],page_id);
@@ -192,6 +195,8 @@ static FacebookDataHandler *FBHandler = nil;
             NSString * school_id = [schoolTemp objectForKey:@"page_id"];
             //NSString *type = [schoolTypeMapping objectForKey:school_id];
             //If have lat and long
+            if (school_id == nil)
+                return;
             Place* place = [[mainDataManager placeContainer] get:school_id];
             if ([loc objectForKey:@"latitude"]){
                 [place addLat:[loc objectForKey:@"latitude"]  andLong:[loc objectForKey:@"longitude"]]; 
@@ -228,14 +233,15 @@ static FacebookDataHandler *FBHandler = nil;
             NSString * school_name = (NSString*)[[school objectForKey:@"school"]objectForKey:@"name"];
             NSString * school_type = (NSString*)[school objectForKey:@"type"];
             locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
-
-            //[schoolTypeMapping setObject:school_type forKey:school_id];
-            Place* place = [mainDataManager.placeContainer get:school_id];
-            place.name = school_name;
-            
-            Person* person = [mainDataManager.peopleContainer get:uid];
-            person.name = name;
-            [self link:place withPerson:person forLocType:placeType];
+            if (school_id != nil && uid != nil) {
+                //[schoolTypeMapping setObject:school_type forKey:school_id];
+                Place* place = [mainDataManager.placeContainer get:school_id];
+                place.name = school_name;
+                
+                Person* person = [mainDataManager.peopleContainer get:uid];
+                person.name = name;
+                [self link:place withPerson:person forLocType:placeType];
+            }
         }
     }
 }
@@ -254,12 +260,14 @@ static FacebookDataHandler *FBHandler = nil;
         NSString *fid =[uids objectForKey:@"uid2"];
         [friendIds addObject:fid];
     }
-    Person* person = [mainDataManager.peopleContainer get:personId];
-    [person setMutualFriends:(NSArray*)friendIds];
-//    DebugLog(@"just got these mutual friends %@",friendIds);
-    DebugLog(@"person Id from result: %@", personId)
-    DebugLog(@"friend printout: %@",person.name);
-    
+
+    if (personId != nil) {
+        Person* person = [mainDataManager.peopleContainer get:personId];
+        [person setMutualFriends:(NSArray*)friendIds];   
+        //    DebugLog(@"just set these mutual friends %@",friendIds);
+        DebugLog(@"person Id from result%@", personId)
+        DebugLog(@"freind printout:%@",person.name);
+    }
 }
 -(void)parseFacebookInfoController: (NSDictionary *)data{
     NSDictionary* infoArray = (NSDictionary *)[data objectForKey:@"data"]; 
