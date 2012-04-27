@@ -532,13 +532,19 @@
 #pragma mark - Screen shot methods
 -(IBAction)takeScreenShot:(UIButton*)sender
 {
-    UIAlertView *alert = [[UIAlertView alloc]
-                          initWithTitle: @"Sorry"
-                          message: @"Under Construction"
-                          delegate: nil
-                          cancelButtonTitle:@"Oh Can't Wait!"
-                          otherButtonTitles:nil];
-    [alert show];
+    
+    UIView *whiteScreen = [[UIView alloc] initWithFrame:self.view.bounds];
+    [whiteScreen setBackgroundColor: [UIColor whiteColor]];
+    [whiteScreen setAlpha:1];
+    [self.view addSubview:whiteScreen];
+    [UIView animateWithDuration:1.2 animations:^
+     {
+         [whiteScreen setAlpha:0.0];
+     }
+                     completion:^(BOOL finished)
+     {
+         [whiteScreen removeFromSuperview];
+     }];
 }
 
 @end
