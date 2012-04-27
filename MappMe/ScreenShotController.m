@@ -13,6 +13,7 @@
 @end
 
 @implementation ScreenShotController
+@synthesize screenShotView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +32,7 @@
 
 - (void)viewDidUnload
 {
+    [self setScreenShotView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -38,7 +40,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 /*

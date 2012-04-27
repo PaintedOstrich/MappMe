@@ -8,6 +8,9 @@
 
 #import "AbstractModalViewController.h"
 
-@interface ScreenShotController : AbstractModalViewController
+@interface ScreenShotController : AbstractModalViewController {
+    IBOutlet UIImageView *screenShotView;
+}
+@property (strong, nonatomic) IBOutlet UIImageView *screenShotView;
 
 @end

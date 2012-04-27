@@ -190,8 +190,12 @@
 -(void) showScreeShotMenu:(UIImage*)screenShot
 {
     ScreenShotController* controller = [[ScreenShotController alloc] initWithNibName:@"ScreenShotController" bundle:nil];
-    //[controller.screenShotView setImage:screenShot];
+
     [controller presentInParentViewController:self];
+    
+    [controller.screenShotView setImage:screenShot];
+    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
+    [controller.screenShotView setTransform:rotate];
 }
 
 #pragma mark - Map pins methods
