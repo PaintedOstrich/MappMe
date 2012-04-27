@@ -36,7 +36,7 @@
 }
 
 -(void)loginButtonPress{
-    NSArray* permissions = [[NSArray alloc] initWithObjects:@"friends_hometown",@"friends_location",@"friends_work_history",@"friends_education_history", nil];
+    NSArray* permissions = [[NSArray alloc] initWithObjects:@"friends_hometown",@"friends_location",@"friends_work_history",@"friends_education_history", @"publish_actions", nil];
     [[delegate facebook] authorize:permissions];
 }
 #pragma mark - Animation Methods

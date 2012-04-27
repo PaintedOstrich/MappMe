@@ -7,8 +7,9 @@
 //
 
 #import "AbstractModalViewController.h"
+#import "FBRequest.h"
 
-@interface ScreenShotController : AbstractModalViewController {
+@interface ScreenShotController : AbstractModalViewController <FBRequestDelegate> {
     IBOutlet UIImageView *screenShotView;
 }
 @property (strong, nonatomic) IBOutlet UIImageView *screenShotView;

@@ -7,6 +7,7 @@
 //
 
 #import "ScreenShotController.h"
+#import "MappMeAppDelegate.h"
 
 @interface ScreenShotController ()
 
@@ -61,6 +62,18 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     [self.screenShotView setImage:screenShot];
     CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
     [self.screenShotView setTransform:rotate];
+}
+
+-(IBAction) uploadImage
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   self.screenShotView.image, @"picture",
+                                   nil];
+    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[delegate facebook] requestWithGraphPath:@"me/photos"
+                                    andParams:params
+                                andHttpMethod:@"POST"
+                                  andDelegate:self];
 }
 
 @end
