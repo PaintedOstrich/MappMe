@@ -84,4 +84,27 @@
     }
     return  [result allObjects];
 }
+//Should Find best way to combine these two functions. is it through two wrapper caller functions, storing private variables, or....  only one line of code is different
+-(NSArray*) getPlacesUsedAs:(locTypeEnum)locType friendsWith:(Person*)mutualFriendsWith{
+    NSMutableSet* result = [[NSMutableSet alloc] initWithCapacity:10];
+    NSArray* allPlaces = [_data allValues];
+    
+    for(int i = 0; i < [allPlaces count]; i++) {
+        Place* place = [allPlaces objectAtIndex:i];
+        NSMutableSet* allPeople = [place getPeople:locType];
+        NSMutableArray *mutualPeople = [[NSMutableArray alloc] init];
+        NSEnumerator *friendEnum = [allPeople objectEnumerator];
+        Person *friend;
+        while (friend = (Person*)[friendEnum nextObject]) {
+            if ([mutualFriendsWith.mutualFriends indexOfObject:friend.uid]!=NSNotFound) {
+                [mutualPeople addObject:friend];
+            }
+        }
+//        check if mutualFriends are in this place
+        if ([mutualPeople count] > 0) {
+            [result addObject:place];
+        }
+    }
+    return  [result allObjects];
+}
 @end

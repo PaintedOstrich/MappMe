@@ -11,6 +11,7 @@
 @class Person;
 @protocol MappFriendDelegate
 - (void)didSelectFriend:(Person*)person;
+- (void)didSelectMutualFriends:(Person*)person;
 @end
 
 @interface PersonMenuViewController : UIViewController{

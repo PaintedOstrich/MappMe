@@ -29,7 +29,14 @@
     IBOutlet UIButton * searchBtn;
     //Used to do transform animation to buy us time......
     IBOutlet UIButton * hiddenBtn;
+    
+    //These two private variables used to keep track of whether we are showing mutualFriends or all  Friends
+    BOOL isMutualFriendType;
+    Person *mutualFriendsWith;
+    
+    //This used for determining which set of map annotations to use
     BOOL isFriendAnnotationType;
+    
     IBOutlet UIView* progressIndicator;
     BOOL _finishedSaving;
     BOOL _startedOperations;
@@ -186,7 +193,12 @@
 -(void)makeAnnotations:(NSArray*)places forLocType:(locTypeEnum)locType {
     for(int i=0; i < [places count]; i++) {
         Place* place = [places objectAtIndex:i];
-        MyAnnotation* anno = [[MyAnnotation alloc] initWithPlace:place forLocType:locType];
+        MyAnnotation* anno;
+        if (isMutualFriendType) {
+            anno = [[MyAnnotation alloc] initWithPlace:place forPerson:mutualFriendsWith forLocType:locType];
+        }else {
+            anno = [[MyAnnotation alloc] initWithPlace:place forLocType:locType];
+        }
         if ([anno hasValidCoordinate]) {
             [annotations addObject:anno];
         }
@@ -243,12 +255,19 @@
     isFriendAnnotationType = FALSE;
     [self setBtnTitleForAllStates:locationTypeBtn withText:[LocationTypeEnum getNameFromEnum:currDisplayedType]];
     
-    NSArray* relevantPlaces = [mainDataManager.placeContainer getPlacesUsedAs:locType];
+    NSArray* relevantPlaces;
+    //This logic gets a list of mutual friends locations, or allfriends locations
+    if (isMutualFriendType) {
+        relevantPlaces = [mainDataManager.placeContainer getPlacesUsedAs:locType friendsWith:mutualFriendsWith];
+    }else {
+        relevantPlaces = [mainDataManager.placeContainer getPlacesUsedAs:locType];
+    }
 
     //DebugLog(@"Showing %@, has %d entries", [LocationTypeEnum getNameFromEnum:locType], [relevantPlaces count]);
     [self makeAnnotations:relevantPlaces forLocType:locType];
     [self showPins];
 }
+
 
 #pragma mark - main data processing dispatch
 - (void)fetchAndProcess {
@@ -429,7 +448,7 @@
         annotationView.annotation = annotation;
     }
     
-    annotationView.image = [self getPinImage:annotation ];
+    annotationView.image = [self getPinImage:annotation];
     
     if (!isFriendAnnotationType) {
         annotationView.rightCalloutAccessoryView.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
@@ -443,16 +462,23 @@
     
     return annotationView;
 }
-//THIS Method not working.
 #pragma mark - FriendSearchViewControllerDelegate methods
 - (void)didSelectFriend:(Person *)selectedPerson {
     [self.navigationController popToViewController:self animated:YES];
     [self clearMap];
     isFriendAnnotationType = TRUE;
+    isMutualFriendType = FALSE;
     currDisplayedType = tNilLocType;
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
     [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
+}
+- (void)didSelectMutualFriends:(Person*)person{
+    [self.navigationController popToViewController:self animated:YES]; 
+    isMutualFriendType = TRUE;
+    isFriendAnnotationType = FALSE;
+    mutualFriendsWith = person;
+    [self showLocationType:tCurrentLocation];
 }
 
 #pragma mark - LocTypeMenuController Delegate methods

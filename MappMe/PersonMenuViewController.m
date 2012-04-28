@@ -93,7 +93,7 @@
     [searchDelegate didSelectFriend:person];
 }
 -(IBAction)showMutualFriends:(id)sender{
-    DebugLog(@"friend %@", person);
+    [searchDelegate didSelectMutualFriends:person];
 }
 
 - (void)viewDidUnload
