@@ -268,17 +268,17 @@
  * Called when the request logout has succeeded.
  */
 - (void)fbDidLogout {
-    [[DataManagerSingleton sharedManager] clearAllData];
-    [[FacebookDataHandler sharedInstance] cancelAllOperations];
-    [[CoordinateLookupManager sharedManager] cancelAllOperations];
     // Remove saved authorization information if it exists and it is
     // ok to clear it (logout, session invalid, app unauthorized)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"FBAccessTokenKey"];
     [defaults removeObjectForKey:@"FBExpirationDateKey"];
     [defaults synchronize];
-    //    [self showLoggedOut];
-    NSLog(@"FBDIDLOGOUT CALLED");
+    
+    [[DataManagerSingleton sharedManager] clearAllData];
+    [[FacebookDataHandler sharedInstance] cancelAllOperations];
+    [[CoordinateLookupManager sharedManager] cancelAllOperations];
+     NSLog(@"FBDIDLOGOUT CALLED");
 }
 
 /**
