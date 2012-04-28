@@ -134,7 +134,6 @@
 		A9AADE9C154266E30096BC3C /* college@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE99154266E30096BC3C /* college@2x.png */; };
 		A9AADE9D154266E30096BC3C /* college.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE9A154266E30096BC3C /* college.png */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
-		A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -312,7 +311,7 @@
 		A9AADE9A154266E30096BC3C /* college.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = college.png; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
-		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayViewController.xib; sourceTree = "<group>"; };
+		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OverlayViewController.xib; path = /Users/Codier/Desktop/MappMe/MappMe/OverlayViewController.xib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -631,7 +630,6 @@
 				A91AF90515008AE200FCD3D7 /* WebViewController.m */,
 				68DC0BD4151E538500514016 /* FriendSearchViewController.h */,
 				68DC0BD5151E538500514016 /* FriendSearchViewController.m */,
-				A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */,
 				68FC2AA71542321000003A74 /* PersonMenuViewController.h */,
 				68FC2AA81542321000003A74 /* PersonMenuViewController.m */,
 			);
@@ -793,7 +791,6 @@
 				681C416A151D724500747C4A /* yellowPin.png in Resources */,
 				A963C347151EE98F00559DB3 /* search.png in Resources */,
 				A96AD5CF151FD52B00372528 /* profile.png in Resources */,
-				A9FC7BCF15215766007D72F6 /* OverlayViewController.xib in Resources */,
 				68BEE57215292D0E00E2433D /* triangle.png in Resources */,
 				68FC2A71153E49C600003A74 /* welcomePin.png in Resources */,
 				68FC2A8A153E7F0D00003A74 /* LoginWithFacebookNormal@2x.png in Resources */,

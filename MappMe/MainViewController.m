@@ -541,19 +541,33 @@
 #pragma mark - Screen shot methods
 -(IBAction)takeScreenShot:(UIButton*)sender
 {
+    //Hide most controls
+    [settingsBtn setHidden:TRUE];
+    [searchBtn setHidden:TRUE];
+    [cameraBtn setHidden:TRUE];
+    [progressIndicator setHidden:TRUE];
+
+    UIImage* screenShot = [self doTakeScreenShot];
     
+    //Animate the flash effect.
     UIView *whiteScreen = [[UIView alloc] initWithFrame:self.view.bounds];
     [whiteScreen setBackgroundColor: [UIColor whiteColor]];
     [whiteScreen setAlpha:1];
     [self.view addSubview:whiteScreen];
-    [UIView animateWithDuration:1.2 animations:^
+    [UIView animateWithDuration:1.0 animations:^
      {
          [whiteScreen setAlpha:0.0];
      }
                      completion:^(BOOL finished)
      {
          [whiteScreen removeFromSuperview];
-         [self showScreeShotMenu:[self doTakeScreenShot]];
+         
+         //Show those controls again
+         [self showScreeShotMenu:screenShot];
+         [settingsBtn setHidden:FALSE];
+         [searchBtn setHidden:FALSE];
+         [cameraBtn setHidden:FALSE];
+         [progressIndicator setHidden:FALSE];
          
      }];
 }
