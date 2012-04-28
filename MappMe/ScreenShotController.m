@@ -59,7 +59,7 @@
 static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(void) updateScreenShot:(UIImage*) screenShot
 {
-    [self.screenShotView setImage:screenShot];
+    [self.screenShotView setImage:[self scaleAndRotateImage:screenShot]];
 //    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
 //    [self.screenShotView setTransform:rotate];
 }
@@ -76,4 +76,54 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                   andDelegate:self];
 }
 
+-(UIImage*)scaleAndRotateImage:(UIImage *)image
+{
+     int kMaxResolution = 320; // Or whatever
+    
+     CGImageRef imgRef = image.CGImage;
+    
+     CGFloat width = CGImageGetWidth(imgRef);
+     CGFloat height = CGImageGetHeight(imgRef);
+    
+     CGAffineTransform transform = CGAffineTransformIdentity;
+     CGRect bounds = CGRectMake(0, 0, width, height);
+     if (width > kMaxResolution || height > kMaxResolution) {
+          CGFloat ratio = width/height;
+          if (ratio > 1) {
+               bounds.size.width = kMaxResolution;
+               bounds.size.height = bounds.size.width / ratio;
+              }
+          else {
+               bounds.size.height = kMaxResolution;
+               bounds.size.width = bounds.size.height * ratio;
+              }
+         }
+    
+     CGFloat scaleRatio = bounds.size.width / width;
+     CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
+     CGFloat boundHeight;
+
+     boundHeight = bounds.size.height;
+     bounds.size.height = bounds.size.width;
+     bounds.size.width = boundHeight;
+     transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);
+     transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+    
+     UIGraphicsBeginImageContext(bounds.size);
+    
+     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+
+     CGContextScaleCTM(context, -scaleRatio, scaleRatio);
+     CGContextTranslateCTM(context, -height, 0);
+
+    
+     CGContextConcatCTM(context, transform);
+    
+     CGContextDrawImage(UIGraphicsGetCurrentContext(), CGRectMake(0, 0, width, height), imgRef);
+     UIImage *imageCopy = UIGraphicsGetImageFromCurrentImageContext();
+     UIGraphicsEndImageContext();
+    
+     return imageCopy;
+}
 @end
