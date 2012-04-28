@@ -8,12 +8,16 @@
 
 #import "ScreenShotController.h"
 #import "MappMeAppDelegate.h"
+#import "MBProgressHUD.h"
 
 @interface ScreenShotController ()
 
 @end
 
-@implementation ScreenShotController
+@implementation ScreenShotController {
+    //Uploading HUD
+    MBProgressHUD* HUD;
+}
 @synthesize screenShotView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -120,4 +124,49 @@
     
      return imageCopy;
 }
+
+#pragma mark - facebook request delegate methods
+
+- (void)requestLoading:(FBRequest *)request
+{
+    HUD = [[MBProgressHUD alloc] initWithView:self.view];
+	[self.view addSubview:HUD];
+	HUD.labelText = @"Uploading...";
+	[HUD show:YES];
+}
+
+- (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response
+{
+    DebugLog(@"didReceiveResponse:%@", [response description]);
+}
+
+- (void)request:(FBRequest *)request didFailWithError:(NSError *)error
+{
+    DebugLog(@"didFailWithError:%@", [error localizedDescription]);
+    [HUD hide:YES];
+    UIAlertView *alert = [[UIAlertView alloc]
+                          initWithTitle: @"Oooops!"
+                          message: @"I could not upload the image. Please make sure you are online and try again!"
+                          delegate: nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)request:(FBRequest *)request didLoad:(id)result
+{
+    DebugLog(@"didLoad:%@", [result description]);
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
+    
+	// Set custom view mode
+	HUD.mode = MBProgressHUDModeCustomView;
+	HUD.labelText = @"Upload Success";
+    
+    // Delay execution of my block for 1 seconds.
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+       [HUD hide:YES];
+       [self dismissFromParentViewController];
+    });
+}
+
 @end
