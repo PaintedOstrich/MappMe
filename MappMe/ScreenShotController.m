@@ -56,12 +56,9 @@
  * The reason for this method is that we need to rotate our imageView -90 degrees
  * as the passed in image is always in portrait mode
  */
-static inline double radians (double degrees) {return degrees * M_PI/180;}
 -(void) updateScreenShot:(UIImage*) screenShot
 {
-    [self.screenShotView setImage:[self scaleAndRotateImage:screenShot]];
-//    CGAffineTransform rotate = CGAffineTransformMakeRotation(radians(-90.0));
-//    [self.screenShotView setTransform:rotate];
+    [self.screenShotView setImage:[self rotateImage:screenShot]];
 }
 
 -(IBAction) uploadImage
@@ -76,9 +73,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
                                   andDelegate:self];
 }
 
--(UIImage*)scaleAndRotateImage:(UIImage *)image
+// This rotate image method is not generic. But it works for us
+//It will rotate the image into right position for uploading to 
+//facebook
+-(UIImage*)rotateImage:(UIImage *)image
 {
-     int kMaxResolution = 320; // Or whatever
+   //  int kMaxResolution = 320; // Or whatever
     
      CGImageRef imgRef = image.CGImage;
     
@@ -87,27 +87,21 @@ static inline double radians (double degrees) {return degrees * M_PI/180;}
     
      CGAffineTransform transform = CGAffineTransformIdentity;
      CGRect bounds = CGRectMake(0, 0, width, height);
-     if (width > kMaxResolution || height > kMaxResolution) {
-          CGFloat ratio = width/height;
-          if (ratio > 1) {
-               bounds.size.width = kMaxResolution;
-               bounds.size.height = bounds.size.width / ratio;
-              }
-          else {
-               bounds.size.height = kMaxResolution;
-               bounds.size.width = bounds.size.height * ratio;
-              }
-         }
     
      CGFloat scaleRatio = bounds.size.width / width;
      CGSize imageSize = CGSizeMake(CGImageGetWidth(imgRef), CGImageGetHeight(imgRef));
      CGFloat boundHeight;
-
-     boundHeight = bounds.size.height;
-     bounds.size.height = bounds.size.width;
-     bounds.size.width = boundHeight;
-     transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);
-     transform = CGAffineTransformRotate(transform, M_PI / 2.0);
+    
+    boundHeight = bounds.size.height;  
+    bounds.size.height = bounds.size.width;  
+    bounds.size.width = boundHeight;  
+    if ([[UIDevice currentDevice] orientation] == UIInterfaceOrientationLandscapeLeft) {
+        transform = CGAffineTransformMakeTranslation(imageSize.height, 0.0);
+        transform = CGAffineTransformRotate(transform, M_PI / 2.0);   
+    } else  {
+        transform = CGAffineTransformMakeTranslation(0.0, imageSize.width);  
+        transform = CGAffineTransformRotate(transform, 3.0 * M_PI / 2.0);  
+    }
     
      UIGraphicsBeginImageContext(bounds.size);
     
