@@ -221,7 +221,7 @@ static FacebookDataHandler *FBHandler = nil;
         }
         NSEnumerator *schoolsEnum = [[friendsTemp objectForKey:@"education"] objectEnumerator];
         NSDictionary *school;
-        NSString * uid = [friendsTemp objectForKey:@"uid"];
+        NSString * uid = [[friendsTemp objectForKey:@"uid"]stringValue];
         NSString * name = [friendsTemp objectForKey:@"name"];
         while (school = (NSDictionary*)[schoolsEnum nextObject]) {
             NSString * school_id = (NSString*)[[school objectForKey:@"school"]objectForKey:@"id"];
