@@ -184,7 +184,7 @@
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(IBAction)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
-    controller.delegate = self;
+//    controller.delegate = self;
     controller.selectedLocType = currDisplayedType;
     [controller presentInParentViewController:self];
 }
@@ -492,8 +492,9 @@
 }
 
 #pragma mark - LocTypeMenuController Delegate methods
--(void) disSelectLocType:(locTypeEnum)locType
+-(void) didSelectLocType:(locTypeEnum)locType
 {
+    DebugLog(@"called delegate method");
     [self showLocationType:locType];
 }
 

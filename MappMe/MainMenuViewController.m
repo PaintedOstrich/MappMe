@@ -8,11 +8,19 @@
 
 #import "MainMenuViewController.h"
 
-@interface MainMenuViewController ()
+@interface MainMenuViewController (){
+    IBOutlet UIButton* hometownBtn;
+    IBOutlet UIButton* currentLocationBtn;
+    IBOutlet UIButton* collegeBtn;
+    IBOutlet UIButton* highschoolBtn;
+}
 
 @end
 
 @implementation MainMenuViewController
+
+@synthesize delegate;
+@synthesize selectedLocType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,6 +47,48 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+#pragma mark - control logic
+-(void)updateButtonHighlight
+{
+    switch (self.selectedLocType) {
+        case tHomeTown:
+            hometownBtn.highlighted = TRUE;
+            break;
+        case tCurrentLocation:
+            currentLocationBtn.highlighted = TRUE;
+            break;
+        case tCollege:
+            collegeBtn.highlighted = TRUE;
+            break;
+        case tHighSchool:
+            highschoolBtn.highlighted = TRUE;
+            break;
+        default:
+            break;
+    }
+}
+
+- (IBAction)showHomeTown:(id)sender
+{
+    [self.delegate didSelectLocType:tHomeTown];
+    DebugLog(@"called button");
+}
+
+- (IBAction)showCurrentLocation:(id)sender
+{
+    [self.delegate didSelectLocType:tCurrentLocation];
+    
+}
+
+- (IBAction)showCollege:(id)sender
+{
+    [self.delegate didSelectLocType:tCollege];
+}
+
+- (IBAction)showHighSchool:(id)sender
+{
+    [self.delegate didSelectLocType:tHighSchool];
 }
 
 @end

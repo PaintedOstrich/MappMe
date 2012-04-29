@@ -16,6 +16,7 @@
  Container top must be positioned at 260 px offset*/
 @interface SlidingContainer (){
     BOOL open;
+    id mainViewController;
 }
 @end
 
@@ -109,6 +110,7 @@
 }
 - (void)presentInParentViewController:(UIViewController *)parentViewController
 {   
+    mainViewController = parentViewController;
     int height = self.view.frame.size.height;
     int width = self.view.frame.size.width;
     int xOffset = (parentViewController.view.frame.size.width-width)/2;
@@ -122,7 +124,7 @@
 #pragma mark - SubController Methods
 -(void)initMainMenuController{
     MainMenuViewController *controller = [[MainMenuViewController alloc] initWithNibName:@"MainMenuViewController" bundle:nil];
-//    controller.delegate = self;
+    controller.delegate = mainViewController;
     [self setViewToBottomCenter:controller.view];
     [buttonContainer addSubview:controller.view];
     displayHeight = controller.view.frame.size.height;
