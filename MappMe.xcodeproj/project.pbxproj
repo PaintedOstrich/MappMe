@@ -33,6 +33,14 @@
 		68963A93154ADF9200286C3B /* UtilFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963A92154ADF9200286C3B /* UtilFunctions.m */; };
 		68963A94154AE0D900286C3B /* UtilFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963A92154ADF9200286C3B /* UtilFunctions.m */; };
 		68963A97154AE19B00286C3B /* UtilFunctionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963A96154AE19B00286C3B /* UtilFunctionsTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		68963AEB154C811700286C3B /* HeaderButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 68963AE6154C811700286C3B /* HeaderButton.png */; };
+		68963AEC154C811700286C3B /* BackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 68963AE7154C811700286C3B /* BackButton.png */; };
+		68963AED154C811700286C3B /* SearchButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 68963AE8154C811700286C3B /* SearchButton.png */; };
+		68963AEE154C811700286C3B /* SettingsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 68963AE9154C811700286C3B /* SettingsButton.png */; };
+		68963AEF154C811700286C3B /* DropDownMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 68963AEA154C811700286C3B /* DropDownMenu.png */; };
+		68963AF7154C81DB00286C3B /* MainLocMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963AF5154C81DB00286C3B /* MainLocMenuController.m */; };
+		68963AF8154C81DB00286C3B /* AbstractSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68963AF6154C81DB00286C3B /* AbstractSlider.xib */; };
+		68963B00154C86E000286C3B /* AbstractSlidingContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963AFF154C86DF00286C3B /* AbstractSlidingContainer.m */; };
 		68BEE56C15258EBC00E2433D /* ZoomHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEE56B15258EBC00E2433D /* ZoomHelper.m */; };
 		68BEE57215292D0E00E2433D /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BEE57115292D0E00E2433D /* triangle.png */; };
 		68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF09D15253F3000335C10 /* DataManagerSingleton.m */; };
@@ -183,6 +191,16 @@
 		68963A91154ADF9200286C3B /* UtilFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilFunctions.h; sourceTree = SOURCE_ROOT; };
 		68963A92154ADF9200286C3B /* UtilFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilFunctions.m; sourceTree = SOURCE_ROOT; };
 		68963A96154AE19B00286C3B /* UtilFunctionsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilFunctionsTest.m; sourceTree = "<group>"; };
+		68963AE6154C811700286C3B /* HeaderButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HeaderButton.png; sourceTree = "<group>"; };
+		68963AE7154C811700286C3B /* BackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackButton.png; sourceTree = "<group>"; };
+		68963AE8154C811700286C3B /* SearchButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchButton.png; sourceTree = "<group>"; };
+		68963AE9154C811700286C3B /* SettingsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsButton.png; sourceTree = "<group>"; };
+		68963AEA154C811700286C3B /* DropDownMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DropDownMenu.png; sourceTree = "<group>"; };
+		68963AF4154C81DB00286C3B /* MainLocMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLocMenuController.h; sourceTree = "<group>"; };
+		68963AF5154C81DB00286C3B /* MainLocMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainLocMenuController.m; sourceTree = "<group>"; };
+		68963AF6154C81DB00286C3B /* AbstractSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbstractSlider.xib; sourceTree = "<group>"; };
+		68963AFE154C86DF00286C3B /* AbstractSlidingContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSlidingContainer.h; sourceTree = "<group>"; };
+		68963AFF154C86DF00286C3B /* AbstractSlidingContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSlidingContainer.m; sourceTree = "<group>"; };
 		68BEE56A15258EBC00E2433D /* ZoomHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomHelper.h; sourceTree = SOURCE_ROOT; };
 		68BEE56B15258EBC00E2433D /* ZoomHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomHelper.m; sourceTree = SOURCE_ROOT; };
 		68BEE57115292D0E00E2433D /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
@@ -471,6 +489,48 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		68963AE5154C80EF00286C3B /* mainUI */ = {
+			isa = PBXGroup;
+			children = (
+				68963AE6154C811700286C3B /* HeaderButton.png */,
+				68963AE7154C811700286C3B /* BackButton.png */,
+				68963AE8154C811700286C3B /* SearchButton.png */,
+				68963AE9154C811700286C3B /* SettingsButton.png */,
+				68963AEA154C811700286C3B /* DropDownMenu.png */,
+			);
+			name = mainUI;
+			sourceTree = "<group>";
+		};
+		68963AF0154C815800286C3B /* otherUI */ = {
+			isa = PBXGroup;
+			children = (
+				A97CE6061546DF8300553D9B /* camera (1).png */,
+				A97CE6071546DF8300553D9B /* camera.png */,
+				A97CE6081546DF8300553D9B /* photo (2).png */,
+				68FC2AC71543429300003A74 /* intro background .png */,
+				68FC2AA515422BB200003A74 /* logout background.png */,
+				68FC2A70153E49C600003A74 /* welcomePin.png */,
+				68BEE57115292D0E00E2433D /* triangle.png */,
+				A96AD5CE151FD52B00372528 /* profile.png */,
+				A963C346151EE98F00559DB3 /* search.png */,
+				A963C343151EE8E200559DB3 /* settings.png */,
+				68FC2A8E153E806100003A74 /* loginBackground.png */,
+			);
+			name = otherUI;
+			sourceTree = "<group>";
+		};
+		68963B01154C870000286C3B /* SlidingViewMenus */ = {
+			isa = PBXGroup;
+			children = (
+				68963AF4154C81DB00286C3B /* MainLocMenuController.h */,
+				68963AF5154C81DB00286C3B /* MainLocMenuController.m */,
+				68963AF6154C81DB00286C3B /* AbstractSlider.xib */,
+				68963AFE154C86DF00286C3B /* AbstractSlidingContainer.h */,
+				68963AFF154C86DF00286C3B /* AbstractSlidingContainer.m */,
+			);
+			name = SlidingViewMenus;
+			sourceTree = "<group>";
+		};
 		68FA1AF3154725E500631EBF /* SubViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -552,6 +612,9 @@
 				A96AD5CE151FD52B00372528 /* profile.png */,
 				A963C346151EE98F00559DB3 /* search.png */,
 				68FC2A8E153E806100003A74 /* loginBackground.png */,
+				68963AF0154C815800286C3B /* otherUI */,
+				68963AE5154C80EF00286C3B /* mainUI */,
+				68FC2AAD1543420500003A74 /* ButtonImages */,
 				681C415B151D71F600747C4A /* pin images */,
 			);
 			name = images;
@@ -612,6 +675,7 @@
 		A91AF90815008AF200FCD3D7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				68963B01154C870000286C3B /* SlidingViewMenus */,
 				68FA1AF3154725E500631EBF /* SubViewControllers */,
 				680435F414FED94600899729 /* LoginViewController.h */,
 				680435F514FED94600899729 /* LoginViewController.m */,
@@ -829,6 +893,12 @@
 				68FA1B18154727EB00631EBF /* hometownPin.png in Resources */,
 				A9A019D01547D0AB006CF4A4 /* settings.png in Resources */,
 				687E43F9154DABD700CE245F /* SettingsMenuController.xib in Resources */,
+				68963AEB154C811700286C3B /* HeaderButton.png in Resources */,
+				68963AEC154C811700286C3B /* BackButton.png in Resources */,
+				68963AED154C811700286C3B /* SearchButton.png in Resources */,
+				68963AEE154C811700286C3B /* SettingsButton.png in Resources */,
+				68963AEF154C811700286C3B /* DropDownMenu.png in Resources */,
+				68963AF8154C81DB00286C3B /* AbstractSlider.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -887,6 +957,8 @@
 				A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */,
 				68963A93154ADF9200286C3B /* UtilFunctions.m in Sources */,
 				687E43F8154DABD700CE245F /* SettingsMenuController.m in Sources */,
+				68963AF7154C81DB00286C3B /* MainLocMenuController.m in Sources */,
+				68963B00154C86E000286C3B /* AbstractSlidingContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

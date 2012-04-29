@@ -76,8 +76,8 @@
                                     <action selector="showSettingsMenu" destination="xeA-W3-eop" eventType="touchUpInside" id="o3X-wO-zp2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ywt-Bj-O5i">
-                                <rect key="frame" x="4" y="2" width="120" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ywt-Bj-O5i">
+                                <rect key="frame" x="1" y="408" width="120" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="11"/>
                                 <state key="normal" title="Current Location">
@@ -91,8 +91,8 @@
                                     <action selector="showLocationMenu" destination="xeA-W3-eop" eventType="touchUpInside" id="B6E-4D-Uhm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h1y-ha-PTr">
-                                <rect key="frame" x="271" y="1" width="46" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h1y-ha-PTr">
+                                <rect key="frame" x="277" y="408" width="47" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="search.png">
@@ -106,8 +106,8 @@
                                     <action selector="pushSearchController" destination="xeA-W3-eop" eventType="touchUpInside" id="mHl-LA-Pn2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rxF-yW-E4C">
-                                <rect key="frame" x="149" y="1" width="45" height="38"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rxF-yW-E4C">
+                                <rect key="frame" x="143" y="408" width="51" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="photo (2).png">
@@ -449,12 +449,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonMenuViewController.h"/>
             <relationships>
                 <relationship kind="action" name="showFriend:"/>
-                <relationship kind="outlet" name="contactButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="friendName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="mappPersonButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="mutualFriendButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="WebViewController" superclassName="UIViewController">
