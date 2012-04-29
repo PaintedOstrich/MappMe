@@ -17,6 +17,7 @@
 @synthesize name, sectionNumber;
 @synthesize profileUrl;
 @synthesize largeProfileUrl;
+@synthesize mutualFriends;
 
 
 -(NSString*) buildProfileUrl:(BOOL)large
@@ -40,6 +41,7 @@
        self.profileUrl = [self buildProfileUrl:NO];
        self.largeProfileUrl = [self buildProfileUrl:YES];
         _locTypePlacesMapping = [[NSMutableDictionary alloc] initWithCapacity:6]; 
+        self.mutualFriends = [[NSArray alloc]init];
     }
     return self;
 }
@@ -53,7 +55,6 @@
         set = [[NSMutableSet alloc] initWithCapacity:5];
         [_locTypePlacesMapping setValue:set forKey:key];
     }
-    
     [set addObject:place];
 }
 
@@ -68,4 +69,14 @@
     }
     return toR;
 }
+//This is for TOSTRING method
+- (NSString *)description{
+    NSMutableString *person = [[NSMutableString alloc] initWithString:@"\n"];
+    [person appendFormat:@"%@\n",self.name];
+    [person appendFormat:@"\n\t uid: %@",self.uid];
+    [person appendFormat:@"\n\t %@",_locTypePlacesMapping];
+    [person appendFormat:@"\n\t Mutual Friends (%i) \n %@",[mutualFriends count], mutualFriends];
+    return (NSString *)person;    
+}
+
 @end

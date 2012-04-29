@@ -11,6 +11,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "MainViewController.h"
 #import "Person.h"
+#import "FacebookDataHandler.h"
+#import "DebugLog.h"
 
 @interface PersonMenuViewController ()
 @end
@@ -48,6 +50,7 @@
 {
     [super viewDidLoad];
     [self setUpDelegate];
+    [self getPersonData];
    	mutualFriends =[[NSArray alloc] init];
     [self refreshUI];
 }
@@ -72,16 +75,25 @@
     [profileImage setImageWithURL:[NSURL URLWithString:person.largeProfileUrl] placeholderImage:[UIImage imageNamed:@"profile.png"]];
     NSString * label = [[NSString alloc]initWithFormat:@"Mapp %@",person.name];
     [self setButtonLabel:mappPersonButton toLabel:label];
-    label = [[NSString alloc]initWithFormat:@"Mapp Mutual Friends (%i)",[mutualFriends count]];
+    label = [[NSString alloc]initWithFormat:@"Mapp Mutual Friends (%i)",[person.mutualFriends count]];
     [self setButtonLabel:mutualFriendButton toLabel:label];
     label = [[NSString alloc]initWithFormat:@"Contact %@",person.name];
     [self setButtonLabel:contactButton toLabel:label];
     label = [[NSString alloc]initWithFormat:@"Go to %@'s Profile",person.name];
     [self setButtonLabel:profileButton toLabel:label];
 }
+-(void)getPersonData{
+    if([self.person.mutualFriends count]<1){
+        FacebookDataHandler *fbDataHandler = [FacebookDataHandler sharedInstance];
+        [fbDataHandler getMutualFriends:person.uid];
+    }
+}
 
 -(IBAction)showFriend:(id)sender{
-    [searchDelegate didSelectFriend:self.person];
+    [searchDelegate didSelectFriend:person];
+}
+-(IBAction)showMutualFriends:(id)sender{
+    [searchDelegate didSelectMutualFriends:person];
 }
 
 - (void)viewDidUnload

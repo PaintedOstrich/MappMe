@@ -359,6 +359,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="showMutualFriends:" destination="hOJ-ov-awn" eventType="touchUpInside" id="bqB-xy-4D0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xqI-fp-PTR">
                                 <rect key="frame" x="10" y="286" width="300" height="40"/>
@@ -446,6 +449,12 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PersonMenuViewController.h"/>
             <relationships>
                 <relationship kind="action" name="showFriend:"/>
+                <relationship kind="outlet" name="contactButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="friendName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="mappPersonButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="mutualFriendButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="profileButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="profileImage" candidateClass="UIImageView"/>
             </relationships>
         </class>
         <class className="WebViewController" superclassName="UIViewController">

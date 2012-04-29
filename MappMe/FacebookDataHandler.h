@@ -17,5 +17,8 @@
 -(void)getCurrentLocation;
 -(void)getHometownLocation;
 -(void)getEducationInfo;
+-(void)getMutualFriends:(NSString*)friendId;
+
 -(void) cancelAllOperations;
+
 @end

@@ -73,6 +73,7 @@ static FacebookDataHandler *FBHandler = nil;
 	}
     //encode the string
 	url_string = [url_string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    DebugLog(@"query:\n %@",[NSURL URLWithString:url_string]);
     return [NSURL URLWithString:url_string];
 }
 
@@ -148,9 +149,9 @@ static FacebookDataHandler *FBHandler = nil;
         if([[friendsTemp objectForKey:locTypeString]count]==0){
             //If empty entry for location, continue
             continue;
-        }
-
-        NSString * uid = (NSString*)[friendsTemp objectForKey:@"uid"];
+        }   
+        
+        NSString * uid = [[friendsTemp objectForKey:@"uid"] stringValue];
         NSString * town_id = [[friendsTemp objectForKey:locTypeString]objectForKey:@"id"];
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
@@ -220,7 +221,7 @@ static FacebookDataHandler *FBHandler = nil;
         }
         NSEnumerator *schoolsEnum = [[friendsTemp objectForKey:@"education"] objectEnumerator];
         NSDictionary *school;
-        NSString * uid = [friendsTemp objectForKey:@"uid"];
+        NSString * uid = [[friendsTemp objectForKey:@"uid"]stringValue];
         NSString * name = [friendsTemp objectForKey:@"name"];
         while (school = (NSDictionary*)[schoolsEnum nextObject]) {
             NSString * school_id = (NSString*)[[school objectForKey:@"school"]objectForKey:@"id"];
@@ -237,6 +238,28 @@ static FacebookDataHandler *FBHandler = nil;
             [self link:place withPerson:person forLocType:placeType];
         }
     }
+}
+//Parses mutual friends and stores them as array for person
+-(void)parseMutualFriends:(NSDictionary*)bas_info{
+    NSDictionary *uids;
+    NSDictionary *mutualFriendsFromFb = [bas_info objectForKey:@"fql_result_set"];
+    NSEnumerator *friendsEnum = [mutualFriendsFromFb objectEnumerator];
+    NSString *personId = @"";
+    
+    NSMutableArray *friendIds = [[NSMutableArray alloc]initWithCapacity:[mutualFriendsFromFb count]];
+    while ((uids = (NSDictionary *)[friendsEnum nextObject])) {
+        if (personId.length <1) {
+             personId = [uids objectForKey:@"uid1"];
+        }
+        NSString *fid =[uids objectForKey:@"uid2"];
+        [friendIds addObject:fid];
+    }
+    Person* person = [mainDataManager.peopleContainer get:personId];
+    [person setMutualFriends:(NSArray*)friendIds];
+//    DebugLog(@"just got these mutual friends %@",friendIds);
+    DebugLog(@"person Id from result: %@", personId)
+    DebugLog(@"friend printout: %@",person.name);
+    
 }
 -(void)parseFacebookInfoController: (NSDictionary *)data{
     NSDictionary* infoArray = (NSDictionary *)[data objectForKey:@"data"]; 
@@ -268,6 +291,9 @@ static FacebookDataHandler *FBHandler = nil;
         }
         if ([loc isEqualToString:@"schoolLocation"]){
             [self parseFbEdu:bas_info];
+        }
+        if([loc isEqualToString:@"mutualFriends"]){
+            [self parseMutualFriends:bas_info];
         }
     }
     
@@ -309,8 +335,19 @@ static FacebookDataHandler *FBHandler = nil;
                        @"SELECT location,name,page_id FROM page WHERE page_id IN (SELECT education FROM #friendsEdu)"];
     NSString* fqlE = [NSString stringWithFormat:
                       @"{\"friendsEdu\":\"%@\",\"schoolLocation\":\"%@\"}",fqlE1,fqlE2];
-   // DebugLog(@"Education Query: \n%@",fqlE);
     [self asynchMultQueryHelper:fqlE];
 }
+
+-(void)getMutualFriends:(NSString*)friendId{
+    NSString* mutual = [NSString stringWithFormat:
+                       @"SELECT uid1, uid2 FROM friend WHERE uid1 IN (SELECT uid2 FROM friend WHERE uid1=me() AND uid2 = '%@' ) AND uid2 IN (SELECT uid2 FROM friend WHERE uid1=me())", friendId];
+        NSString* fql = [NSString stringWithFormat:
+                      @"{\"mutualFriends\":\"%@\"}",mutual];
+    DebugLog(@"lookup for person Id : %@", friendId);
+    [self asynchMultQueryHelper:fql];
+}
+
+
+
 
 @end

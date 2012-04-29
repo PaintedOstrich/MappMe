@@ -13,6 +13,7 @@
 
 @synthesize title, subtitle, coordinate, person_id, peopleArr, locType, placeHolderImg, place_id;
 
+
 -(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)type
 {
     if(self = [super init]){
@@ -25,7 +26,28 @@
     }
     return self;
 }
+//Method only returns friends with the specified individual. This used when showing mututal friends
+-(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)type forMutualFriend:(Person*)friendsWith
+{
+    if(self = [super init]){
+        self.title = place.name;
+        NSArray*allPeople = [[place getPeople:type] allObjects];
+        NSMutableArray *mutualPeople = [[NSMutableArray alloc] init];
+        NSEnumerator *friendEnum = [allPeople objectEnumerator];
+        Person *friend;
+        while (friend = (Person*)[friendEnum nextObject]) {
+            if ([friendsWith.mutualFriends indexOfObject:friend.uid]!=NSNotFound) {
+                [mutualPeople addObject:friend];
+            }
+        }        self.peopleArr = mutualPeople;
+        [self countDependentConfigs:self.peopleArr];
+        self.locType = type;
+        self.place_id = place.uid;
+    }
+    return self;
+}
 
+//For item when MAPP ing  friend
 -(MyAnnotation*) initWithPlace:(Place *)place forPerson:(Person*)person forLocType:(locTypeEnum)type
 {
     if(self = [super init]){

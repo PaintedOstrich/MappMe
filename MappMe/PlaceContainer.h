@@ -21,4 +21,5 @@
 -(NSArray*) getPlacesUsedAs:(locTypeEnum)locType;
 -(void) loadPlacesFromDisk;
 -(void) savePlacesToDisk;
+-(NSArray*) getPlacesUsedAs:(locTypeEnum)locType friendsWith:(Person*)mutualFriendsWith;
 @end
