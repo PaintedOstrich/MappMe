@@ -10,6 +10,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DebugLog.h"
 
+#import "MainMenuViewController.h"
+
 /*PLEASE NOTE:  the position of the buttonContainer is veryImportant.  It must be as close to the toggle Button, as the screen will only slide down the height of the container
  Container top must be positioned at 260 px offset*/
 @interface SlidingContainer (){
@@ -24,7 +26,7 @@
 @synthesize toggleButton;
 
 
-@synthesize containerHeight;
+@synthesize displayHeight;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,7 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    displayHeight = buttonContainer.frame.size.height;
+	[self initMainMenuController];
 }
 
 - (void)viewDidUnload
@@ -87,12 +90,11 @@
    
 }
 -(void)slideInController{
-    containerHeight = buttonContainer.frame.size.height;
-    DebugLog(@"sliding height %i", containerHeight);
-//    int openYPos = y+containerHeight
+    DebugLog(@"sliding height %i", displayHeight);
+//   int openYPos = y+containerHeight
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.5];
-	CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0,containerHeight);
+	CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0,displayHeight);
 	self.view.transform = transform;
 	[UIView commitAnimations];
     DebugLog(@"new container y : %i", self.view.frame.origin.y);
@@ -113,54 +115,24 @@
     int yOffset = 48 - height; 
 //    self.view.frame= CGPointMake(xOffset, 0);
     self.view.frame = CGRectMake(xOffset, yOffset, width, height);
-    
-    //Add Subview first, then this controller to parent controller
+
     [parentViewController.view addSubview:self.view];
     [parentViewController addChildViewController:self];
-//    CGPoint end = CGPointMake(100, 250)
-//    [self animatePinDrop:end];
-    
 }
-//    gradientView = [[GradientView alloc] initWithFrame:parentViewController.view.bounds];
-//    [parentViewController.view addSubview:gradientView];
-//    CABasicAnimation *fadeAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-//    fadeAnimation.fromValue = [NSNumber numberWithFloat:0.0f];
-//    fadeAnimation.toValue = [NSNumber numberWithFloat:1.0f];
-//    fadeAnimation.duration = 0.1;
-//    [gradientView.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
-//    
-//    self.view.frame = parentViewController.view.bounds;
-//    [self layoutForInterfaceOrientation:parentViewController.interfaceOrientation];
-//    
-//    [parentViewController addChildViewController:self];
-//    
-//    CAKeyframeAnimation *bounceAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-//    
-//    bounceAnimation.duration = 0.4;
-//    bounceAnimation.delegate = self;
-//    
-//    bounceAnimation.values = [NSArray arrayWithObjects:
-//                              [NSNumber numberWithFloat:0.7f],
-//                              [NSNumber numberWithFloat:1.2f],
-//                              [NSNumber numberWithFloat:0.9f],
-//                              [NSNumber numberWithFloat:1.0f],
-//                              nil];
-//    
-//    bounceAnimation.keyTimes = [NSArray arrayWithObjects:
-//                                [NSNumber numberWithFloat:0.0f],
-//                                [NSNumber numberWithFloat:0.334f],
-//                                [NSNumber numberWithFloat:0.666f],
-//                                [NSNumber numberWithFloat:1.0f],
-//                                nil];
-//    
-//    bounceAnimation.timingFunctions = [NSArray arrayWithObjects:
-//                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-//                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-//                                       [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
-//                                       nil];
-//    
-//    [self.view.layer addAnimation:bounceAnimation forKey:@"bounceAnimation"];
-
+#pragma mark - SubController Methods
+-(void)initMainMenuController{
+    MainMenuViewController *controller = [[MainMenuViewController alloc] initWithNibName:@"MainMenuViewController" bundle:nil];
+//    controller.delegate = self;
+    [self setViewToBottomCenter:controller.view];
+    [buttonContainer addSubview:controller.view];
+    displayHeight = controller.view.frame.size.height;
+    [self addChildViewController:controller];
+}
+-(void)setViewToBottomCenter:(UIView*)view{
+    int originX = (buttonContainer.frame.size.width-view.frame.size.width)/2;
+    int originY = (buttonContainer.frame.size.height-view.frame.size.height);
+    view.frame = CGRectMake(originX, originY, view.frame.size.height, view.frame.size.width);
+}
 
 
 - (IBAction)close:(id)sender
