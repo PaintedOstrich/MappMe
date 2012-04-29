@@ -79,25 +79,25 @@
 
 - (IBAction)showHomeTown:(id)sender
 {
-    [self.delegate disSelectLocType:tHomeTown];
+//    [self.delegate didSelectLocType:tHomeTown];
     [self dismissFromParentViewController];
 }
 
 - (IBAction)showCurrentLocation:(id)sender
 {
-    [self.delegate disSelectLocType:tCurrentLocation];
+//    [self.delegate didSelectLocType:tCurrentLocation];
     [self dismissFromParentViewController];
 }
 
 - (IBAction)showCollege:(id)sender
 {
-    [self.delegate disSelectLocType:tCollege];
+//    [self.delegate didSelectLocType:tCollege];
     [self dismissFromParentViewController];
 }
 
 - (IBAction)showHighSchool:(id)sender
 {
-    [self.delegate disSelectLocType:tHighSchool];
+//    [self.delegate didSelectLocType:tHighSchool];
     [self dismissFromParentViewController];
 }
 

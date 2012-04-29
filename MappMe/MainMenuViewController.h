@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainMenuViewController : UIViewController
+@protocol MainMenuDelegate
+- (void)didSelectLocType:(locTypeEnum)locType;
+@end
+@interface MainMenuViewController : UIViewController{
+    locTypeEnum selectedLocType;
+}
+
+@property (retain) id<MainMenuDelegate> delegate;
+@property locTypeEnum selectedLocType;
 
 @end
