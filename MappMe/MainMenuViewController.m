@@ -1,20 +1,18 @@
 //
-//  AbstractSlidingController.m
+//  MainMenuViewController.m
 //  MappMe
 //
-//  Created by Parker Spielman on 4/28/12.
+//  Created by Parker Spielman on 4/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MainLocMenuController.h"
+#import "MainMenuViewController.h"
 
-@interface MainLocMenuController (){
-    
-}
+@interface MainMenuViewController ()
 
 @end
 
-@implementation MainLocMenuController
+@implementation MainMenuViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,11 +38,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-//{
-//   [self didMoveToParentViewController:self.parentViewController];
-//}
 @end

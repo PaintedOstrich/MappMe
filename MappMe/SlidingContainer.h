@@ -12,12 +12,12 @@
 // 
     //IBOutlet UIView* backgroundView;
 //    IBOutlet UIView* toggleButton;
-    int containerHeight;
+    int displayHeight;
 }
 
 @property (nonatomic, weak) IBOutlet UIView *buttonContainer;
 @property (nonatomic, weak) IBOutlet UIButton *toggleButton;
-@property (nonatomic) int containerHeight;
+@property (nonatomic) int displayHeight;
 
 -(IBAction)toggle:(id)sender;
 - (void)presentInParentViewController:(UIViewController *)parentViewController;
