@@ -17,6 +17,7 @@
 #import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
 #import "ScreenShotController.h"
+#import "AbstractSlidingContainer.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -70,6 +71,8 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
+    
+    [self showMenuForLocations];
 }
 
 - (void)viewDidUnload
@@ -171,6 +174,13 @@
     [self performSegueWithIdentifier:@"searchview" sender:self];
 }
 
+#pragma mark - Sliding Interface
+-(void)showMenuForLocations{
+    AbstractSlidingContainer *controller = [[AbstractSlidingContainer alloc] initWithNibName:@"AbstractSlider" bundle:nil];
+    //controller.delegate = self;
+    //controller.selectedLocType = currDisplayedType;
+    [controller presentInParentViewController:self];
+}
 #pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(IBAction)showLocationMenu{
