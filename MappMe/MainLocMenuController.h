@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AbstractSlidingContainer.h"
+#import "SlidingContainer.h"
 
 //This is the sliding controller for a slide in view.
 //It is intended to be subclassed
-@interface MainLocMenuController : AbstractSlidingContainer{
+@interface MainLocMenuController : SlidingContainer{
 }
 
 @end
