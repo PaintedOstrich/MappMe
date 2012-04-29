@@ -40,7 +40,7 @@
 		68963AEF154C811700286C3B /* DropDownMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 68963AEA154C811700286C3B /* DropDownMenu.png */; };
 		68963AF7154C81DB00286C3B /* MainLocMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963AF5154C81DB00286C3B /* MainLocMenuController.m */; };
 		68963AF8154C81DB00286C3B /* AbstractSlider.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68963AF6154C81DB00286C3B /* AbstractSlider.xib */; };
-		68963B00154C86E000286C3B /* AbstractSlidingContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963AFF154C86DF00286C3B /* AbstractSlidingContainer.m */; };
+		68963B00154C86E000286C3B /* SlidingContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963AFF154C86DF00286C3B /* SlidingContainer.m */; };
 		68BEE56C15258EBC00E2433D /* ZoomHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 68BEE56B15258EBC00E2433D /* ZoomHelper.m */; };
 		68BEE57215292D0E00E2433D /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 68BEE57115292D0E00E2433D /* triangle.png */; };
 		68CFF09E15253F3000335C10 /* DataManagerSingleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CFF09D15253F3000335C10 /* DataManagerSingleton.m */; };
@@ -199,8 +199,8 @@
 		68963AF4154C81DB00286C3B /* MainLocMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLocMenuController.h; sourceTree = "<group>"; };
 		68963AF5154C81DB00286C3B /* MainLocMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainLocMenuController.m; sourceTree = "<group>"; };
 		68963AF6154C81DB00286C3B /* AbstractSlider.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbstractSlider.xib; sourceTree = "<group>"; };
-		68963AFE154C86DF00286C3B /* AbstractSlidingContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractSlidingContainer.h; sourceTree = "<group>"; };
-		68963AFF154C86DF00286C3B /* AbstractSlidingContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractSlidingContainer.m; sourceTree = "<group>"; };
+		68963AFE154C86DF00286C3B /* SlidingContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidingContainer.h; sourceTree = "<group>"; };
+		68963AFF154C86DF00286C3B /* SlidingContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidingContainer.m; sourceTree = "<group>"; };
 		68BEE56A15258EBC00E2433D /* ZoomHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZoomHelper.h; sourceTree = SOURCE_ROOT; };
 		68BEE56B15258EBC00E2433D /* ZoomHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZoomHelper.m; sourceTree = SOURCE_ROOT; };
 		68BEE57115292D0E00E2433D /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
@@ -513,7 +513,6 @@
 				68BEE57115292D0E00E2433D /* triangle.png */,
 				A96AD5CE151FD52B00372528 /* profile.png */,
 				A963C346151EE98F00559DB3 /* search.png */,
-				A963C343151EE8E200559DB3 /* settings.png */,
 				68FC2A8E153E806100003A74 /* loginBackground.png */,
 			);
 			name = otherUI;
@@ -525,8 +524,8 @@
 				68963AF4154C81DB00286C3B /* MainLocMenuController.h */,
 				68963AF5154C81DB00286C3B /* MainLocMenuController.m */,
 				68963AF6154C81DB00286C3B /* AbstractSlider.xib */,
-				68963AFE154C86DF00286C3B /* AbstractSlidingContainer.h */,
-				68963AFF154C86DF00286C3B /* AbstractSlidingContainer.m */,
+				68963AFE154C86DF00286C3B /* SlidingContainer.h */,
+				68963AFF154C86DF00286C3B /* SlidingContainer.m */,
 			);
 			name = SlidingViewMenus;
 			sourceTree = "<group>";
@@ -958,7 +957,7 @@
 				68963A93154ADF9200286C3B /* UtilFunctions.m in Sources */,
 				687E43F8154DABD700CE245F /* SettingsMenuController.m in Sources */,
 				68963AF7154C81DB00286C3B /* MainLocMenuController.m in Sources */,
-				68963B00154C86E000286C3B /* AbstractSlidingContainer.m in Sources */,
+				68963B00154C86E000286C3B /* SlidingContainer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

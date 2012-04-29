@@ -6,22 +6,31 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "AbstractSlidingContainer.h"
+#import "SlidingContainer.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DebugLog.h"
 
-@interface AbstractSlidingContainer ()
-
+/*PLEASE NOTE:  the position of the buttonContainer is veryImportant.  It must be as close to the toggle Button, as the screen will only slide down the height of the container
+ Container top must be positioned at 260 px offset*/
+@interface SlidingContainer (){
+    BOOL open;
+}
 @end
 
-@implementation AbstractSlidingContainer
+@implementation SlidingContainer
 
 
+@synthesize buttonContainer;
+@synthesize toggleButton;
+
+
+@synthesize containerHeight;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
+
     return self;
 }
 
@@ -67,38 +76,48 @@
 {
     [self didMoveToParentViewController:self.parentViewController];
 }
--(void)slideInController:(CGPoint)origin toPoint:(int)endY{
-    int x = origin.x;
-    int y = origin.y;
-    UIBezierPath *movePath = [UIBezierPath bezierPath];
-//    CGPoint midPoint= CGPointMake((icon.layer.position.x)*1.1, abs(icon.layer.position.y)*1.1);
-//    
-//    [movePath moveToPoint:icon.center];
-//    //            [movePath moveToPoint:CGPointMake(200, 300)];
-//    [movePath addQuadCurveToPoint:endPoint
-//                     controlPoint:midPoint];
-//    
-//    CAKeyframeAnimation *moveAnim = [CAKeyframeAnimation animationWithKeyPath:@"position"];
-//    moveAnim.path = movePath.CGPath;
-//    moveAnim.removedOnCompletion = NO;
-//    
-//    CAAnimationGroup *animGroup = [CAAnimationGroup animation];
-//    //Call self when animation finishes
-//    animGroup.delegate = self;
-//    
-//    animGroup.removedOnCompletion = NO;
-//    animGroup.animations = [NSArray arrayWithObjects:moveAnim,  nil];
-//    animGroup.duration = MAX(1.0-(float)(pinNum+5)/10,0.3);
-//    [icon.layer addAnimation:animGroup forKey:@"position"];
-//    [icon.layer setPosition:endPoint];
+-(IBAction)toggle:(id)sender{
+    if (open) {
+        [self slideOutController];
+    }
+    else{
+        [self slideInController];
+    }
+    open = !open;
+   
+}
+-(void)slideInController{
+    containerHeight = buttonContainer.frame.size.height;
+    DebugLog(@"sliding height %i", containerHeight);
+//    int openYPos = y+containerHeight
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.5];
+	CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0,containerHeight);
+	self.view.transform = transform;
+	[UIView commitAnimations];
+    DebugLog(@"new container y : %i", self.view.frame.origin.y);
 }
 -(void)slideOutController{
-    
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	CGAffineTransform transform = CGAffineTransformMakeTranslation(0.0,0);
+	self.view.transform = transform;
+	[UIView commitAnimations];
+    DebugLog(@"new container y : %i", self.view.frame.origin.y);
 }
 - (void)presentInParentViewController:(UIViewController *)parentViewController
-{
+{   
+    int height = self.view.frame.size.height;
+    int width = self.view.frame.size.width;
+    int xOffset = (parentViewController.view.frame.size.width-width)/2;
+    int yOffset = 48 - height; 
+//    self.view.frame= CGPointMake(xOffset, 0);
+    self.view.frame = CGRectMake(xOffset, yOffset, width, height);
+    
+    //Add Subview first, then this controller to parent controller
     [parentViewController.view addSubview:self.view];
-//    CGPoint end = CGPointMake(100, 250);
+    [parentViewController addChildViewController:self];
+//    CGPoint end = CGPointMake(100, 250)
 //    [self animatePinDrop:end];
     
 }

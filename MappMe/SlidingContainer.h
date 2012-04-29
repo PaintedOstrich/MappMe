@@ -8,16 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AbstractSlidingContainer : UIViewController{
+@interface SlidingContainer : UIViewController{
 // 
     //IBOutlet UIView* backgroundView;
 //    IBOutlet UIView* toggleButton;
     int containerHeight;
 }
 
-@property (nonatomic, weak) IBOutlet UIView *backgroundView;
-@property (nonatomic, weak) IBOutlet UIView *toggleButton;
+@property (nonatomic, weak) IBOutlet UIView *buttonContainer;
+@property (nonatomic, weak) IBOutlet UIButton *toggleButton;
+@property (nonatomic) int containerHeight;
 
+-(IBAction)toggle:(id)sender;
 - (void)presentInParentViewController:(UIViewController *)parentViewController;
 - (void)dismissFromParentViewController;
 @end

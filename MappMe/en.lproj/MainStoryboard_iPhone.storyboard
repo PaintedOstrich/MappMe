@@ -61,21 +61,6 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </view>
-                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tYM-iC-8R0">
-                                <rect key="frame" x="271" y="416" width="50" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="settings.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showSettingsMenu" destination="xeA-W3-eop" eventType="touchUpInside" id="o3X-wO-zp2"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ywt-Bj-O5i">
                                 <rect key="frame" x="1" y="408" width="120" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -92,10 +77,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h1y-ha-PTr">
-                                <rect key="frame" x="277" y="408" width="47" height="37"/>
+                                <rect key="frame" x="283" y="5" width="33" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="search.png">
+                                <state key="normal" image="SearchButton.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -133,6 +118,21 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="d6O-5o-GYn">
+                                <rect key="frame" x="280" y="421" width="36" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="SettingsButton.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showSettingsMenu" destination="xeA-W3-eop" eventType="touchUpInside" id="u2o-e8-KaB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -144,7 +144,7 @@
                         <outlet property="locationTypeBtn" destination="ywt-Bj-O5i" id="Ckg-So-dYc"/>
                         <outlet property="progressIndicator" destination="N1Z-4P-kq5" id="dQf-td-sDI"/>
                         <outlet property="searchBtn" destination="h1y-ha-PTr" id="uT3-Oq-hPd"/>
-                        <outlet property="settingsBtn" destination="tYM-iC-8R0" id="cLo-98-A8W"/>
+                        <outlet property="settingsBtn" destination="d6O-5o-GYn" id="8v6-Bf-Wqm"/>
                         <segue destination="jKP-RX-6AY" kind="push" identifier="showdetaillist" id="6Tq-j3-iIZ"/>
                         <segue destination="6Yj-bg-qVr" kind="push" identifier="searchview" id="Xu9-6B-ila"/>
                         <segue destination="tAr-t5-IJA" kind="modal" identifier="settingsview" modalTransitionStyle="partialCurl" id="KPq-Xf-wkD"/>
@@ -418,10 +418,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="SearchButton.png" width="39" height="55"/>
+        <image name="SettingsButton.png" width="54" height="54"/>
         <image name="loginBackground.png" width="276" height="413"/>
         <image name="photo (2).png" width="128" height="128"/>
-        <image name="search.png" width="128" height="128"/>
-        <image name="settings.png" width="128" height="128"/>
     </resources>
     <classes>
         <class className="FriendSearchViewController" superclassName="UITableViewController">

@@ -16,7 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
-#import "AbstractSlidingContainer.h"
+#import "SlidingContainer.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -175,7 +175,7 @@
 
 #pragma mark - Sliding Interface
 -(void)showMenuForLocations{
-    AbstractSlidingContainer *controller = [[AbstractSlidingContainer alloc] initWithNibName:@"AbstractSlider" bundle:nil];
+    SlidingContainer *controller = [[SlidingContainer alloc] initWithNibName:@"AbstractSlider" bundle:nil];
     //controller.delegate = self;
     //controller.selectedLocType = currDisplayedType;
     [controller presentInParentViewController:self];
