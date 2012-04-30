@@ -1,16 +1,14 @@
 //
-//  LocTypeMenuController.m
+//  MainMenuViewController.m
 //  MappMe
 //
-//  Created by Di Peng on 4/20/12.
+//  Created by Parker Spielman on 4/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "LocTypeMenuController.h"
-#import <QuartzCore/QuartzCore.h>
-#import "GradientView.h"
+#import "MainMenuViewController.h"
 
-@interface LocTypeMenuController () {
+@interface MainMenuViewController (){
     IBOutlet UIButton* hometownBtn;
     IBOutlet UIButton* currentLocationBtn;
     IBOutlet UIButton* collegeBtn;
@@ -19,11 +17,10 @@
 
 @end
 
-@implementation LocTypeMenuController{
-}
+@implementation MainMenuViewController
 
-@synthesize delegate = _delegate;
-@synthesize selectedLocType=_selectedLocType;
+@synthesize delegate;
+@synthesize selectedLocType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +34,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self updateButtonHighlight];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -49,14 +46,9 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-{
-    [self didMoveToParentViewController:self.parentViewController];
-}
-
+#pragma mark - control logic
 -(void)updateButtonHighlight
 {
     switch (self.selectedLocType) {
@@ -79,26 +71,24 @@
 
 - (IBAction)showHomeTown:(id)sender
 {
-//    [self.delegate didSelectLocType:tHomeTown];
-    [self dismissFromParentViewController];
+    [self.delegate didSelectLocType:tHomeTown];
+    DebugLog(@"called button");
 }
 
 - (IBAction)showCurrentLocation:(id)sender
 {
-//    [self.delegate didSelectLocType:tCurrentLocation];
-    [self dismissFromParentViewController];
+    [self.delegate didSelectLocType:tCurrentLocation];
+    
 }
 
 - (IBAction)showCollege:(id)sender
 {
-//    [self.delegate didSelectLocType:tCollege];
-    [self dismissFromParentViewController];
+    [self.delegate didSelectLocType:tCollege];
 }
 
 - (IBAction)showHighSchool:(id)sender
 {
-//    [self.delegate didSelectLocType:tHighSchool];
-    [self dismissFromParentViewController];
+    [self.delegate didSelectLocType:tHighSchool];
 }
 
 @end

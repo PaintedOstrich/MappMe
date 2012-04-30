@@ -16,6 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
+#import "SlidingContainer.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -69,6 +70,8 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
+    
+    [self showMenuForLocations];
 }
 
 - (void)viewDidUnload
@@ -170,11 +173,18 @@
     [self performSegueWithIdentifier:@"searchview" sender:self];
 }
 
+#pragma mark - Sliding Interface
+-(void)showMenuForLocations{
+    SlidingContainer *controller = [[SlidingContainer alloc] initWithNibName:@"AbstractSlider" bundle:nil];
+    //controller.delegate = self;
+    //controller.selectedLocType = currDisplayedType;
+    [controller presentInParentViewController:self];
+}
 #pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(IBAction)showLocationMenu{
     LocTypeMenuController *controller = [[LocTypeMenuController alloc] initWithNibName:@"LocTypeMenuController" bundle:nil];
-    controller.delegate = self;
+//    controller.delegate = self;
     controller.selectedLocType = currDisplayedType;
     [controller presentInParentViewController:self];
 }
@@ -482,8 +492,9 @@
 }
 
 #pragma mark - LocTypeMenuController Delegate methods
--(void) disSelectLocType:(locTypeEnum)locType
+-(void) didSelectLocType:(locTypeEnum)locType
 {
+    DebugLog(@"called delegate method");
     [self showLocationType:locType];
 }
 
