@@ -36,7 +36,7 @@
 }
 
 -(void)loginButtonPress{
-    NSArray* permissions = [[NSArray alloc] initWithObjects:@"friends_hometown",@"friends_location",@"friends_work_history",@"friends_education_history", nil];
+    NSArray* permissions = [[NSArray alloc] initWithObjects:@"friends_hometown",@"friends_location",@"friends_work_history",@"friends_education_history", @"publish_actions", nil];
     [[delegate facebook] authorize:permissions];
 }
 #pragma mark - Animation Methods
@@ -268,17 +268,17 @@
  * Called when the request logout has succeeded.
  */
 - (void)fbDidLogout {
-    [[DataManagerSingleton sharedManager] clearAllData];
-    [[FacebookDataHandler sharedInstance] cancelAllOperations];
-    [[CoordinateLookupManager sharedManager] cancelAllOperations];
     // Remove saved authorization information if it exists and it is
     // ok to clear it (logout, session invalid, app unauthorized)
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"FBAccessTokenKey"];
     [defaults removeObjectForKey:@"FBExpirationDateKey"];
     [defaults synchronize];
-    //    [self showLoggedOut];
-    NSLog(@"FBDIDLOGOUT CALLED");
+    
+    [[DataManagerSingleton sharedManager] clearAllData];
+    [[FacebookDataHandler sharedInstance] cancelAllOperations];
+    [[CoordinateLookupManager sharedManager] cancelAllOperations];
+     NSLog(@"FBDIDLOGOUT CALLED");
 }
 
 /**

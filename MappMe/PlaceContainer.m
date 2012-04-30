@@ -62,6 +62,10 @@
  */
 -(Place*)get:(NSString*)town_id
 {
+    //We should never pass along nil as person_id
+    if (town_id == nil) {
+        [NSException raise:@"town_id is nil" format:@"town_id cannot be nil when calling get on PlaceContainer"];
+    }
     Place* place = [_data objectForKey:town_id];
     if (place == nil) {
         place = [[Place alloc] initPlace:town_id withName:@"No Name"];
