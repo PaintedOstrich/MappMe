@@ -160,7 +160,7 @@
 	else {
         [self didSelectFriend:[annotation.peopleArr objectAtIndex:0]];
         Person *person = [annotation.peopleArr objectAtIndex:0];
-        [_slidingController selectedFriend:person];
+        [_slidingController selectedFriendMenu:person];
 //        [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
 	}
 }
