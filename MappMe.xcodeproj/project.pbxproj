@@ -17,6 +17,10 @@
 		680435F314FED94600899729 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 680435F114FED94600899729 /* MainStoryboard_iPad.storyboard */; };
 		680435F614FED94600899729 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 680435F514FED94600899729 /* LoginViewController.m */; };
 		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
+		6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */; };
+		6819C1F9154F5FF800BA2544 /* MutualMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */; };
+		6819C1FD154F66AE00BA2544 /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */; };
+		6819C1FE154F66AE00BA2544 /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */; };
 		681C4164151D724500747C4A /* bluePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415D151D724500747C4A /* bluePin.png */; };
 		681C4165151D724500747C4A /* greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415E151D724500747C4A /* greenPin.png */; };
 		681C4166151D724500747C4A /* orangePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415F151D724500747C4A /* orangePin.png */; };
@@ -174,6 +178,12 @@
 		680435F514FED94600899729 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		6804361514FEEF4200899729 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		6804361614FEEF4200899729 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		6819C1F5154F5FF800BA2544 /* MutualMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutualMenuViewController.h; sourceTree = "<group>"; };
+		6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutualMenuViewController.m; sourceTree = "<group>"; };
+		6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MutualMenuViewController.xib; sourceTree = "<group>"; };
+		6819C1FA154F66AD00BA2544 /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
+		6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
+		6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
 		681C415D151D724500747C4A /* bluePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluePin.png; sourceTree = "<group>"; };
 		681C415E151D724500747C4A /* greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenPin.png; sourceTree = "<group>"; };
 		681C415F151D724500747C4A /* orangePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangePin.png; sourceTree = "<group>"; };
@@ -537,6 +547,12 @@
 				68C72DE6154DF13400DBED48 /* MainMenuViewController.h */,
 				68C72DE7154DF13400DBED48 /* MainMenuViewController.m */,
 				68C72DE8154DF13400DBED48 /* MainMenuViewController.xib */,
+				6819C1F5154F5FF800BA2544 /* MutualMenuViewController.h */,
+				6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */,
+				6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */,
+				6819C1FA154F66AD00BA2544 /* PersonMenuSlideController.h */,
+				6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */,
+				6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */,
 			);
 			name = SlidingViewMenus;
 			sourceTree = "<group>";
@@ -916,6 +932,8 @@
 				68963AEF154C811700286C3B /* DropDownMenu.png in Resources */,
 				68963AF8154C81DB00286C3B /* AbstractSlider.xib in Resources */,
 				68C72DEA154DF13400DBED48 /* MainMenuViewController.xib in Resources */,
+				6819C1F9154F5FF800BA2544 /* MutualMenuViewController.xib in Resources */,
+				6819C1FE154F66AE00BA2544 /* PersonMenuSlideController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,6 +996,8 @@
 				68963AF7154C81DB00286C3B /* MainLocMenuController.m in Sources */,
 				68963B00154C86E000286C3B /* SlidingContainer.m in Sources */,
 				68C72DE9154DF13400DBED48 /* MainMenuViewController.m in Sources */,
+				6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */,
+				6819C1FD154F66AE00BA2544 /* PersonMenuSlideController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

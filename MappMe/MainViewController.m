@@ -43,6 +43,9 @@
     IBOutlet UIView* progressIndicator;
     BOOL _finishedSaving;
     BOOL _startedOperations;
+    
+    //Main Sliding Controller
+    SlidingContainer *_slidingController;
 }
 
 #pragma mark - View lifecycle
@@ -122,13 +125,17 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return YES;
+    //Upside down is the same as right side up, otherwise view gets stuck in horizontal when upside down
+    //return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 #pragma mark - Transition Functions
 //All functions involving transition to another screen should go below
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    //Check that main menu is closed
+    [_slidingController closeMenu];
     if ([segue.identifier isEqualToString:@"showdetaillist"]) {
         ListViewController *controller = segue.destinationViewController;
         controller.selectedAnnotation = (MyAnnotation*)sender;
@@ -153,7 +160,10 @@
 	}
 	//only one person, go to the facebook page directly.!
 	else {
-        [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
+        [self didSelectFriend:[annotation.peopleArr objectAtIndex:0]];
+        Person *person = [annotation.peopleArr objectAtIndex:0];
+        [_slidingController selectedFriend:person];
+//        [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
 	}
 }
 //FIXME: Change to go to different menu with person options and location options
@@ -177,10 +187,10 @@
 
 #pragma mark - Sliding Interface
 -(void)showMenuForLocations{
-    SlidingContainer *controller = [[SlidingContainer alloc] initWithNibName:@"AbstractSlider" bundle:nil];
+    _slidingController = [[SlidingContainer alloc] initWithNibName:@"AbstractSlider" bundle:nil];
     //controller.delegate = self;
     //controller.selectedLocType = currDisplayedType;
-    [controller presentInParentViewController:self];
+    [_slidingController presentInParentViewController:self];
 }
 #pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
@@ -488,7 +498,7 @@
     [self clearMap];
     isFriendAnnotationType = TRUE;
     isMutualFriendType = FALSE;
-    currDisplayedType = tNilLocType;
+//    currDisplayedType = tNilLocType;
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
     [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
@@ -499,6 +509,10 @@
     isFriendAnnotationType = FALSE;
     mutualFriendsWith = person;
     [self showLocationType:tCurrentLocation];
+}
+- (void)backToAllFriends{
+    isMutualFriendType = FALSE;
+    [self showLocationType:currDisplayedType];
 }
 
 #pragma mark - LocTypeMenuController Delegate methods

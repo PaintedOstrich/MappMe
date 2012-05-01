@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SlidingContainer.h"
 
 @protocol MainMenuDelegate
 - (void)didSelectLocType:(locTypeEnum)locType;
 @end
 @interface MainMenuViewController : UIViewController{
     locTypeEnum selectedLocType;
+    SlidingContainer *container;
 }
 
 @property (retain) id<MainMenuDelegate> delegate;
 @property locTypeEnum selectedLocType;
+@property (nonatomic,retain) SlidingContainer * container;
 
 @end
