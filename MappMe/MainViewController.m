@@ -17,6 +17,7 @@
 #import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
 #import "SlidingContainer.h"
+#import "FriendSearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController{
@@ -143,8 +144,12 @@
         Person *friend = (Person*)sender;
         PersonMenuViewController *controller = segue.destinationViewController;
         controller.person = friend;
+    } else if ([segue.identifier isEqualToString:@"searchview"]){
+        FriendSearchViewController *controller = segue.destinationViewController;
+        controller.mvc = self;
     }
 } 
+
 
 /*
  * This method is invoked when the accesory button on annotation view is tapped.
@@ -483,13 +488,14 @@
     
     return annotationView;
 }
-#pragma mark - FriendSearchViewControllerDelegate methods
+#pragma mark - DelegateMethods 
 - (void)didSelectFriend:(Person *)selectedPerson {
     [self.navigationController popToViewController:self animated:YES];
     [self clearMap];
     isFriendAnnotationType = TRUE;
     isMutualFriendType = FALSE;
 //    currDisplayedType = tNilLocType;
+    [_slidingController selectedFriendMenu:selectedPerson];
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
     [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
