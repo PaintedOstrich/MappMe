@@ -12,7 +12,9 @@
 
 @end
 
-@implementation PersonMenuSlideController
+@implementation PersonMenuSlideController{
+    IBOutlet UIButton *b1,*b2,*b3,*b4,*b5,*b6;
+}
 
 @synthesize delegate;
 @synthesize container;
@@ -29,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self.view bringSubviewToFront:b6];
 }
 
 - (void)viewDidUnload
@@ -42,6 +44,10 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+- (IBAction)backToAll:(id)sender
+{
+    [self.delegate backToAllFriends];
 }
 
 @end

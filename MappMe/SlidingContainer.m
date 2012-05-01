@@ -44,7 +44,9 @@
 {
     [super viewDidLoad];
     displayHeight = buttonContainer.frame.size.height;
-	[self initMainMenuController];
+	//[self initMainMenuController];
+//    [self initPersonViewController:nil];
+    [self initMutualMenuController];
 }
 
 - (void)viewDidUnload
@@ -136,14 +138,22 @@
     [self initPersonViewController:person];
 }
 #pragma mark - SubController Methods
+-(CGRect)setViewInBottom:(UIView*)view{
+    int height = view.frame.size.height;
+    int width = view.frame.size.width;
+    int xOffset = (buttonContainer.frame.size.width-width)/2;
+    int yOffset = buttonContainer.frame.size.height-height;
+    return CGRectMake(xOffset, yOffset, width, height);
+    //This used because [view setViewToBottomCenter] resizes views causing buttons to be unpressable
+}
 -(void)initMainMenuController{
     MainMenuViewController *controller = [[MainMenuViewController alloc] initWithNibName:@"MainMenuViewController" bundle:nil];
     controller.delegate = mainViewController;
     controller.container=self;
+    displayHeight = controller.view.frame.size.height;
     [self setViewToBottomCenter:controller.view];
     buttonGroup = controller.view;
     [buttonContainer addSubview:buttonGroup];
-    displayHeight = controller.view.frame.size.height;
     //FIXME if this controller is added several times, will it be added all times/cause error?
     [self addChildViewController:controller];
 }
@@ -151,10 +161,10 @@
     MutualMenuViewController *controller = [[MutualMenuViewController alloc] initWithNibName:@"MutualMenuViewController" bundle:nil];
     controller.delegate = mainViewController;
     controller.container=self;
-    [self setViewToBottomCenter:controller.view];
+    displayHeight = controller.view.frame.size.height;
     buttonGroup = controller.view;
+    buttonGroup.frame = [self setViewInBottom:buttonGroup];
     [buttonContainer addSubview:buttonGroup];
-    displayHeight = controller.view.frame.size.height+30;
     [self addChildViewController:controller];
 }
 -(void)initPersonViewController:(Person*)person{
@@ -163,15 +173,16 @@
     controller.container=self;
     controller.person = person;
     [self getPersonData:person];
-    [self setViewToBottomCenter:controller.view];
+    displayHeight = controller.view.frame.size.height;
     buttonGroup = controller.view;
+    buttonGroup.frame = [self setViewInBottom:buttonGroup];
     [buttonContainer addSubview:buttonGroup];
-    displayHeight = controller.view.frame.size.height+30;
+    [buttonContainer bringSubviewToFront:buttonGroup];
     [self addChildViewController:controller];
 }
 -(void)setViewToBottomCenter:(UIView*)view{
-    int originX = (buttonContainer.frame.size.width-view.frame.size.width)/2;
-    int originY = (buttonContainer.frame.size.height-view.frame.size.height);
+    int originX = ((float)(buttonContainer.frame.size.width-view.frame.size.width))/2;
+    int originY = MAX(buttonContainer.frame.size.height-view.frame.size.height,0);
     view.frame = CGRectMake(originX, originY, view.frame.size.height, view.frame.size.width);
 }
 #pragma mark - data methods
