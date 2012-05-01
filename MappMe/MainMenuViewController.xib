@@ -63,11 +63,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">_currentLocationButton.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="145109341">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="240411524">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">_currentLocationButtonPressed.png</string>
 						</object>
-						<reference key="IBUISelectedBackgroundImage" ref="145109341"/>
+						<reference key="IBUISelectedBackgroundImage" ref="240411524"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="419656640">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -134,7 +134,6 @@
 						<string key="NSFrame">{{3, 158}, {190, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
