@@ -168,7 +168,7 @@
 	else {
         [self didSelectFriend:[annotation.peopleArr objectAtIndex:0]];
         Person *person = [annotation.peopleArr objectAtIndex:0];
-        [_slidingController selectedFriendMenu:person];
+        [_slidingController showFriendMenu:person];
 //        [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
 	}
 }
@@ -197,6 +197,9 @@
     //controller.delegate = self;
     //controller.selectedLocType = currDisplayedType;
     [_slidingController presentInParentViewController:self];
+}
+-(void)updateMainLabel:(NSString*)label{
+    [_slidingController updateMainLabel:label];
 }
 #pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
@@ -289,7 +292,9 @@
     [self clearMap];
     currDisplayedType = locType;
     isFriendAnnotationType = FALSE;
-    [self setBtnTitleForAllStates:locationTypeBtn withText:[LocationTypeEnum getNameFromEnum:currDisplayedType]];
+    NSString * update =[[NSString alloc]initWithFormat:@"%@s",[LocationTypeEnum getNameFromEnum:currDisplayedType]];
+    [_slidingController updateMainLabel:update];
+    //[self setBtnTitleForAllStates:locationTypeBtn withText:[LocationTypeEnum getNameFromEnum:currDisplayedType]];
     
     NSArray* relevantPlaces;
     //This logic gets a list of mutual friends locations, or allfriends locations
@@ -505,10 +510,10 @@
     isFriendAnnotationType = TRUE;
     isMutualFriendType = FALSE;
 //    currDisplayedType = tNilLocType;
-    [_slidingController selectedFriendMenu:selectedPerson];
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
-    [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
+//    [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
+     [_slidingController showFriendMenu:selectedPerson];
 }
 - (void)didSelectMutualFriends:(Person*)person{
     [self.navigationController popToViewController:self animated:YES]; 
@@ -516,6 +521,12 @@
     isFriendAnnotationType = FALSE;
     mutualFriendsWith = person;
     [self showLocationType:tCurrentLocation];
+}
+-(void)backToFriends{
+    if (isMutualFriendType) {
+        [_slidingController showMutualFriendsMenu:mutualFriendsWith];
+    }
+    [self showLocationType:currDisplayedType];
 }
 - (void)backToAllFriends{
     isMutualFriendType = FALSE;

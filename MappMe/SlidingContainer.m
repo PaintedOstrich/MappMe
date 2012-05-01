@@ -20,6 +20,8 @@
     BOOL open;
     id mainViewController;
     UIView *buttonGroup;
+    IBOutlet UILabel *mainLabel;
+    IBOutlet UILabel *subLabel;
 }
 @end
 
@@ -88,7 +90,12 @@
         [self slideInController];
     }
     open = !open;
-   
+}
+-(void)updateMainLabel:(NSString*)label{
+    mainLabel.text = label;
+}
+-(void)updateSubLabel:(NSString*)label{
+    subLabel.text = label;
 }
 -(void)closeMenu{
     open = FALSE;
@@ -133,17 +140,23 @@
     [self generalChecks];
     [buttonGroup removeFromSuperview];
 }
--(void)selectedFriendMenu:(Person*)person{
+-(void)showFriendMenu:(Person*)person{
+    [self getPersonData:person];
+    [self updateMainLabel:person.name];
+    [self updateSubLabel:@""];
     [self transitionCleanup];
     [self initPersonViewController:person];
 }
 -(void)showMainMenu{
     [self transitionCleanup];
+    [self updateSubLabel:@""];
     [self initMainMenuController];
 }
 -(void)showMutualFriendsMenu:(Person*)person{
     [self transitionCleanup];
     [self initMutualMenuController];
+    NSString * label = [[NSString alloc] initWithFormat:@"%@ and your friends:",person.name];
+    [self updateSubLabel:label];
 }
 #pragma mark - SubController Methods
 -(CGRect)setViewInBottom:(UIView*)view{
@@ -167,6 +180,7 @@
 }
 -(void)initMutualMenuController{
     MutualMenuViewController *controller = [[MutualMenuViewController alloc] initWithNibName:@"MutualMenuViewController" bundle:nil];
+//    [self updateMainLabel:person.name];
     controller.delegate = mainViewController;
     controller.container=self;
     displayHeight = controller.view.frame.size.height;
@@ -180,7 +194,6 @@
     controller.delegate = mainViewController;
     controller.container=self;
     controller.person = person;
-    [self getPersonData:person];
     displayHeight = controller.view.frame.size.height;
     buttonGroup = controller.view;
     buttonGroup.frame = [self setViewInBottom:buttonGroup];
