@@ -125,19 +125,6 @@
 {
     [[self navigationController] popViewControllerAnimated:YES];
     [self.mvc didSelectFriend:[friends objectAtIndex:indexPath.row]];
-//    [self performSegueWithIdentifier:@"personmenusegue" sender: [friends objectAtIndex:indexPath.row]];
-}
-
-#pragma mark - Transition Functions
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    
-    if ([segue.identifier isEqualToString:@"personmenusegue"]){
-        Person *friend = (Person*)sender;
-        PersonMenuViewController *controller = segue.destinationViewController;
-        controller.person = friend;
-    }
 }
 
 @end

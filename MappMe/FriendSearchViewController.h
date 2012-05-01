@@ -7,13 +7,16 @@
 
 #import <UIKit/UIKit.h>
 #import "OverlayViewController.h"
+#import "MainViewController.h"
 
 @class FriendSearchViewController;
 @class Person;
 
 @interface FriendSearchViewController : UITableViewController <UISearchBarDelegate, OverlayViewControllerDelegate> {
     IBOutlet UISearchBar* searchBar;
+    MainViewController *mvc;
 }
+@property(nonatomic,strong) MainViewController *mvc; 
 @end
 
 

@@ -27,6 +27,7 @@
     //tapping the view has the same effect as tapping the cancel button.
     OverlayViewController* overlayViewCtrl;
 }
+@synthesize mvc;
 
 - (void)didReceiveMemoryWarning
 {
@@ -197,7 +198,10 @@ titleForHeaderInSection:(NSInteger)section {
         person = [[friends objectAtIndex:indexPath.section]
                   objectAtIndex:indexPath.row];
     }
-    [self performSegueWithIdentifier:@"personmenusegue" sender:person];
+    [self.mvc didSelectFriend:person];
+    [[self navigationController] popViewControllerAnimated:YES];
+    
+
 }
 #pragma mark - Methods to manage show and hide of the overlay
 
@@ -293,13 +297,6 @@ titleForHeaderInSection:(NSInteger)section {
 
 #pragma mark - Screen Transition Functions
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-   if ([segue.identifier isEqualToString:@"personmenusegue"]){
-       PersonMenuViewController *controller = segue.destinationViewController;
-       controller.person = (Person*)sender;
-   }
-}
 
 
 @end
