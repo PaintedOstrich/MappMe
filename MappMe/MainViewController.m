@@ -224,7 +224,7 @@
         Place* place = [places objectAtIndex:i];
         MyAnnotation* anno;
         if (isMutualFriendType) {
-            anno = [[MyAnnotation alloc] initWithPlace:place forPerson:mutualFriendsWith forLocType:locType];
+            anno = [[MyAnnotation alloc] initWithPlace:place forLocType:locType forMutualFriend:mutualFriendsWith];
         }else {
             anno = [[MyAnnotation alloc] initWithPlace:place forLocType:locType];
         }
