@@ -38,12 +38,16 @@
         while (friend = (Person*)[friendEnum nextObject]) {
             if ([friendsWith.mutualFriends indexOfObject:friend.uid]!=NSNotFound) {
                 [mutualPeople addObject:friend];
+                DebugLog(@"%@",friend);
             }
-        }        self.peopleArr = mutualPeople;
+        }        
+        self.peopleArr = mutualPeople;
+        self.coordinate = place.location;
         [self countDependentConfigs:self.peopleArr];
         self.locType = type;
         self.place_id = place.uid;
     }
+    //DebugLog(@"%i, people array :\n%@",[self.peopleArr count]);
     return self;
 }
 

@@ -68,6 +68,9 @@
     HUD.delegate = self;
     [[CoordinateLookupManager sharedManager] setDelegate:self];
 
+    //Show top menu
+    [self showMenuForLocations];
+
     // Show the HUD while the provided method executes in a new thread
     [HUD showWhileExecuting:@selector(fetchAndProcess) onTarget:self withObject:nil animated:YES];
 }
@@ -75,7 +78,6 @@
 -(void) viewWillAppear:(BOOL)animated{
     [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
     
-    [self showMenuForLocations];
 }
 
 - (void)viewDidUnload
