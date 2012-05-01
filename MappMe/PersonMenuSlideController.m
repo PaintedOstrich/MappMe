@@ -31,7 +31,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view bringSubviewToFront:b6];
+    b1.titleLabel.text = [[NSString alloc] initWithFormat:@"Mapp %@",self.person.name];
+    if ([person.mutualFriends count] >0) {
+        b2.titleLabel.text = [[NSString alloc] initWithFormat:@"Mutual Friends (%i)",[person.mutualFriends count]];
+    }else{
+        b2.titleLabel.text = @"Mutual Friends";
+    }
+//    [self.view bringSubviewToFront:b6];
 }
 
 - (void)viewDidUnload

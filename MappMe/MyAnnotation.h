@@ -36,7 +36,7 @@
 
 -(MyAnnotation*) initWithPlace:(Place*)place forLocType:(locTypeEnum)locType;
 -(MyAnnotation*) initWithPlace:(Place *)place forPerson:(Person*)person forLocType:(locTypeEnum)type;
-
+-(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)type forMutualFriend:(Person*)friendsWith;
 //Sometimes we did not add coordinate for this place (0,0) by default.
 //Or there may be other cases that we will encounter invalid coordinate.
 //We want to be able to detect them in this same method and simply return true only when the coordinate is 
