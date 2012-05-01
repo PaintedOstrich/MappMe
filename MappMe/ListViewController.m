@@ -12,13 +12,13 @@
 #import "UIImageView+AFNetworking.h"
 #import "MyAnnotation.h"
 #import "PersonMenuViewController.h"
-#import "MainViewController.h"
 
 @implementation ListViewController{
     NSArray * friends;
 }
 
 @synthesize tableView, selectedAnnotation;
+@synthesize mvc;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -123,7 +123,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"personmenusegue" sender: [friends objectAtIndex:indexPath.row]];
+    [[self navigationController] popViewControllerAnimated:YES];
+    [self.mvc didSelectFriend:[friends objectAtIndex:indexPath.row]];
+//    [self performSegueWithIdentifier:@"personmenusegue" sender: [friends objectAtIndex:indexPath.row]];
 }
 
 #pragma mark - Transition Functions
