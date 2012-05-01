@@ -13,11 +13,13 @@
 #import "MainMenuViewController.h"
 #import "MutualMenuViewController.h"
 #import "PersonMenuSlideController.h"
+#import "FacebookDataHandler.h"
 /*PLEASE NOTE:  the position of the buttonContainer is veryImportant.  It must be as close to the toggle Button, as the screen will only slide down the height of the container
  Container top must be positioned at 260 px offset*/
 @interface SlidingContainer (){
     BOOL open;
     id mainViewController;
+    UIView *buttonGroup;
 }
 @end
 
@@ -33,8 +35,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+    
     }
-
     return self;
 }
 
@@ -125,8 +127,12 @@
 -(void)generalChecks{
     [self closeMenu];
 }
--(void)selectedFriend:(Person*)person{
+-(void)transitionCleanup{
     [self generalChecks];
+    [buttonGroup removeFromSuperview];
+}
+-(void)selectedFriend:(Person*)person{
+    [self transitionCleanup];
     [self initPersonViewController:person];
 }
 #pragma mark - SubController Methods
@@ -135,8 +141,10 @@
     controller.delegate = mainViewController;
     controller.container=self;
     [self setViewToBottomCenter:controller.view];
-    [buttonContainer addSubview:controller.view];
+    buttonGroup = controller.view;
+    [buttonContainer addSubview:buttonGroup];
     displayHeight = controller.view.frame.size.height;
+    //FIXME if this controller is added several times, will it be added all times/cause error?
     [self addChildViewController:controller];
 }
 -(void)initMutualMenuController{
@@ -144,7 +152,8 @@
     controller.delegate = mainViewController;
     controller.container=self;
     [self setViewToBottomCenter:controller.view];
-    [buttonContainer addSubview:controller.view];
+    buttonGroup = controller.view;
+    [buttonContainer addSubview:buttonGroup];
     displayHeight = controller.view.frame.size.height+30;
     [self addChildViewController:controller];
 }
@@ -153,8 +162,10 @@
     controller.delegate = mainViewController;
     controller.container=self;
     controller.person = person;
+    [self getPersonData:person];
     [self setViewToBottomCenter:controller.view];
-    [buttonContainer addSubview:controller.view];
+    buttonGroup = controller.view;
+    [buttonContainer addSubview:buttonGroup];
     displayHeight = controller.view.frame.size.height+30;
     [self addChildViewController:controller];
 }
@@ -163,7 +174,13 @@
     int originY = (buttonContainer.frame.size.height-view.frame.size.height);
     view.frame = CGRectMake(originX, originY, view.frame.size.height, view.frame.size.width);
 }
-
+#pragma mark - data methods
+-(void)getPersonData:(Person*)person{
+    if([person.mutualFriends count]<1){
+        FacebookDataHandler *fbDataHandler = [FacebookDataHandler sharedInstance];
+        [fbDataHandler getMutualFriends:person.uid];
+    }
+}
 
 //Remove from view Controller
 - (void)dismissFromParentViewController
