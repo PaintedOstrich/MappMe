@@ -43,10 +43,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    displayHeight = buttonContainer.frame.size.height;
-	//[self initMainMenuController];
+    displayHeight = buttonContainer.frame.size.height;	
+    [self initMainMenuController];
 //    [self initPersonViewController:nil];
-    [self initMutualMenuController];
+//    [self initMutualMenuController];
 }
 
 - (void)viewDidUnload
@@ -133,9 +133,17 @@
     [self generalChecks];
     [buttonGroup removeFromSuperview];
 }
--(void)selectedFriend:(Person*)person{
+-(void)selectedFriendMenu:(Person*)person{
     [self transitionCleanup];
     [self initPersonViewController:person];
+}
+-(void)showMainMenu{
+    [self transitionCleanup];
+    [self initMainMenuController];
+}
+-(void)showMutualFriendsMenu:(Person*)person{
+    [self transitionCleanup];
+    [self initMutualMenuController];
 }
 #pragma mark - SubController Methods
 -(CGRect)setViewInBottom:(UIView*)view{

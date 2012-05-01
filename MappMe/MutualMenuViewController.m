@@ -71,27 +71,30 @@
 
 - (IBAction)showHomeTown:(id)sender
 {
+    [self.container closeMenu];
     [self.delegate didSelectLocType:tHomeTown];
-    DebugLog(@"called button");
 }
 
 - (IBAction)showCurrentLocation:(id)sender
 {
-    [self.delegate didSelectLocType:tCurrentLocation];
-    
+    [self.container closeMenu];
+    [self.delegate didSelectLocType:tCurrentLocation];    
 }
 
 - (IBAction)showCollege:(id)sender
 {
+    [self.container closeMenu];
     [self.delegate didSelectLocType:tCollege];
 }
 
 - (IBAction)showHighSchool:(id)sender
 {
+    [self.container closeMenu];
     [self.delegate didSelectLocType:tHighSchool];
 }
 - (IBAction)backToAll:(id)sender
 {
+    [self.container showMainMenu];
     [self.delegate backToAllFriends];
 }
 

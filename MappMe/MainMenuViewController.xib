@@ -38,7 +38,7 @@
 					<object class="IBUIButton" id="58251324">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{3, 23}, {190, 37}}</string>
+						<string key="NSFrame">{{3, 12}, {190, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="648860187"/>
@@ -63,11 +63,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">_currentLocationButton.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="240411524">
+						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage" id="344112685">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">_currentLocationButtonPressed.png</string>
 						</object>
-						<reference key="IBUISelectedBackgroundImage" ref="240411524"/>
+						<reference key="IBUISelectedBackgroundImage" ref="344112685"/>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="419656640">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -81,7 +81,7 @@
 					<object class="IBUIButton" id="648860187">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{3, 68}, {190, 37}}</string>
+						<string key="NSFrame">{{3, 57}, {190, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="326870089"/>
@@ -106,7 +106,7 @@
 					<object class="IBUIButton" id="326870089">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{3, 113}, {190, 37}}</string>
+						<string key="NSFrame">{{3, 102}, {190, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="548935323"/>
@@ -131,7 +131,7 @@
 					<object class="IBUIButton" id="548935323">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{3, 158}, {190, 37}}</string>
+						<string key="NSFrame">{{3, 147}, {190, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -153,7 +153,7 @@
 						<reference key="IBUIFont" ref="372133374"/>
 					</object>
 				</array>
-				<string key="NSFrameSize">{197, 200}</string>
+				<string key="NSFrameSize">{193, 189}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="58251324"/>

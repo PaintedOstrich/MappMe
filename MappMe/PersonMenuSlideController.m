@@ -45,8 +45,31 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+#pragma mark - Facebook Method Calls
+-(IBAction)goToProfile:(id)sender{
+    
+    [self.container closeMenu];
+}
+-(IBAction)sendMessage:(id)sender{
+    
+    [self.container closeMenu];
+}
+-(IBAction)postOnWall:(id)sender{
+    
+    [self.container closeMenu];
+}
+#pragma mark - Map Method Calls
+-(IBAction)mappSelf:(id)sender{
+    [self.delegate didSelectFriend:self.person];
+    [self.container closeMenu];
+}
+-(IBAction)selMutualFriends:(id)sender{
+    [self.delegate didSelectMutualFriends:self.person];
+    [self.container showMutualFriendsMenu:person];
+}
 - (IBAction)backToAll:(id)sender
 {
+    [self.container showMainMenu];
     [self.delegate backToAllFriends];
 }
 
