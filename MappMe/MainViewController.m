@@ -139,6 +139,7 @@
     if ([segue.identifier isEqualToString:@"showdetaillist"]) {
         ListViewController *controller = segue.destinationViewController;
         controller.selectedAnnotation = (MyAnnotation*)sender;
+        controller.mvc= self;
 //        personmenusegue
     } else if ([segue.identifier isEqualToString:@"personmenusegue"]){
         Person *friend = (Person*)sender;
