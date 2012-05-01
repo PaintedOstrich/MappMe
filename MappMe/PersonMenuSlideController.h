@@ -16,7 +16,7 @@
 - (void)didSelectProfile:(Person*)person;
 - (void)didSelectMessage:(Person*)person;
 - (void)didSelectWallPost:(Person*)person;
-- (void)backToAllFriends;
+- (void)backToFriends;
 @end
 
 @interface PersonMenuSlideController : UIViewController{

@@ -28,7 +28,8 @@
 - (void)dismissFromParentViewController;
 
 //Buttons to switch view contexts
--(void)selectedFriendMenu:(Person*)person;
+-(void)showFriendMenu:(Person*)person;
 -(void)showMainMenu;
 -(void)showMutualFriendsMenu:(Person*)person;
+-(void)updateMainLabel:(NSString*)label;
 @end
