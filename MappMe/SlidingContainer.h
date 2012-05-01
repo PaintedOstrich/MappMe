@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Person.h"
 
 
 @interface SlidingContainer : UIViewController{
@@ -21,6 +22,11 @@
 @property (nonatomic) int displayHeight;
 
 -(IBAction)toggle:(id)sender;
+//So sub button menus can close controller on button press
+-(void)closeMenu;
 - (void)presentInParentViewController:(UIViewController *)parentViewController;
 - (void)dismissFromParentViewController;
+
+//Buttons to switch view contexts
+-(void)selectedFriend:(Person*)person;
 @end

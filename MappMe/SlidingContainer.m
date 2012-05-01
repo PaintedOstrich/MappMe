@@ -11,7 +11,8 @@
 #import "DebugLog.h"
 
 #import "MainMenuViewController.h"
-
+#import "MutualMenuViewController.h"
+#import "PersonMenuSlideController.h"
 /*PLEASE NOTE:  the position of the buttonContainer is veryImportant.  It must be as close to the toggle Button, as the screen will only slide down the height of the container
  Container top must be positioned at 260 px offset*/
 @interface SlidingContainer (){
@@ -62,13 +63,7 @@
  */
 - (void)layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-//    CGRect rect = closeButton.frame;
-//    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
-//        rect.origin = CGPointMake(255, 95);
-//    } else {
-//        rect.origin = CGPointMake(340, 15);
-//    }
-//    closeButton.frame = rect;
+    //any additional layout logic
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -80,6 +75,7 @@
 {
     [self didMoveToParentViewController:self.parentViewController];
 }
+#pragma mark - View Methods
 -(IBAction)toggle:(id)sender{
     if (open) {
         [self slideOutController];
@@ -89,6 +85,10 @@
     }
     open = !open;
    
+}
+-(void)closeMenu{
+    open = FALSE;
+    [self slideOutController];
 }
 -(void)slideInController{
     DebugLog(@"sliding height %i", displayHeight);
@@ -121,13 +121,41 @@
     [parentViewController.view addSubview:self.view];
     [parentViewController addChildViewController:self];
 }
+#pragma mark - Context Methods
+-(void)generalChecks{
+    [self closeMenu];
+}
+-(void)selectedFriend:(Person*)person{
+    [self generalChecks];
+    [self initPersonViewController:person];
+}
 #pragma mark - SubController Methods
 -(void)initMainMenuController{
     MainMenuViewController *controller = [[MainMenuViewController alloc] initWithNibName:@"MainMenuViewController" bundle:nil];
     controller.delegate = mainViewController;
+    controller.container=self;
     [self setViewToBottomCenter:controller.view];
     [buttonContainer addSubview:controller.view];
     displayHeight = controller.view.frame.size.height;
+    [self addChildViewController:controller];
+}
+-(void)initMutualMenuController{
+    MutualMenuViewController *controller = [[MutualMenuViewController alloc] initWithNibName:@"MutualMenuViewController" bundle:nil];
+    controller.delegate = mainViewController;
+    controller.container=self;
+    [self setViewToBottomCenter:controller.view];
+    [buttonContainer addSubview:controller.view];
+    displayHeight = controller.view.frame.size.height+30;
+    [self addChildViewController:controller];
+}
+-(void)initPersonViewController:(Person*)person{
+    PersonMenuSlideController *controller = [[PersonMenuSlideController alloc] initWithNibName:@"PersonMenuSlideController" bundle:nil];
+    controller.delegate = mainViewController;
+    controller.container=self;
+    controller.person = person;
+    [self setViewToBottomCenter:controller.view];
+    [buttonContainer addSubview:controller.view];
+    displayHeight = controller.view.frame.size.height+30;
     [self addChildViewController:controller];
 }
 -(void)setViewToBottomCenter:(UIView*)view{
@@ -137,11 +165,7 @@
 }
 
 
-- (IBAction)close:(id)sender
-{
-    [self dismissFromParentViewController];
-}
-
+//Remove from view Controller
 - (void)dismissFromParentViewController
 {
     [self willMoveToParentViewController:nil];

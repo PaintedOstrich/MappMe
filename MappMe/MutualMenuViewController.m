@@ -1,34 +1,32 @@
 //
-//  MainMenuViewController.m
+//  MutualMenuViewController.m
 //  MappMe
 //
-//  Created by Parker Spielman on 4/29/12.
+//  Created by Parker Spielman on 4/30/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MainMenuViewController.h"
+#import "MutualMenuViewController.h"
 
-@interface MainMenuViewController (){
+@interface MutualMenuViewController (){
     IBOutlet UIButton* hometownBtn;
     IBOutlet UIButton* currentLocationBtn;
     IBOutlet UIButton* collegeBtn;
     IBOutlet UIButton* highschoolBtn;
+    IBOutlet UIButton* backToAllBtn;
 }
-
 @end
 
-@implementation MainMenuViewController
+@implementation MutualMenuViewController
 
-@synthesize container;
-@synthesize delegate;
 @synthesize selectedLocType;
-
+@synthesize delegate;
+@synthesize container;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        //FIXME highlight of selected buttons
-        currentLocationBtn.selected = TRUE;
+        // Custom initialization
     }
     return self;
 }
@@ -74,26 +72,28 @@
 - (IBAction)showHomeTown:(id)sender
 {
     [self.delegate didSelectLocType:tHomeTown];
-    [self.container closeMenu];
+    DebugLog(@"called button");
 }
 
 - (IBAction)showCurrentLocation:(id)sender
 {
     [self.delegate didSelectLocType:tCurrentLocation];
-    [self.container closeMenu];
     
 }
 
 - (IBAction)showCollege:(id)sender
 {
     [self.delegate didSelectLocType:tCollege];
-    [self.container closeMenu];
 }
 
 - (IBAction)showHighSchool:(id)sender
 {
     [self.delegate didSelectLocType:tHighSchool];
-    [self.container closeMenu];
 }
+- (IBAction)backToAll:(id)sender
+{
+    [self.delegate backToAllFriends];
+}
+
 
 @end
