@@ -34,6 +34,7 @@
 @property (nonatomic, retain)   NSArray*				peopleArr;
 @property locTypeEnum locType;
 
+-(MyAnnotation*) initWithPlace:(Place*)place;
 -(MyAnnotation*) initWithPlace:(Place*)place forLocType:(locTypeEnum)locType;
 -(MyAnnotation*) initWithPlace:(Place *)place forPerson:(Person*)person forLocType:(locTypeEnum)type;
 -(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)type forMutualFriend:(Person*)friendsWith;
