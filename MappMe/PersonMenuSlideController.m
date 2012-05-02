@@ -101,9 +101,9 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    person.uid, @"to",
                                    // @"I'm using the Hackbook for iOS app", @"name",
-                                   @"MappMe App.", @"caption",
+                                   @"Message posted via MappMe App.", @"caption",
                                    //@"Message Posted via MappMe.", @"description",
-                                   @"http://m.facebook.com/apps/hackbookios/", @"link",
+                                   //@"http://m.facebook.com/apps/hackbookios/", @"link",
                                    @"http://www.facebookmobileweb.com/hackbook/img/facebook_icon_large.png", @"picture",
                                    //actionLinksStr, @"actions",
                                    nil];
