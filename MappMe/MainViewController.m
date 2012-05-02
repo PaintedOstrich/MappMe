@@ -459,13 +459,16 @@
         annotationView.enabled = YES;
         annotationView.canShowCallout = YES;
         //annotationView.animatesDrop = YES;
-        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+        UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        rightButton.frame = CGRectMake(0, 0, 34, 34);
+        [rightButton setBackgroundImage:[UIImage imageNamed:@"MappButtonForIndividual"] forState:UIControlStateNormal];
         if (!isFriendAnnotationType) {
             [rightButton addTarget:self action:@selector(showFriendGroupDetail:) forControlEvents:UIControlEventTouchUpInside];
         } else{
             [rightButton addTarget:self action:@selector(showLocationDetail:) forControlEvents:UIControlEventTouchUpInside];
         }
         annotationView.rightCalloutAccessoryView = rightButton;
+        annotationView.canShowCallout = YES;
     } else {
         annotationView.annotation = annotation;
     }
@@ -479,6 +482,11 @@
             Person* friend = [[mainDataManager peopleContainer] get:annotation.person_id];
             [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:annotation.placeHolderImg]];
         }
+        if(profileIconView.frame.size.width>40){
+            //Refit multiple people icon
+             profileIconView.frame = CGRectMake(0, 0,40, 35);
+        }
+       
         annotationView.leftCalloutAccessoryView = profileIconView;   
     }else{
          annotationView.rightCalloutAccessoryView.tag = [annotations indexOfObject:(MyAnnotation *)annotation];

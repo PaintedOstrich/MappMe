@@ -40,12 +40,12 @@
     NSArray *chunks = [self.person.name componentsSeparatedByString: @" "];
     NSString*mapp =  [[NSString alloc] initWithFormat:@"Mapp %@",[chunks objectAtIndex:0]];
     [self setBtnTitleForAllStates:b1 withText:mapp];
-    if ([person.mutualFriends count] >0) {
-        NSString *subl = [[NSString alloc] initWithFormat:@"Mutual Friends (%i)",[person.mutualFriends count]];
-        [self setBtnTitleForAllStates:b2 withText:subl];
-    }else{
-        [self setBtnTitleForAllStates:b2 withText: @"Mutual Friends"];
-    }
+//    if ([person.mutualFriends count] >0) {
+//        NSString *subl = [[NSString alloc] initWithFormat:@"Mutual Friends (%i)",[person.mutualFriends count]];
+//        [self setBtnTitleForAllStates:b2 withText:subl];
+//    }else{
+//        [self setBtnTitleForAllStates:b2 withText: @"Mutual Friends"];
+//    }
 //    [self.view bringSubviewToFront:b6];
 }
 
