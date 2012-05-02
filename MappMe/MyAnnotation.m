@@ -96,7 +96,7 @@
     }
     else {
         self.subtitle=[[NSString alloc] initWithFormat:@"%d%@",count,@" friends"];
-        self.placeHolderImg = @"group.png";
+        self.placeHolderImg = @"MultiplePeopleIcon2.png";
     }
 }
 

@@ -60,6 +60,10 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Message Button.png</string>
+						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="549592024">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -89,13 +93,17 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="807867404"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">GoToProfileButton.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="549592024"/>
 						<reference key="IBUIFont" ref="624481077"/>
 					</object>
 					<object class="IBUIButton" id="195032607">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{5, 55}, {185, 37}}</string>
+						<string key="NSFrame">{{5, 56}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="423004218"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -105,20 +113,23 @@
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
 						<int key="IBUILineBreakMode">0</int>
-						<string key="IBUINormalTitle">Mutual Friends</string>
 						<reference key="IBUIHighlightedTitleColor" ref="1018244070"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="807867404"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">MutualFriendsButton.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="549592024"/>
 						<reference key="IBUIFont" ref="624481077"/>
 					</object>
 					<object class="IBUIButton" id="128671210">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{6, 13}, {184, 37}}</string>
+						<string key="NSFrame">{{6, 12}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="195032607"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -150,7 +161,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
 						<string key="IBUINormalTitle">Back to Friends</string>
 						<reference key="IBUIHighlightedTitleColor" ref="1018244070"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
@@ -158,6 +168,10 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="807867404"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">BackButton.png</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="549592024"/>
 						<reference key="IBUIFont" ref="624481077"/>
 					</object>
