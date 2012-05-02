@@ -17,7 +17,7 @@
 #import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
 #import "ScreenShotController.h"
-#import "AbstractSlidingContainer.h"
+//#import "AbstractSlidingContainer.h"
 #import "SlidingContainer.h"
 #import "FriendSearchViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -28,7 +28,6 @@
     NSMutableArray * annotations;
     locTypeEnum currDisplayedType;
     IBOutlet UIButton * cameraBtn;
-    IBOutlet UIButton * locationTypeBtn;
     IBOutlet UIButton * settingsBtn;
     IBOutlet UIButton * searchBtn;
     //Used to do transform animation to buy us time......
@@ -291,7 +290,6 @@
     isFriendAnnotationType = FALSE;
     NSString * update =[[NSString alloc]initWithFormat:@"%@s",[LocationTypeEnum getNameFromEnum:currDisplayedType]];
     [_slidingController updateMainLabel:update];
-    //[self setBtnTitleForAllStates:locationTypeBtn withText:[LocationTypeEnum getNameFromEnum:currDisplayedType]];
     
     NSArray* relevantPlaces;
     //This logic gets a list of mutual friends locations, or allfriends locations
@@ -335,49 +333,35 @@
          [self popAnimation:hiddenBtn];
      }  completion:^(BOOL finished)
      {
-            [UIView animateWithDuration:duration animations:^
-             {
-                 [self popAnimation:locationTypeBtn];
-             }
-                             completion:^(BOOL finished)
-             {
-                 [UIView animateWithDuration:duration animations:^
-                  {
-                      [self shrinkAnimation:locationTypeBtn];
-                  }
-                                  completion:^(BOOL finished)
-                  {
-                      [UIView animateWithDuration:duration animations:^
-                       {
-                           [self popAnimation:searchBtn];
-                       }
-                                       completion:^(BOOL finished)
-                       {
-                           [UIView animateWithDuration:duration animations:^
-                            {
-                                [self shrinkAnimation:searchBtn];
-                            }
-                                            completion:^(BOOL finished)
-                            {
-                                [UIView animateWithDuration:duration animations:^
-                                 {
-                                     [self popAnimation:settingsBtn];
-                                 }
-                                                 completion:^(BOOL finished)
-                                 {
-                                     [UIView animateWithDuration:duration animations:^
-                                      {
-                                          [self shrinkAnimation:settingsBtn];
-                                      }
-                                                      completion:^(BOOL finished)
-                                      {
-                                          
-                                      }];
-                                 }];
-                            }];
-                       }];
-                  }];
-             }];
+          [UIView animateWithDuration:duration animations:^
+           {
+               [self popAnimation:searchBtn];
+           }
+                           completion:^(BOOL finished)
+           {
+               [UIView animateWithDuration:duration animations:^
+                {
+                    [self shrinkAnimation:searchBtn];
+                }
+                                completion:^(BOOL finished)
+                {
+                    [UIView animateWithDuration:duration animations:^
+                     {
+                         [self popAnimation:settingsBtn];
+                     }
+                                     completion:^(BOOL finished)
+                     {
+                         [UIView animateWithDuration:duration animations:^
+                          {
+                              [self shrinkAnimation:settingsBtn];
+                          }
+                                          completion:^(BOOL finished)
+                          {
+                              
+                          }];
+                     }];
+                }];
+           }];
     }];
 }
 
@@ -511,7 +495,6 @@
 //    currDisplayedType = tNilLocType;
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
-//    [self setBtnTitleForAllStates:locationTypeBtn withText:selectedPerson.name];
      [_slidingController showFriendMenu:selectedPerson];
 }
 - (void)didSelectMutualFriends:(Person*)person{
