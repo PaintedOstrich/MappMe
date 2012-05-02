@@ -26,6 +26,22 @@
     }
     return self;
 }
+//Returns all people from place
+-(MyAnnotation*) initWithPlace:(Place*)place{
+     if(self = [super init]){
+        self.title = [[NSString alloc] initWithFormat:@"Friends from %@",place.name];
+        self.coordinate = place.location;
+        NSMutableSet *people = [[NSMutableSet alloc] init];
+        for (int i =0; i< tLocationTypeCount; i++){
+            [people addObjectsFromArray:[[place getPeople:i] allObjects]];
+        }
+        self.peopleArr = [people allObjects];
+        [self countDependentConfigs:self.peopleArr];
+        self.locType = 0;
+        self.place_id = place.uid;
+     }
+    return self;
+}
 //Method only returns friends with the specified individual. This used when showing mututal friends
 -(MyAnnotation*) initWithPlace:(Place *)place forLocType:(locTypeEnum)type forMutualFriend:(Person*)friendsWith
 {

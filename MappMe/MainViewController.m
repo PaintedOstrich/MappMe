@@ -141,8 +141,7 @@
         ListViewController *controller = segue.destinationViewController;
         controller.selectedAnnotation = (MyAnnotation*)sender;
         controller.mvc= self;
-//        personmenusegue
-    } else if ([segue.identifier isEqualToString:@"personmenusegue"]){
+    }else if ([segue.identifier isEqualToString:@"personmenusegue"]){
         Person *friend = (Person*)sender;
         PersonMenuViewController *controller = segue.destinationViewController;
         controller.person = friend;
@@ -176,14 +175,10 @@
 - (void) showLocationDetail:(UIButton*)btn {
     //This trick got back the annotation associtaed with the pinView we tapped.
     MyAnnotation* annotation = [annotations objectAtIndex:btn.tag];
-    int count = [annotation.peopleArr count];
-	if(count>1){
-        [self performSegueWithIdentifier:@"showdetaillist" sender:annotation];
-	}
-	//only one person, go to the facebook page directly.!
-	else {
-        [self performSegueWithIdentifier:@"personmenusegue" sender:[annotation.peopleArr objectAtIndex:0]];
-	}
+    NSString *placeId = annotation.place_id;
+    Place *place = [[mainDataManager placeContainer] get:placeId];
+    MyAnnotation *newAnnotation = [[MyAnnotation alloc] initWithPlace:place];
+    [self performSegueWithIdentifier:@"showdetaillist" sender:newAnnotation];
 }
 
 

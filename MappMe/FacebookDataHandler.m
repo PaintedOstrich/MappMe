@@ -152,6 +152,7 @@ static FacebookDataHandler *FBHandler = nil;
         }   
         
         NSString * uid = [[friendsTemp objectForKey:@"uid"] stringValue];
+        //Changed to str value
         NSString * town_id = [[friendsTemp objectForKey:locTypeString]objectForKey:@"id"];
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
