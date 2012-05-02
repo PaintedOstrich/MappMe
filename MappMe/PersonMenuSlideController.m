@@ -7,6 +7,8 @@
 //
 
 #import "PersonMenuSlideController.h"
+#import "SBJSON.h"
+#import "MappMeAppDelegate.h"
 
 @interface PersonMenuSlideController ()
 
@@ -72,6 +74,26 @@
 -(IBAction)postOnWall:(id)sender{
     
     [self.container closeMenu];
+    //SBJSON *jsonWriter = [SBJSON new];
+    
+//    NSArray* actionLinks = [NSArray arrayWithObjects:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                                      @"Get Started",@"name",@"http://m.facebook.com/apps/hackbookios/",@"link", nil], nil];
+//    NSString *actionLinksStr = [jsonWriter stringWithObject:actionLinks];
+    // The "to" parameter targets the post to a friend
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   person.uid, @"to",
+                                   // @"I'm using the Hackbook for iOS app", @"name",
+                                   @"MappMe App.", @"caption",
+                                   //@"Message Posted via MappMe.", @"description",
+                                   @"http://m.facebook.com/apps/hackbookios/", @"link",
+                                   @"http://www.facebookmobileweb.com/hackbook/img/facebook_icon_large.png", @"picture",
+                                   //actionLinksStr, @"actions",
+                                   nil];
+    
+    MappMeAppDelegate *appDelegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[appDelegate facebook] dialog:@"feed"
+                      andParams:params
+                    andDelegate:nil];
 }
 #pragma mark - Map Method Calls
 -(IBAction)mappSelf:(id)sender{
