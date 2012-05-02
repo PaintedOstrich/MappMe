@@ -70,6 +70,24 @@
 -(IBAction)sendMessage:(id)sender{
     
     [self.container closeMenu];
+    
+    SBJSON *jsonWriter = [SBJSON new];
+    NSDictionary *gift = [NSDictionary dictionaryWithObjectsAndKeys:
+                          @"5", @"social_karma",
+                          @"1", @"badge_of_awesomeness",
+                          nil];
+    
+    NSString *giftStr = [jsonWriter stringWithObject:gift];
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"Check out MappMe.",  @"message",
+                                   @"It is such an awesome app", @"notification_text",
+                                   giftStr, @"data",
+                                   nil];
+    
+    MappMeAppDelegate *appDelegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[appDelegate facebook] dialog:@"apprequests"
+                         andParams:params
+                       andDelegate:nil];
 }
 -(IBAction)postOnWall:(id)sender{
     
