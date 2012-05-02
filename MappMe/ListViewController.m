@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.navigationItem.title = selectedAnnotation.title;
     friends = selectedAnnotation.peopleArr;
 

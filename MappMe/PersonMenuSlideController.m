@@ -27,15 +27,24 @@
     }
     return self;
 }
-
+-(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
+{
+    [btn setTitle:txt forState:UIControlStateNormal];
+    [btn setTitle:txt forState:UIControlStateHighlighted];
+    [btn setTitle:txt forState:UIControlStateDisabled];
+    [btn setTitle:txt forState:UIControlStateSelected];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    b1.titleLabel.text = [[NSString alloc] initWithFormat:@"Mapp %@",self.person.name];
+    NSArray *chunks = [self.person.name componentsSeparatedByString: @" "];
+    NSString*mapp =  [[NSString alloc] initWithFormat:@"Mapp %@",[chunks objectAtIndex:0]];
+    [self setBtnTitleForAllStates:b1 withText:mapp];
     if ([person.mutualFriends count] >0) {
-        b2.titleLabel.text = [[NSString alloc] initWithFormat:@"Mutual Friends (%i)",[person.mutualFriends count]];
+        NSString *subl = [[NSString alloc] initWithFormat:@"Mutual Friends (%i)",[person.mutualFriends count]];
+        [self setBtnTitleForAllStates:b2 withText:subl];
     }else{
-        b2.titleLabel.text = @"Mutual Friends";
+        [self setBtnTitleForAllStates:b2 withText: @"Mutual Friends"];
     }
 //    [self.view bringSubviewToFront:b6];
 }
