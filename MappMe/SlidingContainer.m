@@ -149,13 +149,14 @@
 }
 -(void)showMainMenu{
     [self transitionCleanup];
-    [self updateSubLabel:@""];
+    [self updateSubLabel:@"All Friends:"];
     [self initMainMenuController];
 }
 -(void)showMutualFriendsMenu:(Person*)person{
     [self transitionCleanup];
     [self initMutualMenuController];
-    NSString * label = [[NSString alloc] initWithFormat:@"%@ and your friends:",person.name];
+    NSArray *chunks = [person.name componentsSeparatedByString: @" "];
+    NSString * label = [[NSString alloc] initWithFormat:@"%@ and My Friends:",[chunks objectAtIndex:0]];
     [self updateSubLabel:label];
 }
 #pragma mark - SubController Methods
