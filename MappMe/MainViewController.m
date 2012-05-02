@@ -496,6 +496,8 @@
             [profileIconView setImageWithURL:[NSURL URLWithString:friend.profileUrl] placeholderImage:[UIImage imageNamed:annotation.placeHolderImg]];
         }
         annotationView.leftCalloutAccessoryView = profileIconView;   
+    }else{
+         annotationView.rightCalloutAccessoryView.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
     }
     
     return annotationView;

@@ -153,7 +153,7 @@ static FacebookDataHandler *FBHandler = nil;
         
         NSString * uid = [[friendsTemp objectForKey:@"uid"] stringValue];
         //Changed to str value
-        NSString * town_id = [[friendsTemp objectForKey:locTypeString]objectForKey:@"id"];
+        NSString * town_id = [[[friendsTemp objectForKey:locTypeString]objectForKey:@"id"]stringValue];
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
         if (town_id != nil && uid != nil) {
@@ -176,10 +176,11 @@ static FacebookDataHandler *FBHandler = nil;
         
         /*Make sure location array is not empty*/
         if ([loc respondsToSelector:@selector(objectForKey:)]) {
-            NSString* placeId = [citiesTemp objectForKey:@"page_id"];
+            //String value
+            NSString* placeId = [[citiesTemp objectForKey:@"page_id"]stringValue];
             if (placeId != nil) {
-                 Place* place = [[mainDataManager placeContainer] get:placeId];
-                 [place addLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
+              Place* place = [[mainDataManager placeContainer] get:placeId];
+              [place addLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
             }
         } else{
             //NSString * page_id = [citiesTemp objectForKey:@"page_id"];
@@ -193,7 +194,7 @@ static FacebookDataHandler *FBHandler = nil;
     while ((schoolTemp = [schoolLocEnum nextObject])) {
         if ([(NSString *)[schoolTemp objectForKey:@"name"]length] >3){
             NSDictionary *loc= [schoolTemp objectForKey:@"location"];
-            NSString * school_id = [schoolTemp objectForKey:@"page_id"];
+            NSString * school_id = [[schoolTemp objectForKey:@"page_id"]stringValue];
             //NSString *type = [schoolTypeMapping objectForKey:school_id];
             //If have lat and long
             if (school_id == nil)
@@ -230,7 +231,8 @@ static FacebookDataHandler *FBHandler = nil;
         NSString * uid = [[friendsTemp objectForKey:@"uid"]stringValue];
         NSString * name = [friendsTemp objectForKey:@"name"];
         while (school = (NSDictionary*)[schoolsEnum nextObject]) {
-            NSString * school_id = (NSString*)[[school objectForKey:@"school"]objectForKey:@"id"];
+            //string value
+            NSString * school_id = [[[school objectForKey:@"school"]objectForKey:@"id"]stringValue];
             NSString * school_name = (NSString*)[[school objectForKey:@"school"]objectForKey:@"name"];
             NSString * school_type = (NSString*)[school objectForKey:@"type"];
             locTypeEnum placeType = [LocationTypeEnum getEnumFromName:school_type];
