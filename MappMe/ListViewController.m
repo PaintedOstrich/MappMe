@@ -43,7 +43,15 @@
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = selectedAnnotation.title;
+    
+    UILabel* tlabel=[[UILabel alloc] initWithFrame:CGRectMake(0,0, 300, 40)];
+    tlabel.font = [UIFont boldSystemFontOfSize:18];
+    [tlabel setTextAlignment:UITextAlignmentCenter];
+    tlabel.text = selectedAnnotation.title;
+    tlabel.textColor = [UIColor whiteColor];
+    tlabel.backgroundColor =[UIColor clearColor];
+    tlabel.adjustsFontSizeToFitWidth=YES;
+    self.navigationItem.titleView=tlabel;
     friends = selectedAnnotation.peopleArr;
 
     // Uncomment the following line to preserve selection between presentations.
