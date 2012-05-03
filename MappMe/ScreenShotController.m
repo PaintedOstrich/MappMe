@@ -9,6 +9,7 @@
 #import "ScreenShotController.h"
 #import "MappMeAppDelegate.h"
 #import "MBProgressHUD.h"
+#import "Person.h"
 
 @interface ScreenShotController ()
 
@@ -17,14 +18,16 @@
 @implementation ScreenShotController {
     //Uploading HUD
     MBProgressHUD* HUD;
+    MappMeAppDelegate *appDelegate;
 }
-@synthesize screenShotView;
+@synthesize screenShotView, selectedFriend;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        selectedFriend = nil;
+        appDelegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     }
     return self;
 }
@@ -70,8 +73,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    self.screenShotView.image, @"picture",
                                    nil];
-    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[delegate facebook] requestWithGraphPath:@"me/photos"
+    [[appDelegate facebook] requestWithGraphPath:@"me/photos"
                                     andParams:params
                                 andHttpMethod:@"POST"
                                   andDelegate:self];
@@ -155,7 +157,7 @@
 
 - (void)request:(FBRequest *)request didLoad:(id)result
 {
-    DebugLog(@"didLoad:%@", [result description]);
+    //DebugLog(@"didLoad:%@", [result description]);
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     
 	// Set custom view mode
@@ -167,6 +169,20 @@
        [HUD hide:YES];
        [self dismissFromParentViewController];
     });
+    
+    [self tagFriend:(NSDictionary*)result];
 }
 
+//Try to tag friend in uploaded photo if selectedFriend is not nil
+//We do not specify delegate so tagging will fail silently.
+- (void) tagFriend:(NSDictionary*)result
+{
+    if (selectedFriend != nil ) {
+        NSString *photoID = [NSString stringWithFormat:@"%@", [result valueForKey:@"id"]];
+        DebugLog(@"trying to tag friend!!! %@", selectedFriend.name);
+        [[appDelegate facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/tags/%@?access_token=%@", photoID, selectedFriend.uid, [appDelegate facebook].accessToken]
+                                           andParams:nil 
+                                       andHttpMethod:@"POST" andDelegate:nil];   
+    }
+}
 @end
