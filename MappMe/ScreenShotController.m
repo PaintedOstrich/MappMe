@@ -157,7 +157,7 @@
 
 - (void)request:(FBRequest *)request didLoad:(id)result
 {
-    DebugLog(@"didLoad:%@", [result description]);
+    //DebugLog(@"didLoad:%@", [result description]);
     HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
     
 	// Set custom view mode
@@ -170,13 +170,19 @@
        [self dismissFromParentViewController];
     });
     
-    if (selectedFriend != nil) {
-        NSString *photoID = [NSString stringWithFormat:@"%@", [(NSDictionary*)result valueForKey:@"id"]];
-        DebugLog(@"Should try tagging friend!!! %@", selectedFriend.name);
-        [[appDelegate facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/tags/%@?access_token=%@", photoID, selectedFriend.uid, [appDelegate facebook].accessToken]
-                                                    andParams:nil 
-                                       andHttpMethod:@"POST" andDelegate:self];
-    }
+    [self tagFriend:(NSDictionary*)result];
 }
 
+//Try to tag friend in uploaded photo if selectedFriend is not nil
+//We do not specify delegate so tagging will fail silently.
+- (void) tagFriend:(NSDictionary*)result
+{
+    if (selectedFriend != nil ) {
+        NSString *photoID = [NSString stringWithFormat:@"%@", [result valueForKey:@"id"]];
+        DebugLog(@"trying to tag friend!!! %@", selectedFriend.name);
+        [[appDelegate facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/tags/%@?access_token=%@", photoID, selectedFriend.uid, [appDelegate facebook].accessToken]
+                                           andParams:nil 
+                                       andHttpMethod:@"POST" andDelegate:nil];   
+    }
+}
 @end
