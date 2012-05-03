@@ -13,7 +13,6 @@
 @protocol PersonMenuDelegate
 - (void)didSelectFriend:(Person*)person;
 - (void)didSelectMutualFriends:(Person*)person;
-- (void)didSelectProfile:(Person*)person;
 - (void)didSelectMessage:(Person*)person;
 - (void)didSelectWallPost:(Person*)person;
 - (void)backToFriends;

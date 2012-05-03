@@ -50,4 +50,19 @@
     [[[self parentViewController] navigationController] popToRootViewControllerAnimated:YES];
 }
 
+-(IBAction)sendInvites:(id)sender{
+    
+    [self dismissFromParentViewController];
+    
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                   @"Check out MappMe.",  @"message",
+                                   @"It is a fun app to use!", @"notification_text",
+                                   nil];
+    
+    MappMeAppDelegate *appDelegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    [[appDelegate facebook] dialog:@"apprequests"
+                         andParams:params
+                       andDelegate:nil];
+}
+
 @end

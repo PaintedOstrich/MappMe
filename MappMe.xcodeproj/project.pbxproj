@@ -19,8 +19,6 @@
 		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
 		6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */; };
 		6819C1F9154F5FF800BA2544 /* MutualMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */; };
-		6819C1FD154F66AE00BA2544 /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */; };
-		6819C1FE154F66AE00BA2544 /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */; };
 		681C4164151D724500747C4A /* bluePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415D151D724500747C4A /* bluePin.png */; };
 		681C4165151D724500747C4A /* greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415E151D724500747C4A /* greenPin.png */; };
 		681C4166151D724500747C4A /* orangePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415F151D724500747C4A /* orangePin.png */; };
@@ -80,7 +78,6 @@
 		68FC2A8D153E7F0D00003A74 /* LogoutPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A89153E7F0D00003A74 /* LogoutPressed@2x.png */; };
 		68FC2A8F153E806100003A74 /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A8E153E806100003A74 /* loginBackground.png */; };
 		68FC2AA615422BB200003A74 /* logout background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AA515422BB200003A74 /* logout background.png */; };
-		68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FC2AA81542321000003A74 /* PersonMenuViewController.m */; };
 		68FC2ACE1543429300003A74 /* intro background .png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AC71543429300003A74 /* intro background .png */; };
 		A910654A153E46FA0057B570 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106535153E46FA0057B570 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A910654B153E46FA0057B570 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106537153E46FA0057B570 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -93,7 +90,6 @@
 		A9106552153E46FA0057B570 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106547153E46FA0057B570 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A9106553153E46FA0057B570 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106549153E46FA0057B570 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
-		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
 		A91C5BD6153F00C200128885 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DC14FED94600899729 /* UIKit.framework */; };
 		A91C5BD7153F00C200128885 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DE14FED94600899729 /* Foundation.framework */; };
 		A91C5BD8153F00C200128885 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435E014FED94600899729 /* CoreGraphics.framework */; };
@@ -148,6 +144,8 @@
 		A9AADE9B154266E30096BC3C /* highschool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE98154266E30096BC3C /* highschool@2x.png */; };
 		A9AADE9C154266E30096BC3C /* college@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE99154266E30096BC3C /* college@2x.png */; };
 		A9AADE9D154266E30096BC3C /* college.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE9A154266E30096BC3C /* college.png */; };
+		A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */; };
+		A9F8DFD515523F720075EA0B /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -181,9 +179,6 @@
 		6819C1F5154F5FF800BA2544 /* MutualMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutualMenuViewController.h; sourceTree = "<group>"; };
 		6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutualMenuViewController.m; sourceTree = "<group>"; };
 		6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MutualMenuViewController.xib; sourceTree = "<group>"; };
-		6819C1FA154F66AD00BA2544 /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
-		6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
-		6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
 		681C415D151D724500747C4A /* bluePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluePin.png; sourceTree = "<group>"; };
 		681C415E151D724500747C4A /* greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenPin.png; sourceTree = "<group>"; };
 		681C415F151D724500747C4A /* orangePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangePin.png; sourceTree = "<group>"; };
@@ -253,8 +248,6 @@
 		68FC2A89153E7F0D00003A74 /* LogoutPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoutPressed@2x.png"; sourceTree = "<group>"; };
 		68FC2A8E153E806100003A74 /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBackground.png; sourceTree = "<group>"; };
 		68FC2AA515422BB200003A74 /* logout background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logout background.png"; path = "MappMe/logout background.png"; sourceTree = "<group>"; };
-		68FC2AA71542321000003A74 /* PersonMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuViewController.h; sourceTree = "<group>"; };
-		68FC2AA81542321000003A74 /* PersonMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuViewController.m; sourceTree = "<group>"; };
 		68FC2AC71543429300003A74 /* intro background .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "intro background .png"; sourceTree = "<group>"; };
 		A9106534153E46FA0057B570 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		A9106535153E46FA0057B570 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
@@ -280,8 +273,6 @@
 		A9106549153E46FA0057B570 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		A91AF90415008AE200FCD3D7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		A91AF90515008AE200FCD3D7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		A91C5BD4153F00C200128885 /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91C5BDB153F00C200128885 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		A91C5BDD153F00C200128885 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -343,6 +334,9 @@
 		A9AADE98154266E30096BC3C /* highschool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "highschool@2x.png"; sourceTree = "<group>"; };
 		A9AADE99154266E30096BC3C /* college@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "college@2x.png"; sourceTree = "<group>"; };
 		A9AADE9A154266E30096BC3C /* college.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = college.png; sourceTree = "<group>"; };
+		A9F8DFCB15523F720075EA0B /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
+		A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
+		A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OverlayViewController.xib; path = /Users/Codier/Desktop/MappMe/MappMe/OverlayViewController.xib; sourceTree = "<absolute>"; };
@@ -541,6 +535,9 @@
 		68963B01154C870000286C3B /* SlidingViewMenus */ = {
 			isa = PBXGroup;
 			children = (
+				A9F8DFCB15523F720075EA0B /* PersonMenuSlideController.h */,
+				A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */,
+				A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */,
 				68963AF6154C81DB00286C3B /* AbstractSlider.xib */,
 				68963AFE154C86DF00286C3B /* SlidingContainer.h */,
 				68963AFF154C86DF00286C3B /* SlidingContainer.m */,
@@ -550,9 +547,6 @@
 				6819C1F5154F5FF800BA2544 /* MutualMenuViewController.h */,
 				6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */,
 				6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */,
-				6819C1FA154F66AD00BA2544 /* PersonMenuSlideController.h */,
-				6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */,
-				6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */,
 			);
 			name = SlidingViewMenus;
 			sourceTree = "<group>";
@@ -714,12 +708,8 @@
 				6804361614FEEF4200899729 /* MainViewController.m */,
 				A943249615007983005F7600 /* ListViewController.h */,
 				A943249715007983005F7600 /* ListViewController.m */,
-				A91AF90415008AE200FCD3D7 /* WebViewController.h */,
-				A91AF90515008AE200FCD3D7 /* WebViewController.m */,
 				68DC0BD4151E538500514016 /* FriendSearchViewController.h */,
 				68DC0BD5151E538500514016 /* FriendSearchViewController.m */,
-				68FC2AA71542321000003A74 /* PersonMenuViewController.h */,
-				68FC2AA81542321000003A74 /* PersonMenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -933,7 +923,7 @@
 				68963AF8154C81DB00286C3B /* AbstractSlider.xib in Resources */,
 				68C72DEA154DF13400DBED48 /* MainMenuViewController.xib in Resources */,
 				6819C1F9154F5FF800BA2544 /* MutualMenuViewController.xib in Resources */,
-				6819C1FE154F66AE00BA2544 /* PersonMenuSlideController.xib in Resources */,
+				A9F8DFD515523F720075EA0B /* PersonMenuSlideController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -957,7 +947,6 @@
 				680435F614FED94600899729 /* LoginViewController.m in Sources */,
 				6804361714FEEF4200899729 /* MainViewController.m in Sources */,
 				A943249815007983005F7600 /* ListViewController.m in Sources */,
-				A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */,
 				A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */,
 				A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */,
 				A9801D811502E1E400BA0B5B /* Place.m in Sources */,
@@ -988,7 +977,6 @@
 				A923196F154012D800F0699E /* AbstractContainer.m in Sources */,
 				A9AADE43154239620096BC3C /* LocTypeMenuController.m in Sources */,
 				A9AADE49154250D80096BC3C /* GradientView.m in Sources */,
-				68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */,
 				A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */,
 				68963A93154ADF9200286C3B /* UtilFunctions.m in Sources */,
 				687E43F8154DABD700CE245F /* SettingsMenuController.m in Sources */,
@@ -996,7 +984,7 @@
 				68963B00154C86E000286C3B /* SlidingContainer.m in Sources */,
 				68C72DE9154DF13400DBED48 /* MainMenuViewController.m in Sources */,
 				6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */,
-				6819C1FD154F66AE00BA2544 /* PersonMenuSlideController.m in Sources */,
+				A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,6 @@
 #import "MappMeAppDelegate.h"
 #import "DebugLog.h"
 #import "DataManagerSingleton.h"
-#import "PersonMenuViewController.h"
 
 @implementation FriendSearchViewController{
     DataManagerSingleton * mainDataManager;
