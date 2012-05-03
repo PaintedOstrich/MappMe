@@ -42,6 +42,15 @@
 		681C4168151D724500747C4A /* tealPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C4161151D724500747C4A /* tealPin.png */; };
 		681C4169151D724500747C4A /* yellow-greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C4162151D724500747C4A /* yellow-greenPin.png */; };
 		681C416A151D724500747C4A /* yellowPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C4163151D724500747C4A /* yellowPin.png */; };
+		683130A71553184700AA8692 /* SettingsButton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6831309F1553184700AA8692 /* SettingsButton2.png */; };
+		683130A81553184700AA8692 /* CameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 683130A01553184700AA8692 /* CameraButton.png */; };
+		683130A91553184700AA8692 /* PostOnWallButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 683130A11553184700AA8692 /* PostOnWallButton.png */; };
+		683130AB1553184700AA8692 /* InviteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 683130A31553184700AA8692 /* InviteButton.png */; };
+		683130AC1553184700AA8692 /* SendInviteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 683130A41553184700AA8692 /* SendInviteButton.png */; };
+		683130AD1553184700AA8692 /* BlankButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 683130A51553184700AA8692 /* BlankButton.png */; };
+		683130AE1553184700AA8692 /* BackToFriendsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 683130A61553184700AA8692 /* BackToFriendsButton.png */; };
+		683130B115531D9F00AA8692 /* LogoutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 683130AF15531D9F00AA8692 /* LogoutButton.png */; };
+		683130B215531D9F00AA8692 /* InviteFriendsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 683130B015531D9F00AA8692 /* InviteFriendsButton.png */; };
 		683D383A1507C0D200021ED3 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38351507C0D200021ED3 /* DebugLog.m */; };
 		683D383B1507C0D200021ED3 /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38371507C0D200021ED3 /* Timer.m */; };
 		683D383C1507C0D200021ED3 /* UserInfoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38391507C0D200021ED3 /* UserInfoLog.m */; };
@@ -194,6 +203,15 @@
 		681C4161151D724500747C4A /* tealPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tealPin.png; sourceTree = "<group>"; };
 		681C4162151D724500747C4A /* yellow-greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yellow-greenPin.png"; sourceTree = "<group>"; };
 		681C4163151D724500747C4A /* yellowPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowPin.png; sourceTree = "<group>"; };
+		6831309F1553184700AA8692 /* SettingsButton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SettingsButton2.png; sourceTree = "<group>"; };
+		683130A01553184700AA8692 /* CameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraButton.png; sourceTree = "<group>"; };
+		683130A11553184700AA8692 /* PostOnWallButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PostOnWallButton.png; sourceTree = "<group>"; };
+		683130A31553184700AA8692 /* InviteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteButton.png; sourceTree = "<group>"; };
+		683130A41553184700AA8692 /* SendInviteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendInviteButton.png; sourceTree = "<group>"; };
+		683130A51553184700AA8692 /* BlankButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlankButton.png; sourceTree = "<group>"; };
+		683130A61553184700AA8692 /* BackToFriendsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackToFriendsButton.png; sourceTree = "<group>"; };
+		683130AF15531D9F00AA8692 /* LogoutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutButton.png; sourceTree = "<group>"; };
+		683130B015531D9F00AA8692 /* InviteFriendsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InviteFriendsButton.png; sourceTree = "<group>"; };
 		683D38341507C0D200021ED3 /* DebugLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DebugLog.h; path = MappMe/DebugLog.h; sourceTree = SOURCE_ROOT; };
 		683D38351507C0D200021ED3 /* DebugLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DebugLog.m; path = MappMe/DebugLog.m; sourceTree = SOURCE_ROOT; };
 		683D38361507C0D200021ED3 /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Timer.h; path = MappMe/Timer.h; sourceTree = SOURCE_ROOT; };
@@ -324,7 +342,6 @@
 		A9AADE9A154266E30096BC3C /* college.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = college.png; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
-		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OverlayViewController.xib; path = /Users/Codier/Desktop/MappMe/MappMe/OverlayViewController.xib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -491,6 +508,15 @@
 		68963AE5154C80EF00286C3B /* mainUI */ = {
 			isa = PBXGroup;
 			children = (
+				683130AF15531D9F00AA8692 /* LogoutButton.png */,
+				683130B015531D9F00AA8692 /* InviteFriendsButton.png */,
+				6831309F1553184700AA8692 /* SettingsButton2.png */,
+				683130A01553184700AA8692 /* CameraButton.png */,
+				683130A11553184700AA8692 /* PostOnWallButton.png */,
+				683130A31553184700AA8692 /* InviteButton.png */,
+				683130A41553184700AA8692 /* SendInviteButton.png */,
+				683130A51553184700AA8692 /* BlankButton.png */,
+				683130A61553184700AA8692 /* BackToFriendsButton.png */,
 				6819C2331551A4B600BA2544 /* CurrentLocationButton2.png */,
 				6819C22B1551A2A800BA2544 /* MappButtonForIndividual.png */,
 				6819C22C1551A2A800BA2544 /* UploadToFacebookButton.png */,
@@ -563,7 +589,6 @@
 				A98B98FB15430C3700433160 /* AbstractModalViewController.m */,
 				A9FC7BCB15215765007D72F6 /* OverlayViewController.h */,
 				A9FC7BCC15215765007D72F6 /* OverlayViewController.m */,
-				A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */,
 				A95B9456154A656400182E33 /* ScreenShotController.h */,
 				A95B9457154A656500182E33 /* ScreenShotController.m */,
 				A95B9458154A656500182E33 /* ScreenShotController.xib */,
@@ -865,6 +890,15 @@
 				6819C22F1551A2A800BA2544 /* UploadToFacebookButton.png in Resources */,
 				6819C2301551A2A800BA2544 /* CancelButton.png in Resources */,
 				6819C2341551A4B600BA2544 /* CurrentLocationButton2.png in Resources */,
+				683130A71553184700AA8692 /* SettingsButton2.png in Resources */,
+				683130A81553184700AA8692 /* CameraButton.png in Resources */,
+				683130A91553184700AA8692 /* PostOnWallButton.png in Resources */,
+				683130AB1553184700AA8692 /* InviteButton.png in Resources */,
+				683130AC1553184700AA8692 /* SendInviteButton.png in Resources */,
+				683130AD1553184700AA8692 /* BlankButton.png in Resources */,
+				683130AE1553184700AA8692 /* BackToFriendsButton.png in Resources */,
+				683130B115531D9F00AA8692 /* LogoutButton.png in Resources */,
+				683130B215531D9F00AA8692 /* InviteFriendsButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

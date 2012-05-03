@@ -39,8 +39,11 @@
     [super viewDidLoad];
     NSArray *chunks = [self.person.name componentsSeparatedByString: @" "];
     NSString*mapp =  [[NSString alloc] initWithFormat:@"Mapp %@",[chunks objectAtIndex:0]];
+    int width = b1.frame.size.width;
+    
     [self setBtnTitleForAllStates:b1 withText:mapp];
-//    if ([person.mutualFriends count] >0) {
+    b1.titleLabel.frame = CGRectMake(0, 0, width, b1.frame.size.height);
+    //    if ([person.mutualFriends count] >0) {
 //        NSString *subl = [[NSString alloc] initWithFormat:@"Mutual Friends (%i)",[person.mutualFriends count]];
 //        [self setBtnTitleForAllStates:b2 withText:subl];
 //    }else{
