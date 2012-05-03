@@ -90,7 +90,25 @@
     [self.screenShotView setImage:[self rotateImage:screenShot]];
 }
 
--(IBAction) uploadImage
+-(IBAction) extendPermissions
+{
+
+    NSArray *extendedPermissions = [[NSArray alloc] initWithObjects:@"publish_actions", @"user_photos", nil];
+    [[appDelegate facebook] authorize:extendedPermissions];
+}
+
+- (void)userDidGrantPermission {
+    DebugLog(@"Permission granted!!!!");
+}
+
+/**
+ * Called when the user canceled the authorization dialog.
+ */
+- (void)userDidNotGrantPermission {
+    DebugLog(@"Permission NOT granted!!!!");
+}
+
+-(void) uploadPhoto
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    self.screenShotView.image, @"picture",
@@ -103,9 +121,9 @@
     
     
     [[appDelegate facebook] requestWithGraphPath:@"me/photos"
-                                    andParams:params
-                                andHttpMethod:@"POST"
-                                  andDelegate:self];
+                                       andParams:params
+                                   andHttpMethod:@"POST"
+                                     andDelegate:self];
 }
 
 // This rotate image method is not generic. But it works for us
