@@ -328,7 +328,7 @@ static void *finishedContext = @"finishedContext";
 - (void)authorize:(NSArray *)permissions {
     self.permissions = permissions;
     
-    [self authorizeWithFBAppAuth:NO safariAuth:NO];
+    [self authorizeWithFBAppAuth:YES safariAuth:YES];
 }
 
 /**
@@ -424,7 +424,7 @@ static void *finishedContext = @"finishedContext";
         // If the error response indicates that we should try again using Safari, open
         // the authorization dialog in Safari.
         if (errorReason && [errorReason isEqualToString:@"service_disabled_use_browser"]) {
-            [self authorizeWithFBAppAuth:NO safariAuth:NO];
+            [self authorizeWithFBAppAuth:NO safariAuth:YES];
             return YES;
         }
         
@@ -459,6 +459,7 @@ static void *finishedContext = @"finishedContext";
     [self fbDialogLogin:accessToken expirationDate:expirationDate];
     return YES;
 }
+
 
 /**
  * Invalidate the current user session by removing the access token in
