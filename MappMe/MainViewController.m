@@ -37,6 +37,7 @@
     
     //This used for determining which set of map annotations to use
     BOOL isFriendAnnotationType;
+    Person *selectedFriend;
     
     IBOutlet UIView* progressIndicator;
     BOOL _finishedSaving;
@@ -213,6 +214,11 @@
 
     [controller presentInParentViewController:self];
     [controller updateScreenShot:screenShot];
+    if (isFriendAnnotationType && selectedFriend != nil) {
+        controller.selectedFriend = selectedFriend;
+    } else if (isMutualFriendType && mutualFriendsWith != nil) {
+        controller.selectedFriend = mutualFriendsWith;
+    }
 }
 
 #pragma mark - Map pins methods
@@ -282,6 +288,7 @@
     [self clearMap];
     currDisplayedType = locType;
     isFriendAnnotationType = FALSE;
+    selectedFriend = nil;
     NSString * update =[[NSString alloc]initWithFormat:@"%@s",[LocationTypeEnum getNameFromEnum:currDisplayedType]];
     [_slidingController updateMainLabel:update];
     
@@ -485,6 +492,7 @@
     [self.navigationController popToViewController:self animated:YES];
     [self clearMap];
     isFriendAnnotationType = TRUE;
+    selectedFriend = selectedPerson;
     isMutualFriendType = FALSE;
 //    currDisplayedType = tNilLocType;
     [self makeAnnotationsForPerson:selectedPerson];
@@ -493,9 +501,12 @@
 }
 - (void)didSelectMutualFriends:(Person*)person{
     [self.navigationController popToViewController:self animated:YES]; 
-    isMutualFriendType = TRUE;
-    isFriendAnnotationType = FALSE;
+    isMutualFriendType = TRUE; 
     mutualFriendsWith = person;
+
+    isFriendAnnotationType = FALSE;
+    selectedFriend = nil;
+   
     [self showLocationType:tCurrentLocation];
 }
 -(void)backToFriends{

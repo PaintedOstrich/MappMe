@@ -9,6 +9,7 @@
 #import "ScreenShotController.h"
 #import "MappMeAppDelegate.h"
 #import "MBProgressHUD.h"
+#import "Person.h"
 
 @interface ScreenShotController ()
 
@@ -18,13 +19,13 @@
     //Uploading HUD
     MBProgressHUD* HUD;
 }
-@synthesize screenShotView;
+@synthesize screenShotView, selectedFriend;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        selectedFriend = nil;
     }
     return self;
 }
@@ -167,6 +168,10 @@
        [HUD hide:YES];
        [self dismissFromParentViewController];
     });
+    
+    if (selectedFriend != nil) {
+        DebugLog(@"Should try tagging friend!!! %@", selectedFriend.name);
+    }
 }
 
 @end
