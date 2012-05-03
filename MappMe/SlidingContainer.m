@@ -14,6 +14,8 @@
 #import "MutualMenuViewController.h"
 #import "PersonMenuSlideController.h"
 #import "FacebookDataHandler.h"
+
+
 /*PLEASE NOTE:  the position of the buttonContainer is veryImportant.  It must be as close to the toggle Button, as the screen will only slide down the height of the container
  Container top must be positioned at 260 px offset*/
 @interface SlidingContainer (){
@@ -22,6 +24,11 @@
     UIView *buttonGroup;
     IBOutlet UILabel *mainLabel;
     IBOutlet UILabel *subLabel;
+    
+    //Controllers to dealloc
+    MainMenuViewController *mmvc;
+    MutualMenuViewController *muvc;
+    PersonMenuSlideController *pmsc;
 }
 @end
 
@@ -139,6 +146,21 @@
 -(void)transitionCleanup{
     [self generalChecks];
     [buttonGroup removeFromSuperview];
+    if(mmvc){
+        [mmvc removeFromParentViewController];
+        mmvc=nil;
+        DebugLog(@"removed mmvc");
+    }
+    if(muvc){
+        [muvc removeFromParentViewController];
+        muvc = nil;
+        DebugLog(@"removed muvc");
+    }
+    if(pmsc){
+        [pmsc removeFromParentViewController];
+        pmsc = nil;
+        DebugLog(@"removed pmsc");
+    }
 }
 -(void)showFriendMenu:(Person*)person{
     [self getPersonData:person];
@@ -176,7 +198,7 @@
     [self setViewToBottomCenter:controller.view];
     buttonGroup = controller.view;
     [buttonContainer addSubview:buttonGroup];
-    //FIXME if this controller is added several times, will it be added all times/cause error?
+    mmvc = controller;//So it can be removed
     [self addChildViewController:controller];
 }
 -(void)initMutualMenuController{
@@ -187,6 +209,7 @@
     displayHeight = controller.view.frame.size.height;
     buttonGroup = controller.view;
     buttonGroup.frame = [self setViewInBottom:buttonGroup];
+    muvc = controller;
     [buttonContainer addSubview:buttonGroup];
     [self addChildViewController:controller];
 }
@@ -197,6 +220,7 @@
     controller.person = person;
     displayHeight = controller.view.frame.size.height;
     buttonGroup = controller.view;
+    pmsc = controller;//so can be removed
     buttonGroup.frame = [self setViewInBottom:buttonGroup];
     [buttonContainer addSubview:buttonGroup];
     [buttonContainer bringSubviewToFront:buttonGroup];
