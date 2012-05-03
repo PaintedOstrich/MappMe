@@ -18,6 +18,7 @@
 @implementation ScreenShotController {
     //Uploading HUD
     MBProgressHUD* HUD;
+    MappMeAppDelegate *appDelegate;
 }
 @synthesize screenShotView, selectedFriend;
 
@@ -26,6 +27,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         selectedFriend = nil;
+        appDelegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
     }
     return self;
 }
@@ -71,8 +73,7 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    self.screenShotView.image, @"picture",
                                    nil];
-    MappMeAppDelegate *delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    [[delegate facebook] requestWithGraphPath:@"me/photos"
+    [[appDelegate facebook] requestWithGraphPath:@"me/photos"
                                     andParams:params
                                 andHttpMethod:@"POST"
                                   andDelegate:self];
@@ -170,7 +171,11 @@
     });
     
     if (selectedFriend != nil) {
+        NSString *photoID = [NSString stringWithFormat:@"%@", [(NSDictionary*)result valueForKey:@"id"]];
         DebugLog(@"Should try tagging friend!!! %@", selectedFriend.name);
+        [[appDelegate facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/tags/%@?access_token=%@", photoID, selectedFriend.uid, [appDelegate facebook].accessToken]
+                                                    andParams:nil 
+                                       andHttpMethod:@"POST" andDelegate:self];
     }
 }
 
