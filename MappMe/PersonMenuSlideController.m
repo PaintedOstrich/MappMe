@@ -63,25 +63,21 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 #pragma mark - Facebook Method Calls
--(IBAction)goToProfile:(id)sender{
-    
-    [self.container closeMenu];
-}
--(IBAction)sendMessage:(id)sender{
+-(IBAction)sendInvite:(id)sender{
     
     [self.container closeMenu];
     
-    SBJSON *jsonWriter = [SBJSON new];
-    NSDictionary *gift = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @"5", @"social_karma",
-                          @"1", @"badge_of_awesomeness",
-                          nil];
+//    SBJSON *jsonWriter = [SBJSON new];
+//    NSDictionary *gift = [NSDictionary dictionaryWithObjectsAndKeys:
+//                          @"5", @"social_karma",
+//                          @"1", @"badge_of_awesomeness",
+//                          nil];
     
-    NSString *giftStr = [jsonWriter stringWithObject:gift];
+   // NSString *giftStr = [jsonWriter stringWithObject:gift];
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    @"Check out MappMe.",  @"message",
-                                   @"It is such an awesome app", @"notification_text",
-                                   giftStr, @"data",
+                                   @"It is a fun app to use!", @"notification_text",
+                                   person.uid, @"to",
                                    nil];
     
     MappMeAppDelegate *appDelegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -104,7 +100,7 @@
                                    @"Message posted via MappMe App.", @"caption",
                                    //@"Message Posted via MappMe.", @"description",
                                    //@"http://m.facebook.com/apps/hackbookios/", @"link",
-                                   @"http://www.facebookmobileweb.com/hackbook/img/facebook_icon_large.png", @"picture",
+                                   @"http://paintedostrichstudio.appspot.com/resources/img/icon.png", @"picture",
                                    //actionLinksStr, @"actions",
                                    nil];
     

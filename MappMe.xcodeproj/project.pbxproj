@@ -80,7 +80,6 @@
 		68FC2A8D153E7F0D00003A74 /* LogoutPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A89153E7F0D00003A74 /* LogoutPressed@2x.png */; };
 		68FC2A8F153E806100003A74 /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A8E153E806100003A74 /* loginBackground.png */; };
 		68FC2AA615422BB200003A74 /* logout background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AA515422BB200003A74 /* logout background.png */; };
-		68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FC2AA81542321000003A74 /* PersonMenuViewController.m */; };
 		68FC2ACE1543429300003A74 /* intro background .png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AC71543429300003A74 /* intro background .png */; };
 		A910654A153E46FA0057B570 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106535153E46FA0057B570 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A910654B153E46FA0057B570 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106537153E46FA0057B570 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -93,7 +92,6 @@
 		A9106552153E46FA0057B570 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106547153E46FA0057B570 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A9106553153E46FA0057B570 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106549153E46FA0057B570 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
-		A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A91AF90515008AE200FCD3D7 /* WebViewController.m */; };
 		A91C5BD6153F00C200128885 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DC14FED94600899729 /* UIKit.framework */; };
 		A91C5BD7153F00C200128885 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DE14FED94600899729 /* Foundation.framework */; };
 		A91C5BD8153F00C200128885 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435E014FED94600899729 /* CoreGraphics.framework */; };
@@ -253,8 +251,6 @@
 		68FC2A89153E7F0D00003A74 /* LogoutPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoutPressed@2x.png"; sourceTree = "<group>"; };
 		68FC2A8E153E806100003A74 /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBackground.png; sourceTree = "<group>"; };
 		68FC2AA515422BB200003A74 /* logout background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logout background.png"; path = "MappMe/logout background.png"; sourceTree = "<group>"; };
-		68FC2AA71542321000003A74 /* PersonMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuViewController.h; sourceTree = "<group>"; };
-		68FC2AA81542321000003A74 /* PersonMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuViewController.m; sourceTree = "<group>"; };
 		68FC2AC71543429300003A74 /* intro background .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "intro background .png"; sourceTree = "<group>"; };
 		A9106534153E46FA0057B570 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		A9106535153E46FA0057B570 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
@@ -280,8 +276,6 @@
 		A9106549153E46FA0057B570 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
-		A91AF90415008AE200FCD3D7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		A91AF90515008AE200FCD3D7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		A91C5BD4153F00C200128885 /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91C5BDB153F00C200128885 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		A91C5BDD153F00C200128885 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -714,12 +708,8 @@
 				6804361614FEEF4200899729 /* MainViewController.m */,
 				A943249615007983005F7600 /* ListViewController.h */,
 				A943249715007983005F7600 /* ListViewController.m */,
-				A91AF90415008AE200FCD3D7 /* WebViewController.h */,
-				A91AF90515008AE200FCD3D7 /* WebViewController.m */,
 				68DC0BD4151E538500514016 /* FriendSearchViewController.h */,
 				68DC0BD5151E538500514016 /* FriendSearchViewController.m */,
-				68FC2AA71542321000003A74 /* PersonMenuViewController.h */,
-				68FC2AA81542321000003A74 /* PersonMenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -957,7 +947,6 @@
 				680435F614FED94600899729 /* LoginViewController.m in Sources */,
 				6804361714FEEF4200899729 /* MainViewController.m in Sources */,
 				A943249815007983005F7600 /* ListViewController.m in Sources */,
-				A91AF90615008AE200FCD3D7 /* WebViewController.m in Sources */,
 				A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */,
 				A9A0AC541502D8F00020265D /* MyAnnotation.m in Sources */,
 				A9801D811502E1E400BA0B5B /* Place.m in Sources */,
@@ -988,7 +977,6 @@
 				A923196F154012D800F0699E /* AbstractContainer.m in Sources */,
 				A9AADE43154239620096BC3C /* LocTypeMenuController.m in Sources */,
 				A9AADE49154250D80096BC3C /* GradientView.m in Sources */,
-				68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */,
 				A98B98FC15430C3700433160 /* AbstractModalViewController.m in Sources */,
 				68963A93154ADF9200286C3B /* UtilFunctions.m in Sources */,
 				687E43F8154DABD700CE245F /* SettingsMenuController.m in Sources */,
