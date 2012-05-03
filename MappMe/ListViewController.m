@@ -8,10 +8,8 @@
 
 #import "ListViewController.h"
 #import "Person.h"
-#import "WebViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "MyAnnotation.h"
-#import "PersonMenuViewController.h"
 
 @implementation ListViewController{
     NSArray * friends;

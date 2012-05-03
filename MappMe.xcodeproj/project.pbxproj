@@ -19,8 +19,6 @@
 		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
 		6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */; };
 		6819C1F9154F5FF800BA2544 /* MutualMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */; };
-		6819C1FD154F66AE00BA2544 /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */; };
-		6819C1FE154F66AE00BA2544 /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */; };
 		681C4164151D724500747C4A /* bluePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415D151D724500747C4A /* bluePin.png */; };
 		681C4165151D724500747C4A /* greenPin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415E151D724500747C4A /* greenPin.png */; };
 		681C4166151D724500747C4A /* orangePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 681C415F151D724500747C4A /* orangePin.png */; };
@@ -146,6 +144,8 @@
 		A9AADE9B154266E30096BC3C /* highschool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE98154266E30096BC3C /* highschool@2x.png */; };
 		A9AADE9C154266E30096BC3C /* college@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE99154266E30096BC3C /* college@2x.png */; };
 		A9AADE9D154266E30096BC3C /* college.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE9A154266E30096BC3C /* college.png */; };
+		A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */; };
+		A9F8DFD515523F720075EA0B /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -179,9 +179,6 @@
 		6819C1F5154F5FF800BA2544 /* MutualMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutualMenuViewController.h; sourceTree = "<group>"; };
 		6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutualMenuViewController.m; sourceTree = "<group>"; };
 		6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MutualMenuViewController.xib; sourceTree = "<group>"; };
-		6819C1FA154F66AD00BA2544 /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
-		6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
-		6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
 		681C415D151D724500747C4A /* bluePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluePin.png; sourceTree = "<group>"; };
 		681C415E151D724500747C4A /* greenPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenPin.png; sourceTree = "<group>"; };
 		681C415F151D724500747C4A /* orangePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangePin.png; sourceTree = "<group>"; };
@@ -337,6 +334,9 @@
 		A9AADE98154266E30096BC3C /* highschool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "highschool@2x.png"; sourceTree = "<group>"; };
 		A9AADE99154266E30096BC3C /* college@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "college@2x.png"; sourceTree = "<group>"; };
 		A9AADE9A154266E30096BC3C /* college.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = college.png; sourceTree = "<group>"; };
+		A9F8DFCB15523F720075EA0B /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
+		A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
+		A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
 		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OverlayViewController.xib; path = /Users/Codier/Desktop/MappMe/MappMe/OverlayViewController.xib; sourceTree = "<absolute>"; };
@@ -535,6 +535,9 @@
 		68963B01154C870000286C3B /* SlidingViewMenus */ = {
 			isa = PBXGroup;
 			children = (
+				A9F8DFCB15523F720075EA0B /* PersonMenuSlideController.h */,
+				A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */,
+				A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */,
 				68963AF6154C81DB00286C3B /* AbstractSlider.xib */,
 				68963AFE154C86DF00286C3B /* SlidingContainer.h */,
 				68963AFF154C86DF00286C3B /* SlidingContainer.m */,
@@ -544,9 +547,6 @@
 				6819C1F5154F5FF800BA2544 /* MutualMenuViewController.h */,
 				6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */,
 				6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */,
-				6819C1FA154F66AD00BA2544 /* PersonMenuSlideController.h */,
-				6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */,
-				6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */,
 			);
 			name = SlidingViewMenus;
 			sourceTree = "<group>";
@@ -923,7 +923,7 @@
 				68963AF8154C81DB00286C3B /* AbstractSlider.xib in Resources */,
 				68C72DEA154DF13400DBED48 /* MainMenuViewController.xib in Resources */,
 				6819C1F9154F5FF800BA2544 /* MutualMenuViewController.xib in Resources */,
-				6819C1FE154F66AE00BA2544 /* PersonMenuSlideController.xib in Resources */,
+				A9F8DFD515523F720075EA0B /* PersonMenuSlideController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,7 +984,7 @@
 				68963B00154C86E000286C3B /* SlidingContainer.m in Sources */,
 				68C72DE9154DF13400DBED48 /* MainMenuViewController.m in Sources */,
 				6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */,
-				6819C1FD154F66AE00BA2544 /* PersonMenuSlideController.m in Sources */,
+				A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

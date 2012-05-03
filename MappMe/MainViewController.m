@@ -8,13 +8,11 @@
 #import "DebugLog.h"
 #import "Timer.h"
 #import "MyAnnotation.h"
-#import "WebViewController.h"
 #import "ListViewController.h"
 #import "FacebookDataHandler.h"
 #import "ZoomHelper.h"
 #import "DataManagerSingleton.h"
 #import "UIImageView+AFNetworking.h"
-#import "PersonMenuViewController.h"
 #import "SettingsMenuController.h"
 #import "ScreenShotController.h"
 //#import "AbstractSlidingContainer.h"
@@ -142,10 +140,6 @@
         ListViewController *controller = segue.destinationViewController;
         controller.selectedAnnotation = (MyAnnotation*)sender;
         controller.mvc= self;
-    }else if ([segue.identifier isEqualToString:@"personmenusegue"]){
-        Person *friend = (Person*)sender;
-        PersonMenuViewController *controller = segue.destinationViewController;
-        controller.person = friend;
     } else if ([segue.identifier isEqualToString:@"searchview"]){
         FriendSearchViewController *controller = segue.destinationViewController;
         controller.mvc = self;
