@@ -99,7 +99,7 @@
                                    // @"I'm using the Hackbook for iOS app", @"name",
                                    @"Message posted via MappMe App.", @"caption",
                                    //@"Message Posted via MappMe.", @"description",
-                                   //@"http://m.facebook.com/apps/hackbookios/", @"link",
+                                    @"http://paintedostrichstudio.appspot.com", @"link",
                                    @"http://paintedostrichstudio.appspot.com/resources/img/icon.png", @"picture",
                                    //actionLinksStr, @"actions",
                                    nil];
