@@ -2,13 +2,13 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">11D50b</string>
+		<string key="IBDocument.SystemVersion">11D50d</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
 		<string key="IBDocument.AppKitVersion">1138.32</string>
 		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1179</string>
+			<string key="NS.object.0">1181</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
@@ -80,7 +80,7 @@
 						<string key="NSFrame">{{3, 52}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="805478078"/>
+						<reference key="NSNextKeyView" ref="136962672"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -148,7 +148,6 @@
 						<string key="NSFrame">{{2, 181}, {190, 40}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -167,7 +166,7 @@
 						<reference key="IBUIFontDescription" ref="549592024"/>
 						<reference key="IBUIFont" ref="636776136"/>
 					</object>
-					<object class="IBUIButton" id="805478078">
+					<object class="IBUIButton" id="136962672">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{3, 95}, {190, 40}}</string>
@@ -179,8 +178,6 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<int key="IBUILineBreakMode">0</int>
 						<reference key="IBUIHighlightedTitleColor" ref="1018244070"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -189,7 +186,7 @@
 						<reference key="IBUINormalTitleShadowColor" ref="807867404"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">PostonWallButton.png</string>
+							<string key="NSResourceName">PostonWallButton2.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="549592024"/>
 						<reference key="IBUIFont" ref="636776136"/>
@@ -267,11 +264,11 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">postOnWall:</string>
-						<reference key="source" ref="805478078"/>
+						<reference key="source" ref="136962672"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">50</int>
+					<int key="connectionID">52</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -290,7 +287,7 @@
 							<reference ref="651967193"/>
 							<reference ref="974724530"/>
 							<reference ref="235484024"/>
-							<reference ref="805478078"/>
+							<reference ref="136962672"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -326,8 +323,8 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">48</int>
-						<reference key="object" ref="805478078"/>
+						<int key="objectID">51</int>
+						<reference key="object" ref="136962672"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -343,19 +340,53 @@
 				<string key="39.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="39.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
 				<string key="40.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">50</int>
+			<int key="maxID">52</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
 					<string key="className">PersonMenuSlideController</string>
 					<string key="superclassName">UIViewController</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="b1">UIButton</string>
+						<string key="b2">UIButton</string>
+						<string key="b3">UIButton</string>
+						<string key="b4">UIButton</string>
+						<string key="b5">UIButton</string>
+						<string key="b6">UIButton</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="b1">
+							<string key="name">b1</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="b2">
+							<string key="name">b2</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="b3">
+							<string key="name">b3</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="b4">
+							<string key="name">b4</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="b5">
+							<string key="name">b5</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="b6">
+							<string key="name">b6</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/PersonMenuSlideController.h</string>
@@ -375,9 +406,9 @@
 			<string key="BackToFriendsButton.png">{367, 69}</string>
 			<string key="BlankButton.png">{367, 69}</string>
 			<string key="MutualFriendsButton.png">{367, 69}</string>
-			<string key="PostonWallButton.png">{367, 69}</string>
+			<string key="PostonWallButton2.png">{367, 69}</string>
 			<string key="SendInviteButton.png">{367, 69}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1179</string>
+		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>

@@ -43,6 +43,8 @@
 		683D383A1507C0D200021ED3 /* DebugLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38351507C0D200021ED3 /* DebugLog.m */; };
 		683D383B1507C0D200021ED3 /* Timer.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38371507C0D200021ED3 /* Timer.m */; };
 		683D383C1507C0D200021ED3 /* UserInfoLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 683D38391507C0D200021ED3 /* UserInfoLog.m */; };
+		6862A549155479DC00499ED6 /* PostonWallButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6862A548155479DC00499ED6 /* PostonWallButton.png */; };
+		6862A54B15547A2400499ED6 /* PostonWallButton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6862A54A15547A2400499ED6 /* PostonWallButton2.png */; };
 		687E43F8154DABD700CE245F /* SettingsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E43F5154DABD700CE245F /* SettingsMenuController.m */; };
 		687E43F9154DABD700CE245F /* SettingsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687E43F6154DABD700CE245F /* SettingsMenuController.xib */; };
 		689175BD151D0C3D00078BE2 /* FacebookDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */; };
@@ -139,7 +141,6 @@
 		A9BDC9EC15535AAB00B1EF53 /* SendInviteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */; };
 		A9BDC9F315535C8200B1EF53 /* CameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F115535C8200B1EF53 /* CameraButton.png */; };
 		A9BDC9F415535C8200B1EF53 /* LogoutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F215535C8200B1EF53 /* LogoutButton.png */; };
-		A9F22D6D15536325003DC2FA /* PostonWallButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9F22D6C15536325003DC2FA /* PostonWallButton.png */; };
 		A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */; };
 		A9F8DFD515523F720075EA0B /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
@@ -202,6 +203,8 @@
 		683D38371507C0D200021ED3 /* Timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Timer.m; path = MappMe/Timer.m; sourceTree = SOURCE_ROOT; };
 		683D38381507C0D200021ED3 /* UserInfoLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoLog.h; path = MappMe/UserInfoLog.h; sourceTree = SOURCE_ROOT; };
 		683D38391507C0D200021ED3 /* UserInfoLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoLog.m; path = MappMe/UserInfoLog.m; sourceTree = SOURCE_ROOT; };
+		6862A548155479DC00499ED6 /* PostonWallButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PostonWallButton.png; sourceTree = "<group>"; };
+		6862A54A15547A2400499ED6 /* PostonWallButton2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PostonWallButton2.png; sourceTree = "<group>"; };
 		687E43F5154DABD700CE245F /* SettingsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMenuController.m; sourceTree = "<group>"; };
 		687E43F6154DABD700CE245F /* SettingsMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuController.xib; sourceTree = "<group>"; };
 		687E43F7154DABD700CE245F /* SettingsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenuController.h; sourceTree = "<group>"; };
@@ -325,13 +328,11 @@
 		A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendInviteButton.png; sourceTree = "<group>"; };
 		A9BDC9F115535C8200B1EF53 /* CameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraButton.png; sourceTree = "<group>"; };
 		A9BDC9F215535C8200B1EF53 /* LogoutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutButton.png; sourceTree = "<group>"; };
-		A9F22D6C15536325003DC2FA /* PostonWallButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PostonWallButton.png; sourceTree = "<group>"; };
 		A9F8DFCB15523F720075EA0B /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
 		A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
 		A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
 		A9FC7BCB15215765007D72F6 /* OverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayViewController.h; sourceTree = "<group>"; };
 		A9FC7BCC15215765007D72F6 /* OverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayViewController.m; sourceTree = "<group>"; };
-		A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OverlayViewController.xib; path = /Users/Codier/Desktop/MappMe/MappMe/OverlayViewController.xib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -498,7 +499,8 @@
 		68963AE5154C80EF00286C3B /* mainUI */ = {
 			isa = PBXGroup;
 			children = (
-				A9F22D6C15536325003DC2FA /* PostonWallButton.png */,
+				6862A54A15547A2400499ED6 /* PostonWallButton2.png */,
+				6862A548155479DC00499ED6 /* PostonWallButton.png */,
 				A9BDC9F115535C8200B1EF53 /* CameraButton.png */,
 				A9BDC9F215535C8200B1EF53 /* LogoutButton.png */,
 				A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */,
@@ -576,7 +578,6 @@
 				A98B98FB15430C3700433160 /* AbstractModalViewController.m */,
 				A9FC7BCB15215765007D72F6 /* OverlayViewController.h */,
 				A9FC7BCC15215765007D72F6 /* OverlayViewController.m */,
-				A9FC7BCD15215766007D72F6 /* OverlayViewController.xib */,
 				A95B9456154A656400182E33 /* ScreenShotController.h */,
 				A95B9457154A656500182E33 /* ScreenShotController.m */,
 				A95B9458154A656500182E33 /* ScreenShotController.xib */,
@@ -880,7 +881,8 @@
 				A9BDC9EC15535AAB00B1EF53 /* SendInviteButton.png in Resources */,
 				A9BDC9F315535C8200B1EF53 /* CameraButton.png in Resources */,
 				A9BDC9F415535C8200B1EF53 /* LogoutButton.png in Resources */,
-				A9F22D6D15536325003DC2FA /* PostonWallButton.png in Resources */,
+				6862A549155479DC00499ED6 /* PostonWallButton.png in Resources */,
+				6862A54B15547A2400499ED6 /* PostonWallButton2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,7 +1039,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Painted Ostrich LLC";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1046,6 +1048,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
