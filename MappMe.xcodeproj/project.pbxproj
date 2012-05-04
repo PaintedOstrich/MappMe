@@ -19,8 +19,6 @@
 		6804361714FEEF4200899729 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6804361614FEEF4200899729 /* MainViewController.m */; };
 		6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */; };
 		6819C1F9154F5FF800BA2544 /* MutualMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */; };
-		6819C1FD154F66AE00BA2544 /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */; };
-		6819C1FE154F66AE00BA2544 /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */; };
 		6819C2201550EEC800BA2544 /* DropDownMenuBordered.png in Resources */ = {isa = PBXBuildFile; fileRef = 6819C2151550EEC800BA2544 /* DropDownMenuBordered.png */; };
 		6819C2211550EEC800BA2544 /* HighSchoolButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6819C2161550EEC800BA2544 /* HighSchoolButton.png */; };
 		6819C2231550EEC800BA2544 /* CollegeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 6819C2181550EEC800BA2544 /* CollegeButton.png */; };
@@ -71,8 +69,6 @@
 		68FC2A6F153E47C500003A74 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68FC2A6E153E47C500003A74 /* QuartzCore.framework */; };
 		68FC2A71153E49C600003A74 /* welcomePin.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A70153E49C600003A74 /* welcomePin.png */; };
 		68FC2A8F153E806100003A74 /* loginBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2A8E153E806100003A74 /* loginBackground.png */; };
-		68FC2AA615422BB200003A74 /* logout background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AA515422BB200003A74 /* logout background.png */; };
-		68FC2AA91542321000003A74 /* PersonMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68FC2AA81542321000003A74 /* PersonMenuViewController.m */; };
 		68FC2ACE1543429300003A74 /* intro background .png in Resources */ = {isa = PBXBuildFile; fileRef = 68FC2AC71543429300003A74 /* intro background .png */; };
 		A910654A153E46FA0057B570 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106535153E46FA0057B570 /* AFHTTPClient.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A910654B153E46FA0057B570 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106537153E46FA0057B570 /* AFHTTPRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -172,9 +168,6 @@
 		6819C1F5154F5FF800BA2544 /* MutualMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutualMenuViewController.h; sourceTree = "<group>"; };
 		6819C1F6154F5FF800BA2544 /* MutualMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutualMenuViewController.m; sourceTree = "<group>"; };
 		6819C1F7154F5FF800BA2544 /* MutualMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MutualMenuViewController.xib; sourceTree = "<group>"; };
-		6819C1FA154F66AD00BA2544 /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
-		6819C1FB154F66AD00BA2544 /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
-		6819C1FC154F66AD00BA2544 /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
 		6819C2151550EEC800BA2544 /* DropDownMenuBordered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DropDownMenuBordered.png; sourceTree = "<group>"; };
 		6819C2161550EEC800BA2544 /* HighSchoolButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HighSchoolButton.png; sourceTree = "<group>"; };
 		6819C2181550EEC800BA2544 /* CollegeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CollegeButton.png; sourceTree = "<group>"; };
@@ -236,8 +229,6 @@
 		68FC2A70153E49C600003A74 /* welcomePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcomePin.png; sourceTree = "<group>"; };
 		68FC2A8E153E806100003A74 /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBackground.png; sourceTree = "<group>"; };
 		68FC2AA515422BB200003A74 /* logout background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logout background.png"; path = "/Users/parkerspielman/Documents/Projects/MappMeShell/MappMe2/MappMe/MappMe/logout background.png"; sourceTree = "<absolute>"; };
-		68FC2AA71542321000003A74 /* PersonMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuViewController.h; sourceTree = "<group>"; };
-		68FC2AA81542321000003A74 /* PersonMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuViewController.m; sourceTree = "<group>"; };
 		68FC2AC71543429300003A74 /* intro background .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "intro background .png"; sourceTree = "<group>"; };
 		A9106534153E46FA0057B570 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		A9106535153E46FA0057B570 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
