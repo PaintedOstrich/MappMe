@@ -133,6 +133,13 @@
 		A9AADE9B154266E30096BC3C /* highschool@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE98154266E30096BC3C /* highschool@2x.png */; };
 		A9AADE9C154266E30096BC3C /* college@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE99154266E30096BC3C /* college@2x.png */; };
 		A9AADE9D154266E30096BC3C /* college.png in Resources */ = {isa = PBXBuildFile; fileRef = A9AADE9A154266E30096BC3C /* college.png */; };
+		A9BDC9E0155359C900B1EF53 /* BlankButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9DF155359C900B1EF53 /* BlankButton.png */; };
+		A9BDC9E415535A3100B1EF53 /* BackToFriendsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9E315535A3100B1EF53 /* BackToFriendsButton.png */; };
+		A9BDC9E815535A7400B1EF53 /* purple1.4.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9E715535A7400B1EF53 /* purple1.4.png */; };
+		A9BDC9EC15535AAB00B1EF53 /* SendInviteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */; };
+		A9BDC9F015535B9900B1EF53 /* PostonWallButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9EF15535B9900B1EF53 /* PostonWallButton.png */; };
+		A9BDC9F315535C8200B1EF53 /* CameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F115535C8200B1EF53 /* CameraButton.png */; };
+		A9BDC9F415535C8200B1EF53 /* LogoutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F215535C8200B1EF53 /* LogoutButton.png */; };
 		A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */; };
 		A9F8DFD515523F720075EA0B /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
@@ -228,7 +235,6 @@
 		68FC2A6E153E47C500003A74 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		68FC2A70153E49C600003A74 /* welcomePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcomePin.png; sourceTree = "<group>"; };
 		68FC2A8E153E806100003A74 /* loginBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginBackground.png; sourceTree = "<group>"; };
-		68FC2AA515422BB200003A74 /* logout background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "logout background.png"; path = "/Users/parkerspielman/Documents/Projects/MappMeShell/MappMe2/MappMe/MappMe/logout background.png"; sourceTree = "<absolute>"; };
 		68FC2AC71543429300003A74 /* intro background .png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "intro background .png"; sourceTree = "<group>"; };
 		A9106534153E46FA0057B570 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AFHTTPClient.h; path = AFNetworking/AFHTTPClient.h; sourceTree = "<group>"; };
 		A9106535153E46FA0057B570 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AFHTTPClient.m; path = AFNetworking/AFHTTPClient.m; sourceTree = "<group>"; };
@@ -313,6 +319,13 @@
 		A9AADE98154266E30096BC3C /* highschool@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "highschool@2x.png"; sourceTree = "<group>"; };
 		A9AADE99154266E30096BC3C /* college@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "college@2x.png"; sourceTree = "<group>"; };
 		A9AADE9A154266E30096BC3C /* college.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = college.png; sourceTree = "<group>"; };
+		A9BDC9DF155359C900B1EF53 /* BlankButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlankButton.png; sourceTree = "<group>"; };
+		A9BDC9E315535A3100B1EF53 /* BackToFriendsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BackToFriendsButton.png; sourceTree = "<group>"; };
+		A9BDC9E715535A7400B1EF53 /* purple1.4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple1.4.png; sourceTree = "<group>"; };
+		A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendInviteButton.png; sourceTree = "<group>"; };
+		A9BDC9EF15535B9900B1EF53 /* PostonWallButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PostonWallButton.png; sourceTree = "<group>"; };
+		A9BDC9F115535C8200B1EF53 /* CameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraButton.png; sourceTree = "<group>"; };
+		A9BDC9F215535C8200B1EF53 /* LogoutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutButton.png; sourceTree = "<group>"; };
 		A9F8DFCB15523F720075EA0B /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
 		A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
 		A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
@@ -485,6 +498,13 @@
 		68963AE5154C80EF00286C3B /* mainUI */ = {
 			isa = PBXGroup;
 			children = (
+				A9BDC9F115535C8200B1EF53 /* CameraButton.png */,
+				A9BDC9F215535C8200B1EF53 /* LogoutButton.png */,
+				A9BDC9EF15535B9900B1EF53 /* PostonWallButton.png */,
+				A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */,
+				A9BDC9E715535A7400B1EF53 /* purple1.4.png */,
+				A9BDC9E315535A3100B1EF53 /* BackToFriendsButton.png */,
+				A9BDC9DF155359C900B1EF53 /* BlankButton.png */,
 				6819C2331551A4B600BA2544 /* CurrentLocationButton2.png */,
 				6819C22B1551A2A800BA2544 /* MappButtonForIndividual.png */,
 				6819C22C1551A2A800BA2544 /* UploadToFacebookButton.png */,
@@ -515,7 +535,6 @@
 				A97CE6071546DF8300553D9B /* camera.png */,
 				A97CE6081546DF8300553D9B /* photo (2).png */,
 				68FC2AC71543429300003A74 /* intro background .png */,
-				68FC2AA515422BB200003A74 /* logout background.png */,
 				68FC2A70153E49C600003A74 /* welcomePin.png */,
 				68BEE57115292D0E00E2433D /* triangle.png */,
 				A96AD5CE151FD52B00372528 /* profile.png */,
@@ -855,6 +874,13 @@
 				6819C22F1551A2A800BA2544 /* UploadToFacebookButton.png in Resources */,
 				6819C2301551A2A800BA2544 /* CancelButton.png in Resources */,
 				6819C2341551A4B600BA2544 /* CurrentLocationButton2.png in Resources */,
+				A9BDC9E0155359C900B1EF53 /* BlankButton.png in Resources */,
+				A9BDC9E415535A3100B1EF53 /* BackToFriendsButton.png in Resources */,
+				A9BDC9E815535A7400B1EF53 /* purple1.4.png in Resources */,
+				A9BDC9EC15535AAB00B1EF53 /* SendInviteButton.png in Resources */,
+				A9BDC9F015535B9900B1EF53 /* PostonWallButton.png in Resources */,
+				A9BDC9F315535C8200B1EF53 /* CameraButton.png in Resources */,
+				A9BDC9F415535C8200B1EF53 /* LogoutButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
