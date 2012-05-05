@@ -308,7 +308,7 @@
 
 #pragma mark - main data processing dispatch
 - (void)fetchAndProcess {
-    Timer * t = [[Timer alloc] init];
+//    Timer * t = [[Timer alloc] init];
     //Load stored places from disk.
     [[mainDataManager placeContainer] loadPlacesFromDisk];
     FacebookDataHandler *fbDataHandler = [FacebookDataHandler sharedInstance];
@@ -318,8 +318,8 @@
     [fbDataHandler getCurrentLocation];
 
     [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
-    int time = [t endTimerAndGetTotalTime];
-    DebugLog(@"Total App Loadtime: %i",time);
+//    int time = [t endTimerAndGetTotalTime];
+//    DebugLog(@"Total App Loadtime: %i",time);
     [self performSelectorOnMainThread:@selector(bounceControls) withObject:nil waitUntilDone:NO];
 }
 
