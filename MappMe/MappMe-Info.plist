@@ -11,6 +11,10 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>icon.png</string>
+		<string>Default@2x.png</string>
+		<string>Default.png</string>
+		<string>icon@2x.png</string>
+		<string>mappmeicon.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -19,9 +23,13 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>icon.png</string>
+				<string>Default@2x.png</string>
+				<string>Default.png</string>
+				<string>icon@2x.png</string>
+				<string>mappmeicon.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
-			<false/>
+			<true/>
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
@@ -53,6 +61,8 @@
 	<string>MainStoryboard_iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>MainStoryboard_iPhone</string>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -62,6 +72,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 </dict>
 </plist>
