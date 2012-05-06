@@ -96,6 +96,7 @@
 		A9212EFE154BAB5D00914144 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = A9212EFC154BAB5D00914144 /* 37x-Checkmark.png */; };
 		A923196F154012D800F0699E /* AbstractContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A923196E154012D800F0699E /* AbstractContainer.m */; };
 		A9231970154015BF00F0699E /* AbstractContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = A923196E154012D800F0699E /* AbstractContainer.m */; };
+		A9295ABE1557258A001B918D /* OverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9295ABD1557258A001B918D /* OverlayViewController.xib */; };
 		A94324951500727F005F7600 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A94324941500727F005F7600 /* MapKit.framework */; };
 		A943249815007983005F7600 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A943249715007983005F7600 /* ListViewController.m */; };
 		A94C44C815059F64001FF446 /* CoordinateLookupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A94C44C715059F64001FF446 /* CoordinateLookupManager.m */; };
@@ -265,6 +266,7 @@
 		A9212EFC154BAB5D00914144 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		A923196D154012D800F0699E /* AbstractContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractContainer.h; sourceTree = "<group>"; };
 		A923196E154012D800F0699E /* AbstractContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractContainer.m; sourceTree = "<group>"; };
+		A9295ABD1557258A001B918D /* OverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayViewController.xib; sourceTree = "<group>"; };
 		A939B73D152A9CEE008B2AE7 /* facebook-ios-sdk.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "facebook-ios-sdk.xcodeproj"; sourceTree = "<group>"; };
 		A94324941500727F005F7600 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A943249615007983005F7600 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 		68FA1AF3154725E500631EBF /* SubViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				A9295ABD1557258A001B918D /* OverlayViewController.xib */,
 				687E43F5154DABD700CE245F /* SettingsMenuController.m */,
 				687E43F6154DABD700CE245F /* SettingsMenuController.xib */,
 				687E43F7154DABD700CE245F /* SettingsMenuController.h */,
@@ -842,6 +845,7 @@
 				68A3DBB71554B82700803B0D /* default@2x.png in Resources */,
 				68A3DBBB1554C55F00803B0D /* icon@2x.png in Resources */,
 				68A3DBBD1554C57300803B0D /* icon.png in Resources */,
+				A9295ABE1557258A001B918D /* OverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
