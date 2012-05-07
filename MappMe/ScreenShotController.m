@@ -20,6 +20,8 @@
     MBProgressHUD* HUD;
     MappMeAppDelegate *appDelegate;
     IBOutlet UITextField* textfield;
+    IBOutlet UILabel* nameLabel;
+    IBOutlet UISwitch* tagToggle;
 }
 @synthesize screenShotView, selectedFriend;
 
@@ -46,6 +48,17 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    //If there is a specific selected person, set the name label to be
+    // the name of that person.
+    if(selectedFriend !=nil) {
+        //TODO probably can just use first name?
+        NSString* txt = [[NSString alloc] initWithFormat:@"Tag %@", selectedFriend.name];
+        [nameLabel setText:txt];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

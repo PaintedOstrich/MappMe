@@ -83,6 +83,7 @@
 		A9106552153E46FA0057B570 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106547153E46FA0057B570 /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A9106553153E46FA0057B570 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106549153E46FA0057B570 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
+		A91667A51558050B0068C970 /* ScreenShotController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91667A41558050B0068C970 /* ScreenShotController2.xib */; };
 		A91C5BD6153F00C200128885 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DC14FED94600899729 /* UIKit.framework */; };
 		A91C5BD7153F00C200128885 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DE14FED94600899729 /* Foundation.framework */; };
 		A91C5BD8153F00C200128885 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435E014FED94600899729 /* CoreGraphics.framework */; };
@@ -262,6 +263,7 @@
 		A9106549153E46FA0057B570 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		A91667A41558050B0068C970 /* ScreenShotController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenShotController2.xib; sourceTree = "<group>"; };
 		A91C5BD4153F00C200128885 /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91C5BDB153F00C200128885 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		A91C5BDD153F00C200128885 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 				A95B9456154A656400182E33 /* ScreenShotController.h */,
 				A95B9457154A656500182E33 /* ScreenShotController.m */,
 				A95B9458154A656500182E33 /* ScreenShotController.xib */,
+				A91667A41558050B0068C970 /* ScreenShotController2.xib */,
 			);
 			name = SubViewControllers;
 			sourceTree = "<group>";
@@ -882,6 +885,7 @@
 				A9E90F33155786A8000603B6 /* workPin.png in Resources */,
 				A9E90F36155788D7000603B6 /* Default.png in Resources */,
 				A9E90F37155788D7000603B6 /* Default@2x.png in Resources */,
+				A91667A51558050B0068C970 /* ScreenShotController2.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
