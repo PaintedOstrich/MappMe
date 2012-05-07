@@ -54,10 +54,17 @@
 }
 
 /*
- * Does nothing so cancel(close button) is not moved
+ * Update the position of the close button
  */
 - (void)layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    CGRect rect = closeButton.frame;
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        rect.origin = CGPointMake(275, 35);
+    } else {
+        rect.origin = CGPointMake(350, 5);
+    }
+    closeButton.frame = rect;
 }
 
 /*

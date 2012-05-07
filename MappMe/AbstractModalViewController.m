@@ -16,7 +16,6 @@
 
 @implementation AbstractModalViewController {
     GradientView *gradientView;
-    IBOutlet UIButton* closeButton;
 }
 
 @synthesize backgroundView = _backgroundView;
@@ -42,6 +41,8 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    closeButton = nil;
+    backgroundView = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
