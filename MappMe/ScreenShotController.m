@@ -74,6 +74,7 @@
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    self.screenShotView.image, @"picture",
+                                   @"Test Description", @"caption",
                                    nil];
     [[appDelegate facebook] requestWithGraphPath:@"me/photos"
                                     andParams:params
