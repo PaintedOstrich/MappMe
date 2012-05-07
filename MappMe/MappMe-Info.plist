@@ -11,10 +11,7 @@
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>icon.png</string>
-		<string>Default@2x.png</string>
-		<string>Default.png</string>
 		<string>icon@2x.png</string>
-		<string>mappmeicon.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -23,8 +20,6 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>icon.png</string>
-				<string>default@2x.png</string>
-				<string>default.png</string>
 				<string>icon@2x.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
