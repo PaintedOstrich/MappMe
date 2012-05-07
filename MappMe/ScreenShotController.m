@@ -19,6 +19,7 @@
     //Uploading HUD
     MBProgressHUD* HUD;
     MappMeAppDelegate *appDelegate;
+    IBOutlet UITextField* textfield;
 }
 @synthesize screenShotView, selectedFriend;
 
@@ -35,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [textfield setDelegate:self];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -184,5 +186,12 @@
                                            andParams:nil 
                                        andHttpMethod:@"POST" andDelegate:nil];   
     }
+}
+
+#pragma mark -- UITextFieldDelegate methods
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end

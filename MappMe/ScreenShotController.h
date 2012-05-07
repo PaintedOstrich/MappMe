@@ -10,7 +10,7 @@
 #import "FBRequest.h"
 
 @class Person;
-@interface ScreenShotController : AbstractModalViewController <FBRequestDelegate> {
+@interface ScreenShotController : AbstractModalViewController <FBRequestDelegate, UITextFieldDelegate> {
     IBOutlet UIImageView *screenShotView;
     Person* selectedFriend;
 }
