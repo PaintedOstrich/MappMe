@@ -258,11 +258,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="_mapView" candidateClass="MKMapView"/>
-                <relationship kind="outlet" name="cameraBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hiddenBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="progressIndicator" candidateClass="UIView"/>
-                <relationship kind="outlet" name="searchBtn" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="settingsBtn" candidateClass="UIButton"/>
             </relationships>
         </class>
     </classes>

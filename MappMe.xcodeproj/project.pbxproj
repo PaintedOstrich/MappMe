@@ -131,6 +131,15 @@
 		A9BDC9EC15535AAB00B1EF53 /* SendInviteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */; };
 		A9BDC9F315535C8200B1EF53 /* CameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F115535C8200B1EF53 /* CameraButton.png */; };
 		A9BDC9F415535C8200B1EF53 /* LogoutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F215535C8200B1EF53 /* LogoutButton.png */; };
+		A9E90F241557868E000603B6 /* LoginWithFacebookNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F221557868E000603B6 /* LoginWithFacebookNormal@2x.png */; };
+		A9E90F251557868E000603B6 /* LoginWithFacebookPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F231557868E000603B6 /* LoginWithFacebookPressed@2x.png */; };
+		A9E90F2D155786A8000603B6 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F26155786A8000603B6 /* CloseButton.png */; };
+		A9E90F2E155786A8000603B6 /* collegePin.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F27155786A8000603B6 /* collegePin.png */; };
+		A9E90F2F155786A8000603B6 /* currentLocationPin.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F28155786A8000603B6 /* currentLocationPin.png */; };
+		A9E90F30155786A8000603B6 /* gradSchoolPin.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F29155786A8000603B6 /* gradSchoolPin.png */; };
+		A9E90F31155786A8000603B6 /* highSchoolPin.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F2A155786A8000603B6 /* highSchoolPin.png */; };
+		A9E90F32155786A8000603B6 /* hometownPin.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F2B155786A8000603B6 /* hometownPin.png */; };
+		A9E90F33155786A8000603B6 /* workPin.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F2C155786A8000603B6 /* workPin.png */; };
 		A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */; };
 		A9F8DFD515523F720075EA0B /* PersonMenuSlideController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */; };
 		A9FC7BCE15215766007D72F6 /* OverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9FC7BCC15215765007D72F6 /* OverlayViewController.m */; };
@@ -308,6 +317,15 @@
 		A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendInviteButton.png; sourceTree = "<group>"; };
 		A9BDC9F115535C8200B1EF53 /* CameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraButton.png; sourceTree = "<group>"; };
 		A9BDC9F215535C8200B1EF53 /* LogoutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutButton.png; sourceTree = "<group>"; };
+		A9E90F221557868E000603B6 /* LoginWithFacebookNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookNormal@2x.png"; sourceTree = "<group>"; };
+		A9E90F231557868E000603B6 /* LoginWithFacebookPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookPressed@2x.png"; sourceTree = "<group>"; };
+		A9E90F26155786A8000603B6 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
+		A9E90F27155786A8000603B6 /* collegePin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = collegePin.png; sourceTree = "<group>"; };
+		A9E90F28155786A8000603B6 /* currentLocationPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = currentLocationPin.png; sourceTree = "<group>"; };
+		A9E90F29155786A8000603B6 /* gradSchoolPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradSchoolPin.png; sourceTree = "<group>"; };
+		A9E90F2A155786A8000603B6 /* highSchoolPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highSchoolPin.png; sourceTree = "<group>"; };
+		A9E90F2B155786A8000603B6 /* hometownPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hometownPin.png; sourceTree = "<group>"; };
+		A9E90F2C155786A8000603B6 /* workPin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = workPin.png; sourceTree = "<group>"; };
 		A9F8DFCB15523F720075EA0B /* PersonMenuSlideController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonMenuSlideController.h; sourceTree = "<group>"; };
 		A9F8DFCC15523F720075EA0B /* PersonMenuSlideController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonMenuSlideController.m; sourceTree = "<group>"; };
 		A9F8DFCD15523F720075EA0B /* PersonMenuSlideController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonMenuSlideController.xib; sourceTree = "<group>"; };
@@ -442,6 +460,13 @@
 		681C415B151D71F600747C4A /* pin images */ = {
 			isa = PBXGroup;
 			children = (
+				A9E90F26155786A8000603B6 /* CloseButton.png */,
+				A9E90F27155786A8000603B6 /* collegePin.png */,
+				A9E90F28155786A8000603B6 /* currentLocationPin.png */,
+				A9E90F29155786A8000603B6 /* gradSchoolPin.png */,
+				A9E90F2A155786A8000603B6 /* highSchoolPin.png */,
+				A9E90F2B155786A8000603B6 /* hometownPin.png */,
+				A9E90F2C155786A8000603B6 /* workPin.png */,
 				681C415D151D724500747C4A /* bluePin.png */,
 				681C415E151D724500747C4A /* greenPin.png */,
 				681C415F151D724500747C4A /* orangePin.png */,
@@ -482,6 +507,8 @@
 		68963AE5154C80EF00286C3B /* mainUI */ = {
 			isa = PBXGroup;
 			children = (
+				A9E90F221557868E000603B6 /* LoginWithFacebookNormal@2x.png */,
+				A9E90F231557868E000603B6 /* LoginWithFacebookPressed@2x.png */,
 				6862A54A15547A2400499ED6 /* PostonWallButton2.png */,
 				6862A548155479DC00499ED6 /* PostonWallButton.png */,
 				A9BDC9F115535C8200B1EF53 /* CameraButton.png */,
@@ -846,6 +873,15 @@
 				68A3DBBB1554C55F00803B0D /* icon@2x.png in Resources */,
 				68A3DBBD1554C57300803B0D /* icon.png in Resources */,
 				A9295ABE1557258A001B918D /* OverlayViewController.xib in Resources */,
+				A9E90F241557868E000603B6 /* LoginWithFacebookNormal@2x.png in Resources */,
+				A9E90F251557868E000603B6 /* LoginWithFacebookPressed@2x.png in Resources */,
+				A9E90F2D155786A8000603B6 /* CloseButton.png in Resources */,
+				A9E90F2E155786A8000603B6 /* collegePin.png in Resources */,
+				A9E90F2F155786A8000603B6 /* currentLocationPin.png in Resources */,
+				A9E90F30155786A8000603B6 /* gradSchoolPin.png in Resources */,
+				A9E90F31155786A8000603B6 /* highSchoolPin.png in Resources */,
+				A9E90F32155786A8000603B6 /* hometownPin.png in Resources */,
+				A9E90F33155786A8000603B6 /* workPin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
