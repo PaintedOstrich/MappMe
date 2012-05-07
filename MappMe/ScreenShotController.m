@@ -74,8 +74,14 @@
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    self.screenShotView.image, @"picture",
-                                   @"Test Description", @"caption",
                                    nil];
+    
+    //Add image description if user has added anything.
+    if ([textfield.text length] > 0) {
+        [params setValue:textfield.text forKey:@"caption"];
+    }
+    
+    
     [[appDelegate facebook] requestWithGraphPath:@"me/photos"
                                     andParams:params
                                 andHttpMethod:@"POST"
