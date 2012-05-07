@@ -202,11 +202,11 @@
     [self tagFriend:(NSDictionary*)result];
 }
 
-//Try to tag friend in uploaded photo if selectedFriend is not nil
+//Try to tag friend in uploaded photo if selectedFriend is not nil and user allows tagging
 //We do not specify delegate so tagging will fail silently.
 - (void) tagFriend:(NSDictionary*)result
 {
-    if (selectedFriend != nil ) {
+    if (selectedFriend != nil && [tagToggle isOn]) {
         NSString *photoID = [NSString stringWithFormat:@"%@", [result valueForKey:@"id"]];
         DebugLog(@"trying to tag friend!!! %@", selectedFriend.name);
         [[appDelegate facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/tags/%@?access_token=%@", photoID, selectedFriend.uid, [appDelegate facebook].accessToken]
