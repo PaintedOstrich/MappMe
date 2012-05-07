@@ -79,4 +79,13 @@
     return (NSString *)person;    
 }
 
+- (NSString*) getFirstName
+{
+    if (self.name != nil) {
+        NSArray *chunks = [self.name componentsSeparatedByString: @" "];
+        return [chunks objectAtIndex:0];   
+    }
+    return @"";
+}
+
 @end
