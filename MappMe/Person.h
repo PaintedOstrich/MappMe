@@ -24,4 +24,6 @@
 
 //Return the internally mainted mapping between locType and array of places.
 -(NSDictionary*) getPlacesMapping;
+
+-(NSString*) getFirstName;
 @end

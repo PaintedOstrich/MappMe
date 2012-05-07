@@ -210,15 +210,23 @@
 
 -(void) showScreeShotMenu:(UIImage*)screenShot
 {
-    ScreenShotController* controller = [[ScreenShotController alloc] initWithNibName:@"ScreenShotController" bundle:nil];
+    NSString* nibFile = @"ScreenShotController";
+    Person* focusedPerson = nil;
+    //Initialize with different nib file as their appearance differ slightly (This one has tagging controls).
+    if (isFriendAnnotationType && selectedFriend != nil) {
+        nibFile = @"ScreenShotController2";
+        focusedPerson = selectedFriend;
+    } else if (isMutualFriendType && mutualFriendsWith != nil) {
+        nibFile = @"ScreenShotController2";
+        focusedPerson = mutualFriendsWith;
+    }
+    
+    ScreenShotController* controller = [[ScreenShotController alloc] initWithNibName:nibFile bundle:nil];
+    controller.selectedFriend = focusedPerson;
 
     [controller presentInParentViewController:self];
     [controller updateScreenShot:screenShot];
-    if (isFriendAnnotationType && selectedFriend != nil) {
-        controller.selectedFriend = selectedFriend;
-    } else if (isMutualFriendType && mutualFriendsWith != nil) {
-        controller.selectedFriend = mutualFriendsWith;
-    }
+
 }
 
 #pragma mark - Map pins methods

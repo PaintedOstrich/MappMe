@@ -14,7 +14,8 @@
 
 @interface AbstractModalViewController : UIViewController {
  //The semi transparent background modal view.
- IBOutlet UIView* backgroundView;   
+ IBOutlet UIView* backgroundView;
+ IBOutlet UIButton* closeButton;
 }
 @property (nonatomic, weak) IBOutlet UIView *backgroundView;
 

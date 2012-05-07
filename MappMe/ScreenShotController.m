@@ -19,6 +19,9 @@
     //Uploading HUD
     MBProgressHUD* HUD;
     MappMeAppDelegate *appDelegate;
+    IBOutlet UITextField* textfield;
+    IBOutlet UILabel* nameLabel;
+    IBOutlet UISwitch* tagToggle;
 }
 @synthesize screenShotView, selectedFriend;
 
@@ -35,6 +38,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [textfield setDelegate:self];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -46,16 +50,34 @@
     // e.g. self.myOutlet = nil;
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    //If there is a specific selected person, set the name label to be
+    // the name of that person.
+    if(selectedFriend !=nil) {
+        //TODO probably can just use first name?
+        NSString* txt = [[NSString alloc] initWithFormat:@"Tag %@", [selectedFriend getFirstName]];
+        [nameLabel setText:txt];
+    }
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 /*
- * Does nothing so cancel(close button) is not moved
+ * Update the position of the close button
  */
 - (void)layoutForInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
+    CGRect rect = closeButton.frame;
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation)) {
+        rect.origin = CGPointMake(275, 35);
+    } else {
+        rect.origin = CGPointMake(350, 5);
+    }
+    closeButton.frame = rect;
 }
 
 /*
@@ -73,6 +95,13 @@
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    self.screenShotView.image, @"picture",
                                    nil];
+    
+    //Add image description if user has added anything.
+    if ([textfield.text length] > 0) {
+        [params setValue:textfield.text forKey:@"caption"];
+    }
+    
+    
     [[appDelegate facebook] requestWithGraphPath:@"me/photos"
                                     andParams:params
                                 andHttpMethod:@"POST"
@@ -173,16 +202,23 @@
     [self tagFriend:(NSDictionary*)result];
 }
 
-//Try to tag friend in uploaded photo if selectedFriend is not nil
+//Try to tag friend in uploaded photo if selectedFriend is not nil and user allows tagging
 //We do not specify delegate so tagging will fail silently.
 - (void) tagFriend:(NSDictionary*)result
 {
-    if (selectedFriend != nil ) {
+    if (selectedFriend != nil && [tagToggle isOn]) {
         NSString *photoID = [NSString stringWithFormat:@"%@", [result valueForKey:@"id"]];
         DebugLog(@"trying to tag friend!!! %@", selectedFriend.name);
         [[appDelegate facebook] requestWithGraphPath:[NSString stringWithFormat:@"%@/tags/%@?access_token=%@", photoID, selectedFriend.uid, [appDelegate facebook].accessToken]
                                            andParams:nil 
                                        andHttpMethod:@"POST" andDelegate:nil];   
     }
+}
+
+#pragma mark -- UITextFieldDelegate methods
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 @end
