@@ -101,7 +101,7 @@
 								<string key="NSFrame">{{16, 150}, {233, 31}}</string>
 								<reference key="NSSuperview" ref="263409734"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="974239076"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -109,7 +109,7 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUIText"/>
 								<int key="IBUIBorderStyle">3</int>
-								<string key="IBUIPlaceholder">Leave some description....</string>
+								<string key="IBUIPlaceholder">Description....</string>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
@@ -365,13 +365,23 @@
 					<string key="className">ScreenShotController</string>
 					<string key="superclassName">AbstractModalViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="nameLabel">UILabel</string>
 						<string key="screenShotView">UIImageView</string>
+						<string key="tagToggle">UISwitch</string>
 						<string key="textfield">UITextField</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="nameLabel">
+							<string key="name">nameLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="screenShotView">
 							<string key="name">screenShotView</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tagToggle">
+							<string key="name">tagToggle</string>
+							<string key="candidateClassName">UISwitch</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="textfield">
 							<string key="name">textfield</string>

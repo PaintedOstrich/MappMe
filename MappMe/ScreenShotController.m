@@ -56,7 +56,7 @@
     // the name of that person.
     if(selectedFriend !=nil) {
         //TODO probably can just use first name?
-        NSString* txt = [[NSString alloc] initWithFormat:@"Tag %@", [selectedFriend getFirstName]];
+        NSString* txt = [[NSString alloc] initWithFormat:@"tag %@", [selectedFriend getFirstName]];
         [nameLabel setText:txt];
     }
 }
