@@ -202,7 +202,8 @@ static FacebookDataHandler *FBHandler = nil;
             Place* place = [[mainDataManager placeContainer] get:school_id];
             if ([loc objectForKey:@"latitude"]){
                 [place addLat:[loc objectForKey:@"latitude"]  andLong:[loc objectForKey:@"longitude"]]; 
-            } else if (![place hasValidLocation]){
+            } // Else if place does not have a valid location and it is still not in the black list, then do a google map look up!! 
+            else if (![place hasValidLocation] && ![[[[DataManagerSingleton sharedManager] placeContainer] blacklistedPlaces] containsObject:place.uid]){
                 //loc = { city="ShenZhen";
                 //        country="China";
                 //        state = "";
