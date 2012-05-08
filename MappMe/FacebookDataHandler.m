@@ -45,11 +45,6 @@ static FacebookDataHandler *FBHandler = nil;
     return self;
 }
 
--(void) cancelAllOperations
-{
-    [queue cancelAllOperations];
-}
-
 //This method establishes two way link between a person and a place given a locType.
 //E.g. Tim has St. Louis as its homeTown. St. Louis has Tim as a person considering itself as his hometown.
 -(void) link:(Place*)place withPerson:(Person*)person forLocType:(locTypeEnum)locType
@@ -359,6 +354,22 @@ static FacebookDataHandler *FBHandler = nil;
     [self asynchMultQueryHelper:fql];
 }
 
+
+#pragma mark -- NSOperation management methods
+-(void) cancelAllOperations
+{
+    [queue cancelAllOperations];
+}
+
+-(void) haltOperations
+{
+    [queue setSuspended:TRUE];
+}
+
+-(void) resumeOperations
+{
+    [queue setSuspended:FALSE];
+}
 
 
 

@@ -138,9 +138,20 @@ TOO_MANY_QUERIES = 620,
     }
 }
 
+#pragma mark -- NSOperation management methods
 -(void) cancelAllOperations
 {
     [queue cancelAllOperations];
+}
+
+-(void) haltOperations
+{
+    [queue setSuspended:TRUE];
+}
+
+-(void) resumeOperations
+{
+    [queue setSuspended:FALSE];
 }
 
 @end

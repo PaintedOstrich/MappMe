@@ -19,6 +19,9 @@
 -(void)getEducationInfo;
 -(void)getMutualFriends:(NSString*)friendId;
 
+//Called when the app is becoming inactive(going to background)
+//It will stop all outgoing nsoperations.
+-(void) haltOperations;
+-(void) resumeOperations;
 -(void) cancelAllOperations;
-
 @end

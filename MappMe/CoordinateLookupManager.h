@@ -25,7 +25,12 @@
 
 @property (retain) id<CoordinateLookupManagerDelegate> delegate;
 
--(void) cancelAllOperations;
 - (void)lookupLocation:(Place*)place;
 + (id)sharedManager;
+
+//Called when the app is becoming inactive(going to background)
+//It will stop all outgoing nsoperations.
+-(void) haltOperations;
+-(void) resumeOperations;
+-(void) cancelAllOperations;
 @end
