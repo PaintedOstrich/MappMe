@@ -2,7 +2,7 @@
 //  ObjectIdMapping.m
 //  MappMe
 //
-//  Created by Parker Spielman on 2/29/12.
+//  Created by Di Peng on 04/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,11 +12,15 @@
 
 @implementation PlaceContainer {
     NSString* _path;
+    NSString* _blacklistPath;
 }
+
+@synthesize blacklistedPlaces;
 
 -(id)init
 {
     if(self = [super init]){
+        blacklistedPlaces = [[NSMutableSet alloc] initWithCapacity:10];
         [self setupPath];
     }
     return self;
@@ -30,7 +34,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     documentsDirectory = [paths objectAtIndex:0];
     _path = [documentsDirectory stringByAppendingPathComponent:@"places.dat"];
-    NSLog(@"Saving places in %@", _path);
+    _blacklistPath = [documentsDirectory stringByAppendingPathComponent:@"blacklistplaces.dat"];
 }
 
 -(void) loadPlacesFromDisk
@@ -49,11 +53,25 @@
             [self get:key].name = p.name;
         }
     }
+    
+    NSSet* blacklist = [NSKeyedUnarchiver unarchiveObjectWithFile:_blacklistPath];
+    if (!blacklist) {
+        DebugLog(@"Did not have black listed places file set up");
+    } else {
+        DebugLog(@"Loaded %d blacked listed places from disk! They are all unlikely to be found on Google Map", [blacklist count]);
+        //        DebugLog(@"%@", [places allValues]);
+        NSArray* list = [blacklist allObjects];
+        for(int i = 0; i < [list count]; i++){
+            NSString* placeId =  [list objectAtIndex:i];
+            [blacklistedPlaces addObject:placeId];
+        }
+    }
 }
 
 -(void) savePlacesToDisk
 {
     [NSKeyedArchiver archiveRootObject:_data toFile:_path];
+    [NSKeyedArchiver archiveRootObject:blacklistedPlaces toFile:_blacklistPath];
 }
 
 /*

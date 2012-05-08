@@ -2,7 +2,7 @@
 //  ObjectIdMapping.h
 //  MappMe
 //
-//  Created by Parker Spielman on 2/29/12.
+//  Created by Di Peng on 04/29/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
@@ -12,8 +12,10 @@
 
 
 @interface PlaceContainer : AbstractContainer{
-
+   NSMutableSet* blacklistedPlaces;
 }
+@property(atomic, retain) NSMutableSet* blacklistedPlaces;
+
 -(Place*)get:(NSString*)town_id;
 
 //Get all the places that has someone use it as their given locType.
