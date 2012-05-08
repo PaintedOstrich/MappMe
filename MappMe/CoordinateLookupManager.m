@@ -4,6 +4,7 @@
 #import "AFHTTPRequestOperation.h"
 #import "CoordPairsHelper.h"
 #import "Place.h"
+#import "DataManagerSingleton.h"
 
 static CoordinateLookupManager *coordinateLookupManager = nil;
 
@@ -115,6 +116,9 @@ TOO_MANY_QUERIES = 620,
             } else if (location.status == TOO_MANY_QUERIES){
                 //Keep retrying this request.
                 [self lookupLocation:place];
+            } else if (location.status == UNKNOWN_ADDRESS) {
+                DebugLog(@"Add %@ to blacklist and will not look up that address again!", place.name);
+                [[[[DataManagerSingleton sharedManager] placeContainer] blacklistedPlaces] addObject:place.uid];
             }
             [self checkFinishConditions];
         } failure:^(AFHTTPRequestOperation *operation , NSError *error) {
