@@ -324,6 +324,7 @@
     [fbDataHandler getHometownLocation];
     [fbDataHandler getEducationInfo];
     [fbDataHandler getCurrentLocation];
+    [fbDataHandler getUserPermissions];
 
     [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
 //    int time = [t endTimerAndGetTotalTime];

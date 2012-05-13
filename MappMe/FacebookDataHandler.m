@@ -354,6 +354,38 @@ static FacebookDataHandler *FBHandler = nil;
     [self asynchMultQueryHelper:fql];
 }
 
+- (void)getUserPermissions {
+    //https://graph.facebook.com/me/permissions
+    
+    MappMeAppDelegate* delegate = (MappMeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSString * accessToken = (NSString *)[[delegate facebook] accessToken];
+    
+    NSString *url_string = [NSString stringWithFormat:@"https://graph.facebook.com/me/permissions&access_token=%@",accessToken];
+    //encode the string
+	url_string = [url_string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    DebugLog(@"query:\n %@",[NSURL URLWithString:url_string]);
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url_string]];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation
+                                         JSONRequestOperationWithRequest:request
+                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+                                             NSDictionary* dic = (NSDictionary*)JSON;
+                                             NSDictionary* permissions = [(NSArray *)[dic objectForKey:@"data"] objectAtIndex:0];
+                                             if (permissions) {
+                                                 [[DataManagerSingleton sharedManager] setUserPermissions:permissions];
+                                             } else {
+                                               DebugLog(@"ERROR!!!! Unable to parse permissions query from facbook"); 
+                                             }
+                                             
+                                         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+                                             NSLog(@"Error from Graph Api: %@", error.localizedDescription);
+                                             DebugLog(@"Retrying....");
+                                             [self getUserPermissions];
+                                         }];
+    operation.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", nil];
+    [queue addOperation:operation];
+}
+
 
 #pragma mark -- NSOperation management methods
 -(void) cancelAllOperations

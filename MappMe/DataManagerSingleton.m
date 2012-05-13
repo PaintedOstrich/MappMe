@@ -16,6 +16,7 @@
 @synthesize placeContainer;
 @synthesize userInfoLog;
 @synthesize peopleContainer;
+@synthesize userPermissions;
 
 static DataManagerSingleton *mainDataManager = nil;
 

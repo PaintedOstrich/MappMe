@@ -18,6 +18,8 @@
 -(void)getHometownLocation;
 -(void)getEducationInfo;
 -(void)getMutualFriends:(NSString*)friendId;
+//Get user permissions for our app.
+- (void)getUserPermissions;
 
 //Called when the app is becoming inactive(going to background)
 //It will stop all outgoing nsoperations.
