@@ -62,7 +62,7 @@
 							<object class="IBUIButton" id="526127965">
 								<reference key="NSNextResponder" ref="3036679"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{19, 232}, {224, 37}}</string>
+								<string key="NSFrame">{{19, 228}, {224, 37}}</string>
 								<reference key="NSSuperview" ref="3036679"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="224189873"/>
@@ -311,12 +311,12 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">uploadImage</string>
+						<string key="label">uploadPhoto</string>
 						<reference key="source" ref="526127965"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
-					<int key="connectionID">14</int>
+					<int key="connectionID">19</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -353,9 +353,9 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="284409652"/>
 							<reference ref="778521803"/>
-							<reference ref="526127965"/>
 							<reference ref="608644699"/>
 							<reference ref="390574717"/>
+							<reference ref="526127965"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -409,7 +409,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">18</int>
+			<int key="maxID">19</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

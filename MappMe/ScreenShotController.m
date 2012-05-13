@@ -10,6 +10,7 @@
 #import "MappMeAppDelegate.h"
 #import "MBProgressHUD.h"
 #import "Person.h"
+#import "DataManagerSingleton.h"
 
 @interface ScreenShotController ()
 
@@ -90,15 +91,23 @@
     [self.screenShotView setImage:[self rotateImage:screenShot]];
 }
 
--(IBAction) extendPermissions
+-(IBAction) uploadPhoto
 {
-
-    NSArray *extendedPermissions = [[NSArray alloc] initWithObjects:@"publish_actions", @"user_photos", nil];
-    [[appDelegate facebook] authorize:extendedPermissions];
+    NSDictionary* permissions = [[DataManagerSingleton sharedManager] userPermissions];
+    if (permissions && [permissions objectForKey:@"publish_actions"] && [permissions objectForKey:@"user_photos"]) {
+        [self doUploadPhoto];
+    } else {
+        NSArray *extendedPermissions = [[NSArray alloc] initWithObjects:@"publish_actions", @"user_photos", nil];
+        [[appDelegate facebook] authorize:extendedPermissions];
+    }
 }
 
 - (void)userDidGrantPermission {
     DebugLog(@"Permission granted!!!!");
+    NSDictionary* permissions = [[DataManagerSingleton sharedManager] userPermissions];
+    [permissions setValue:@"1" forKey:@"publish_actions"];
+    [permissions setValue:@"1" forKey:@"user_photos"];
+    [self doUploadPhoto];
 }
 
 /**
@@ -108,7 +117,7 @@
     DebugLog(@"Permission NOT granted!!!!");
 }
 
--(void) uploadPhoto
+-(void) doUploadPhoto
 {
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    self.screenShotView.image, @"picture",
