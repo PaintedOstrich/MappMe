@@ -148,7 +148,7 @@ static FacebookDataHandler *FBHandler = nil;
         
         NSString * uid = [[friendsTemp objectForKey:@"uid"] stringValue];
         //Changed to str value
-        NSString * town_id = [[[friendsTemp objectForKey:locTypeString]objectForKey:@"id"]stringValue];
+        NSString * town_id = [[[friendsTemp objectForKey:locTypeString]objectForKey:@"id"] stringValue];
         NSString * town_name = [[friendsTemp objectForKey:locTypeString]objectForKey:@"name"];
         NSString *name = [friendsTemp objectForKey:@"name"];
         if (town_id != nil && uid != nil) {
@@ -172,7 +172,11 @@ static FacebookDataHandler *FBHandler = nil;
         /*Make sure location array is not empty*/
         if ([loc respondsToSelector:@selector(objectForKey:)]) {
             //String value
-            NSString* placeId = [[citiesTemp objectForKey:@"page_id"]stringValue];
+            id tmp = [citiesTemp objectForKey:@"page_id"];
+            NSString* placeId = nil;
+            if ([tmp respondsToSelector:@selector(stringValue)]) {
+                placeId = [tmp stringValue];
+            }
             if (placeId != nil) {
               Place* place = [[mainDataManager placeContainer] get:placeId];
               [place addLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
@@ -189,7 +193,13 @@ static FacebookDataHandler *FBHandler = nil;
     while ((schoolTemp = [schoolLocEnum nextObject])) {
         if ([(NSString *)[schoolTemp objectForKey:@"name"]length] >3){
             NSDictionary *loc= [schoolTemp objectForKey:@"location"];
-            NSString * school_id = [[schoolTemp objectForKey:@"page_id"]stringValue];
+            NSString* school_id = nil;
+            id tmp = [schoolTemp objectForKey:@"page_id"];
+            if ([tmp respondsToSelector:@selector(stringValue)]) {
+                school_id = [tmp stringValue];
+            } else {
+                school_id = nil;
+            }
             //NSString *type = [schoolTypeMapping objectForKey:school_id];
             //If have lat and long
             if (school_id == nil)
