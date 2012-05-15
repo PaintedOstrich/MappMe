@@ -210,6 +210,7 @@
 
 -(void) viewWillAppear:(BOOL)animated{
     [[self navigationController] setNavigationBarHidden:TRUE animated:TRUE];
+    [delegate.facebook setSessionDelegate:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated

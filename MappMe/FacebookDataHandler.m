@@ -380,7 +380,9 @@ static FacebookDataHandler *FBHandler = nil;
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
                                              NSDictionary* dic = (NSDictionary*)JSON;
-                                             NSDictionary* permissions = [(NSArray *)[dic objectForKey:@"data"] objectAtIndex:0];
+                                             NSDictionary* tmp = [(NSArray *)[dic objectForKey:@"data"] objectAtIndex:0];
+                                             
+                                             NSMutableDictionary* permissions = [[NSMutableDictionary alloc] initWithDictionary:tmp];
                                              if (permissions) {
                                                  [[DataManagerSingleton sharedManager] setUserPermissions:permissions];
                                              } else {
