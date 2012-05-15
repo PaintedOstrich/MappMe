@@ -15,13 +15,13 @@
     PlaceContainer *placeContainer;
     PeopleContainer *peopleContainer;
     UserInfoLog *userInfoLog;
-    NSDictionary* userPermissions;
+    NSMutableDictionary* userPermissions;
 }
 
 @property (nonatomic, retain) PlaceContainer *placeContainer; 
 @property (nonatomic, retain) UserInfoLog  *userInfoLog; 
 @property (nonatomic, retain) PeopleContainer *peopleContainer;
-@property (nonatomic, retain) NSDictionary *userPermissions;
+@property (nonatomic, retain) NSMutableDictionary *userPermissions;
 
 + (id)sharedManager;
 //Called when we log out/switch user to clear all data.

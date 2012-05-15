@@ -36,6 +36,7 @@ static DataManagerSingleton *mainDataManager = nil;
         placeContainer = [[PlaceContainer alloc] init];
         peopleContainer =[[PeopleContainer alloc] init];
         userInfoLog = [[UserInfoLog alloc] init];
+        userPermissions = [[NSMutableDictionary alloc] initWithCapacity:10];
     }
     return self;
 }
