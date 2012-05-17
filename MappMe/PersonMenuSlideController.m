@@ -100,7 +100,7 @@
                                    @"Message posted via MappMe App.", @"caption",
                                    //@"Message Posted via MappMe.", @"description",
                                     @"http://paintedostrichstudio.appspot.com", @"link",
-                                   @"http://paintedostrichstudio.appspot.com/resources/img/icon.png", @"picture",
+                                   @"http://paintedostrichstudio.appspot.com/resources/img/nosuchimage.png", @"picture",
                                    //actionLinksStr, @"actions",
                                    nil];
     
