@@ -13,11 +13,6 @@
 #import "DataManagerSingleton.h"
 #import "CoordinateLookupManager.h"
 
-@interface FacebookDataHandler()
--(void)parseFacebookInfoController: (NSDictionary *)infoArray;
-
-@end
-
 static FacebookDataHandler *FBHandler = nil;
 
 @implementation FacebookDataHandler{
