@@ -15,6 +15,7 @@
     IBOutlet UIButton* collegeBtn;
     IBOutlet UIButton* highschoolBtn;
     IBOutlet UIButton* backToFriend;
+    IBOutlet UIButton* backToFriends;
 }
 @end
 
@@ -37,7 +38,7 @@
 {
     [super viewDidLoad];
     NSArray *chunks = [person.name componentsSeparatedByString: @" "];
-    NSString*mapp =  [[NSString alloc] initWithFormat:@"Back To %@",[chunks objectAtIndex:0]];
+    NSString*mapp =  [[NSString alloc] initWithFormat:@"Mapp %@",[chunks objectAtIndex:0]];
     [UtilFunctions setBtnTitleForAllStates:backToFriend withText:mapp];
     // Do any additional setup after loading the view from its nib.
 }
@@ -103,5 +104,10 @@
     [self.delegate didSelectFriend:person];
 }
 
+- (IBAction)backToFriends:(id)sender
+{
+    [self.container showMainMenu];
+    [self.delegate backToFriends];
+}
 
 @end

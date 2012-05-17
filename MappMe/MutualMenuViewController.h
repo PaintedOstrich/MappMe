@@ -13,6 +13,7 @@
 @protocol MutualMenuDelegate
 - (void)didSelectLocType:(locTypeEnum)locType;
 - (void)didSelectFriend:(Person*)person;
+- (void)backToFriends;
 
 @end
 @interface MutualMenuViewController : UIViewController{
