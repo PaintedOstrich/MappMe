@@ -99,7 +99,7 @@
 }
 - (IBAction)backToFriend:(id)sender
 {
-    [self.container showMainMenu];
+    [self.container showFriendMenu:person];
     [self.delegate didSelectFriend:person];
 }
 

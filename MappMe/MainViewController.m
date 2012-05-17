@@ -506,7 +506,7 @@
 //    currDisplayedType = tNilLocType;
     [self makeAnnotationsForPerson:selectedPerson];
     [self showPins];
-     [_slidingController showFriendMenu:selectedPerson];
+    [_slidingController showFriendMenu:selectedPerson];
 }
 - (void)didSelectMutualFriends:(Person*)person{
     [self.navigationController popToViewController:self animated:YES]; 
@@ -519,9 +519,6 @@
     [self showLocationType:tCurrentLocation];
 }
 -(void)backToFriends{
-    if (isMutualFriendType) {
-        [_slidingController showMutualFriendsMenu:mutualFriendsWith];
-    }
     [self showLocationType:currDisplayedType];
 }
 - (void)backToAllFriends{
