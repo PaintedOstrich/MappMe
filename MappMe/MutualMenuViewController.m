@@ -7,6 +7,7 @@
 //
 
 #import "MutualMenuViewController.h"
+#import "UtilFunctions.h"
 
 @interface MutualMenuViewController (){
     IBOutlet UIButton* hometownBtn;
@@ -37,7 +38,7 @@
     [super viewDidLoad];
     NSArray *chunks = [person.name componentsSeparatedByString: @" "];
     NSString*mapp =  [[NSString alloc] initWithFormat:@"Back To %@",[chunks objectAtIndex:0]];
-    [self setBtnTitleForAllStates:backToFriend withText:mapp];
+    [UtilFunctions setBtnTitleForAllStates:backToFriend withText:mapp];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -71,14 +72,6 @@
         default:
             break;
     }
-}
-
--(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
-{
-    [btn setTitle:txt forState:UIControlStateNormal];
-    [btn setTitle:txt forState:UIControlStateHighlighted];
-    [btn setTitle:txt forState:UIControlStateDisabled];
-    [btn setTitle:txt forState:UIControlStateSelected];
 }
 
 - (IBAction)showHomeTown:(id)sender

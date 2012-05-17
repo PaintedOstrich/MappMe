@@ -11,4 +11,5 @@
 @interface UtilFunctions : NSObject
 
 +(NSString *)convertToString:(id)object;
++(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt;
 @end

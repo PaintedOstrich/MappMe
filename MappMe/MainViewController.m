@@ -278,14 +278,6 @@
     [annotations removeAllObjects];
 }
 
--(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
-{
-    [btn setTitle:txt forState:UIControlStateNormal];
-    [btn setTitle:txt forState:UIControlStateHighlighted];
-    [btn setTitle:txt forState:UIControlStateDisabled];
-    [btn setTitle:txt forState:UIControlStateSelected];
-}
-
 //After fetchAndProcess, we start allowing users to interact with the controls
 //by showing all pins for curent locations and taking away the loading HUD.
 -(void) initialDataPrcessingDnoe

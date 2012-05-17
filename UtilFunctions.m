@@ -33,5 +33,13 @@ return [[NSString alloc] initWithFormat:@"%@",object];
     
 }
 
++(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
+{
+    [btn setTitle:txt forState:UIControlStateNormal];
+    [btn setTitle:txt forState:UIControlStateHighlighted];
+    [btn setTitle:txt forState:UIControlStateDisabled];
+    [btn setTitle:txt forState:UIControlStateSelected];
+}
+
 
 @end

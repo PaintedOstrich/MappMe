@@ -9,6 +9,7 @@
 #import "PersonMenuSlideController.h"
 #import "SBJSON.h"
 #import "MappMeAppDelegate.h"
+#import "UtilFunctions.h"
 
 @interface PersonMenuSlideController ()
 
@@ -29,19 +30,13 @@
     }
     return self;
 }
--(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
-{
-    [btn setTitle:txt forState:UIControlStateNormal];
-    [btn setTitle:txt forState:UIControlStateHighlighted];
-    [btn setTitle:txt forState:UIControlStateDisabled];
-    [btn setTitle:txt forState:UIControlStateSelected];
-}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     NSArray *chunks = [self.person.name componentsSeparatedByString: @" "];
     NSString*mapp =  [[NSString alloc] initWithFormat:@"Mapp %@",[chunks objectAtIndex:0]];
-    [self setBtnTitleForAllStates:b1 withText:mapp];
+    [UtilFunctions setBtnTitleForAllStates:b1 withText:mapp];
 //    if ([person.mutualFriends count] >0) {
 //        NSString *subl = [[NSString alloc] initWithFormat:@"Mutual Friends (%i)",[person.mutualFriends count]];
 //        [self setBtnTitleForAllStates:b2 withText:subl];
