@@ -12,17 +12,20 @@
 
 @protocol MutualMenuDelegate
 - (void)didSelectLocType:(locTypeEnum)locType;
-- (void)backToAllFriends;
+- (void)didSelectFriend:(Person*)person;
 
 @end
 @interface MutualMenuViewController : UIViewController{
     locTypeEnum selectedLocType;
     SlidingContainer* container;
+    //The other person we are trying to find mutual friends with.
+    Person* person;
 }
 
 @property (retain) id<MutualMenuDelegate> delegate;
 @property locTypeEnum selectedLocType;
 @property (nonatomic,retain) SlidingContainer* container;
+@property (strong) Person* person;
 @end
 
 

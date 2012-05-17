@@ -176,7 +176,7 @@
 }
 -(void)showMutualFriendsMenu:(Person*)person{
     [self transitionCleanup];
-    [self initMutualMenuController];
+    [self initMutualMenuController:person];
     NSArray *chunks = [person.name componentsSeparatedByString: @" "];
     NSString * label = [[NSString alloc] initWithFormat:@"%@ and My Friends:",[chunks objectAtIndex:0]];
     [self updateSubLabel:label];
@@ -201,11 +201,12 @@
     mmvc = controller;//So it can be removed
     [self addChildViewController:controller];
 }
--(void)initMutualMenuController{
+-(void)initMutualMenuController:(Person*)person{
     MutualMenuViewController *controller = [[MutualMenuViewController alloc] initWithNibName:@"MutualMenuViewController" bundle:nil];
 //    [self updateMainLabel:person.name];
     controller.delegate = mainViewController;
     controller.container=self;
+    controller.person = person;
     displayHeight = controller.view.frame.size.height;
     buttonGroup = controller.view;
     buttonGroup.frame = [self setViewInBottom:buttonGroup];

@@ -13,7 +13,7 @@
     IBOutlet UIButton* currentLocationBtn;
     IBOutlet UIButton* collegeBtn;
     IBOutlet UIButton* highschoolBtn;
-    IBOutlet UIButton* backToAllBtn;
+    IBOutlet UIButton* backToFriend;
 }
 @end
 
@@ -22,6 +22,7 @@
 @synthesize selectedLocType;
 @synthesize delegate;
 @synthesize container;
+@synthesize person;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,6 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSArray *chunks = [person.name componentsSeparatedByString: @" "];
+    NSString*mapp =  [[NSString alloc] initWithFormat:@"Back To %@",[chunks objectAtIndex:0]];
+    [self setBtnTitleForAllStates:backToFriend withText:mapp];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -69,6 +73,14 @@
     }
 }
 
+-(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt 
+{
+    [btn setTitle:txt forState:UIControlStateNormal];
+    [btn setTitle:txt forState:UIControlStateHighlighted];
+    [btn setTitle:txt forState:UIControlStateDisabled];
+    [btn setTitle:txt forState:UIControlStateSelected];
+}
+
 - (IBAction)showHomeTown:(id)sender
 {
     [self.container closeMenu];
@@ -92,10 +104,10 @@
     [self.container closeMenu];
     [self.delegate didSelectLocType:tHighSchool];
 }
-- (IBAction)backToAll:(id)sender
+- (IBAction)backToFriend:(id)sender
 {
     [self.container showMainMenu];
-    [self.delegate backToAllFriends];
+    [self.delegate didSelectFriend:person];
 }
 
 
