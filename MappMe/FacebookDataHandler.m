@@ -285,27 +285,29 @@ static FacebookDataHandler *FBHandler = nil;
     //schoolTypeMapping = [[NSMutableDictionary alloc] init];
 
     while ((bas_info = (NSDictionary *)[enumerator nextObject])) {
-        NSString * loc = [bas_info objectForKey:@"name"];
-        /*Distribute Parsing to Specialized Methods*/
-        
-        //CityType param allows reuse of parsing method for fb friend/city info while differentiating data
-        if ([loc isEqualToString :@"curLocFriends"]){
-            [self parseFbFriends:bas_info andCityType:@"current_location"];
-        }
-        if ([loc isEqualToString :@"hometownFriends"]){
-            [self parseFbFriends:bas_info andCityType:@"hometown_location"];
-        }
-        if ([loc isEqualToString:@"friendsEdu"]){
-            [self parseFbFriendsEdu:bas_info];
-        }
-        if ([loc isEqualToString:@"location"]){
-            [self parseFbCity:bas_info];
-        }
-        if ([loc isEqualToString:@"schoolLocation"]){
-            [self parseFbEdu:bas_info];
-        }
-        if([loc isEqualToString:@"mutualFriends"]){
-            [self parseMutualFriends:bas_info];
+        if ([bas_info respondsToSelector:@selector(objectForKey:)]) {
+            NSString * loc = [bas_info objectForKey:@"name"];
+            /*Distribute Parsing to Specialized Methods*/
+            
+            //CityType param allows reuse of parsing method for fb friend/city info while differentiating data
+            if ([loc isEqualToString :@"curLocFriends"]){
+                [self parseFbFriends:bas_info andCityType:@"current_location"];
+            }
+            if ([loc isEqualToString :@"hometownFriends"]){
+                [self parseFbFriends:bas_info andCityType:@"hometown_location"];
+            }
+            if ([loc isEqualToString:@"friendsEdu"]){
+                [self parseFbFriendsEdu:bas_info];
+            }
+            if ([loc isEqualToString:@"location"]){
+                [self parseFbCity:bas_info];
+            }
+            if ([loc isEqualToString:@"schoolLocation"]){
+                [self parseFbEdu:bas_info];
+            }
+            if([loc isEqualToString:@"mutualFriends"]){
+                [self parseMutualFriends:bas_info];
+            }
         }
     }
     
