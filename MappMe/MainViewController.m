@@ -286,9 +286,14 @@
     [btn setTitle:txt forState:UIControlStateSelected];
 }
 
--(void) showCurrentLoc
+//After fetchAndProcess, we start allowing users to interact with the controls
+//by showing all pins for curent locations and taking away the loading HUD.
+-(void) initialDataPrcessingDnoe
 {
+    //Only allow user to tap the main menu button at this point.
+    [[_slidingController toggleButton] setEnabled:TRUE];
     [self showLocationType:tCurrentLocation];
+    [self bounceControls];
 }
 
 -(void)showLocationType:(locTypeEnum)locType{
@@ -326,10 +331,7 @@
     [fbDataHandler getCurrentLocation];
     [fbDataHandler getUserPermissions];
 
-    [self performSelectorOnMainThread:@selector(showCurrentLoc) withObject:nil waitUntilDone:NO];
-//    int time = [t endTimerAndGetTotalTime];
-//    DebugLog(@"Total App Loadtime: %i",time);
-    [self performSelectorOnMainThread:@selector(bounceControls) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(initialDataPrcessingDnoe) withObject:nil waitUntilDone:NO];
 }
 
 #pragma mark - animation functions
