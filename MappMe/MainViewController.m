@@ -189,9 +189,7 @@
     //controller.selectedLocType = currDisplayedType;
     [_slidingController presentInParentViewController:self];
 }
--(void)updateMainLabel:(NSString*)label{
-    [_slidingController updateMainLabel:label];
-}
+
 #pragma mark - Modal Popup Methods
 //Adds subview of menu selection for current location, hometown, high school, etc.
 -(IBAction)showLocationMenu{
