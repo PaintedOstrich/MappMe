@@ -137,7 +137,7 @@ static FacebookDataHandler *FBHandler = nil;
             DebugLog(@"Warning: locType set incorrectly");
         }
 
-        while ((friendsTemp = (NSDictionary *)[friendsEnum nextObject])) {
+        while ((friendsTemp = [friendsEnum nextObject])) {
             if ([friendsTemp isKindOfClass:[NSDictionary class]]) {
                 NSDictionary* locations = [friendsTemp objectForKey:locTypeString];
                 
@@ -183,8 +183,10 @@ static FacebookDataHandler *FBHandler = nil;
             if ([loc isKindOfClass:[NSDictionary class]]) {
                 NSString* placeId = [UtilFunctions convertToString:[citiesTemp objectForKey:@"page_id"]];
                 if (placeId != nil) {
-                  Place* place = [[mainDataManager placeContainer] get:placeId];
-                  [place addLat:[loc objectForKey:@"latitude"] andLong:[loc objectForKey:@"longitude"]];
+                    Place* place = [[mainDataManager placeContainer] get:placeId];
+                    NSString* lat = [UtilFunctions convertToString:[loc objectForKey:@"latitude"]];
+                    NSString* lon = [UtilFunctions convertToString:[loc objectForKey:@"longitude"]];  
+                    [place addLat:lat andLong:lon];
                 }
             } else{
                 //In My testing(Di), sometimes loc will be an empty array instead of dictionary.
@@ -217,7 +219,9 @@ static FacebookDataHandler *FBHandler = nil;
                         if (school_id != nil && school_name !=nil) {
                             Place* place = [[mainDataManager placeContainer] get:school_id];
                             if ([loc objectForKey:@"latitude"]){
-                                [place addLat:[loc objectForKey:@"latitude"]  andLong:[loc objectForKey:@"longitude"]]; 
+                                NSString* lat = [UtilFunctions convertToString:[loc objectForKey:@"latitude"]];
+                                NSString* lon = [UtilFunctions convertToString:[loc objectForKey:@"longitude"]];  
+                                [place addLat:lat andLong:lon];
                             } // Else if place does not have a valid location and it is still not in the black list, then do a google map look up!! 
                             else if (![place hasValidLocation] && ![[[[DataManagerSingleton sharedManager] placeContainer] blacklistedPlaces] containsObject:place.uid]){
                                 //loc = { city="ShenZhen";
