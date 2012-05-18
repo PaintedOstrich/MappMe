@@ -84,6 +84,7 @@
 		A9106553153E46FA0057B570 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A9106549153E46FA0057B570 /* UIImageView+AFNetworking.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A913EE68150095FC009F6A84 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = A913EE67150095FC009F6A84 /* MBProgressHUD.m */; };
 		A91667A51558050B0068C970 /* ScreenShotController2.xib in Resources */ = {isa = PBXBuildFile; fileRef = A91667A41558050B0068C970 /* ScreenShotController2.xib */; };
+		A918CF28156563A100445039 /* CodeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = A918CF27156563A100445039 /* CodeTest.m */; };
 		A91C5BD6153F00C200128885 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DC14FED94600899729 /* UIKit.framework */; };
 		A91C5BD7153F00C200128885 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435DE14FED94600899729 /* Foundation.framework */; };
 		A91C5BD8153F00C200128885 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680435E014FED94600899729 /* CoreGraphics.framework */; };
@@ -264,6 +265,7 @@
 		A913EE66150095FC009F6A84 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		A913EE67150095FC009F6A84 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		A91667A41558050B0068C970 /* ScreenShotController2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScreenShotController2.xib; sourceTree = "<group>"; };
+		A918CF27156563A100445039 /* CodeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeTest.m; sourceTree = "<group>"; };
 		A91C5BD4153F00C200128885 /* UnitTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A91C5BDB153F00C200128885 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		A91C5BDD153F00C200128885 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -687,8 +689,9 @@
 				A98F172A153FB45F00FB6257 /* PersonTest.m */,
 				A98F1726153FB24400FB6257 /* PlaceTest.m */,
 				A91C5BF9153F059000128885 /* PeopleContainerTests.m */,
-				A91C5BDA153F00C200128885 /* Supporting Files */,
 				68963A96154AE19B00286C3B /* UtilFunctionsTest.m */,
+				A918CF27156563A100445039 /* CodeTest.m */,
+				A91C5BDA153F00C200128885 /* Supporting Files */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -969,6 +972,7 @@
 				A98F1730153FB96500FB6257 /* PlaceContainerTest.m in Sources */,
 				A97F780D153FF1D0000C7768 /* MyAnnotationTest.m in Sources */,
 				68963A97154AE19B00286C3B /* UtilFunctionsTest.m in Sources */,
+				A918CF28156563A100445039 /* CodeTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

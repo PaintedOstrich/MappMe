@@ -476,6 +476,12 @@
     }
     
     annotationView.image = [self getPinImage:annotation];
+    //annView.centerOffset = CGPointMake(0, -imageHeight / 2);
+    if (isFriendAnnotationType) {
+       annotationView.centerOffset = CGPointMake((annotationView.image.size.width) / 5, -(annotationView.image.size.height) / 2);
+    } else {
+       annotationView.centerOffset = CGPointMake((annotationView.image.size.width) / 3, -(annotationView.image.size.height) / 3);   
+    }
     
     if (!isFriendAnnotationType) {
         annotationView.rightCalloutAccessoryView.tag = [annotations indexOfObject:(MyAnnotation *)annotation];
@@ -518,9 +524,7 @@
    
     [self showLocationType:tCurrentLocation];
 }
--(void)backToFriends{
-    [self showLocationType:currDisplayedType];
-}
+
 - (void)backToAllFriends{
     isMutualFriendType = FALSE;
     [self showLocationType:currDisplayedType];

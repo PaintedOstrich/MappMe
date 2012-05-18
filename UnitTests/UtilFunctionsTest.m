@@ -19,20 +19,29 @@
     
 }
 
-//Test All Methods in Between
--(void) testConvertToString
-{
-    NSInteger * integer = (NSInteger*)123;
-    // float floatNumber = 1.23;
-    NSDecimalNumber* decNum = [[NSDecimalNumber alloc] initWithInt:123];
-    NSString * string = @"123";
+-(void) testConvertToString {
+    NSString* answer;
     
-//    GHAssertEqualCStrings(string,[UtilFunctions convertToString:string], nil);
-//    GHAssertEqualCStrings(string,[UtilFunctions convertToString:decNum], nil);
-//    GHAssertEqualCStrings(string,[UtilFunctions convertToString:integer], nil);
-    
+    answer = [UtilFunctions convertToString:@"Already is a string"];
+    GHAssertEqualStrings(answer, @"Already is a string", nil);
 }
 
+-(void) testHasLoactionData {
+    NSNumber* num = [[NSNumber alloc] initWithFloat:33.3f];
+    NSDictionary* hasLocData = [[NSDictionary alloc] 
+                               initWithObjectsAndKeys: @"", @"street", 
+                                                       num, @"latitude", nil];
+    NSDictionary* noLocData = [[NSDictionary alloc] 
+                                initWithObjectsAndKeys: @"", @"street", 
+                                                       @"", @"latitude", nil];
+    
+    BOOL answer;
+    answer = [UtilFunctions hasLoactionData:hasLocData];
+    GHAssertTrue(answer,@"It does have some location data");
+    
+    answer = [UtilFunctions hasLoactionData:noLocData];
+    GHAssertFalse(answer,@"It does not have any location data");
+}
 
 // Run after each test method
 - (void)tearDown {

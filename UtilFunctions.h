@@ -12,4 +12,5 @@
 
 +(NSString *)convertToString:(id)object;
 +(void) setBtnTitleForAllStates:(UIButton*)btn withText:(NSString*)txt;
++(BOOL) hasLoactionData:(NSDictionary*)loc;
 @end
