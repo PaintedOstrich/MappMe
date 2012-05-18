@@ -15,7 +15,7 @@
     IBOutlet UIButton* collegeBtn;
     IBOutlet UIButton* highschoolBtn;
     IBOutlet UIButton* backToFriend;
-    IBOutlet UIButton* backToFriends;
+    IBOutlet UIButton* backToAllFriends;
 }
 @end
 
@@ -104,10 +104,10 @@
     [self.delegate didSelectFriend:person];
 }
 
-- (IBAction)backToFriends:(id)sender
+- (IBAction)backToAllFriends:(id)sender
 {
     [self.container showMainMenu];
-    [self.delegate backToFriends];
+    [self.delegate backToAllFriends];
 }
 
 @end

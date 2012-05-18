@@ -113,10 +113,10 @@
     [self.delegate didSelectMutualFriends:self.person];
     [self.container showMutualFriendsMenu:person];
 }
-- (IBAction)backToFriends:(id)sender
+- (IBAction)backToAllFriends:(id)sender
 {
     [self.container showMainMenu];
-    [self.delegate backToFriends];
+    [self.delegate backToAllFriends];
 }
 
 @end

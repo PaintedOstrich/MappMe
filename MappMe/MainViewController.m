@@ -524,9 +524,7 @@
    
     [self showLocationType:tCurrentLocation];
 }
--(void)backToFriends{
-    [self showLocationType:currDisplayedType];
-}
+
 - (void)backToAllFriends{
     isMutualFriendType = FALSE;
     [self showLocationType:currDisplayedType];
