@@ -3,6 +3,7 @@
 #import "LoginViewController.h"
 #import "FacebookDataHandler.h"
 #import "CoordinateLookupManager.h"
+#import "iRate.h"
 
 static NSString * kAppId = @"291279594218895";
 @implementation MappMeAppDelegate
@@ -10,6 +11,14 @@ static NSString * kAppId = @"291279594218895";
 @synthesize window = _window;
 @synthesize facebook;
 @synthesize backgroundQueue;
+
++ (void)initialize
+{
+    //enable debug mode
+    [iRate sharedInstance].debug = YES;
+    [iRate sharedInstance].daysUntilPrompt = 1.0;
+    [iRate sharedInstance].usesUntilPrompt = 3.0;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

@@ -131,6 +131,7 @@
 		A9BDC9EC15535AAB00B1EF53 /* SendInviteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */; };
 		A9BDC9F315535C8200B1EF53 /* CameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F115535C8200B1EF53 /* CameraButton.png */; };
 		A9BDC9F415535C8200B1EF53 /* LogoutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F215535C8200B1EF53 /* LogoutButton.png */; };
+		A9E7A0F01579D0EC00757D11 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E7A0EF1579D0EC00757D11 /* iRate.m */; };
 		A9E90F241557868E000603B6 /* LoginWithFacebookNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F221557868E000603B6 /* LoginWithFacebookNormal@2x.png */; };
 		A9E90F251557868E000603B6 /* LoginWithFacebookPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F231557868E000603B6 /* LoginWithFacebookPressed@2x.png */; };
 		A9E90F2D155786A8000603B6 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F26155786A8000603B6 /* CloseButton.png */; };
@@ -319,6 +320,8 @@
 		A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendInviteButton.png; sourceTree = "<group>"; };
 		A9BDC9F115535C8200B1EF53 /* CameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraButton.png; sourceTree = "<group>"; };
 		A9BDC9F215535C8200B1EF53 /* LogoutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutButton.png; sourceTree = "<group>"; };
+		A9E7A0EE1579D0EC00757D11 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		A9E7A0EF1579D0EC00757D11 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		A9E90F221557868E000603B6 /* LoginWithFacebookNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookNormal@2x.png"; sourceTree = "<group>"; };
 		A9E90F231557868E000603B6 /* LoginWithFacebookPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookPressed@2x.png"; sourceTree = "<group>"; };
 		A9E90F26155786A8000603B6 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
@@ -438,6 +441,8 @@
 		6804360E14FEDE1300899729 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				A9E7A0EE1579D0EC00757D11 /* iRate.h */,
+				A9E7A0EF1579D0EC00757D11 /* iRate.m */,
 				68BEE56A15258EBC00E2433D /* ZoomHelper.h */,
 				68BEE56B15258EBC00E2433D /* ZoomHelper.m */,
 				683D38341507C0D200021ED3 /* DebugLog.h */,
@@ -950,6 +955,7 @@
 				68C72DE9154DF13400DBED48 /* MainMenuViewController.m in Sources */,
 				6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */,
 				A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */,
+				A9E7A0F01579D0EC00757D11 /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
