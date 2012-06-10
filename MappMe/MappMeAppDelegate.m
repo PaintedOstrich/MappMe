@@ -15,9 +15,9 @@ static NSString * kAppId = @"291279594218895";
 + (void)initialize
 {
     //enable debug mode
-    [iRate sharedInstance].debug = YES;
-    [iRate sharedInstance].daysUntilPrompt = 1.0;
-    [iRate sharedInstance].usesUntilPrompt = 3.0;
+    //[iRate sharedInstance].debug = YES;
+    [iRate sharedInstance].daysUntilPrompt = 3.0;
+    [iRate sharedInstance].usesUntilPrompt = 4.0;
 }
 
 
