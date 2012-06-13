@@ -27,6 +27,5 @@ void _DebugLog(const char *file, int lineNumber, const char *funcName, NSString 
 	} else {
 		fprintf(stderr,"%p/%s (%s:%d) %s",[NSThread currentThread],funcName,[fileName UTF8String],lineNumber,[body UTF8String]);
 	}
-//	[body release];	
 }
 

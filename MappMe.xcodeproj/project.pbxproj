@@ -47,6 +47,7 @@
 		6862A54B15547A2400499ED6 /* PostonWallButton2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6862A54A15547A2400499ED6 /* PostonWallButton2.png */; };
 		687E43F8154DABD700CE245F /* SettingsMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 687E43F5154DABD700CE245F /* SettingsMenuController.m */; };
 		687E43F9154DABD700CE245F /* SettingsMenuController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 687E43F6154DABD700CE245F /* SettingsMenuController.xib */; };
+		6889AC471588436700C657CD /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6889AC461588436700C657CD /* iRate.m */; };
 		689175BD151D0C3D00078BE2 /* FacebookDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */; };
 		68963A93154ADF9200286C3B /* UtilFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963A92154ADF9200286C3B /* UtilFunctions.m */; };
 		68963A94154AE0D900286C3B /* UtilFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 68963A92154ADF9200286C3B /* UtilFunctions.m */; };
@@ -131,7 +132,6 @@
 		A9BDC9EC15535AAB00B1EF53 /* SendInviteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */; };
 		A9BDC9F315535C8200B1EF53 /* CameraButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F115535C8200B1EF53 /* CameraButton.png */; };
 		A9BDC9F415535C8200B1EF53 /* LogoutButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9BDC9F215535C8200B1EF53 /* LogoutButton.png */; };
-		A9E7A0F01579D0EC00757D11 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = A9E7A0EF1579D0EC00757D11 /* iRate.m */; };
 		A9E90F241557868E000603B6 /* LoginWithFacebookNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F221557868E000603B6 /* LoginWithFacebookNormal@2x.png */; };
 		A9E90F251557868E000603B6 /* LoginWithFacebookPressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F231557868E000603B6 /* LoginWithFacebookPressed@2x.png */; };
 		A9E90F2D155786A8000603B6 /* CloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = A9E90F26155786A8000603B6 /* CloseButton.png */; };
@@ -210,6 +210,8 @@
 		687E43F5154DABD700CE245F /* SettingsMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsMenuController.m; sourceTree = "<group>"; };
 		687E43F6154DABD700CE245F /* SettingsMenuController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuController.xib; sourceTree = "<group>"; };
 		687E43F7154DABD700CE245F /* SettingsMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsMenuController.h; sourceTree = "<group>"; };
+		6889AC451588436700C657CD /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		6889AC461588436700C657CD /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		689175BB151D0C3D00078BE2 /* FacebookDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookDataHandler.h; sourceTree = "<group>"; };
 		689175BC151D0C3D00078BE2 /* FacebookDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookDataHandler.m; sourceTree = "<group>"; };
 		68963A91154ADF9200286C3B /* UtilFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilFunctions.h; sourceTree = SOURCE_ROOT; };
@@ -320,8 +322,6 @@
 		A9BDC9EB15535AAB00B1EF53 /* SendInviteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SendInviteButton.png; sourceTree = "<group>"; };
 		A9BDC9F115535C8200B1EF53 /* CameraButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraButton.png; sourceTree = "<group>"; };
 		A9BDC9F215535C8200B1EF53 /* LogoutButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoutButton.png; sourceTree = "<group>"; };
-		A9E7A0EE1579D0EC00757D11 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
-		A9E7A0EF1579D0EC00757D11 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		A9E90F221557868E000603B6 /* LoginWithFacebookNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookNormal@2x.png"; sourceTree = "<group>"; };
 		A9E90F231557868E000603B6 /* LoginWithFacebookPressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LoginWithFacebookPressed@2x.png"; sourceTree = "<group>"; };
 		A9E90F26155786A8000603B6 /* CloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CloseButton.png; sourceTree = "<group>"; };
@@ -441,8 +441,6 @@
 		6804360E14FEDE1300899729 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				A9E7A0EE1579D0EC00757D11 /* iRate.h */,
-				A9E7A0EF1579D0EC00757D11 /* iRate.m */,
 				68BEE56A15258EBC00E2433D /* ZoomHelper.h */,
 				68BEE56B15258EBC00E2433D /* ZoomHelper.m */,
 				683D38341507C0D200021ED3 /* DebugLog.h */,
@@ -662,6 +660,8 @@
 		A913EE64150095DB009F6A84 /* PlugIns */ = {
 			isa = PBXGroup;
 			children = (
+				6889AC451588436700C657CD /* iRate.h */,
+				6889AC461588436700C657CD /* iRate.m */,
 				A9106533153E46DB0057B570 /* AFNetworking */,
 				A913EE66150095FC009F6A84 /* MBProgressHUD.h */,
 				A913EE67150095FC009F6A84 /* MBProgressHUD.m */,
@@ -955,7 +955,7 @@
 				68C72DE9154DF13400DBED48 /* MainMenuViewController.m in Sources */,
 				6819C1F8154F5FF800BA2544 /* MutualMenuViewController.m in Sources */,
 				A9F8DFD415523F720075EA0B /* PersonMenuSlideController.m in Sources */,
-				A9E7A0F01579D0EC00757D11 /* iRate.m in Sources */,
+				6889AC471588436700C657CD /* iRate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
